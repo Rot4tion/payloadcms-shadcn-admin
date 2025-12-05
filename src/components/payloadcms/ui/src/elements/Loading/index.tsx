@@ -1,15 +1,13 @@
 'use client'
 import { getTranslation } from '@payloadcms/translations'
 import React from 'react'
+import { cn } from '@/lib/utils'
 
 import type { LoadingOverlayTypes } from '../../elements/LoadingOverlay/types.js'
 
 import { useLoadingOverlay } from '../../elements/LoadingOverlay/index.js'
 import { useFormProcessing } from '../../forms/Form/context.js'
 import { useTranslation } from '../../providers/Translation/index.js'
-import './index.scss'
-
-const baseClass = 'loading-overlay'
 
 type LoadingOverlayProps = {
   animationDuration?: string
@@ -28,26 +26,31 @@ export const LoadingOverlay: React.FC<LoadingOverlayProps> = ({
 
   return (
     <div
-      className={[
-        baseClass,
-        show ? `${baseClass}--entering` : `${baseClass}--exiting`,
-        overlayType ? `${baseClass}--${overlayType}` : '',
-      ]
-        .filter(Boolean)
-        .join(' ')}
+      className={cn(
+        'fixed inset-0 z-50 flex flex-col items-center justify-center bg-background/80 backdrop-blur-sm',
+        show ? 'animate-in fade-in duration-300' : 'animate-out fade-out duration-300',
+        overlayType === 'withoutRouteTransition' && 'z-[60]',
+      )}
       style={{
         animationDuration: animationDuration || '500ms',
       }}
     >
-      <div className={`${baseClass}__bars`}>
-        <div className={`${baseClass}__bar`} />
-        <div className={`${baseClass}__bar`} />
-        <div className={`${baseClass}__bar`} />
-        <div className={`${baseClass}__bar`} />
-        <div className={`${baseClass}__bar`} />
+      <div className="flex items-center gap-1">
+        {[...Array(5)].map((_, i) => (
+          <div
+            key={i}
+            className="h-8 w-1 animate-pulse rounded-full bg-primary"
+            style={{
+              animationDelay: `${i * 100}ms`,
+              animationDuration: '600ms',
+            }}
+          />
+        ))}
       </div>
 
-      <span className={`${baseClass}__text`}>{loadingText || t('general:loading')}</span>
+      <span className="mt-4 text-sm text-muted-foreground">
+        {loadingText || t('general:loading')}
+      </span>
     </div>
   )
 }

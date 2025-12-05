@@ -1,7 +1,6 @@
 'use client'
 import React from 'react'
-
-import './index.scss'
+import { cn } from '@/lib/utils'
 
 export type GutterProps = {
   children: React.ReactNode
@@ -12,8 +11,6 @@ export type GutterProps = {
   ref?: React.RefObject<HTMLDivElement>
   right?: boolean
 }
-
-const baseClass = 'gutter'
 
 export const Gutter: React.FC<GutterProps> = (props) => {
   const {
@@ -31,16 +28,13 @@ export const Gutter: React.FC<GutterProps> = (props) => {
 
   return (
     <div
-      className={[
-        baseClass,
-        shouldPadLeft && `${baseClass}--left`,
-        shouldPadRight && `${baseClass}--right`,
-        negativeLeft && `${baseClass}--negative-left`,
-        negativeRight && `${baseClass}--negative-right`,
+      className={cn(
+        shouldPadLeft && 'pl-6',
+        shouldPadRight && 'pr-6',
+        negativeLeft && '-ml-6',
+        negativeRight && '-mr-6',
         className,
-      ]
-        .filter(Boolean)
-        .join(' ')}
+      )}
       ref={ref}
     >
       {children}

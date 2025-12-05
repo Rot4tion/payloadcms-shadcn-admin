@@ -1,8 +1,8 @@
 'use client'
 import React, { useEffect } from 'react'
+import { cn } from '@/lib/utils'
 
 import { useIntersect } from '../../hooks/useIntersect.js'
-import './index.scss'
 
 export type Props = {
   alignCaret?: 'center' | 'left' | 'right'
@@ -70,34 +70,31 @@ export const Tooltip: React.FC<Props> = (props) => {
     setPosition(intersectionEntry?.isIntersecting ? 'top' : 'bottom')
   }, [intersectionEntry, staticPositioning])
 
+  const finalPosition = positionFromProps || position
+
+  const tooltipClasses = cn(
+    'absolute z-50 px-2 py-1 text-xs font-medium rounded-md shadow-md',
+    'bg-popover text-popover-foreground border border-border',
+    'opacity-0 pointer-events-none transition-opacity duration-150',
+    show && 'opacity-100',
+    finalPosition === 'top' && 'bottom-full mb-2',
+    finalPosition === 'bottom' && 'top-full mt-2',
+    alignCaret === 'left' && 'left-0',
+    alignCaret === 'center' && 'left-1/2 -translate-x-1/2',
+    alignCaret === 'right' && 'right-0',
+    className,
+  )
+
   // The first aside is always on top. The purpose of that is that it can reliably be used for the interaction observer (as it's not moving around), to calculate the position of the actual tooltip.
   return (
     <React.Fragment>
       {!staticPositioning && (
-        <aside
-          aria-hidden="true"
-          className={['tooltip', className, `tooltip--caret-${alignCaret}`, 'tooltip--position-top']
-            .filter(Boolean)
-            .join(' ')}
-          ref={ref}
-          style={{ opacity: '0' }}
-        >
-          <div className="tooltip-content">{children}</div>
+        <aside aria-hidden="true" className={cn(tooltipClasses, 'opacity-0')} ref={ref}>
+          <div>{children}</div>
         </aside>
       )}
-      <aside
-        className={[
-          'tooltip',
-          className,
-          show && 'tooltip--show',
-          `tooltip--caret-${alignCaret}`,
-          `tooltip--position-${positionFromProps || position}`,
-        ]
-          .filter(Boolean)
-          .join(' ')}
-        title={getTitleAttribute(children)}
-      >
-        <div className="tooltip-content">{children}</div>
+      <aside className={tooltipClasses} title={getTitleAttribute(children)}>
+        <div>{children}</div>
       </aside>
     </React.Fragment>
   )

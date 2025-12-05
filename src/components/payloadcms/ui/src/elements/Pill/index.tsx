@@ -1,9 +1,49 @@
 'use client'
 import type { ElementType, HTMLAttributes } from 'react'
 
-import React from 'react' // TODO: abstract this out to support all routers
-
+import React from 'react'
+import { cn } from '@/lib/utils'
+import { cva, type VariantProps } from 'class-variance-authority'
 import { Link } from '../Link/index.js'
+import { useDraggableSortable } from '../DraggableSortable/useDraggableSortable/index.js'
+
+const pillVariants = cva('inline-flex items-center gap-1.5 font-medium transition-colors', {
+  variants: {
+    variant: {
+      light: 'bg-muted text-foreground',
+      dark: 'bg-foreground text-background',
+      white: 'bg-background text-foreground border border-border',
+      'always-white': 'bg-white text-gray-900',
+      'light-gray': 'bg-muted/50 text-muted-foreground',
+      error: 'bg-destructive/10 text-destructive',
+      success: 'bg-green-500/10 text-green-700 dark:text-green-400',
+      warning: 'bg-yellow-500/10 text-yellow-700 dark:text-yellow-400',
+    },
+    size: {
+      small: 'px-2 py-0.5 text-xs',
+      medium: 'px-3 py-1 text-sm',
+    },
+    rounded: {
+      true: 'rounded-full',
+      false: 'rounded-md',
+    },
+    hasAction: {
+      true: 'cursor-pointer hover:opacity-80',
+      false: '',
+    },
+    isDragging: {
+      true: 'opacity-50',
+      false: '',
+    },
+  },
+  defaultVariants: {
+    variant: 'light',
+    size: 'medium',
+    rounded: false,
+    hasAction: false,
+    isDragging: false,
+  },
+})
 
 export type PillStyle =
   | 'always-white'
@@ -37,7 +77,7 @@ export type PillProps = {
   rounded?: boolean
   size?: 'medium' | 'small'
   to?: string
-}
+} & VariantProps<typeof pillVariants>
 
 export type RenderedTypeProps = {
   children: React.ReactNode
@@ -47,12 +87,7 @@ export type RenderedTypeProps = {
   type?: 'button'
 }
 
-import { useDraggableSortable } from '../DraggableSortable/useDraggableSortable/index.js'
-import './index.scss'
-
-const baseClass = 'pill'
-
-const DraggablePill: React.FC<PillProps> = (props) => {
+const DraggablePill: React.FC<PillProps & { isDraggingState?: boolean }> = (props) => {
   const { id, className } = props
 
   const { attributes, isDragging, listeners, setNodeRef, transform } = useDraggableSortable({
@@ -62,7 +97,7 @@ const DraggablePill: React.FC<PillProps> = (props) => {
   return (
     <StaticPill
       {...props}
-      className={[isDragging && `${baseClass}--is-dragging`, className].filter(Boolean).join(' ')}
+      isDraggingState={isDragging}
       elementProps={{
         ...listeners,
         ...attributes,
@@ -75,7 +110,7 @@ const DraggablePill: React.FC<PillProps> = (props) => {
   )
 }
 
-const StaticPill: React.FC<PillProps> = (props) => {
+const StaticPill: React.FC<PillProps & { isDraggingState?: boolean }> = (props) => {
   const {
     id,
     alignIcon = 'right',
@@ -88,27 +123,13 @@ const StaticPill: React.FC<PillProps> = (props) => {
     draggable,
     elementProps,
     icon,
+    isDraggingState,
     onClick,
     pillStyle = 'light',
-    rounded,
+    rounded = false,
     size = 'medium',
     to,
   } = props
-
-  const classes = [
-    baseClass,
-    `${baseClass}--style-${pillStyle}`,
-    `${baseClass}--size-${size}`,
-    className && className,
-    to && `${baseClass}--has-link`,
-    (to || onClick) && `${baseClass}--has-action`,
-    icon && `${baseClass}--has-icon`,
-    icon && `${baseClass}--align-icon-${alignIcon}`,
-    draggable && `${baseClass}--draggable`,
-    rounded && `${baseClass}--rounded`,
-  ]
-    .filter(Boolean)
-    .join(' ')
 
   let Element: ElementType | React.FC<RenderedTypeProps> = 'div'
 
@@ -127,14 +148,25 @@ const StaticPill: React.FC<PillProps> = (props) => {
       aria-controls={ariaControls}
       aria-expanded={ariaExpanded}
       aria-label={ariaLabel}
-      className={classes}
+      className={cn(
+        pillVariants({
+          variant: pillStyle,
+          size,
+          rounded,
+          hasAction: !!(to || onClick),
+          isDragging: isDraggingState,
+        }),
+        alignIcon === 'left' && 'flex-row-reverse',
+        draggable && 'cursor-grab',
+        className,
+      )}
       href={to || null}
       id={id}
       onClick={onClick}
       type={Element === 'button' ? 'button' : undefined}
     >
-      <span className={`${baseClass}__label`}>{children}</span>
-      {Boolean(icon) && <span className={`${baseClass}__icon`}>{icon}</span>}
+      <span>{children}</span>
+      {Boolean(icon) && <span className="shrink-0">{icon}</span>}
     </Element>
   )
 }
