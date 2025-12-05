@@ -3,7 +3,7 @@
 import type { CollectionSlug } from 'payload'
 import type { FolderOrDocument } from 'payload/shared'
 
-import { useModal } from '@faceless-ui/modal'
+import { useModal } from '../../Modal/index.js'
 import { getTranslation } from '@payloadcms/translations'
 import React, { useId } from 'react'
 import { toast } from 'sonner'

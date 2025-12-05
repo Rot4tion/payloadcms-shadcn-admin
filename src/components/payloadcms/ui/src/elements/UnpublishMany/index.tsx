@@ -1,7 +1,7 @@
 'use client'
 import type { ClientCollectionConfig, Where } from 'payload'
 
-import { useModal } from '@faceless-ui/modal'
+import { useModal } from '../Modal/index.js'
 import React from 'react'
 
 import { useAuth } from '../../providers/Auth/index.js'

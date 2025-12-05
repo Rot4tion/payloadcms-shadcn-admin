@@ -26,16 +26,18 @@
 | Tooltip | `ui/src/elements/Tooltip` | ✅ Done |
 | Dashboard | `next/src/views/Dashboard/Default` | ✅ Done |
 
-### 1.2 Critical - Must Convert Next
-| Component | Path | Shadcn Equivalent | Priority |
-|-----------|------|-------------------|----------|
-| Button | `ui/src/elements/Button` | shadcn/button | 🔴 High |
-| Card | `ui/src/elements/Card` | shadcn/card | 🔴 High |
-| Modal | `ui/src/elements/Modal` | shadcn/dialog | 🔴 High |
-| Drawer | `ui/src/elements/Drawer` | shadcn/sheet | 🔴 High |
-| Popup | `ui/src/elements/Popup` | shadcn/popover | 🔴 High |
-| Table | `ui/src/elements/Table` | shadcn/table | 🔴 High |
-| Pagination | `ui/src/elements/Pagination` | Custom | 🔴 High |
+### 1.2 Critical - Converted ✅
+| Component | Path | Shadcn Equivalent | Status |
+|-----------|------|-------------------|--------|
+| Button | `ui/src/elements/Button` | CVA + Tailwind | ✅ Done |
+| Card | `ui/src/elements/Card` | Tailwind | ✅ Done |
+| Modal | `ui/src/elements/Modal` | shadcn/dialog | ✅ Done |
+| Drawer | `ui/src/elements/Drawer` | shadcn/sheet | ✅ Done |
+| Popup | `ui/src/elements/Popup` | shadcn/popover | ⏳ Pending |
+| Table | `ui/src/elements/Table` | shadcn/table | ⏳ Pending |
+| Pagination | `ui/src/elements/Pagination` | Custom | ⏳ Pending |
+| ConfirmationModal | `ui/src/elements/ConfirmationModal` | Tailwind | ✅ Done |
+| FullscreenModal | `ui/src/elements/FullscreenModal` | Custom Modal | ✅ Done |
 
 ### 1.3 Medium Priority
 | Component | Path | Shadcn Equivalent |

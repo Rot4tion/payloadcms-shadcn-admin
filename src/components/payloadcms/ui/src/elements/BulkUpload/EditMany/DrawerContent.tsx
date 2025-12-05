@@ -2,7 +2,7 @@
 
 import type { ClientCollectionConfig, SelectType } from 'payload'
 
-import { useModal } from '@faceless-ui/modal'
+import { useModal } from '../../Modal/index.js'
 import { getTranslation } from '@payloadcms/translations'
 import { unflatten } from 'payload/shared'
 import React, { useCallback, useEffect, useMemo, useState } from 'react'

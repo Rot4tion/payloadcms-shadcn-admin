@@ -1,5 +1,5 @@
 'use client'
-import { useModal } from '@faceless-ui/modal'
+import { useModal } from '../Modal/index.js'
 import React, { useCallback } from 'react'
 import { toast } from 'sonner'
 

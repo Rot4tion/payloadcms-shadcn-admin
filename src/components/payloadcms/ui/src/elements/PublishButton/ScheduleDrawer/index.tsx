@@ -4,7 +4,7 @@
 import type { Column, SchedulePublish, Where } from 'payload'
 
 import { TZDateMini as TZDate } from '@date-fns/tz/date/mini'
-import { useModal } from '@faceless-ui/modal'
+import { useModal } from '../../Modal/index.js'
 import { getTranslation } from '@payloadcms/translations'
 import { endOfToday, isToday, startOfDay } from 'date-fns'
 import { transpose } from 'date-fns/transpose'

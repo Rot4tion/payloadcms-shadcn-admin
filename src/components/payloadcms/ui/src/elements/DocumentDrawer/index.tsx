@@ -1,5 +1,5 @@
 'use client'
-import { useModal } from '@faceless-ui/modal'
+import { useModal } from '../Modal/index.js'
 import React, { useCallback, useEffect, useId, useMemo, useState } from 'react'
 
 import type {

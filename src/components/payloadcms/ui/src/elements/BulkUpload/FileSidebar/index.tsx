@@ -1,6 +1,6 @@
 'use client'
 
-import { useModal } from '@faceless-ui/modal'
+import { useModal } from '../../Modal/index.js'
 import { useWindowInfo } from '@faceless-ui/window-info'
 import { isImage } from 'payload/shared'
 import React from 'react'

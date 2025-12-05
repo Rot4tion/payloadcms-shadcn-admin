@@ -1,6 +1,6 @@
 import type { QueryPreset, SanitizedCollectionPermission } from 'payload'
 
-import { useModal } from '@faceless-ui/modal'
+import { useModal } from '../../Modal/index.js'
 import { getTranslation } from '@payloadcms/translations'
 import { transformColumnsToPreferences, transformColumnsToSearchParams } from 'payload/shared'
 import React, { Fragment, useCallback, useMemo } from 'react'

@@ -1,13 +1,11 @@
 'use client'
-import { Modal, useModal } from '@faceless-ui/modal'
 import React, { useCallback } from 'react'
 
+import { cn } from '@/lib/utils'
 import { useTranslation } from '../../providers/Translation/index.js'
 import { Button } from '../Button/index.js'
 import { drawerZBase, useDrawerDepth } from '../Drawer/index.js'
-import './index.scss'
-
-const baseClass = 'confirmation-modal'
+import { Modal, useModal } from '../Modal/index.js'
 
 export type OnCancel = () => void
 
@@ -72,20 +70,23 @@ export function ConfirmationModal(props: ConfirmationModalProps) {
 
   return (
     <Modal
-      className={[baseClass, className].filter(Boolean).join(' ')}
-      // Fixes https://github.com/payloadcms/payload/issues/13778
+      className={cn('fixed inset-0 flex items-center justify-center', className)}
       closeOnBlur={false}
       slug={modalSlug}
       style={{
         zIndex: drawerZBase + editDepth,
       }}
     >
-      <div className={`${baseClass}__wrapper`}>
-        <div className={`${baseClass}__content`}>
-          {typeof heading === 'string' ? <h1>{heading}</h1> : heading}
-          {typeof body === 'string' ? <p>{body}</p> : body}
+      <div className="bg-background rounded-lg shadow-lg p-6 max-w-md w-full mx-4">
+        <div className="mb-6">
+          {typeof heading === 'string' ? (
+            <h1 className="text-lg font-semibold mb-2">{heading}</h1>
+          ) : (
+            heading
+          )}
+          {typeof body === 'string' ? <p className="text-muted-foreground">{body}</p> : body}
         </div>
-        <div className={`${baseClass}__controls`}>
+        <div className="flex gap-3 justify-end">
           <Button
             buttonStyle="secondary"
             disabled={confirming}

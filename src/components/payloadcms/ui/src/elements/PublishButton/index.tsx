@@ -2,7 +2,7 @@
 
 import type { PublishButtonClientProps } from 'payload'
 
-import { useModal } from '@faceless-ui/modal'
+import { useModal } from '../Modal/index.js'
 import * as qs from 'qs-esm'
 import React, { useCallback, useEffect, useState } from 'react'
 

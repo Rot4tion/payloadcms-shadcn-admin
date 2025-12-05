@@ -3,7 +3,7 @@
 import type { CollectionSlug, Document } from 'payload'
 import type { FolderBreadcrumb, FolderOrDocument } from 'payload/shared'
 
-import { useModal } from '@faceless-ui/modal'
+import { useModal } from '../../../Modal/index.js'
 import { getTranslation } from '@payloadcms/translations'
 import { extractID } from 'payload/shared'
 import React from 'react'

@@ -1,7 +1,7 @@
 'use client'
 import type { ClientCollectionConfig, Where } from 'payload'
 
-import { useModal } from '@faceless-ui/modal'
+import { useModal } from '../Modal/index.js'
 import React, { useState } from 'react'
 
 import type { FieldOption } from '../FieldSelect/reduceFieldOptions.js'

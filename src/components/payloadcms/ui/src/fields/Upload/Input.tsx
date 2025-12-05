@@ -13,7 +13,7 @@ import type {
 } from 'payload'
 import type { MarkOptional } from 'ts-essentials'
 
-import { useModal } from '@faceless-ui/modal'
+import { useModal } from '../../elements/Modal/index.js'
 import * as qs from 'qs-esm'
 import React, { useCallback, useEffect, useMemo } from 'react'
 

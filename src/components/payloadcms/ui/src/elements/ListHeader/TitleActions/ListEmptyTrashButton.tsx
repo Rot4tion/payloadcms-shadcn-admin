@@ -1,7 +1,7 @@
 'use client'
 import type { ClientCollectionConfig } from 'payload'
 
-import { useModal } from '@faceless-ui/modal'
+import { useModal } from '../../Modal/index.js'
 import { getTranslation } from '@payloadcms/translations'
 import { useRouter, useSearchParams } from 'next/navigation.js'
 import * as qs from 'qs-esm'

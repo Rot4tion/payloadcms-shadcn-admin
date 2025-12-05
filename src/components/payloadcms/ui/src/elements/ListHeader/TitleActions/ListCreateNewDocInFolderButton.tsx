@@ -2,7 +2,7 @@
 
 import type { ClientCollectionConfig, CollectionSlug } from 'payload'
 
-import { useModal } from '@faceless-ui/modal'
+import { useModal } from '../../Modal/index.js'
 import { getTranslation } from '@payloadcms/translations'
 import React from 'react'
 

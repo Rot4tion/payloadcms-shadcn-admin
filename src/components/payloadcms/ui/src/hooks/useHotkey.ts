@@ -1,6 +1,6 @@
 'use client'
 
-import { useModal } from '@faceless-ui/modal'
+import { useModal } from '../elements/Modal/index.js'
 import { setsAreEqual } from 'payload/shared'
 import { useCallback, useEffect } from 'react'
 

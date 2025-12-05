@@ -1,7 +1,7 @@
 'use client'
 import type { ClientBlock, Labels } from 'payload'
 
-import { useModal } from '@faceless-ui/modal'
+import { useModal } from '../../../elements/Modal/index.js'
 import { getTranslation } from '@payloadcms/translations'
 import React, { useEffect } from 'react'
 

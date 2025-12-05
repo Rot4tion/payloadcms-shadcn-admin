@@ -1,7 +1,7 @@
 'use client'
 import type { CollectionSlug } from 'payload'
 
-import { useModal } from '@faceless-ui/modal'
+import { useModal } from '../../Modal/index.js'
 import { useRouter } from 'next/navigation.js'
 import React from 'react'
 

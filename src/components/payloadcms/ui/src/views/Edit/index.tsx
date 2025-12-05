@@ -2,7 +2,7 @@
 
 import type { ClientUser, DocumentViewClientProps } from 'payload'
 
-import { useModal } from '@faceless-ui/modal'
+import { useModal } from '../../elements/Modal/index.js'
 import { useRouter, useSearchParams } from 'next/navigation.js'
 import { formatAdminURL } from 'payload/shared'
 import React, { Fragment, useCallback, useEffect, useMemo, useRef, useState } from 'react'

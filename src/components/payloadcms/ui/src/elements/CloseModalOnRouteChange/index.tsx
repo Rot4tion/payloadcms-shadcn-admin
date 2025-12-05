@@ -1,6 +1,6 @@
 'use client'
 
-import { useModal } from '@faceless-ui/modal'
+import { useModal } from '../Modal/index.js'
 import { usePathname } from 'next/navigation.js'
 import { useEffect, useRef } from 'react'
 

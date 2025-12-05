@@ -1,4 +1,4 @@
-import { useModal } from '@faceless-ui/modal'
+import { useModal } from '../Modal/index.js'
 
 import { XIcon } from '../../icons/X/index.js'
 import { useTranslation } from '../../providers/Translation/index.js'

@@ -2,7 +2,7 @@
 
 import type { CollectionSlug } from 'payload'
 
-import { useModal } from '@faceless-ui/modal'
+import { useModal } from '../../../elements/Modal/index.js'
 import { extractID } from 'payload/shared'
 import React, { Fragment } from 'react'
 import { toast } from 'sonner'

@@ -1,7 +1,7 @@
 'use client'
 import type { CollectionSlug, ListQuery } from 'payload'
 
-import { useModal } from '@faceless-ui/modal'
+import { useModal } from '../Modal/index.js'
 import { hoistQueryParamsToAnd } from 'payload/shared'
 import React, { useCallback, useEffect, useState } from 'react'
 

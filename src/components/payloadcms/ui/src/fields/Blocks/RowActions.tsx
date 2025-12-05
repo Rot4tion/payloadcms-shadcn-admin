@@ -1,7 +1,7 @@
 'use client'
 import type { ClientBlock, ClientField, Labels } from 'payload'
 
-import { useModal } from '@faceless-ui/modal'
+import { useModal } from '../../elements/Modal/index.js'
 import React from 'react'
 
 import { ArrayAction } from '../../elements/ArrayAction/index.js'

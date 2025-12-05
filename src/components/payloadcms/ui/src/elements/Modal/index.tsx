@@ -13,6 +13,7 @@ type ModalState = {
 
 // Modal context type
 type ModalContextType = {
+  closeAllModals: () => void
   closeModal: (slug: string) => void
   isModalOpen: (slug: string) => boolean
   modalState: ModalState
@@ -28,6 +29,7 @@ export const useModal = (): ModalContextType => {
   if (!context) {
     // Return a default implementation if no provider
     return {
+      closeAllModals: () => {},
       closeModal: () => {},
       isModalOpen: () => false,
       modalState: {},
@@ -68,10 +70,22 @@ export const ModalProvider: React.FC<{
     }))
   }, [])
 
+  const closeAllModals = useCallback(() => {
+    setModalState((prev) => {
+      const newState: ModalState = {}
+      for (const slug of Object.keys(prev)) {
+        newState[slug] = { isOpen: false }
+      }
+      return newState
+    })
+  }, [])
+
   const isModalOpen = useCallback((slug: string) => !!modalState[slug]?.isOpen, [modalState])
 
   return (
-    <ModalContext.Provider value={{ closeModal, isModalOpen, modalState, openModal, toggleModal }}>
+    <ModalContext.Provider
+      value={{ closeAllModals, closeModal, isModalOpen, modalState, openModal, toggleModal }}
+    >
       {children}
     </ModalContext.Provider>
   )

@@ -1,7 +1,7 @@
 'use client'
 import type { ClientUser, SanitizedPermissions, TypedUser } from 'payload'
 
-import { useModal } from '@faceless-ui/modal'
+import { useModal } from '../../elements/Modal/index.js'
 import { usePathname, useRouter } from 'next/navigation.js'
 import { formatAdminURL } from 'payload/shared'
 import * as qs from 'qs-esm'

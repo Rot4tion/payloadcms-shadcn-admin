@@ -3,7 +3,7 @@
 import type { I18nClient } from '@payloadcms/translations'
 import type { ClientConfig } from 'payload'
 
-import { useModal } from '@faceless-ui/modal'
+import { useModal } from '../../Modal/index.js'
 import { getTranslation } from '@payloadcms/translations'
 import { setsAreEqual } from 'payload/shared'
 import React, { useCallback, useMemo, useState } from 'react'

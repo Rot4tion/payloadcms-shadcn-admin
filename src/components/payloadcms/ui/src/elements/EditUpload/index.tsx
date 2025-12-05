@@ -2,7 +2,7 @@
 
 import type { UploadEdits } from 'payload'
 
-import { useModal } from '@faceless-ui/modal'
+import { useModal } from '../Modal/index.js'
 import React, { useRef, useState } from 'react'
 import ReactCrop from 'react-image-crop'
 import 'react-image-crop/dist/ReactCrop.css'

@@ -1,6 +1,6 @@
 'use client'
 
-import { useModal } from '@faceless-ui/modal'
+import { useModal } from '../Modal/index.js'
 import { getTranslation } from '@payloadcms/translations'
 import { useRouter } from 'next/navigation.js'
 import { formatAdminURL } from 'payload/shared'
