@@ -1,5 +1,5 @@
 'use client'
-import { SelectField, useTranslation } from '@payloadcms/ui'
+import { SelectField, useTranslation } from '@payloadcms-local/ui'
 import React from 'react'
 
 export const LocaleSelector: React.FC<{

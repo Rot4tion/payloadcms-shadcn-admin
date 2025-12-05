@@ -1,10 +1,9 @@
 'use client'
-import { GearIcon, Popup, useTranslation } from '@payloadcms/ui'
+import { useTranslation } from '@payloadcms-local/ui'
 import React, { Fragment } from 'react'
-
-import './index.scss'
-
-const baseClass = 'settings-menu-button'
+import { Settings } from 'lucide-react'
+import { Button } from '@/components/ui/button'
+import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover'
 
 export type SettingsMenuButtonProps = {
   settingsMenu?: React.ReactNode[]
@@ -18,17 +17,19 @@ export const SettingsMenuButton: React.FC<SettingsMenuButtonProps> = ({ settings
   }
 
   return (
-    <Popup
-      button={<GearIcon ariaLabel={t('general:menu')} />}
-      className={baseClass}
-      horizontalAlign="left"
-      id="settings-menu"
-      size="small"
-      verticalAlign="bottom"
-    >
-      {settingsMenu.map((item, i) => (
-        <Fragment key={`settings-menu-item-${i}`}>{item}</Fragment>
-      ))}
-    </Popup>
+    <Popover>
+      <PopoverTrigger asChild>
+        <Button variant="ghost" size="icon-sm" aria-label={t('general:menu')}>
+          <Settings className="size-4" />
+        </Button>
+      </PopoverTrigger>
+      <PopoverContent align="start" side="top" className="w-48 p-2">
+        <div className="flex flex-col gap-1">
+          {settingsMenu.map((item, i) => (
+            <Fragment key={`settings-menu-item-${i}`}>{item}</Fragment>
+          ))}
+        </div>
+      </PopoverContent>
+    </Popover>
   )
 }

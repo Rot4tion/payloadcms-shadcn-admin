@@ -1,4 +1,4 @@
-import { sanitizeID } from '@payloadcms/ui/shared'
+import { sanitizeID } from '@payloadcms-local/ui/shared'
 import {
   type Locale,
   logError,

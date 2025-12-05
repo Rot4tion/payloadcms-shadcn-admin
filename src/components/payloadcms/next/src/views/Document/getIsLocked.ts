@@ -6,7 +6,7 @@ import type {
   Where,
 } from 'payload'
 
-import { sanitizeID } from '@payloadcms/ui/shared'
+import { sanitizeID } from '@payloadcms-local/ui/shared'
 import { extractID } from 'payload/shared'
 
 type Args = {

@@ -1,7 +1,7 @@
 'use client'
 import type { TypedUser } from 'payload'
 
-import { Button, ConfirmationModal, toast, useModal, useTranslation } from '@payloadcms/ui'
+import { Button, ConfirmationModal, toast, useModal, useTranslation } from '@payloadcms-local/ui'
 import * as qs from 'qs-esm'
 import { Fragment, useCallback } from 'react'
 

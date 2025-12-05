@@ -2,7 +2,7 @@
 import type { CollapsibleFieldDiffClientComponent } from 'payload'
 
 import { getTranslation } from '@payloadcms/translations'
-import { useTranslation } from '@payloadcms/ui'
+import { useTranslation } from '@payloadcms-local/ui'
 import React from 'react'
 
 import { useSelectedLocales } from '../../../Default/SelectedLocalesContext.js'

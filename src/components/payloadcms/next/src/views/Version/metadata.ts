@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import type { MetaConfig } from 'payload'
 
 import { getTranslation } from '@payloadcms/translations'
-import { formatDate } from '@payloadcms/ui/shared'
+import { formatDate } from '@payloadcms-local/ui/shared'
 
 import type { GenerateEditViewMetadata } from '../Document/getMetaBySegment.js'
 

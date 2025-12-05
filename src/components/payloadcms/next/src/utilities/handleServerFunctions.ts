@@ -1,10 +1,10 @@
 import type { ServerFunction, ServerFunctionHandler } from 'payload'
 
-import { _internal_renderFieldHandler, copyDataFromLocaleHandler } from '@payloadcms/ui/rsc'
-import { buildFormStateHandler } from '@payloadcms/ui/utilities/buildFormState'
-import { buildTableStateHandler } from '@payloadcms/ui/utilities/buildTableState'
-import { getFolderResultsComponentAndDataHandler } from '@payloadcms/ui/utilities/getFolderResultsComponentAndData'
-import { schedulePublishHandler } from '@payloadcms/ui/utilities/schedulePublishHandler'
+import { _internal_renderFieldHandler, copyDataFromLocaleHandler } from '@payloadcms-local/ui/rsc'
+import { buildFormStateHandler } from '@payloadcms-local/ui/utilities/buildFormState'
+import { buildTableStateHandler } from '@payloadcms-local/ui/utilities/buildTableState'
+import { getFolderResultsComponentAndDataHandler } from '@payloadcms-local/ui/utilities/getFolderResultsComponentAndData'
+import { schedulePublishHandler } from '@payloadcms-local/ui/utilities/schedulePublishHandler'
 
 import { renderDocumentHandler } from '../views/Document/handleServerFunction.js'
 import { renderDocumentSlotsHandler } from '../views/Document/renderDocumentSlots.js'

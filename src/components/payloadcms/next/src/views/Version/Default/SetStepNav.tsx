@@ -4,7 +4,7 @@ import type { ClientCollectionConfig, ClientGlobalConfig } from 'payload'
 import type React from 'react'
 
 import { getTranslation } from '@payloadcms/translations'
-import { useConfig, useDocumentTitle, useLocale, useStepNav, useTranslation } from '@payloadcms/ui'
+import { useConfig, useDocumentTitle, useLocale, useStepNav, useTranslation } from '@payloadcms-local/ui'
 import { formatAdminURL } from 'payload/shared'
 import { useEffect } from 'react'
 

@@ -5,7 +5,7 @@ import type {
   SanitizedPermissions,
 } from 'payload'
 
-import { Gutter, RenderTitle } from '@payloadcms/ui'
+import { Gutter, RenderTitle } from '@payloadcms-local/ui'
 import React from 'react'
 
 import { DocumentTabs } from './Tabs/index.js'

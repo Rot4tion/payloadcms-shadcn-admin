@@ -11,11 +11,9 @@ import { useTranslation } from '../../providers/Translation/index.js'
 import { Link } from '../Link/index.js'
 import { RenderCustomComponent } from '../RenderCustomComponent/index.js'
 import { StepNavProvider, useStepNav } from './context.js'
-import './index.scss'
+import { cn } from '@/lib/utils'
 
 export { SetStepNav } from './SetStepNav.js'
-
-const baseClass = 'step-nav'
 
 const StepNav: React.FC<{
   readonly className?: string
@@ -42,31 +40,47 @@ const StepNav: React.FC<{
   return (
     <Fragment>
       {stepNav.length > 0 ? (
-        <nav className={[baseClass, className].filter(Boolean).join(' ')}>
-          <Link className={`${baseClass}__home`} href={admin} prefetch={false} tabIndex={0}>
+        <nav className={cn('flex items-center gap-2', className)}>
+          <Link
+            className="size-[18px] relative focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+            href={admin}
+            prefetch={false}
+            tabIndex={0}
+          >
             <span title={t('general:dashboard')}>
-              <RenderCustomComponent CustomComponent={CustomIcon} Fallback={<PayloadIcon />} />
+              <RenderCustomComponent
+                CustomComponent={CustomIcon}
+                Fallback={<PayloadIcon className="size-[18px] text-foreground" />}
+              />
             </span>
           </Link>
-          <span>/</span>
+          <span className="text-muted-foreground">/</span>
           {stepNav.map((item, i) => {
             const StepLabel = getTranslation(item.label, i18n)
             const isLast = stepNav.length === i + 1
 
             const Step = isLast ? (
-              <span className={`${baseClass}__last`} key={i}>
+              <span className="max-w-32 truncate" key={i}>
                 {StepLabel}
               </span>
             ) : (
               <Fragment key={i}>
                 {item.url ? (
-                  <Link href={item.url} prefetch={false}>
-                    <span key={i}>{StepLabel}</span>
+                  <Link
+                    href={item.url}
+                    prefetch={false}
+                    className="font-semibold no-underline hover:underline focus-visible:underline"
+                  >
+                    <span className="max-w-32 truncate" key={i}>
+                      {StepLabel}
+                    </span>
                   </Link>
                 ) : (
-                  <span key={i}>{StepLabel}</span>
+                  <span className="max-w-32 truncate" key={i}>
+                    {StepLabel}
+                  </span>
                 )}
-                <span>/</span>
+                <span className="text-muted-foreground">/</span>
               </Fragment>
             )
 
@@ -74,10 +88,13 @@ const StepNav: React.FC<{
           })}
         </nav>
       ) : (
-        <div className={[baseClass, className].filter(Boolean).join(' ')}>
-          <div className={`${baseClass}__home`}>
+        <div className={cn('flex items-center gap-2', className)}>
+          <div className="size-[18px]">
             <span title={t('general:dashboard')}>
-              <RenderCustomComponent CustomComponent={CustomIcon} Fallback={<PayloadIcon />} />
+              <RenderCustomComponent
+                CustomComponent={CustomIcon}
+                Fallback={<PayloadIcon className="size-[18px] text-foreground" />}
+              />
             </span>
           </div>
         </div>

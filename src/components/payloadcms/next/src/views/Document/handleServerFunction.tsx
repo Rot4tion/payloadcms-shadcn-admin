@@ -1,7 +1,7 @@
-import type { RenderDocumentServerFunction } from '@payloadcms/ui'
+import type { RenderDocumentServerFunction } from '@payloadcms-local/ui'
 import type { DocumentPreferences, VisibleEntities } from 'payload'
 
-import { getClientConfig } from '@payloadcms/ui/utilities/getClientConfig'
+import { getClientConfig } from '@payloadcms-local/ui/utilities/getClientConfig'
 import { headers as getHeaders } from 'next/headers.js'
 import { canAccessAdmin, getAccessResults, isEntityHidden, parseCookies } from 'payload'
 import { applyLocaleFiltering } from 'payload/shared'

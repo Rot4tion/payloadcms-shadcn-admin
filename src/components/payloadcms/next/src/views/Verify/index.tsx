@@ -5,7 +5,6 @@ import React from 'react'
 
 import { Logo } from '../../elements/Logo/index.js'
 import { ToastAndRedirect } from './index.client.js'
-import './index.scss'
 
 export const verifyBaseClass = 'verify'
 
@@ -52,7 +51,7 @@ export async function Verify({ initPageResult, params, searchParams }: AdminView
 
   return (
     <React.Fragment>
-      <div className={`${verifyBaseClass}__brand`}>
+      <div className="flex justify-center w-full mb-8">
         <Logo
           i18n={i18n}
           locale={locale}
@@ -63,7 +62,7 @@ export async function Verify({ initPageResult, params, searchParams }: AdminView
           user={user}
         />
       </div>
-      <h2>{textToRender}</h2>
+      <h2 className="text-center text-lg font-semibold">{textToRender}</h2>
     </React.Fragment>
   )
 }

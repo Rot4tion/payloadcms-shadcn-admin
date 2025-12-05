@@ -8,7 +8,7 @@ import type {
   TypeWithVersion,
 } from 'payload'
 
-import { SortColumn } from '@payloadcms/ui'
+import { SortColumn } from '@payloadcms-local/ui'
 import React from 'react'
 
 import { AutosaveCell } from './cells/AutosaveCell/index.js'

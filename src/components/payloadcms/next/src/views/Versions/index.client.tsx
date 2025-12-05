@@ -8,7 +8,7 @@ import {
   Table,
   useListQuery,
   useTranslation,
-} from '@payloadcms/ui'
+} from '@payloadcms-local/ui'
 import { useSearchParams } from 'next/navigation.js'
 import React from 'react'
 

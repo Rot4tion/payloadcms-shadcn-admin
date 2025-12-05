@@ -1,5 +1,5 @@
 'use client'
-import { Pill, useTranslation } from '@payloadcms/ui'
+import { Pill, useTranslation } from '@payloadcms-local/ui'
 import React from 'react'
 
 import './index.scss'

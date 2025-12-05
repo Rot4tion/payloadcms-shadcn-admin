@@ -10,9 +10,9 @@ import type {
   SanitizedGlobalConfig,
 } from 'payload'
 
-import { PageConfigProvider } from '@payloadcms/ui'
-import { RenderServerComponent } from '@payloadcms/ui/elements/RenderServerComponent'
-import { getClientConfig } from '@payloadcms/ui/utilities/getClientConfig'
+import { PageConfigProvider } from '@payloadcms-local/ui'
+import { RenderServerComponent } from '@payloadcms-local/ui/elements/RenderServerComponent'
+import { getClientConfig } from '@payloadcms-local/ui/utilities/getClientConfig'
 import { notFound, redirect } from 'next/navigation.js'
 import { applyLocaleFiltering, formatAdminURL } from 'payload/shared'
 import * as qs from 'qs-esm'

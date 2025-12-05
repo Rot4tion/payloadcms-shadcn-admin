@@ -1,6 +1,6 @@
 import type { DocumentPreferences, Payload, TypedUser } from 'payload'
 
-import { sanitizeID } from '@payloadcms/ui/shared'
+import { sanitizeID } from '@payloadcms-local/ui/shared'
 
 type Args = {
   collectionSlug?: string

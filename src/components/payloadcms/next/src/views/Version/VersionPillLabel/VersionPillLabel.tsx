@@ -1,7 +1,7 @@
 'use client'
 
-import { Pill, useConfig, useTranslation } from '@payloadcms/ui'
-import { formatDate } from '@payloadcms/ui/shared'
+import { Pill, useConfig, useTranslation } from '@payloadcms-local/ui'
+import { formatDate } from '@payloadcms-local/ui/shared'
 import React from 'react'
 
 import './index.scss'

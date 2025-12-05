@@ -1,9 +1,9 @@
-import type { EntityToGroup } from '@payloadcms/ui/shared'
+import type { EntityToGroup } from '@payloadcms-local/ui/shared'
 import type { AdminViewServerProps, TypedUser } from 'payload'
 
-import { HydrateAuthProvider, SetStepNav } from '@payloadcms/ui'
-import { RenderServerComponent } from '@payloadcms/ui/elements/RenderServerComponent'
-import { EntityType, groupNavItems } from '@payloadcms/ui/shared'
+import { HydrateAuthProvider, SetStepNav } from '@payloadcms-local/ui'
+import { RenderServerComponent } from '@payloadcms-local/ui/elements/RenderServerComponent'
+import { EntityType, groupNavItems } from '@payloadcms-local/ui/shared'
 import React, { Fragment } from 'react'
 
 import type { DashboardViewClientProps, DashboardViewServerPropsOnly } from './Default/index.js'

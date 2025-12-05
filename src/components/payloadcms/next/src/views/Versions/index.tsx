@@ -1,4 +1,4 @@
-import { Gutter, ListQueryProvider, SetDocumentStepNav } from '@payloadcms/ui'
+import { Gutter, ListQueryProvider, SetDocumentStepNav } from '@payloadcms-local/ui'
 import { notFound } from 'next/navigation.js'
 import { type DocumentViewServerProps, type PaginatedDocs, type Where } from 'payload'
 import { isNumber } from 'payload/shared'

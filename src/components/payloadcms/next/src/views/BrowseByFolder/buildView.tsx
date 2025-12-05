@@ -7,10 +7,10 @@ import type {
   ListQuery,
 } from 'payload'
 
-import { DefaultBrowseByFolderView, HydrateAuthProvider } from '@payloadcms/ui'
-import { RenderServerComponent } from '@payloadcms/ui/elements/RenderServerComponent'
-import { getFolderResultsComponentAndData, upsertPreferences } from '@payloadcms/ui/rsc'
-import { formatAdminURL } from '@payloadcms/ui/shared'
+import { DefaultBrowseByFolderView, HydrateAuthProvider } from '@payloadcms-local/ui'
+import { RenderServerComponent } from '@payloadcms-local/ui/elements/RenderServerComponent'
+import { getFolderResultsComponentAndData, upsertPreferences } from '@payloadcms-local/ui/rsc'
+import { formatAdminURL } from '@payloadcms-local/ui/shared'
 import { redirect } from 'next/navigation.js'
 import React from 'react'
 

@@ -12,8 +12,8 @@ import {
   useModal,
   useRouteTransition,
   useTranslation,
-} from '@payloadcms/ui'
-import { requests } from '@payloadcms/ui/shared'
+} from '@payloadcms-local/ui'
+import { requests } from '@payloadcms-local/ui/shared'
 import { useRouter } from 'next/navigation.js'
 import { formatAdminURL } from 'payload/shared'
 

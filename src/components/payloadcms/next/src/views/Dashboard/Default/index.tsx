@@ -1,16 +1,17 @@
-import type { groupNavItems } from '@payloadcms/ui/shared'
+import type { groupNavItems } from '@payloadcms-local/ui/shared'
 import type { AdminViewServerPropsOnly, ClientUser, Locale, ServerProps } from 'payload'
 
 import { getTranslation } from '@payloadcms/translations'
-import { Button, Card, Gutter, Locked } from '@payloadcms/ui'
-import { RenderServerComponent } from '@payloadcms/ui/elements/RenderServerComponent'
-import { EntityType } from '@payloadcms/ui/shared'
+import { RenderServerComponent } from '@payloadcms-local/ui/elements/RenderServerComponent'
+import { EntityType } from '@payloadcms-local/ui/shared'
 import { formatAdminURL } from 'payload/shared'
 import React, { Fragment } from 'react'
+import Link from 'next/link'
+import { Plus, Lock } from 'lucide-react'
 
-import './index.scss'
-
-const baseClass = 'dashboard'
+import { Card, CardHeader, CardTitle, CardAction } from '@/components/ui/card'
+import { Button } from '@/components/ui/button'
+import { Badge } from '@/components/ui/badge'
 
 export type DashboardViewClientProps = {
   locale: Locale
@@ -56,8 +57,9 @@ export function DefaultDashboard(props: DashboardViewServerProps) {
   } = props
 
   return (
-    <div className={baseClass}>
-      <Gutter className={`${baseClass}__wrap`}>
+    <div className="w-full">
+      {/* Gutter replacement - container with responsive padding */}
+      <div className="px-6 pb-12 flex flex-col gap-6">
         {beforeDashboard &&
           RenderServerComponent({
             Component: beforeDashboard,
@@ -75,21 +77,21 @@ export function DefaultDashboard(props: DashboardViewServerProps) {
 
         <Fragment>
           {!navGroups || navGroups?.length === 0 ? (
-            <p>no nav groups....</p>
+            <p className="text-muted-foreground">no nav groups....</p>
           ) : (
             navGroups.map(({ entities, label }, groupIndex) => {
               return (
-                <div className={`${baseClass}__group`} key={groupIndex}>
-                  <h2 className={`${baseClass}__label`}>{label}</h2>
-                  <ul className={`${baseClass}__card-list`}>
+                <div className="flex flex-col gap-4" key={groupIndex}>
+                  <h2 className="text-xl font-semibold m-0">{label}</h2>
+                  <ul className="p-0 m-0 list-none grid gap-4 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
                     {entities.map(({ slug, type, label }, entityIndex) => {
-                      let title: string
-                      let buttonAriaLabel: string
-                      let createHREF: string
-                      let href: string
-                      let hasCreatePermission: boolean
-                      let isLocked = null
-                      let userEditing = null
+                      let title: string = ''
+                      let buttonAriaLabel: string = ''
+                      let createHREF: string = ''
+                      let href: string = ''
+                      let hasCreatePermission: boolean = false
+                      let isLocked: boolean | null = null
+                      let userEditing: ClientUser | number | string | null = null
 
                       if (type === EntityType.collection) {
                         title = getTranslation(label, i18n)
@@ -103,7 +105,7 @@ export function DefaultDashboard(props: DashboardViewServerProps) {
                           path: `/collections/${slug}/create`,
                         })
 
-                        hasCreatePermission = permissions?.collections?.[slug]?.create
+                        hasCreatePermission = permissions?.collections?.[slug]?.create ?? false
                       }
 
                       if (type === EntityType.global) {
@@ -125,7 +127,7 @@ export function DefaultDashboard(props: DashboardViewServerProps) {
                           userEditing = globalLockData.data._userEditing
 
                           // Check if the lock is expired
-                          const lockDuration = globalLockData?.lockDuration
+                          const lockDuration = globalLockData?.lockDuration ?? 300
                           const lastEditedAt = new Date(
                             globalLockData.data?._lastEditedAt,
                           ).getTime()
@@ -140,32 +142,48 @@ export function DefaultDashboard(props: DashboardViewServerProps) {
                         }
                       }
 
+                      const userEditingId =
+                        typeof userEditing === 'object' && userEditing !== null
+                          ? (userEditing as ClientUser).id
+                          : null
+
                       return (
-                        <li key={entityIndex}>
-                          <Card
-                            actions={
-                              isLocked && user?.id !== userEditing?.id ? (
-                                <Locked className={`${baseClass}__locked`} user={userEditing} />
+                        <li key={entityIndex} className="h-full">
+                          <Card className="h-full py-0 hover:shadow-md transition-shadow relative group">
+                            <Link
+                              href={href}
+                              aria-label={buttonAriaLabel}
+                              className="absolute inset-0 z-0"
+                            />
+                            <CardHeader className="py-4">
+                              <CardTitle className="text-base">
+                                <h3 className="m-0 font-medium text-foreground">
+                                  {getTranslation(label, i18n)}
+                                </h3>
+                              </CardTitle>
+                              {isLocked && user?.id !== userEditingId ? (
+                                <CardAction>
+                                  <Badge variant="secondary" className="gap-1">
+                                    <Lock className="size-3" />
+                                    <span className="text-xs">Locked</span>
+                                  </Badge>
+                                </CardAction>
                               ) : hasCreatePermission && type === EntityType.collection ? (
-                                <Button
-                                  aria-label={t('general:createNewLabel', {
-                                    label,
-                                  })}
-                                  buttonStyle="icon-label"
-                                  el="link"
-                                  icon="plus"
-                                  iconStyle="with-border"
-                                  round
-                                  to={createHREF}
-                                />
-                              ) : undefined
-                            }
-                            buttonAriaLabel={buttonAriaLabel}
-                            href={href}
-                            id={`card-${slug}`}
-                            title={getTranslation(label, i18n)}
-                            titleAs="h3"
-                          />
+                                <CardAction className="relative z-10">
+                                  <Button
+                                    variant="outline"
+                                    size="icon-sm"
+                                    aria-label={t('general:createNewLabel', { label })}
+                                    asChild
+                                  >
+                                    <Link href={createHREF}>
+                                      <Plus className="size-4" />
+                                    </Link>
+                                  </Button>
+                                </CardAction>
+                              ) : null}
+                            </CardHeader>
+                          </Card>
                         </li>
                       )
                     })}
@@ -189,7 +207,7 @@ export function DefaultDashboard(props: DashboardViewServerProps) {
               user,
             } satisfies ServerProps,
           })}
-      </Gutter>
+      </div>
     </div>
   )
 }

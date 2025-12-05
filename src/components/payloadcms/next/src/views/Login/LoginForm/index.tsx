@@ -4,7 +4,7 @@ import React from 'react'
 
 const baseClass = 'login__form'
 
-import type { UserWithToken } from '@payloadcms/ui'
+import type { UserWithToken } from '@payloadcms-local/ui'
 import type { FormState } from 'payload'
 
 import {
@@ -15,7 +15,7 @@ import {
   useAuth,
   useConfig,
   useTranslation,
-} from '@payloadcms/ui'
+} from '@payloadcms-local/ui'
 import { formatAdminURL, getLoginOptions, getSafeRedirect } from 'payload/shared'
 
 import type { LoginFieldProps } from '../LoginField/index.js'

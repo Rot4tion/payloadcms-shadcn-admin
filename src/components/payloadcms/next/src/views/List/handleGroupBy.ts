@@ -12,8 +12,8 @@ import type {
   Where,
 } from 'payload'
 
-import { renderTable } from '@payloadcms/ui/rsc'
-import { formatDate } from '@payloadcms/ui/shared'
+import { renderTable } from '@payloadcms-local/ui/rsc'
+import { formatDate } from '@payloadcms-local/ui/shared'
 import { flattenAllFields } from 'payload'
 
 import { createSerializableValue } from './createSerializableValue.js'

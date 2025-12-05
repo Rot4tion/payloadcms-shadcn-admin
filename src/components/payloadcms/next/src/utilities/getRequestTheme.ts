@@ -1,7 +1,7 @@
 import type { ReadonlyRequestCookies } from 'next/dist/server/web/spec-extension/adapters/request-cookies.js'
 import type { SanitizedConfig } from 'payload'
 
-import { defaultTheme, type Theme } from '@payloadcms/ui'
+import { defaultTheme, type Theme } from '@payloadcms-local/ui'
 
 type GetRequestLanguageArgs = {
   config: SanitizedConfig

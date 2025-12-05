@@ -1,7 +1,7 @@
 import type { AdminViewServerProps } from 'payload'
 
-import { Button, Link } from '@payloadcms/ui'
-import { Translation } from '@payloadcms/ui/shared'
+import { Button, Link } from '@payloadcms-local/ui'
+import { Translation } from '@payloadcms-local/ui/shared'
 import { formatAdminURL } from 'payload/shared'
 import React from 'react'
 

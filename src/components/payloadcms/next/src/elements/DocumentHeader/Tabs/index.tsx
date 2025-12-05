@@ -7,7 +7,7 @@ import type {
   SanitizedPermissions,
 } from 'payload'
 
-import { RenderServerComponent } from '@payloadcms/ui/elements/RenderServerComponent'
+import { RenderServerComponent } from '@payloadcms-local/ui/elements/RenderServerComponent'
 import React from 'react'
 
 import { ShouldRenderTabs } from './ShouldRenderTabs.js'

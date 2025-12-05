@@ -3,7 +3,7 @@
 import type { FieldDiffClientProps } from 'payload'
 
 import { getTranslation } from '@payloadcms/translations'
-import { useConfig, useTranslation } from '@payloadcms/ui'
+import { useConfig, useTranslation } from '@payloadcms-local/ui'
 
 import './index.scss'
 

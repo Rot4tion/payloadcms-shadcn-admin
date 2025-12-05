@@ -1,7 +1,7 @@
 'use client'
 import type { ClientField } from 'payload'
 
-import { ChevronIcon, FieldDiffLabel, useConfig, useTranslation } from '@payloadcms/ui'
+import { ChevronIcon, FieldDiffLabel, useConfig, useTranslation } from '@payloadcms-local/ui'
 import { fieldIsArrayType, fieldIsBlockType } from 'payload/shared'
 import React, { useState } from 'react'
 

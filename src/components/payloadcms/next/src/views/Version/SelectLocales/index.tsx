@@ -1,7 +1,7 @@
 'use client'
 
-import { AnimateHeight } from '@payloadcms/ui'
-import { PillSelector, type SelectablePill } from '@payloadcms/ui'
+import { AnimateHeight } from '@payloadcms-local/ui'
+import { PillSelector, type SelectablePill } from '@payloadcms-local/ui'
 import React from 'react'
 
 const baseClass = 'select-version-locales'

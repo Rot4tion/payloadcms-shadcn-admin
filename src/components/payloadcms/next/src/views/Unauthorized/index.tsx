@@ -1,6 +1,6 @@
 import type { AdminViewServerProps } from 'payload'
 
-import { Button, Gutter } from '@payloadcms/ui'
+import { Button, Gutter } from '@payloadcms-local/ui'
 import { formatAdminURL } from 'payload/shared'
 import React from 'react'
 

@@ -3,7 +3,7 @@ import type { I18nClient } from '@payloadcms/translations'
 import type { Option, SelectField, SelectFieldDiffClientComponent } from 'payload'
 
 import { getTranslation } from '@payloadcms/translations'
-import { FieldDiffContainer, getHTMLDiffComponents, useTranslation } from '@payloadcms/ui'
+import { FieldDiffContainer, getHTMLDiffComponents, useTranslation } from '@payloadcms-local/ui'
 import React from 'react'
 
 import './index.scss'

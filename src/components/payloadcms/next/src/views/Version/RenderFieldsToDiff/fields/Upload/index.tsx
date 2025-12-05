@@ -7,7 +7,7 @@ import type {
 } from 'payload'
 
 import { getTranslation, type I18nClient } from '@payloadcms/translations'
-import { FieldDiffContainer, File, getHTMLDiffComponents } from '@payloadcms/ui/rsc'
+import { FieldDiffContainer, File, getHTMLDiffComponents } from '@payloadcms-local/ui/rsc'
 
 import './index.scss'
 

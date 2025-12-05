@@ -8,7 +8,7 @@ import type {
 } from 'payload'
 import type React from 'react'
 
-import { RenderServerComponent } from '@payloadcms/ui/elements/RenderServerComponent'
+import { RenderServerComponent } from '@payloadcms-local/ui/elements/RenderServerComponent'
 import { Fragment } from 'react'
 
 import { DocumentTabLink } from './TabLink.js'

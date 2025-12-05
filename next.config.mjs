@@ -15,8 +15,8 @@ const nextConfig = {
       '.mjs': ['.mts', '.mjs'],
     }
 
-    // Add aliases for local PayloadCMS packages (shadcn-admin)
-    // These aliases allow the shadcn-admin to use customized local packages
+    // Add aliases for local PayloadCMS packages (shadcn-admin only)
+    // Only @payloadcms-local/* aliases - does NOT override @payloadcms/ui
     webpackConfig.resolve.alias = {
       ...webpackConfig.resolve.alias,
       // Local package aliases (for direct imports in shadcn-admin)
@@ -63,6 +63,14 @@ const nextConfig = {
       '@payloadcms-local/ui/rsc': path.resolve(
         __dirname,
         'src/components/payloadcms/ui/src/exports/rsc/index.ts',
+      ),
+      '@payloadcms-local/ui/utilities/getClientConfig': path.resolve(
+        __dirname,
+        'src/components/payloadcms/ui/src/utilities/getClientConfig.ts',
+      ),
+      '@payloadcms-local/ui/elements/RenderServerComponent': path.resolve(
+        __dirname,
+        'src/components/payloadcms/ui/src/elements/RenderServerComponent/index.tsx',
       ),
       '@payloadcms-local/ui': path.resolve(
         __dirname,

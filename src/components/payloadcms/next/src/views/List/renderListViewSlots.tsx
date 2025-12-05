@@ -16,8 +16,8 @@ import type {
   ViewDescriptionServerPropsOnly,
 } from 'payload'
 
-import { Banner } from '@payloadcms/ui/elements/Banner'
-import { RenderServerComponent } from '@payloadcms/ui/elements/RenderServerComponent'
+import { Banner } from '@payloadcms-local/ui/elements/Banner'
+import { RenderServerComponent } from '@payloadcms-local/ui/elements/RenderServerComponent'
 import React from 'react'
 
 type Args = {

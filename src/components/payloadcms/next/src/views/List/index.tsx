@@ -12,9 +12,9 @@ import type {
   SanitizedCollectionPermission,
 } from 'payload'
 
-import { DefaultListView, HydrateAuthProvider, ListQueryProvider } from '@payloadcms/ui'
-import { RenderServerComponent } from '@payloadcms/ui/elements/RenderServerComponent'
-import { getColumns, renderFilters, renderTable, upsertPreferences } from '@payloadcms/ui/rsc'
+import { DefaultListView, HydrateAuthProvider, ListQueryProvider } from '@payloadcms-local/ui'
+import { RenderServerComponent } from '@payloadcms-local/ui/elements/RenderServerComponent'
+import { getColumns, renderFilters, renderTable, upsertPreferences } from '@payloadcms-local/ui/rsc'
 import { notFound } from 'next/navigation.js'
 import {
   appendUploadSelectFields,

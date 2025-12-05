@@ -1,6 +1,6 @@
 'use client'
-import { Link, useConfig, useTranslation } from '@payloadcms/ui'
-import { formatDate } from '@payloadcms/ui/shared'
+import { Link, useConfig, useTranslation } from '@payloadcms-local/ui'
+import { formatDate } from '@payloadcms-local/ui/shared'
 import { formatAdminURL } from 'payload/shared'
 import React from 'react'
 

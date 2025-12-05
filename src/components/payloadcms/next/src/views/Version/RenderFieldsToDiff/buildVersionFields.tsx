@@ -1,6 +1,6 @@
 import type { I18nClient } from '@payloadcms/translations'
 
-import { RenderServerComponent } from '@payloadcms/ui/elements/RenderServerComponent'
+import { RenderServerComponent } from '@payloadcms-local/ui/elements/RenderServerComponent'
 import { dequal } from 'dequal/lite'
 import {
   type BaseVersionField,

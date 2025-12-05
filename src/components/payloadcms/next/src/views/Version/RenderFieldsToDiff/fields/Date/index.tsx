@@ -6,8 +6,8 @@ import {
   getHTMLDiffComponents,
   useConfig,
   useTranslation,
-} from '@payloadcms/ui'
-import { formatDate } from '@payloadcms/ui/shared'
+} from '@payloadcms-local/ui'
+import { formatDate } from '@payloadcms-local/ui/shared'
 
 import './index.scss'
 

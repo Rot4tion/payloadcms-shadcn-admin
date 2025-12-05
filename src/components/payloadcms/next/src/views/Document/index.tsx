@@ -15,11 +15,11 @@ import {
   EditDepthProvider,
   HydrateAuthProvider,
   LivePreviewProvider,
-} from '@payloadcms/ui'
-import { RenderServerComponent } from '@payloadcms/ui/elements/RenderServerComponent'
-import { handleLivePreview, handlePreview } from '@payloadcms/ui/rsc'
-import { isEditing as getIsEditing } from '@payloadcms/ui/shared'
-import { buildFormState } from '@payloadcms/ui/utilities/buildFormState'
+} from '@payloadcms-local/ui'
+import { RenderServerComponent } from '@payloadcms-local/ui/elements/RenderServerComponent'
+import { handleLivePreview, handlePreview } from '@payloadcms-local/ui/rsc'
+import { isEditing as getIsEditing } from '@payloadcms-local/ui/shared'
+import { buildFormState } from '@payloadcms-local/ui/utilities/buildFormState'
 import { notFound, redirect } from 'next/navigation.js'
 import { isolateObjectProperty, logError } from 'payload'
 import { formatAdminURL } from 'payload/shared'

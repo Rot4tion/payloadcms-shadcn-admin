@@ -4,7 +4,7 @@ import type {
   SanitizedFieldsPermissions,
 } from 'payload'
 
-import { buildFormState } from '@payloadcms/ui/utilities/buildFormState'
+import { buildFormState } from '@payloadcms-local/ui/utilities/buildFormState'
 import React from 'react'
 
 import { getDocPreferences } from '../Document/getDocPreferences.js'

@@ -1,11 +1,10 @@
 'use client'
 import React, { useEffect, useRef } from 'react'
 
+import { cn } from '@/lib/utils'
 import { useRouteTransition } from '../index.js'
-import './index.scss'
 
 const transitionDuration = 200
-const baseClass = 'progress-bar'
 const initialDelay = 150
 
 /**
@@ -62,16 +61,13 @@ export const ProgressBar = () => {
   if (typeof progressToShow === 'number') {
     return (
       <div
-        className={[baseClass, progressToShow === 1 && `${baseClass}--fade-out`]
-          .filter(Boolean)
-          .join(' ')}
-        style={{
-          // @ts-expect-error - TS doesn't like custom CSS properties
-          '--transition-duration': `${transitionDuration}ms`,
-        }}
+        className={cn(
+          'fixed top-0 left-0 w-full h-0.5 z-[9999] opacity-100',
+          progressToShow === 1 && 'opacity-0 transition-opacity duration-200 delay-200',
+        )}
       >
         <div
-          className={`${baseClass}__progress`}
+          className="h-full bg-primary transition-[width] ease-in duration-200"
           style={{
             width: `${(progressToShow || 0) * 100}%`,
           }}

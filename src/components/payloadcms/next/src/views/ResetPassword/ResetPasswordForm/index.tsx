@@ -8,7 +8,7 @@ import {
   useAuth,
   useConfig,
   useTranslation,
-} from '@payloadcms/ui'
+} from '@payloadcms-local/ui'
 import { useRouter } from 'next/navigation.js'
 import { type FormState } from 'payload'
 import { formatAdminURL } from 'payload/shared'

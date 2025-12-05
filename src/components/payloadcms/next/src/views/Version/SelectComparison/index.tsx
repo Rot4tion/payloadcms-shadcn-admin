@@ -1,6 +1,6 @@
 'use client'
 
-import { fieldBaseClass, ReactSelect, useTranslation } from '@payloadcms/ui'
+import { fieldBaseClass, ReactSelect, useTranslation } from '@payloadcms-local/ui'
 import React, { memo, useCallback, useMemo } from 'react'
 
 import type { CompareOption } from '../Default/types.js'

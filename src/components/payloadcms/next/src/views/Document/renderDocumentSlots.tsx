@@ -17,8 +17,8 @@ import type {
   ViewDescriptionServerPropsOnly,
 } from 'payload'
 
-import { ViewDescription } from '@payloadcms/ui'
-import { RenderServerComponent } from '@payloadcms/ui/elements/RenderServerComponent'
+import { ViewDescription } from '@payloadcms-local/ui'
+import { RenderServerComponent } from '@payloadcms-local/ui/elements/RenderServerComponent'
 
 import { getDocumentPermissions } from './getDocumentPermissions.js'
 

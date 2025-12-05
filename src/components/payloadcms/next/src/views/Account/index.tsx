@@ -1,8 +1,8 @@
 import type { AdminViewServerProps, DocumentViewServerPropsOnly } from 'payload'
 
-import { DocumentInfoProvider, EditDepthProvider, HydrateAuthProvider } from '@payloadcms/ui'
-import { RenderServerComponent } from '@payloadcms/ui/elements/RenderServerComponent'
-import { buildFormState } from '@payloadcms/ui/utilities/buildFormState'
+import { DocumentInfoProvider, EditDepthProvider, HydrateAuthProvider } from '@payloadcms-local/ui'
+import { RenderServerComponent } from '@payloadcms-local/ui/elements/RenderServerComponent'
+import { buildFormState } from '@payloadcms-local/ui/utilities/buildFormState'
 import { notFound } from 'next/navigation.js'
 import React from 'react'
 

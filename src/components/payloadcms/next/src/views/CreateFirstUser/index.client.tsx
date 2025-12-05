@@ -1,5 +1,5 @@
 'use client'
-import type { FormProps, UserWithToken } from '@payloadcms/ui'
+import type { FormProps, UserWithToken } from '@payloadcms-local/ui'
 import type {
   DocumentPreferences,
   FormState,
@@ -18,8 +18,8 @@ import {
   useConfig,
   useServerFunctions,
   useTranslation,
-} from '@payloadcms/ui'
-import { abortAndIgnore, handleAbortRef } from '@payloadcms/ui/shared'
+} from '@payloadcms-local/ui'
+import { abortAndIgnore, handleAbortRef } from '@payloadcms-local/ui/shared'
 import React, { useEffect } from 'react'
 
 export const CreateFirstUserClient: React.FC<{

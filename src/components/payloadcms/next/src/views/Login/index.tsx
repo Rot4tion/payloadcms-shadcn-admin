@@ -1,13 +1,13 @@
 import type { AdminViewServerProps, ServerProps } from 'payload'
 
-import { RenderServerComponent } from '@payloadcms/ui/elements/RenderServerComponent'
+import { RenderServerComponent } from '@payloadcms-local/ui/elements/RenderServerComponent'
 import { redirect } from 'next/navigation.js'
 import { getSafeRedirect } from 'payload/shared'
 import React, { Fragment } from 'react'
 
 import { Logo } from '../../elements/Logo/index.js'
 import { LoginForm } from './LoginForm/index.js'
-import './index.scss'
+
 export const loginBaseClass = 'login'
 
 export function LoginView({ initPageResult, params, searchParams }: AdminViewServerProps) {
@@ -53,7 +53,7 @@ export function LoginView({ initPageResult, params, searchParams }: AdminViewSer
 
   return (
     <Fragment>
-      <div className={`${loginBaseClass}__brand`}>
+      <div className="flex justify-center w-full mb-8">
         <Logo
           i18n={i18n}
           locale={locale}

@@ -1,18 +1,14 @@
-import type { EntityToGroup } from '@payloadcms/ui/shared'
+import type { EntityToGroup } from '@payloadcms-local/ui/shared'
 import type { PayloadRequest, ServerProps } from 'payload'
 
-import { Logout } from '@payloadcms/ui'
-import { RenderServerComponent } from '@payloadcms/ui/elements/RenderServerComponent'
-import { EntityType, groupNavItems } from '@payloadcms/ui/shared'
+import { Logout } from '@payloadcms-local/ui'
+import { RenderServerComponent } from '@payloadcms-local/ui/elements/RenderServerComponent'
+import { EntityType, groupNavItems } from '@payloadcms-local/ui/shared'
 import React from 'react'
 
 import { NavHamburger } from './NavHamburger/index.js'
 import { NavWrapper } from './NavWrapper/index.js'
 import { SettingsMenuButton } from './SettingsMenuButton/index.js'
-import './index.scss'
-
-const baseClass = 'nav'
-
 import { getNavPrefs } from './getNavPrefs.js'
 import { DefaultNavClient } from './index.client.js'
 
@@ -118,8 +114,8 @@ export const DefaultNav: React.FC<NavProps> = async (props) => {
       : []
 
   return (
-    <NavWrapper baseClass={baseClass}>
-      <nav className={`${baseClass}__wrap`}>
+    <NavWrapper>
+      <nav className="w-full flex flex-col items-start flex-grow">
         {RenderServerComponent({
           clientProps: {
             documentSubViewType,
@@ -155,14 +151,14 @@ export const DefaultNav: React.FC<NavProps> = async (props) => {
             user,
           },
         })}
-        <div className={`${baseClass}__controls`}>
+        <div className="flex flex-col gap-3 mt-auto mb-0">
           <SettingsMenuButton settingsMenu={renderedSettingsMenu} />
           {LogoutComponent}
         </div>
       </nav>
-      <div className={`${baseClass}__header`}>
-        <div className={`${baseClass}__header-content`}>
-          <NavHamburger baseClass={baseClass} />
+      <div className="absolute top-0 w-screen h-16">
+        <div className="z-10 relative h-full w-full">
+          <NavHamburger />
         </div>
       </div>
     </NavWrapper>

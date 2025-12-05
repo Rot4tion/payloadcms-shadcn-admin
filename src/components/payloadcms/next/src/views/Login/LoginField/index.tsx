@@ -1,7 +1,7 @@
 'use client'
 import type { Validate, ValidateOptions } from 'payload'
 
-import { EmailField, TextField, useTranslation } from '@payloadcms/ui'
+import { EmailField, TextField, useTranslation } from '@payloadcms-local/ui'
 import { email, username } from 'payload/shared'
 import React from 'react'
 

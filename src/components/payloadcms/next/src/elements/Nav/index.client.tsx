@@ -1,16 +1,16 @@
 'use client'
 
-import type { groupNavItems } from '@payloadcms/ui/shared'
+import type { groupNavItems } from '@payloadcms-local/ui/shared'
 import type { NavPreferences } from 'payload'
 
 import { getTranslation } from '@payloadcms/translations'
-import { BrowseByFolderButton, Link, NavGroup, useConfig, useTranslation } from '@payloadcms/ui'
-import { EntityType } from '@payloadcms/ui/shared'
+import { BrowseByFolderButton, NavGroup, useConfig, useTranslation } from '@payloadcms-local/ui'
+import { EntityType } from '@payloadcms-local/ui/shared'
 import { usePathname } from 'next/navigation.js'
 import { formatAdminURL } from 'payload/shared'
 import React, { Fragment } from 'react'
-
-const baseClass = 'nav'
+import Link from 'next/link'
+import { cn } from '@/lib/utils'
 
 /**
  * @internal
@@ -47,8 +47,8 @@ export const DefaultNavClient: React.FC<{
         return (
           <NavGroup isOpen={navPreferences?.groups?.[label]?.open} key={key} label={label}>
             {entities.map(({ slug, type, label }, i) => {
-              let href: string
-              let id: string
+              let href: string = ''
+              let id: string = ''
 
               if (type === EntityType.collection) {
                 href = formatAdminURL({ adminRoute, path: `/collections/${slug}` })
@@ -63,24 +63,31 @@ export const DefaultNavClient: React.FC<{
               const isActive =
                 pathname.startsWith(href) && ['/', undefined].includes(pathname[href.length])
 
+              const linkClasses = cn(
+                'flex items-center relative py-1 pr-6 no-underline text-sidebar-foreground hover:text-sidebar-accent-foreground hover:underline',
+                isActive && 'font-semibold',
+              )
+
               const Label = (
                 <>
-                  {isActive && <div className={`${baseClass}__link-indicator`} />}
-                  <span className={`${baseClass}__link-label`}>{getTranslation(label, i18n)}</span>
+                  {isActive && (
+                    <div className="absolute -left-4 w-0.5 h-4 rounded-r bg-foreground" />
+                  )}
+                  <span className="truncate">{getTranslation(label, i18n)}</span>
                 </>
               )
 
               // If the URL matches the link exactly
               if (pathname === href) {
                 return (
-                  <div className={`${baseClass}__link`} id={id} key={i}>
+                  <div className={linkClasses} id={id} key={i}>
                     {Label}
                   </div>
                 )
               }
 
               return (
-                <Link className={`${baseClass}__link`} href={href} id={id} key={i} prefetch={false}>
+                <Link className={linkClasses} href={href} id={id} key={i} prefetch={false}>
                   {Label}
                 </Link>
               )

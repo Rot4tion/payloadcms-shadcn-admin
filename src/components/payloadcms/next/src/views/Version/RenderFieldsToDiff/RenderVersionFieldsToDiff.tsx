@@ -4,7 +4,7 @@ import type { VersionField } from 'payload'
 
 import './index.scss'
 
-import { ShimmerEffect } from '@payloadcms/ui'
+import { ShimmerEffect } from '@payloadcms-local/ui'
 import React, { Fragment, useEffect } from 'react'
 
 export const RenderVersionFieldsToDiff = ({

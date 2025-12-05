@@ -1,6 +1,6 @@
 import type { Field, PayloadRequest, ResolvedFilterOptions } from 'payload'
 
-import { resolveFilterOptions } from '@payloadcms/ui/rsc'
+import { resolveFilterOptions } from '@payloadcms-local/ui/rsc'
 import {
   fieldAffectsData,
   fieldHasSubFields,

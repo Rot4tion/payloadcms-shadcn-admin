@@ -1,16 +1,17 @@
 import React from 'react'
 
 export const PayloadIcon: React.FC<{
+  className?: string
   fill?: string
-}> = ({ fill: fillFromProps }) => {
-  const fill = fillFromProps || 'var(--theme-elevation-1000)'
+}> = ({ className, fill: fillFromProps }) => {
+  const fill = fillFromProps || 'currentColor'
 
   return (
     <svg
-      className="graphic-icon"
-      height="100%"
+      className={className || 'text-foreground'}
+      width="18"
+      height="18"
       viewBox="0 0 25 25"
-      width="100%"
       xmlns="http://www.w3.org/2000/svg"
     >
       <path

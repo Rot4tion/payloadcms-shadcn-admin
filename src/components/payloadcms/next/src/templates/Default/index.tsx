@@ -13,8 +13,8 @@ import {
   BulkUploadProvider,
   EntityVisibilityProvider,
   NavToggler,
-} from '@payloadcms/ui'
-import { RenderServerComponent } from '@payloadcms/ui/elements/RenderServerComponent'
+} from '@payloadcms-local/ui'
+import { RenderServerComponent } from '@payloadcms-local/ui/elements/RenderServerComponent'
 
 import './index.scss'
 

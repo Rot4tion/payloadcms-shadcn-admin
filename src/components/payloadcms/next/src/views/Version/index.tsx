@@ -6,10 +6,10 @@ import type {
   TypeWithVersion,
 } from 'payload'
 
-import { formatDate } from '@payloadcms/ui/shared'
-import { getClientConfig } from '@payloadcms/ui/utilities/getClientConfig'
-import { getClientSchemaMap } from '@payloadcms/ui/utilities/getClientSchemaMap'
-import { getSchemaMap } from '@payloadcms/ui/utilities/getSchemaMap'
+import { formatDate } from '@payloadcms-local/ui/shared'
+import { getClientConfig } from '@payloadcms-local/ui/utilities/getClientConfig'
+import { getClientSchemaMap } from '@payloadcms-local/ui/utilities/getClientSchemaMap'
+import { getSchemaMap } from '@payloadcms-local/ui/utilities/getSchemaMap'
 import { notFound } from 'next/navigation.js'
 import React from 'react'
 
