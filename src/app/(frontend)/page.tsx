@@ -1,9 +1,8 @@
 import { headers as getHeaders } from 'next/headers.js'
-import Image from 'next/image'
 import { getPayload } from 'payload'
-import React from 'react'
 import { fileURLToPath } from 'url'
 
+import { Button } from '@/components/ui/button'
 import config from '@/payload.config'
 
 export default async function HomePage() {
@@ -14,5 +13,9 @@ export default async function HomePage() {
 
   const fileURL = `vscode://file/${fileURLToPath(import.meta.url)}`
 
-  return <div className="home"></div>
+  return (
+    <div className="home">
+      <Button>Test button</Button>
+    </div>
+  )
 }
