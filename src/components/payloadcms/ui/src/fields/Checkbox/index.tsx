@@ -10,6 +10,7 @@ import React, { useCallback, useMemo } from 'react'
 
 import type { CheckboxInputProps } from './Input.js'
 
+import { cn } from '@/lib/utils'
 import { RenderCustomComponent } from '../../elements/RenderCustomComponent/index.js'
 import { FieldDescription } from '../../fields/FieldDescription/index.js'
 import { FieldError } from '../../fields/FieldError/index.js'
@@ -22,9 +23,6 @@ import { generateFieldID } from '../../utilities/generateFieldID.js'
 import { mergeFieldStyles } from '../mergeFieldStyles.js'
 import { fieldBaseClass } from '../shared/index.js'
 import { CheckboxInput } from './Input.js'
-import './index.scss'
-
-const baseClass = 'checkbox'
 
 export { CheckboxFieldClientProps, CheckboxInput, type CheckboxInputProps }
 
@@ -94,16 +92,13 @@ const CheckboxFieldComponent: CheckboxFieldClientComponent = (props) => {
 
   return (
     <div
-      className={[
+      className={cn(
         fieldBaseClass,
-        baseClass,
+        'relative mb-6',
         showError && 'error',
         className,
-        value && `${baseClass}--checked`,
-        (readOnly || disabled) && `${baseClass}--read-only`,
-      ]
-        .filter(Boolean)
-        .join(' ')}
+        (readOnly || disabled) && 'opacity-60',
+      )}
       style={styles}
     >
       <RenderCustomComponent

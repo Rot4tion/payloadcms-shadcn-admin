@@ -4,11 +4,11 @@ import type { OptionObject, RadioFieldClientProps } from 'payload'
 import { getTranslation } from '@payloadcms/translations'
 import React from 'react'
 
+import { cn } from '@/lib/utils'
+import { Label } from '@/components/ui/label'
+import { RadioGroupItem } from '@/components/ui/radio-group'
 import { useEditDepth } from '../../../providers/EditDepth/index.js'
 import { useTranslation } from '../../../providers/Translation/index.js'
-import './index.scss'
-
-const baseClass = 'radio-input'
 
 export const Radio: React.FC<{
   id: string
@@ -27,28 +27,24 @@ export const Radio: React.FC<{
   const id = `field-${path}-${option.value}${editDepth > 1 ? `-${editDepth}` : ''}${uuid ? `-${uuid}` : ''}`
 
   return (
-    <label htmlFor={id}>
-      <div
-        className={[baseClass, isSelected && `${baseClass}--is-selected`].filter(Boolean).join(' ')}
+    <div className="flex items-center gap-2">
+      <RadioGroupItem
+        id={id}
+        value={option.value}
+        disabled={readOnly}
+        checked={isSelected}
+        onClick={() => (typeof onChange === 'function' ? onChange(option.value) : null)}
+        className="size-5"
+      />
+      <Label
+        htmlFor={id}
+        className={cn(
+          'cursor-pointer font-normal',
+          readOnly && 'cursor-default text-muted-foreground',
+        )}
       >
-        <input
-          checked={isSelected}
-          disabled={readOnly}
-          id={id}
-          name={path}
-          onChange={() => (typeof onChange === 'function' ? onChange(option.value) : null)}
-          type="radio"
-        />
-        <span
-          className={[
-            `${baseClass}__styled-radio`,
-            readOnly && `${baseClass}__styled-radio--disabled`,
-          ]
-            .filter(Boolean)
-            .join(' ')}
-        />
-        <span className={`${baseClass}__label`}>{getTranslation(option.label, i18n)}</span>
-      </div>
-    </label>
+        {getTranslation(option.label, i18n)}
+      </Label>
+    </div>
   )
 }

@@ -3,14 +3,15 @@ import type { CSSProperties } from 'react'
 
 export * as PopupList from './PopupButtonList/index.js'
 
-import { useWindowInfo } from '@faceless-ui/window-info'
-import React, { useCallback, useEffect, useRef, useState } from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
 
-import { useIntersect } from '../../hooks/useIntersect.js'
+import { cn } from '@/lib/utils'
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger as ShadcnPopoverTrigger,
+} from '@/components/ui/popover'
 import { PopupTrigger } from './PopupTrigger/index.js'
-import './index.scss'
-
-const baseClass = 'popup'
 
 export type PopupProps = {
   backgroundColor?: CSSProperties['backgroundColor']
@@ -37,20 +38,25 @@ export type PopupProps = {
   verticalAlign?: 'bottom' | 'top'
 }
 
+const sizeClasses = {
+  'fit-content': 'w-auto',
+  small: 'min-w-[100px]',
+  medium: 'min-w-[150px]',
+  large: 'min-w-[200px]',
+} as const
+
 export const Popup: React.FC<PopupProps> = (props) => {
   const {
     id,
-    boundingRef,
     button,
     buttonClassName,
     buttonSize,
     buttonType = 'default',
-    caret = true,
     children,
     className,
     disabled,
     forceOpen,
-    horizontalAlign: horizontalAlignFromProps = 'left',
+    horizontalAlign = 'left',
     initActive = false,
     noBackground,
     onToggleClose,
@@ -59,181 +65,86 @@ export const Popup: React.FC<PopupProps> = (props) => {
     showOnHover = false,
     showScrollbar = false,
     size = 'medium',
-    verticalAlign: verticalAlignFromProps = 'top',
+    verticalAlign = 'top',
   } = props
-  const { height: windowHeight, width: windowWidth } = useWindowInfo()
 
-  const [intersectionRef, intersectionEntry] = useIntersect({
-    root: boundingRef?.current || null,
-    rootMargin: '-100px 0px 0px 0px',
-    threshold: 1,
-  })
+  const [open, setOpen] = useState(initActive)
 
-  const contentRef = useRef(null)
-  const triggerRef = useRef(null)
-  const [active, setActive_Internal] = useState(initActive)
-  const [verticalAlign, setVerticalAlign] = useState(verticalAlignFromProps)
-  const [horizontalAlign, setHorizontalAlign] = useState(horizontalAlignFromProps)
-
-  const setActive = React.useCallback(
-    (active: boolean) => {
-      if (active && typeof onToggleOpen === 'function') {
+  const handleOpenChange = useCallback(
+    (newOpen: boolean) => {
+      if (newOpen && typeof onToggleOpen === 'function') {
         onToggleOpen(true)
       }
-      if (!active && typeof onToggleClose === 'function') {
+      if (!newOpen && typeof onToggleClose === 'function') {
         onToggleClose()
       }
-      setActive_Internal(active)
+      setOpen(newOpen)
     },
     [onToggleClose, onToggleOpen],
   )
 
-  const setPosition = useCallback(
-    ({ horizontal = false, vertical = false }) => {
-      if (contentRef.current) {
-        const bounds = contentRef.current.getBoundingClientRect()
-
-        const {
-          bottom: contentBottomPos,
-          left: contentLeftPos,
-          right: contentRightPos,
-          top: contentTopPos,
-        } = bounds
-
-        let boundingTopPos = 100
-        let boundingRightPos = document.documentElement.clientWidth
-        let boundingBottomPos = document.documentElement.clientHeight
-        let boundingLeftPos = 0
-
-        if (boundingRef?.current) {
-          ;({
-            bottom: boundingBottomPos,
-            left: boundingLeftPos,
-            right: boundingRightPos,
-            top: boundingTopPos,
-          } = boundingRef.current.getBoundingClientRect())
-        }
-
-        if (horizontal) {
-          if (contentRightPos > boundingRightPos && contentLeftPos > boundingLeftPos) {
-            setHorizontalAlign('right')
-          } else if (contentLeftPos < boundingLeftPos && contentRightPos < boundingRightPos) {
-            setHorizontalAlign('left')
-          }
-        }
-
-        if (vertical) {
-          if (contentTopPos < boundingTopPos && contentBottomPos < boundingBottomPos) {
-            setVerticalAlign('bottom')
-          } else if (contentBottomPos > boundingBottomPos && contentTopPos > boundingTopPos) {
-            setVerticalAlign('top')
-          }
-        }
-      }
-    },
-    [boundingRef],
-  )
-
-  const handleClickOutside = useCallback(
-    (e) => {
-      if (contentRef.current.contains(e.target) || triggerRef.current.contains(e.target)) {
-        return
-      }
-
-      setActive(false)
-    },
-    [contentRef, setActive],
-  )
-
   useEffect(() => {
-    setPosition({ horizontal: true })
-  }, [intersectionEntry, setPosition, windowWidth])
-
-  useEffect(() => {
-    setPosition({ vertical: true })
-  }, [intersectionEntry, setPosition, windowHeight])
-
-  useEffect(() => {
-    if (active) {
-      document.addEventListener('mousedown', handleClickOutside)
-    } else {
-      document.removeEventListener('mousedown', handleClickOutside)
+    if (forceOpen !== undefined) {
+      setOpen(forceOpen)
     }
+  }, [forceOpen])
 
-    return () => {
-      document.removeEventListener('mousedown', handleClickOutside)
-    }
-  }, [active, handleClickOutside, onToggleOpen])
+  // Map horizontal align to Radix align
+  const align =
+    horizontalAlign === 'center' ? 'center' : horizontalAlign === 'right' ? 'end' : 'start'
+  // Map vertical align to Radix side
+  const side = verticalAlign === 'bottom' ? 'bottom' : 'top'
 
-  useEffect(() => {
-    setActive(forceOpen)
-  }, [forceOpen, setActive])
-
-  const classes = [
-    baseClass,
-    className,
-    `${baseClass}--size-${size}`,
-    buttonSize && `${baseClass}--button-size-${buttonSize}`,
-    `${baseClass}--v-align-${verticalAlign}`,
-    `${baseClass}--h-align-${horizontalAlign}`,
-    active && `${baseClass}--active`,
-    showScrollbar && `${baseClass}--show-scrollbar`,
-  ]
-    .filter(Boolean)
-    .join(' ')
+  const triggerContent = (
+    <PopupTrigger
+      active={open}
+      button={button}
+      buttonType={buttonType}
+      className={buttonClassName}
+      disabled={disabled}
+      noBackground={noBackground}
+      setActive={handleOpenChange}
+      size={buttonSize}
+    />
+  )
 
   return (
-    <div className={classes} id={id}>
-      <div className={`${baseClass}__trigger-wrap`} ref={triggerRef}>
+    <Popover open={open} onOpenChange={handleOpenChange}>
+      <ShadcnPopoverTrigger asChild disabled={disabled}>
         {showOnHover ? (
           <div
-            className={`${baseClass}__on-hover-watch`}
-            onMouseEnter={() => setActive(true)}
-            onMouseLeave={() => setActive(false)}
+            className="inline-flex h-full cursor-pointer items-stretch"
+            onMouseEnter={() => handleOpenChange(true)}
+            onMouseLeave={() => handleOpenChange(false)}
             role="button"
             tabIndex={0}
+            id={id}
           >
-            <PopupTrigger
-              {...{
-                active,
-                button,
-                buttonType,
-                className: buttonClassName,
-                disabled,
-                noBackground,
-                setActive,
-                size: buttonSize,
-              }}
-            />
+            {triggerContent}
           </div>
         ) : (
-          <PopupTrigger
-            {...{
-              active,
-              button,
-              buttonType,
-              className: buttonClassName,
-              disabled,
-              noBackground,
-              setActive,
-              size: buttonSize,
-            }}
-          />
-        )}
-      </div>
-
-      <div className={`${baseClass}__content`} ref={contentRef}>
-        <div className={`${baseClass}__hide-scrollbar`} ref={intersectionRef}>
-          <div className={`${baseClass}__scroll-container`}>
-            <div className={`${baseClass}__scroll-content`}>
-              {render && render({ close: () => setActive(false) })}
-              {children}
-            </div>
+          <div className={cn('inline-flex h-full items-stretch', className)} id={id}>
+            {triggerContent}
           </div>
-        </div>
+        )}
+      </ShadcnPopoverTrigger>
 
-        {caret && <div className={`${baseClass}__caret`} />}
-      </div>
-    </div>
+      <PopoverContent
+        align={align}
+        side={side}
+        sideOffset={8}
+        className={cn(
+          'z-50 rounded-md border bg-popover p-2 text-popover-foreground shadow-lg',
+          sizeClasses[size] || sizeClasses.medium,
+          showScrollbar ? 'overflow-y-auto' : 'overflow-hidden',
+          className,
+        )}
+      >
+        <div className={cn('max-h-40 overflow-y-auto', !showScrollbar && 'scrollbar-hide')}>
+          {render && render({ close: () => handleOpenChange(false) })}
+          {children}
+        </div>
+      </PopoverContent>
+    </Popover>
   )
 }

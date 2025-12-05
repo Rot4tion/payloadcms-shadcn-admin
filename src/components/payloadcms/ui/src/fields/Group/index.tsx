@@ -6,6 +6,7 @@ import { getTranslation } from '@payloadcms/translations'
 import { groupHasName } from 'payload/shared'
 import React, { useMemo } from 'react'
 
+import { cn } from '@/lib/utils'
 import { useCollapsible } from '../../elements/Collapsible/provider.js'
 import { ErrorPill } from '../../elements/ErrorPill/index.js'
 import { RenderCustomComponent } from '../../elements/RenderCustomComponent/index.js'
@@ -17,13 +18,10 @@ import { useField } from '../../forms/useField/index.js'
 import { withCondition } from '../../forms/withCondition/index.js'
 import { useTranslation } from '../../providers/Translation/index.js'
 import { mergeFieldStyles } from '../mergeFieldStyles.js'
-import './index.scss'
 import { useRow } from '../Row/provider.js'
 import { fieldBaseClass } from '../shared/index.js'
 import { useTabs } from '../Tabs/provider.js'
 import { GroupProvider, useGroup } from './provider.js'
-
-const baseClass = 'group-field'
 
 export const GroupFieldComponent: GroupFieldClientComponent = (props) => {
   const {
@@ -60,33 +58,31 @@ export const GroupFieldComponent: GroupFieldClientComponent = (props) => {
 
   return (
     <div
-      className={[
+      className={cn(
         fieldBaseClass,
-        baseClass,
-        isTopLevel && `${baseClass}--top-level`,
-        isWithinCollapsible && `${baseClass}--within-collapsible`,
-        isWithinGroup && `${baseClass}--within-group`,
-        isWithinRow && `${baseClass}--within-row`,
-        isWithinTab && `${baseClass}--within-tab`,
-        !hideGutter && isWithinGroup && `${baseClass}--gutter`,
-        fieldHasErrors && `${baseClass}--has-error`,
+        '-mx-[var(--gutter-h)] border-y border-border',
+        isTopLevel && 'px-[var(--gutter-h)] py-8 first:border-t-0 first:pt-0',
+        isWithinCollapsible && '-mx-4 p-4 first:border-t-0 first:pt-0 last:border-b-0 last:pb-0',
+        isWithinGroup && 'm-0 border-0 p-0',
+        isWithinRow && 'm-0 border-0',
+        isWithinTab && 'first:mt-0 first:border-t-0 first:pt-0 last:mb-0 last:border-b-0 last:pb-0',
+        !hideGutter && isWithinGroup && 'border-l border-border pl-6',
+        fieldHasErrors && 'text-destructive',
         className,
-      ]
-        .filter(Boolean)
-        .join(' ')}
+      )}
       id={`field-${path?.replace(/\./g, '__')}`}
       style={styles}
     >
       <GroupProvider>
-        <div className={`${baseClass}__wrap`}>
+        <div>
           {Boolean(Label || Description || label || fieldHasErrors) && (
-            <div className={`${baseClass}__header`}>
+            <div className="mb-2 flex items-center gap-2">
               {Boolean(Label || Description || label) && (
-                <header>
+                <header className="flex flex-col gap-1">
                   <RenderCustomComponent
                     CustomComponent={Label}
                     Fallback={
-                      <h3 className={`${baseClass}__title`}>
+                      <h3 className="mb-0 text-lg font-semibold">
                         <FieldLabel
                           as="span"
                           label={getTranslation(label, i18n)}

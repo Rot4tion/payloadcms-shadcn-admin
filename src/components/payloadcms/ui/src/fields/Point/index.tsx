@@ -4,6 +4,8 @@ import type { PointFieldClientComponent, PointFieldValidation } from 'payload'
 import { getTranslation } from '@payloadcms/translations'
 import React, { useCallback, useMemo } from 'react'
 
+import { cn } from '@/lib/utils'
+import { Input } from '@/components/ui/input'
 import { RenderCustomComponent } from '../../elements/RenderCustomComponent/index.js'
 import { FieldDescription } from '../../fields/FieldDescription/index.js'
 import { FieldError } from '../../fields/FieldError/index.js'
@@ -12,10 +14,7 @@ import { useField } from '../../forms/useField/index.js'
 import { withCondition } from '../../forms/withCondition/index.js'
 import { useTranslation } from '../../providers/Translation/index.js'
 import { mergeFieldStyles } from '../mergeFieldStyles.js'
-import './index.scss'
 import { fieldBaseClass } from '../shared/index.js'
-
-const baseClass = 'point'
 
 export const PointFieldComponent: PointFieldClientComponent = (props) => {
   const {
@@ -78,19 +77,11 @@ export const PointFieldComponent: PointFieldClientComponent = (props) => {
 
   return (
     <div
-      className={[
-        fieldBaseClass,
-        baseClass,
-        className,
-        showError && 'error',
-        (readOnly || disabled) && 'read-only',
-      ]
-        .filter(Boolean)
-        .join(' ')}
+      className={cn(fieldBaseClass, 'relative', className, (readOnly || disabled) && 'opacity-60')}
       style={styles}
     >
-      <ul className={`${baseClass}__wrap`}>
-        <li>
+      <ul className="-mx-2 flex w-[calc(100%+1rem)] list-none p-0">
+        <li className="w-1/2 px-2">
           <RenderCustomComponent
             CustomComponent={Label}
             Fallback={
@@ -102,11 +93,9 @@ export const PointFieldComponent: PointFieldClientComponent = (props) => {
               />
             }
           />
-          <div className="input-wrapper">
+          <div className="relative">
             {BeforeInput}
-            {/* disable eslint rule because the label is dynamic */}
-            {/* eslint-disable-next-line jsx-a11y/control-has-associated-label */}
-            <input
+            <Input
               disabled={readOnly || disabled}
               id={`field-longitude-${path?.replace(/\./g, '__')}`}
               name={`${path}.longitude`}
@@ -115,11 +104,13 @@ export const PointFieldComponent: PointFieldClientComponent = (props) => {
               step={step}
               type="number"
               value={value && typeof value[0] === 'number' ? value[0] : ''}
+              aria-invalid={showError}
+              className={showError ? 'border-destructive' : undefined}
             />
             {AfterInput}
           </div>
         </li>
-        <li>
+        <li className="w-1/2 px-2">
           <RenderCustomComponent
             CustomComponent={Label}
             Fallback={
@@ -131,15 +122,13 @@ export const PointFieldComponent: PointFieldClientComponent = (props) => {
               />
             }
           />
-          <div className="input-wrapper">
+          <div className="relative">
             <RenderCustomComponent
               CustomComponent={Error}
               Fallback={<FieldError path={path} showError={showError} />}
             />
             {BeforeInput}
-            {/* disable eslint rule because the label is dynamic */}
-            {/* eslint-disable-next-line jsx-a11y/control-has-associated-label */}
-            <input
+            <Input
               disabled={readOnly || disabled}
               id={`field-latitude-${path?.replace(/\./g, '__')}`}
               name={`${path}.latitude`}
@@ -148,6 +137,8 @@ export const PointFieldComponent: PointFieldClientComponent = (props) => {
               step={step}
               type="number"
               value={value && typeof value[1] === 'number' ? value[1] : ''}
+              aria-invalid={showError}
+              className={showError ? 'border-destructive' : undefined}
             />
             {AfterInput}
           </div>

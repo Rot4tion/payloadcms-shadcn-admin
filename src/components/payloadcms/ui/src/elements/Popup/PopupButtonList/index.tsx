@@ -3,13 +3,17 @@ import type { LinkProps } from 'next/link.js'
 
 import * as React from 'react'
 
+import { cn } from '@/lib/utils'
 import { Link } from '../../Link/index.js'
-import './index.scss'
-
-const baseClass = 'popup-button-list'
 
 export { PopupListDivider as Divider } from '../PopupDivider/index.js'
 export { PopupListGroupLabel as GroupLabel } from '../PopupGroupLabel/index.js'
+
+const textAlignClasses = {
+  left: 'text-left rtl:text-right',
+  center: 'text-center',
+  right: 'text-right rtl:text-left',
+} as const
 
 export const ButtonGroup: React.FC<{
   buttonSize?: 'default' | 'small'
@@ -17,15 +21,9 @@ export const ButtonGroup: React.FC<{
   className?: string
   textAlign?: 'center' | 'left' | 'right'
 }> = ({ buttonSize = 'default', children, className, textAlign = 'left' }) => {
-  const classes = [
-    baseClass,
-    className,
-    `${baseClass}__text-align--${textAlign}`,
-    `${baseClass}__button-size--${buttonSize}`,
-  ]
-    .filter(Boolean)
-    .join(' ')
-  return <div className={classes}>{children}</div>
+  return (
+    <div className={cn('flex flex-col', textAlignClasses[textAlign], className)}>{children}</div>
+  )
 }
 
 type MenuButtonProps = {
@@ -38,6 +36,17 @@ type MenuButtonProps = {
   onClick?: (e?: React.MouseEvent) => void
 }
 
+const buttonStyles = cn(
+  'w-full cursor-pointer rounded px-2 py-1 text-inherit no-underline',
+  'leading-6 transition-colors',
+  'hover:bg-accent focus-visible:bg-accent focus-within:bg-accent',
+  'focus-visible:outline-none',
+)
+
+const disabledStyles = cn('cursor-not-allowed text-muted-foreground', 'hover:bg-muted/50')
+
+const activeStyles = 'bg-muted'
+
 export const Button: React.FC<MenuButtonProps> = ({
   id,
   active,
@@ -47,14 +56,7 @@ export const Button: React.FC<MenuButtonProps> = ({
   href,
   onClick,
 }) => {
-  const classes = [
-    `${baseClass}__button`,
-    disabled && `${baseClass}__disabled`,
-    active && `${baseClass}__button--selected`,
-    className,
-  ]
-    .filter(Boolean)
-    .join(' ')
+  const classes = cn(buttonStyles, disabled && disabledStyles, active && activeStyles, className)
 
   if (!disabled) {
     if (href) {
@@ -78,7 +80,7 @@ export const Button: React.FC<MenuButtonProps> = ({
     if (onClick) {
       return (
         <button
-          className={classes}
+          className={cn(classes, 'border-0 bg-transparent text-left')}
           id={id}
           onClick={(e) => {
             if (onClick) {

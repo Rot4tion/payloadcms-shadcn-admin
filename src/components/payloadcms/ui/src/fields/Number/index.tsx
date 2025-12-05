@@ -7,6 +7,8 @@ import React, { useCallback, useEffect, useMemo, useState } from 'react'
 
 import type { Option } from '../../elements/ReactSelect/types.js'
 
+import { cn } from '@/lib/utils'
+import { Input } from '@/components/ui/input'
 import { ReactSelect } from '../../elements/ReactSelect/index.js'
 import { RenderCustomComponent } from '../../elements/RenderCustomComponent/index.js'
 import { useField } from '../../forms/useField/index.js'
@@ -16,7 +18,6 @@ import { FieldDescription } from '../FieldDescription/index.js'
 import { FieldError } from '../FieldError/index.js'
 import { FieldLabel } from '../FieldLabel/index.js'
 import { mergeFieldStyles } from '../mergeFieldStyles.js'
-import './index.scss'
 import { fieldBaseClass } from '../shared/index.js'
 
 const NumberFieldComponent: NumberFieldClientComponent = (props) => {
@@ -130,16 +131,7 @@ const NumberFieldComponent: NumberFieldClientComponent = (props) => {
 
   return (
     <div
-      className={[
-        fieldBaseClass,
-        'number',
-        className,
-        showError && 'error',
-        (readOnly || disabled) && 'read-only',
-        hasMany && 'has-many',
-      ]
-        .filter(Boolean)
-        .join(' ')}
+      className={cn(fieldBaseClass, 'relative', className, (readOnly || disabled) && 'opacity-60')}
       style={styles}
     >
       <RenderCustomComponent
@@ -181,24 +173,24 @@ const NumberFieldComponent: NumberFieldClientComponent = (props) => {
             value={valueToRender as Option[]}
           />
         ) : (
-          <div>
-            <input
-              disabled={readOnly || disabled}
-              id={`field-${path.replace(/\./g, '__')}`}
-              max={max}
-              min={min}
-              name={path}
-              onChange={handleChange}
-              onWheel={(e) => {
-                // @ts-expect-error
-                e.target.blur()
-              }}
-              placeholder={placeholder}
-              step={step}
-              type="number"
-              value={typeof value === 'number' ? value : ''}
-            />
-          </div>
+          <Input
+            disabled={readOnly || disabled}
+            id={`field-${path.replace(/\./g, '__')}`}
+            max={max}
+            min={min}
+            name={path}
+            onChange={handleChange}
+            onWheel={(e) => {
+              // @ts-expect-error
+              e.target.blur()
+            }}
+            placeholder={placeholder}
+            step={step}
+            type="number"
+            value={typeof value === 'number' ? value : ''}
+            aria-invalid={showError}
+            className={showError ? 'border-destructive' : undefined}
+          />
         )}
         {AfterInput}
         <RenderCustomComponent

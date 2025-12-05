@@ -1,9 +1,14 @@
 'use client'
 import React from 'react'
 
-import './index.scss'
+import { cn } from '@/lib/utils'
 
-const baseClass = 'popup-button'
+const sizeClasses = {
+  xsmall: 'p-0.5',
+  small: 'p-1',
+  medium: 'p-1.5',
+  large: 'p-2',
+} as const
 
 export type PopupTriggerProps = {
   active: boolean
@@ -19,17 +24,6 @@ export type PopupTriggerProps = {
 export const PopupTrigger: React.FC<PopupTriggerProps> = (props) => {
   const { active, button, buttonType, className, disabled, noBackground, setActive, size } = props
 
-  const classes = [
-    baseClass,
-    className,
-    `${baseClass}--${buttonType}`,
-    !noBackground && `${baseClass}--background`,
-    size && `${baseClass}--size-${size}`,
-    disabled && `${baseClass}--disabled`,
-  ]
-    .filter(Boolean)
-    .join(' ')
-
   const handleClick = React.useCallback(() => {
     setActive(!active)
   }, [active, setActive])
@@ -38,10 +32,18 @@ export const PopupTrigger: React.FC<PopupTriggerProps> = (props) => {
     return null
   }
 
+  const baseStyles = cn(
+    'inline-flex h-full cursor-pointer items-center border-0 p-0 font-inherit text-inherit leading-inherit',
+    !noBackground && 'bg-transparent',
+    size && sizeClasses[size],
+    disabled && 'cursor-not-allowed opacity-50',
+    className,
+  )
+
   if (buttonType === 'custom') {
     return (
       <div
-        className={classes}
+        className={baseStyles}
         onClick={handleClick}
         onKeyDown={(e) => {
           if (e.key === 'Enter') {
@@ -58,7 +60,7 @@ export const PopupTrigger: React.FC<PopupTriggerProps> = (props) => {
 
   return (
     <button
-      className={classes}
+      className={baseStyles}
       disabled={disabled}
       onClick={handleClick}
       onKeyDown={(e) => {

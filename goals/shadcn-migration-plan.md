@@ -33,7 +33,7 @@
 | Card | `ui/src/elements/Card` | Tailwind | ✅ Done |
 | Modal | `ui/src/elements/Modal` | shadcn/dialog | ✅ Done |
 | Drawer | `ui/src/elements/Drawer` | shadcn/sheet | ✅ Done |
-| Popup | `ui/src/elements/Popup` | shadcn/popover | ⏳ Pending |
+| Popup | `ui/src/elements/Popup` | shadcn/popover | ✅ Done |
 | Table | `ui/src/elements/Table` | shadcn/table | ⏳ Pending |
 | Pagination | `ui/src/elements/Pagination` | Custom | ⏳ Pending |
 | ConfirmationModal | `ui/src/elements/ConfirmationModal` | Tailwind | ✅ Done |
@@ -45,8 +45,8 @@
 | Collapsible | `ui/src/elements/Collapsible` | shadcn/collapsible |
 | Tabs | `ui/src/fields/Tabs` | shadcn/tabs |
 | Select | `ui/src/fields/Select` | shadcn/select |
-| Checkbox | `ui/src/fields/Checkbox` | shadcn/checkbox |
-| RadioGroup | `ui/src/fields/RadioGroup` | shadcn/radio-group |
+| Checkbox | `ui/src/fields/Checkbox` | shadcn/checkbox | ✅ Done |
+| RadioGroup | `ui/src/fields/RadioGroup` | shadcn/radio-group | ✅ Done |
 | Switch | N/A | shadcn/switch |
 | Input | `ui/src/fields/Text` | shadcn/input |
 | Textarea | `ui/src/fields/Textarea` | shadcn/textarea |
@@ -80,16 +80,16 @@
 |-------|------|-----------------|
 | Array | `ui/src/fields/Array` | Custom with shadcn components |
 | Blocks | `ui/src/fields/Blocks` | Custom with shadcn components |
-| Checkbox | `ui/src/fields/Checkbox` | shadcn/checkbox |
+| Checkbox | `ui/src/fields/Checkbox` | shadcn/checkbox | ✅ Done |
 | Code | `ui/src/fields/Code` | Keep Monaco, style container |
-| DateTime | `ui/src/fields/DateTime` | shadcn/date-picker |
-| Email | `ui/src/fields/Email` | shadcn/input |
-| Group | `ui/src/fields/Group` | Custom layout |
+| DateTime | `ui/src/fields/DateTime` | shadcn/date-picker | ✅ Done |
+| Email | `ui/src/fields/Email` | shadcn/input | ✅ Done |
+| Group | `ui/src/fields/Group` | Custom layout | ✅ Done |
 | JSON | `ui/src/fields/JSON` | Keep Monaco, style container |
-| Number | `ui/src/fields/Number` | shadcn/input type=number |
-| Password | `ui/src/fields/Password` | shadcn/input type=password |
-| Point | `ui/src/fields/Point` | Custom |
-| RadioGroup | `ui/src/fields/RadioGroup` | shadcn/radio-group |
+| Number | `ui/src/fields/Number` | shadcn/input type=number | ✅ Done |
+| Password | `ui/src/fields/Password` | shadcn/input type=password | ✅ Done |
+| Point | `ui/src/fields/Point` | Custom | ✅ Done |
+| RadioGroup | `ui/src/fields/RadioGroup` | shadcn/radio-group | ✅ Done |
 | Relationship | `ui/src/fields/Relationship` | shadcn/combobox |
 | RichText | `ui/src/fields/RichText` | Keep Lexical, style container |
 | Row | `ui/src/fields/Row` | Tailwind flex/grid |
@@ -216,11 +216,19 @@
 <div style={{ color: '#000', background: 'white' }}>
 <div className="text-[#333] bg-[#f5f5f5]">
 <svg fill="var(--theme-elevation-1000)">
+// ❌ WRONG - Hardcoded Tailwind colors (green, blue, red, etc.)
+className="ring-green-500/50"
+className="text-blue-600"
+className="bg-red-100"
 
 // ✅ CORRECT - Always use theme colors
 <div className="text-foreground bg-background">
 <div className="text-muted-foreground bg-muted">
 <svg className="fill-current text-foreground">
+// ✅ CORRECT - Use semantic theme colors
+className="ring-ring"           // Focus ring
+className="text-primary"        // Primary color
+className="bg-destructive/10"   // Error background
 ```
 
 #### 2. NO Hardcoded Sizes (Pixels)
@@ -250,7 +258,20 @@ import { cn } from '@/lib/utils'
 className={cn('base-classes', isActive && 'active-classes', className)}
 ```
 
-#### 4. Keep Original Animations
+#### 4. Focus States - Use Theme Ring Colors
+```tsx
+// ❌ WRONG - Hardcoded focus colors
+className="focus:ring-green-500"
+className="focus-within:ring-blue-400"
+className="focus-visible:border-green-600"
+
+// ✅ CORRECT - Use theme ring colors
+className="focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+className="focus-within:ring-2 focus-within:ring-ring"
+className="focus:outline-none focus:ring-2 focus:ring-ring"
+```
+
+#### 5. Keep Original Animations
 ```tsx
 // ✅ Keep transition classes
 className="transition-colors duration-200"
@@ -262,14 +283,45 @@ className="animate-out fade-out"
 className="hover:opacity-80 focus-visible:ring-2 focus-visible:ring-ring"
 ```
 
-#### 5. Prefer Shadcn Components
+#### 6. Prefer Shadcn Components
 ```tsx
 // ❌ WRONG - Creating custom when shadcn exists
 <button className="custom-button">
+<input type="checkbox" className="custom-checkbox" />
+<input type="text" className="custom-input" />
 
-// ✅ CORRECT - Use shadcn component
+// ✅ CORRECT - Use shadcn components
 import { Button } from '@/components/ui/button'
+import { Checkbox } from '@/components/ui/checkbox'
+import { Input } from '@/components/ui/input'
+import { Label } from '@/components/ui/label'
+import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group'
+
 <Button variant="outline" size="sm">
+<Checkbox checked={value} onCheckedChange={handleChange} />
+<Input type="email" value={value} onChange={handleChange} aria-invalid={showError} />
+<RadioGroupItem value="option1" />
+```
+
+#### 7. Use aria-invalid for Error States
+```tsx
+// ❌ WRONG - Custom error styling
+className={showError && 'border-destructive bg-destructive/10'}
+
+// ✅ CORRECT - Use aria-invalid (shadcn Input handles styling)
+<Input aria-invalid={showError} />
+// Shadcn Input already has: aria-invalid:border-destructive aria-invalid:ring-destructive/20
+```
+
+#### 8. Available Shadcn Components
+Check `src/components/ui/` for available components:
+- **Form inputs**: `input`, `textarea`, `checkbox`, `radio-group`, `select`, `switch`
+- **Buttons**: `button`, `toggle`, `toggle-group`
+- **Layout**: `card`, `separator`, `tabs`, `accordion`, `collapsible`
+- **Overlay**: `dialog`, `drawer`, `sheet`, `popover`, `tooltip`, `dropdown-menu`
+- **Feedback**: `alert`, `badge`, `progress`, `skeleton`, `spinner`
+- **Navigation**: `breadcrumb`, `pagination`, `navigation-menu`
+- **Data**: `table`, `calendar`, `chart`
 ```
 
 ---

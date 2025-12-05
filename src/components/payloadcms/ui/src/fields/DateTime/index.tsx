@@ -6,6 +6,7 @@ import { getTranslation } from '@payloadcms/translations'
 import { transpose } from 'date-fns'
 import { useCallback, useMemo } from 'react'
 
+import { cn } from '@/lib/utils'
 import { DatePickerField } from '../../elements/DatePicker/index.js'
 import { RenderCustomComponent } from '../../elements/RenderCustomComponent/index.js'
 import { TimezonePicker } from '../../elements/TimezonePicker/index.js'
@@ -14,14 +15,11 @@ import { FieldError } from '../../fields/FieldError/index.js'
 import { FieldLabel } from '../../fields/FieldLabel/index.js'
 import { useForm, useFormFields } from '../../forms/Form/context.js'
 import { useField } from '../../forms/useField/index.js'
-import './index.scss'
 import { withCondition } from '../../forms/withCondition/index.js'
 import { useConfig } from '../../providers/Config/index.js'
 import { useTranslation } from '../../providers/Translation/index.js'
 import { mergeFieldStyles } from '../mergeFieldStyles.js'
 import { fieldBaseClass } from '../shared/index.js'
-
-const baseClass = 'date-time-field'
 
 const DateTimeFieldComponent: DateFieldClientComponent = (props) => {
   const {
@@ -164,15 +162,13 @@ const DateTimeFieldComponent: DateFieldClientComponent = (props) => {
 
   return (
     <div
-      className={[
+      className={cn(
         fieldBaseClass,
-        baseClass,
         className,
-        showError && `${baseClass}--has-error`,
-        (readOnly || disabled) && 'read-only',
-      ]
-        .filter(Boolean)
-        .join(' ')}
+        showError &&
+          '[&_.react-datepicker__input-container_input]:border-destructive [&_.react-datepicker__input-container_input]:bg-destructive/10',
+        (readOnly || disabled) && 'opacity-60',
+      )}
       style={styles}
     >
       <RenderCustomComponent

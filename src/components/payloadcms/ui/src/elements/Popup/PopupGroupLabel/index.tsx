@@ -1,11 +1,7 @@
 import React from 'react'
 
-import './index.scss'
-
-const baseClass = 'popup-list-group-label'
-
 export const PopupListGroupLabel: React.FC<{
   label: string
 }> = ({ label }) => {
-  return <p className={baseClass}>{label}</p>
+  return <p className="mb-2 mt-1 text-sm font-medium leading-none text-muted-foreground">{label}</p>
 }

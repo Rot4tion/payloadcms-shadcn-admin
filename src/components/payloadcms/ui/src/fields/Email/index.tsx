@@ -8,6 +8,8 @@ import type {
 import { getTranslation } from '@payloadcms/translations'
 import React, { useCallback, useMemo } from 'react'
 
+import { cn } from '@/lib/utils'
+import { Input } from '@/components/ui/input'
 import { RenderCustomComponent } from '../../elements/RenderCustomComponent/index.js'
 import { FieldDescription } from '../../fields/FieldDescription/index.js'
 import { FieldError } from '../../fields/FieldError/index.js'
@@ -17,7 +19,6 @@ import { useTranslation } from '../../providers/Translation/index.js'
 import { FieldLabel } from '../FieldLabel/index.js'
 import { mergeFieldStyles } from '../mergeFieldStyles.js'
 import { fieldBaseClass } from '../shared/index.js'
-import './index.scss'
 
 const EmailFieldComponent: EmailFieldClientComponent = (props) => {
   const {
@@ -65,15 +66,7 @@ const EmailFieldComponent: EmailFieldClientComponent = (props) => {
 
   return (
     <div
-      className={[
-        fieldBaseClass,
-        'email',
-        className,
-        showError && 'error',
-        (readOnly || disabled) && 'read-only',
-      ]
-        .filter(Boolean)
-        .join(' ')}
+      className={cn(fieldBaseClass, 'relative', className, (readOnly || disabled) && 'opacity-60')}
       style={styles}
     >
       <RenderCustomComponent
@@ -88,9 +81,7 @@ const EmailFieldComponent: EmailFieldClientComponent = (props) => {
           Fallback={<FieldError path={path} showError={showError} />}
         />
         {BeforeInput}
-        {/* disable eslint here because the label is dynamic */}
-        {/* eslint-disable-next-line jsx-a11y/control-has-associated-label */}
-        <input
+        <Input
           autoComplete={autoComplete}
           disabled={readOnly || disabled}
           id={`field-${path.replace(/\./g, '__')}`}
@@ -100,6 +91,8 @@ const EmailFieldComponent: EmailFieldClientComponent = (props) => {
           required={required}
           type="email"
           value={(value as string) || ''}
+          aria-invalid={showError}
+          className={showError ? 'border-destructive' : undefined}
         />
         {AfterInput}
       </div>

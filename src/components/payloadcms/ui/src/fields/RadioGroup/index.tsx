@@ -4,6 +4,7 @@ import type { RadioFieldClientComponent, RadioFieldClientProps } from 'payload'
 import { optionIsObject } from 'payload/shared'
 import React, { useCallback, useMemo } from 'react'
 
+import { cn } from '@/lib/utils'
 import { RenderCustomComponent } from '../../elements/RenderCustomComponent/index.js'
 import { FieldDescription } from '../../fields/FieldDescription/index.js'
 import { FieldError } from '../../fields/FieldError/index.js'
@@ -12,11 +13,8 @@ import { useForm } from '../../forms/Form/context.js'
 import { useField } from '../../forms/useField/index.js'
 import { withCondition } from '../../forms/withCondition/index.js'
 import { mergeFieldStyles } from '../mergeFieldStyles.js'
-import './index.scss'
 import { fieldBaseClass } from '../shared/index.js'
 import { Radio } from './Radio/index.js'
-
-const baseClass = 'radio-group'
 
 const RadioGroupFieldComponent: RadioFieldClientComponent = (props) => {
   const {
@@ -69,16 +67,11 @@ const RadioGroupFieldComponent: RadioFieldClientComponent = (props) => {
 
   return (
     <div
-      className={[
+      className={cn(
         fieldBaseClass,
-        baseClass,
         className,
-        `${baseClass}--layout-${layout}`,
-        showError && 'error',
-        (readOnly || disabled) && `${baseClass}--read-only`,
-      ]
-        .filter(Boolean)
-        .join(' ')}
+        (readOnly || disabled) && 'opacity-60 [&_.radio-input]:cursor-default',
+      )}
       style={styles}
     >
       <RenderCustomComponent
@@ -93,7 +86,15 @@ const RadioGroupFieldComponent: RadioFieldClientComponent = (props) => {
       />
       <div className={`${fieldBaseClass}__wrap`}>
         {BeforeInput}
-        <ul className={`${baseClass}--group`} id={`field-${path.replace(/\./g, '__')}`}>
+        <ul
+          className={cn(
+            'm-0 list-none p-0',
+            layout === 'horizontal' && 'flex flex-wrap',
+            layout === 'horizontal' &&
+              '[&>li]:shrink-0 [&>li]:pr-6 rtl:[&>li]:pl-6 rtl:[&>li]:pr-0',
+          )}
+          id={`field-${path.replace(/\./g, '__')}`}
+        >
           {options.map((option) => {
             let optionValue = ''
 
