@@ -26,6 +26,16 @@ function setCookie(cname, cvalue, exdays) {
   document.cookie = cname + '=' + cvalue + ';' + expires + ';path=/'
 }
 
+/**
+ * Apply theme to document - syncs both PayloadCMS (data-theme) and Shadcn (class) theme systems
+ */
+function applyTheme(theme: Theme) {
+  document.documentElement.setAttribute('data-theme', theme)
+  // Sync with Shadcn/next-themes class-based system
+  document.documentElement.classList.remove('light', 'dark')
+  document.documentElement.classList.add(theme)
+}
+
 const getTheme = (
   cookieKey,
 ): {
@@ -48,7 +58,7 @@ const getTheme = (
         : 'light'
   }
 
-  document.documentElement.setAttribute('data-theme', theme)
+  applyTheme(theme)
 
   return { theme, themeFromCookies }
 }
@@ -84,7 +94,7 @@ export const ThemeProvider: React.FC<{
         setThemeState(themeToSet)
         setAutoMode(false)
         setCookie(cookieKey, themeToSet, 365)
-        document.documentElement.setAttribute('data-theme', themeToSet)
+        applyTheme(themeToSet)
       } else if (themeToSet === 'auto') {
         // to delete the cookie, we set an expired date
         setCookie(cookieKey, themeToSet, -1)
@@ -92,7 +102,7 @@ export const ThemeProvider: React.FC<{
           window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
             ? 'dark'
             : 'light'
-        document.documentElement.setAttribute('data-theme', themeFromOS)
+        applyTheme(themeFromOS)
         setAutoMode(true)
         setThemeState(themeFromOS)
       }
