@@ -82,7 +82,7 @@ export type DocumentInfoContext = {
    * via the `useDocumentTitle` hook.
    * @example
    * ```tsx
-   * import { useDocumentTitle } from '@payloadcms/ui'
+   * import { useDocumentTitle } from '@payloadcms-local/ui'
    * const { setDocumentTitle } = useDocumentTitle()
    * ```
    */
@@ -98,7 +98,7 @@ export type DocumentInfoContext = {
    * via the `useDocumentTitle` hook.
    * @example
    * ```tsx
-   * import { useDocumentTitle } from '@payloadcms/ui'
+   * import { useDocumentTitle } from '@payloadcms-local/ui'
    * const { title } = useDocumentTitle()
    * ```
    */

@@ -9,7 +9,7 @@ import React from 'react'
  * ```tsx
  * 'use client'
  * import React from 'react'
- * import { TextField, FieldPathContext } from '@payloadcms/ui'
+ * import { TextField, FieldPathContext } from '@payloadcms-local/ui'
  * import type { TextFieldClientComponent } from 'payload'
  *
  * export const MyCustomField: TextFieldClientComponent = (props) => {

@@ -1,9 +1,9 @@
 import React from 'react'
+import { cn } from '@/lib/utils'
 
 export const PayloadLogo: React.FC<{ className?: string }> = ({ className }) => (
   <svg
-    className={className || 'h-10 w-auto fill-foreground'}
-    fill="none"
+    className={cn('h-10 w-auto fill-foreground', className)}
     viewBox="0 0 193.38 43.5"
     xmlns="http://www.w3.org/2000/svg"
   >

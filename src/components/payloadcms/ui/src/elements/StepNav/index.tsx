@@ -40,18 +40,15 @@ const StepNav: React.FC<{
   return (
     <Fragment>
       {stepNav.length > 0 ? (
-        <nav className={cn('flex items-center gap-2', className)}>
+        <nav className={cn('flex items-center gap-1.5', className)}>
           <Link
-            className="size-[18px] relative focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+            className="size-5 relative focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring rounded-sm"
             href={admin}
             prefetch={false}
             tabIndex={0}
           >
             <span title={t('general:dashboard')}>
-              <RenderCustomComponent
-                CustomComponent={CustomIcon}
-                Fallback={<PayloadIcon className="size-[18px] text-foreground" />}
-              />
+              <RenderCustomComponent CustomComponent={CustomIcon} Fallback={<PayloadIcon />} />
             </span>
           </Link>
           <span className="text-muted-foreground">/</span>
@@ -88,13 +85,10 @@ const StepNav: React.FC<{
           })}
         </nav>
       ) : (
-        <div className={cn('flex items-center gap-2', className)}>
-          <div className="size-[18px]">
+        <div className={cn('flex items-center gap-1.5', className)}>
+          <div className="size-5">
             <span title={t('general:dashboard')}>
-              <RenderCustomComponent
-                CustomComponent={CustomIcon}
-                Fallback={<PayloadIcon className="size-[18px] text-foreground" />}
-              />
+              <RenderCustomComponent CustomComponent={CustomIcon} Fallback={<PayloadIcon />} />
             </span>
           </div>
         </div>
