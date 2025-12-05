@@ -19,6 +19,7 @@ export default buildConfig({
       baseDir: path.resolve(dirname),
     },
   },
+  routes: { admin: '/shadcn-admin' },
   collections: [Users, Media],
   editor: lexicalEditor(),
   secret: process.env.PAYLOAD_SECRET || '',
