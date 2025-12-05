@@ -8,6 +8,8 @@ import { cookies as nextCookies } from 'next/headers.js'
 import { applyLocaleFiltering } from 'payload/shared'
 import React from 'react'
 
+import { Button } from '@/components/ui/button'
+
 import { getNavPrefs } from '../../elements/Nav/getNavPrefs.js'
 import { getRequestTheme } from '../../utilities/getRequestTheme.js'
 import { initReq } from '../../utilities/initReq.js'

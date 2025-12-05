@@ -7,6 +7,7 @@ import React from 'react'
 
 import { importMap } from './shadcn-admin/importMap.js'
 import './custom.scss'
+import '../(frontend)/global.css'
 
 type Args = {
   children: React.ReactNode
