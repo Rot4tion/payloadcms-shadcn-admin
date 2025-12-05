@@ -18,6 +18,12 @@
     "test:int": "cross-env NODE_OPTIONS=--no-deprecation vitest run --config ./vitest.config.mts"
   },
   "dependencies": {
+    "@dnd-kit/core": "6.0.8",
+    "@dnd-kit/sortable": "7.0.2",
+    "@dnd-kit/utilities": "3.2.2",
+    "@faceless-ui/modal": "3.0.0",
+    "@faceless-ui/scroll-info": "2.0.0",
+    "@faceless-ui/window-info": "3.0.1",
     "@hookform/resolvers": "^5.2.2",
     "@payloadcms/db-postgres": "3.66.0",
     "@payloadcms/next": "3.66.0",

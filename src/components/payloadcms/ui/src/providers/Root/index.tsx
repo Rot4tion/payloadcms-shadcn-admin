@@ -10,9 +10,10 @@ import type {
 } from 'payload'
 
 import { DndContext, pointerWithin } from '@dnd-kit/core'
-import { ModalContainer, ModalProvider } from '@faceless-ui/modal'
 import { ScrollInfoProvider } from '@faceless-ui/scroll-info'
 import React from 'react'
+
+import { ModalContainer, ModalProvider } from '../../elements/Modal/index.js'
 
 import type { Theme } from '../Theme/index.js'
 

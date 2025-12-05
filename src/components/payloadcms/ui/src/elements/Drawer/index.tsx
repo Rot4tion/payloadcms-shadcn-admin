@@ -1,15 +1,14 @@
 'use client'
-import { Modal, useModal } from '@faceless-ui/modal'
-import React, { createContext, use, useCallback, useLayoutEffect, useState } from 'react'
+import React, { createContext, use, useCallback } from 'react'
 
 import type { Props, TogglerProps } from './types.js'
 
+import { cn } from '@/lib/utils'
+import { Sheet, SheetContent, SheetHeader, SheetTitle } from '@/components/ui/sheet'
 import { XIcon } from '../../icons/X/index.js'
 import { useTranslation } from '../../providers/Translation/index.js'
 import { Gutter } from '../Gutter/index.js'
-import './index.scss'
-
-const baseClass = 'drawer'
+import { useModal } from '../Modal/index.js'
 
 export const drawerZBase = 100
 
@@ -29,7 +28,7 @@ export const DrawerToggler: React.FC<TogglerProps> = ({
   const { openModal } = useModal()
 
   const handleClick = useCallback(
-    (e) => {
+    (e: React.MouseEvent) => {
       openModal(slug)
       if (typeof onClick === 'function') {
         onClick(e)
@@ -39,7 +38,13 @@ export const DrawerToggler: React.FC<TogglerProps> = ({
   )
 
   return (
-    <button className={className} disabled={disabled} onClick={handleClick} type="button" {...rest}>
+    <button
+      className={cn('inline-flex items-center justify-center', className)}
+      disabled={disabled}
+      onClick={handleClick}
+      type="button"
+      {...rest}
+    >
       {children}
     </button>
   )
@@ -60,77 +65,72 @@ export const Drawer: React.FC<Props> = ({
 
   const isOpen = !!modalState[slug]?.isOpen
 
-  const [animateIn, setAnimateIn] = useState(isOpen)
-
-  useLayoutEffect(() => {
-    setAnimateIn(isOpen)
-  }, [isOpen])
-
-  if (isOpen) {
-    // IMPORTANT: do not render the drawer until it is explicitly open, this is to avoid large html trees especially when nesting drawers
-    return (
-      <DrawerDepthProvider>
-        <Modal
-          className={[
-            className,
-            baseClass,
-            animateIn && `${baseClass}--is-open`,
-            drawerDepth > 1 && `${baseClass}--nested`,
-          ]
-            .filter(Boolean)
-            .join(' ')}
-          // Fixes https://github.com/payloadcms/payload/issues/13778
-          closeOnBlur={false}
-          slug={slug}
-          style={{
-            zIndex: drawerZBase + drawerDepth,
-          }}
-        >
-          {(!drawerDepth || drawerDepth === 1) && <div className={`${baseClass}__blur-bg`} />}
-          <button
-            aria-label={t('general:close')}
-            className={`${baseClass}__close`}
-            id={`close-drawer__${slug}`}
-            onClick={() => closeModal(slug)}
-            type="button"
-          />
-          <div
-            className={`${baseClass}__content`}
-            style={{
-              width: `calc(100% - (${drawerDepth} * var(--gutter-h)))`,
-            }}
-          >
-            <div className={`${baseClass}__blur-bg-content`} />
-            <Gutter className={`${baseClass}__content-children`} left={gutter} right={gutter}>
-              {Header}
-              {Header === undefined && (
-                <div className={`${baseClass}__header`}>
-                  <h2 className={`${baseClass}__header__title`} title={hoverTitle ? title : null}>
-                    {title}
-                  </h2>
-                  {/* TODO: the `button` HTML element breaks CSS transitions on the drawer for some reason...
-                    i.e. changing to a `div` element will fix the animation issue but will break accessibility
-                  */}
-                  <button
-                    aria-label={t('general:close')}
-                    className={`${baseClass}__header__close`}
-                    id={`close-drawer__${slug}`}
-                    onClick={() => closeModal(slug)}
-                    type="button"
-                  >
-                    <XIcon />
-                  </button>
-                </div>
-              )}
-              {children}
-            </Gutter>
-          </div>
-        </Modal>
-      </DrawerDepthProvider>
-    )
+  if (!isOpen) {
+    return null
   }
 
-  return null
+  // Calculate width based on depth for nested drawers
+  const widthOffset = drawerDepth * 24 // ~1.5rem per depth level
+
+  return (
+    <DrawerDepthProvider>
+      <Sheet open={isOpen} onOpenChange={(open) => !open && closeModal(slug)}>
+        <SheetContent
+          className={cn(
+            'flex flex-col overflow-hidden p-0 w-full sm:max-w-none',
+            'data-[state=open]:animate-in data-[state=closed]:animate-out',
+            'data-[state=closed]:slide-out-to-right data-[state=open]:slide-in-from-right',
+            'duration-200',
+            className,
+          )}
+          style={{
+            zIndex: drawerZBase + drawerDepth,
+            width: `calc(100% - ${widthOffset}px)`,
+            maxWidth: drawerDepth > 1 ? `calc(100% - ${widthOffset}px)` : undefined,
+          }}
+          onInteractOutside={(e) => e.preventDefault()}
+          onEscapeKeyDown={(e) => e.preventDefault()}
+        >
+          {/* Blur background for first level */}
+          {(!drawerDepth || drawerDepth === 1) && (
+            <div className="absolute inset-0 -z-10 backdrop-blur-sm bg-background/95" />
+          )}
+
+          <Gutter
+            className="relative z-10 flex-1 overflow-auto h-full"
+            left={gutter}
+            right={gutter}
+          >
+            {Header}
+            {Header === undefined && (
+              <SheetHeader className="flex flex-row items-center justify-between mt-10 mb-4 p-0 space-y-0">
+                <SheetTitle
+                  className="grow m-0 text-xl font-semibold"
+                  title={hoverTitle ? title : undefined}
+                >
+                  {title}
+                </SheetTitle>
+                <button
+                  aria-label={t('general:close')}
+                  className={cn(
+                    'flex items-center justify-center',
+                    'size-8 p-0 border-0 bg-transparent cursor-pointer rounded-sm',
+                    'hover:bg-muted transition-colors',
+                  )}
+                  id={`close-drawer__${slug}`}
+                  onClick={() => closeModal(slug)}
+                  type="button"
+                >
+                  <XIcon />
+                </button>
+              </SheetHeader>
+            )}
+            {children}
+          </Gutter>
+        </SheetContent>
+      </Sheet>
+    </DrawerDepthProvider>
+  )
 }
 
 export const DrawerDepthContext = createContext(1)

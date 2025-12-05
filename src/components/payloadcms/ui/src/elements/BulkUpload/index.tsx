@@ -2,7 +2,7 @@
 
 import type { CollectionSlug, JsonObject } from 'payload'
 
-import { useModal } from '@faceless-ui/modal'
+import { useModal } from '../Modal/index.js'
 import { validateMimeType } from 'payload/shared'
 import React, { useEffect } from 'react'
 import { toast } from 'sonner'
