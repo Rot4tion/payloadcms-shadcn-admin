@@ -3,13 +3,11 @@ import type { NavPreferences } from 'payload'
 
 import React, { useState } from 'react'
 
+import { cn } from '@/lib/utils'
 import { ChevronIcon } from '../../icons/Chevron/index.js'
 import { usePreferences } from '@payloadcms/ui'
-import './index.scss'
 import { AnimateHeight } from '../AnimateHeight/index.js'
 import { useNav } from '../Nav/context.js'
-
-const baseClass = 'nav-group'
 
 type Props = {
   children: React.ReactNode
@@ -45,32 +43,31 @@ export const NavGroup: React.FC<Props> = ({ children, isOpen: isOpenFromProps, l
 
     return (
       <div
-        className={[`${baseClass}`, `${label}`, collapsed && `${baseClass}--collapsed`]
-          .filter(Boolean)
-          .join(' ')}
+        className={cn(
+          'w-full mb-[calc(var(--base)*0.5)]',
+          collapsed && '[&_.collapsible__toggle]:rounded-b-md',
+        )}
         id={`nav-group-${label}`}
       >
         <button
-          className={[
-            `${baseClass}__toggle`,
-            `${baseClass}__toggle--${collapsed ? 'collapsed' : 'open'}`,
-          ]
-            .filter(Boolean)
-            .join(' ')}
+          className={cn(
+            'cursor-pointer text-muted-foreground bg-transparent border-0 p-0 w-full text-left',
+            'flex items-start gap-[calc(var(--base)*0.5)] justify-between mb-[calc(var(--base)*0.25)]',
+            '[&_svg]:shrink-0 [&_svg]:mt-[calc(var(--base)*-0.2)]',
+            'hover:text-foreground focus-visible:text-foreground focus-visible:outline-none',
+            'hover:[&_.stroke]:stroke-foreground focus-visible:[&_.stroke]:stroke-foreground',
+          )}
           onClick={toggleCollapsed}
           tabIndex={!navOpen ? -1 : 0}
           type="button"
         >
-          <div className={`${baseClass}__label`}>{label}</div>
-          <div className={`${baseClass}__indicator`}>
-            <ChevronIcon
-              className={`${baseClass}__indicator`}
-              direction={!collapsed ? 'up' : undefined}
-            />
+          <div>{label}</div>
+          <div className="relative shrink-0 [&_svg_.stroke]:stroke-muted-foreground/40">
+            <ChevronIcon direction={!collapsed ? 'up' : undefined} />
           </div>
         </button>
         <AnimateHeight duration={animate ? 200 : 0} height={collapsed ? 0 : 'auto'}>
-          <div className={`${baseClass}__content`}>{children}</div>
+          <div>{children}</div>
         </AnimateHeight>
       </div>
     )

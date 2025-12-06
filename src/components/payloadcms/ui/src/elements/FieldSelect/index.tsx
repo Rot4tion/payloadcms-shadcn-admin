@@ -12,9 +12,6 @@ import { useTranslation } from '@payloadcms/ui'
 import { filterOutUploadFields } from '../../utilities/filterOutUploadFields.js'
 import { ReactSelect } from '../ReactSelect/index.js'
 import { reduceFieldOptions } from './reduceFieldOptions.js'
-import './index.scss'
-
-const baseClass = 'field-select'
 
 export type OnFieldSelect = ({
   dispatchFields,
@@ -49,7 +46,7 @@ export const FieldSelect: React.FC<FieldSelectProps> = ({ fields, onChange, perm
   )
 
   return (
-    <div className={baseClass}>
+    <div className="mb-(--base)">
       <FieldLabel label={t('fields:selectFieldsToEdit')} />
       <ReactSelect
         getOptionValue={(option) => {

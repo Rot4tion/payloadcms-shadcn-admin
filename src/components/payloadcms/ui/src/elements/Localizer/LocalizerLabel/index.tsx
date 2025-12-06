@@ -2,12 +2,10 @@
 import { getTranslation } from '@payloadcms/translations'
 import React from 'react'
 
+import { cn } from '@/lib/utils'
 import { ChevronIcon } from '../../../icons/Chevron/index.js'
 import { useLocale } from '@payloadcms/ui'
 import { useTranslation } from '@payloadcms/ui'
-import './index.scss'
-
-const baseClass = 'localizer-button'
 
 export const LocalizerLabel: React.FC<{
   ariaLabel?: string
@@ -20,15 +18,19 @@ export const LocalizerLabel: React.FC<{
   return (
     <div
       aria-label={ariaLabel || t('general:locale')}
-      className={[baseClass, className].filter(Boolean).join(' ')}
+      className={cn(
+        'flex items-center whitespace-nowrap ps-[calc(var(--base)*0.4)] pe-[calc(var(--base)*0.2)] bg-muted rounded-sm',
+        '[&_button]:text-current [&_button]:p-0 [&_button]:text-base [&_button]:leading-(--base) [&_button]:bg-transparent [&_button]:border-0 [&_button]:font-semibold [&_button]:cursor-pointer',
+        'hover:[&_button]:underline focus-visible:[&_button]:underline',
+        'active:[&_button]:outline-none focus:[&_button]:outline-none',
+        className,
+      )}
       data-locale={locale ? locale.code : undefined}
     >
-      <div className={`${baseClass}__label`}>{`${t('general:locale')}:`}&nbsp;</div>
-      <div className={`${baseClass}__current`}>
-        <span className={`${baseClass}__current-label`}>
-          {`${getTranslation(locale.label, i18n)}`}
-        </span>
-        <ChevronIcon className={`${baseClass}__chevron`} />
+      <div className="text-muted-foreground max-md:hidden">{`${t('general:locale')}:`}&nbsp;</div>
+      <div className="flex items-center">
+        <span>{`${getTranslation(locale.label, i18n)}`}</span>
+        <ChevronIcon className="[&_.stroke]:stroke-current" />
       </div>
     </div>
   )

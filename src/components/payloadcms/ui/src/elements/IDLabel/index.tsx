@@ -1,15 +1,13 @@
 'use client'
 import React from 'react'
 
+import { cn } from '@/lib/utils'
 import { useDrawerDepth } from '@payloadcms/ui/elements/Drawer'
 import { Link } from '../../elements/Link/index.js'
 import { useConfig } from '@payloadcms/ui'
 import { useDocumentInfo } from '@payloadcms/ui'
 import { formatAdminURL } from '../../utilities/formatAdminURL.js'
 import { sanitizeID } from '../../utilities/sanitizeID.js'
-import './index.scss'
-
-const baseClass = 'id-label'
 
 export const IDLabel: React.FC<{ className?: string; id: string; prefix?: string }> = ({
   id,
@@ -31,7 +29,16 @@ export const IDLabel: React.FC<{ className?: string; id: string; prefix?: string
   })
 
   return (
-    <div className={[baseClass, className].filter(Boolean).join(' ')} title={id}>
+    <div
+      className={cn(
+        'text-[calc(var(--base)*0.8)] leading-[calc(var(--base)*1.2)] font-normal',
+        'text-muted-foreground bg-muted',
+        'px-[calc(var(--base)*0.4)] py-[calc(var(--base)*0.2)]',
+        'rounded-md inline-flex w-fit',
+        className,
+      )}
+      title={id}
+    >
       {prefix}
       &nbsp;
       {drawerDepth > 1 ? <Link href={docPath}>{sanitizeID(id)}</Link> : sanitizeID(id)}

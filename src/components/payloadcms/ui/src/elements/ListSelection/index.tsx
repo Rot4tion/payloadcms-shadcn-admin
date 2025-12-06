@@ -3,11 +3,9 @@ import React from 'react'
 
 import type { Props as ButtonProps } from '../Button/types.js'
 
+import { cn } from '@/lib/utils'
 import { useTranslation } from '@payloadcms/ui'
 import { Button } from '../Button/index.js'
-import './index.scss'
-
-const baseClass = 'list-selection'
 
 type ListSelection_v4Props = {
   /**
@@ -31,18 +29,18 @@ export function ListSelection_v4({ count, ListActions, SelectionActions }: ListS
   const { t } = useTranslation()
 
   return (
-    <div className={baseClass}>
+    <div className="flex ml-auto text-muted-foreground gap-[0.5em] items-center max-md:mb-[calc(var(--base)*0.5)]">
       <span>{t('general:selectedCount', { count, label: '' })}</span>
       {ListActions && ListActions.length > 0 && (
         <React.Fragment>
           <span>&mdash;</span>
-          <div className={`${baseClass}__actions`}>{ListActions}</div>
+          <div className="flex gap-[calc(var(--base)*0.5)]">{ListActions}</div>
         </React.Fragment>
       )}
       {SelectionActions && SelectionActions.length > 0 && (
         <React.Fragment>
           <span>&mdash;</span>
-          <div className={`${baseClass}__actions`}>{SelectionActions}</div>
+          <div className="flex gap-[calc(var(--base)*0.5)]">{SelectionActions}</div>
         </React.Fragment>
       )}
     </div>
@@ -55,7 +53,10 @@ export function ListSelectionButton({ children, className, ...props }: ListSelec
     <Button
       {...props}
       buttonStyle="none"
-      className={[`${baseClass}__button`, className].filter(Boolean).join(' ')}
+      className={cn(
+        'text-foreground/80 bg-transparent border-none underline cursor-pointer p-0 whitespace-nowrap overflow-hidden text-ellipsis',
+        className,
+      )}
     >
       {children}
     </Button>

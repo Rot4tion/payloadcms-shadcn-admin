@@ -1,11 +1,9 @@
 'use client'
 import React from 'react'
 
+import { cn } from '@/lib/utils'
 import { Button } from '../../Button/index.js'
 import { Thumbnail } from '../../Thumbnail/index.js'
-import './index.scss'
-
-const baseClass = 'file-details-draggable'
 
 import type { Data, FileSizes, SanitizedCollectionConfig } from 'payload'
 
@@ -54,12 +52,7 @@ export const DraggableFileDetails: React.FC<DraggableFileDetailsProps> = (props)
     <DraggableSortableItem id={id} key={id}>
       {(draggableSortableItemProps) => (
         <div
-          className={[
-            baseClass,
-            draggableSortableItemProps && isSortable && `${baseClass}--has-drag-handle`,
-          ]
-            .filter(Boolean)
-            .join(' ')}
+          className="flex gap-2.5 items-center bg-muted/50 rounded-[3px] px-3 py-2.5"
           ref={draggableSortableItemProps.setNodeRef}
           style={{
             transform: draggableSortableItemProps.transform,
@@ -67,10 +60,10 @@ export const DraggableFileDetails: React.FC<DraggableFileDetailsProps> = (props)
             zIndex: draggableSortableItemProps.isDragging ? 1 : undefined,
           }}
         >
-          <div className={`${baseClass}--drag-wrapper`}>
+          <div className="flex gap-2.5 items-center">
             {isSortable && draggableSortableItemProps && (
               <div
-                className={`${baseClass}__drag`}
+                className="cursor-grab"
                 {...draggableSortableItemProps.attributes}
                 {...draggableSortableItemProps.listeners}
               >
@@ -78,7 +71,7 @@ export const DraggableFileDetails: React.FC<DraggableFileDetailsProps> = (props)
               </div>
             )}
             <Thumbnail
-              className={`${baseClass}__thumbnail`}
+              className="max-w-6"
               collectionSlug={collectionSlug}
               doc={doc}
               fileSrc={thumbnailURL || url}
@@ -86,9 +79,9 @@ export const DraggableFileDetails: React.FC<DraggableFileDetailsProps> = (props)
               uploadConfig={uploadConfig}
             />
           </div>
-          <div className={`${baseClass}__main-detail`}>{filename}</div>
+          <div>{filename}</div>
 
-          <div className={`${baseClass}__actions`}>
+          <div className="grow-2 flex gap-2.5 items-center justify-end">
             <DocumentDrawer />
             <DocumentDrawerToggler>
               <EditIcon />
@@ -96,7 +89,7 @@ export const DraggableFileDetails: React.FC<DraggableFileDetailsProps> = (props)
             {!hideRemoveFile && removeItem && (
               <Button
                 buttonStyle="icon-label"
-                className={`${baseClass}__remove`}
+                className="m-0"
                 icon="x"
                 iconStyle="none"
                 onClick={() => removeItem(rowIndex)}

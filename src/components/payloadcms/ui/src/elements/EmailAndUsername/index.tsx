@@ -3,15 +3,13 @@
 import type { TFunction } from '@payloadcms/translations'
 import type { LoginWithUsernameOptions, SanitizedFieldPermissions } from 'payload'
 
+import { cn } from '@/lib/utils'
 import { email, getFieldPermissions, username } from 'payload/shared'
 import React from 'react'
 
 import { EmailField } from '../../fields/Email/index.js'
 import { TextField } from '../../fields/Text/index.js'
-import './index.scss'
 import { FieldPathContext } from '../../forms/RenderFields/context.js'
-
-const baseClass = 'login-fields'
 type RenderEmailAndUsernameFieldsProps = {
   className?: string
   loginWithUsername?: false | LoginWithUsernameOptions
@@ -78,7 +76,7 @@ export function EmailAndUsernameFields(props: RenderEmailAndUsernameFieldsProps)
 
   if (showEmailField || showUsernameField) {
     return (
-      <div className={[baseClass, className && className].filter(Boolean).join(' ')}>
+      <div className={cn('flex flex-col gap-(--base)', className)}>
         {showEmailField ? (
           <FieldPathContext value="email">
             <EmailField

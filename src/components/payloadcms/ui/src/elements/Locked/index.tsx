@@ -3,13 +3,11 @@ import type { ClientUser } from 'payload'
 
 import React, { useState } from 'react'
 
+import { cn } from '@/lib/utils'
 import { LockIcon } from '../../icons/Lock/index.js'
 import { useTranslation } from '@payloadcms/ui'
 import { isClientUserObject } from '../../utilities/isClientUserObject.js'
 import { Tooltip } from '../Tooltip/index.js'
-import './index.scss'
-
-const baseClass = 'locked'
 
 export const Locked: React.FC<{
   className?: string
@@ -22,7 +20,10 @@ export const Locked: React.FC<{
 
   return (
     <div
-      className={[baseClass, className].filter(Boolean).join(' ')}
+      className={cn(
+        'relative inline-flex items-center justify-center pointer-events-auto',
+        className,
+      )}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
       role="button"
@@ -30,7 +31,7 @@ export const Locked: React.FC<{
     >
       <Tooltip
         alignCaret="left"
-        className={`${baseClass}__tooltip`}
+        className="left-0 translate-x-0 -translate-y-(--caret-size)"
         position="top"
         show={hovered}
       >{`${userToUse} ${t('general:isEditing')}`}</Tooltip>

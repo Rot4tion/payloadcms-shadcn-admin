@@ -13,22 +13,19 @@ export type FileMetaProps = {
 }
 
 import { CopyToClipboard } from '../../CopyToClipboard/index.js'
-import './index.scss'
-
-const baseClass = 'file-meta'
 
 export const FileMeta: React.FC<FileMetaProps> = (props) => {
   const { filename, filesize, height, mimeType, url: fileURL, width } = props
 
   return (
-    <div className={baseClass}>
-      <div className={`${baseClass}__url`}>
+    <div>
+      <div className="flex gap-[calc(var(--base)*0.4)] [&_a]:font-semibold [&_a]:no-underline [&_a]:overflow-hidden [&_a]:text-ellipsis [&_a]:whitespace-nowrap hover:[&_a]:underline focus-visible:[&_a]:underline">
         <a href={fileURL} rel="noopener noreferrer" target="_blank">
           {filename}
         </a>
         <CopyToClipboard defaultMessage="Copy URL" value={fileURL} />
       </div>
-      <div className={`${baseClass}__size-type`}>
+      <div className="overflow-hidden text-ellipsis whitespace-nowrap">
         {formatFilesize(filesize)}
         {typeof width === 'number' && typeof height === 'number' && (
           <React.Fragment>

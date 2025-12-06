@@ -1,8 +1,6 @@
 import React from 'react'
 
-import './index.scss'
-
-export const listHeaderClass = 'list-header'
+import { cn } from '@/lib/utils'
 
 type ListHeaderProps = {
   readonly Actions?: React.ReactNode[]
@@ -13,22 +11,22 @@ type ListHeaderProps = {
 }
 export const ListHeader: React.FC<ListHeaderProps> = (props) => {
   return (
-    <header className={[listHeaderClass, props.className].filter(Boolean).join(' ')}>
-      <div className={`${listHeaderClass}__content`}>
-        <div className={`${listHeaderClass}__title-and-actions`}>
-          <h1 className={`${listHeaderClass}__title`}>{props.title}</h1>
+    <header className={cn('flex items-end flex-wrap [&_.btn]:m-0', props.className)}>
+      <div className="grid grid-cols-[1fr_auto] w-full">
+        <div className="flex flex-wrap items-end gap-[calc(var(--base)*0.5)]">
+          <h1 className="m-0">{props.title}</h1>
           {props.TitleActions.length ? (
-            <div className={`${listHeaderClass}__title-actions`}>{props.TitleActions}</div>
+            <div className="mb-1 flex gap-[calc(var(--base)*0.5)]">{props.TitleActions}</div>
           ) : null}
         </div>
         {props.Actions.length ? (
-          <div className={`${listHeaderClass}__actions`}>{props.Actions}</div>
+          <div className="mb-1 flex flex-wrap items-center gap-[calc(var(--base)*0.5)]">
+            {props.Actions}
+          </div>
         ) : null}
       </div>
       {props.AfterListHeaderContent ? (
-        <div className={`${listHeaderClass}__after-header-content`}>
-          {props.AfterListHeaderContent}
-        </div>
+        <div className="w-full">{props.AfterListHeaderContent}</div>
       ) : null}
     </header>
   )

@@ -1,8 +1,6 @@
 'use client'
 import type { ClientField, Field, SanitizedCollectionConfig } from 'payload'
 
-import './index.scss'
-
 import React, { useMemo } from 'react'
 
 import { SelectInput } from '../../fields/Select/Input.js'
@@ -16,8 +14,6 @@ export type Props = {
   readonly collectionSlug: SanitizedCollectionConfig['slug']
   fields: ClientField[]
 }
-
-const baseClass = 'group-by-builder'
 
 /**
  * Note: Some fields are already omitted from the list of fields:
@@ -63,8 +59,8 @@ export const GroupByBuilder: React.FC<Props> = ({ collectionSlug, fields }) => {
   const groupByField = reducedFields.find((field) => field.value === groupByFieldName)
 
   return (
-    <div className={baseClass}>
-      <div className={`${baseClass}__header`}>
+    <div className="bg-muted/50 p-(--base) flex flex-col gap-[calc(var(--base)/2)]">
+      <div className="w-full flex justify-between">
         <p>
           {t('general:groupByLabel', {
             label: '',
@@ -72,7 +68,7 @@ export const GroupByBuilder: React.FC<Props> = ({ collectionSlug, fields }) => {
         </p>
         {query.groupBy && (
           <button
-            className={`${baseClass}__clear-button`}
+            className="bg-transparent border-none text-muted-foreground leading-inherit cursor-pointer p-0 underline"
             id="group-by--reset"
             onClick={async () => {
               await refineListData({
@@ -85,7 +81,7 @@ export const GroupByBuilder: React.FC<Props> = ({ collectionSlug, fields }) => {
           </button>
         )}
       </div>
-      <div className={`${baseClass}__inputs`}>
+      <div className="w-full flex gap-(--base) *:grow *:w-1/2">
         <ReactSelect
           filterOption={(option, inputValue) =>
             ((option?.data?.plainTextLabel as string) || option.label)

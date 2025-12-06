@@ -13,10 +13,7 @@ import { useTranslation } from '@payloadcms/ui'
 import { Drawer } from '../Drawer/index.js'
 import { ListSelectionButton } from '../ListSelection/index.js'
 import { EditManyDrawerContent } from './DrawerContent.js'
-import './index.scss'
 import { SelectAllStatus } from '@payloadcms/ui/providers/Selection'
-
-export const baseClass = 'edit-many'
 
 export type EditManyProps = {
   readonly collection: ClientCollectionConfig
@@ -65,7 +62,7 @@ export const EditMany_v4: React.FC<
   }
 
   return (
-    <div className={[baseClass, `${baseClass}__toggle`].filter(Boolean).join(' ')}>
+    <div>
       <ListSelectionButton
         aria-label={t('general:edit')}
         onClick={() => {

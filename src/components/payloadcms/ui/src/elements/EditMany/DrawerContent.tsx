@@ -2,6 +2,7 @@
 
 import type { SelectType, Where } from 'payload'
 
+import { cn } from '@/lib/utils'
 import { useModal } from '../Modal/index.js'
 import { getTranslation } from '@payloadcms/translations'
 import { useRouter, useSearchParams } from 'next/navigation.js'
@@ -29,9 +30,7 @@ import { useTranslation } from '@payloadcms/ui'
 import { abortAndIgnore, handleAbortRef } from '../../utilities/abortAndIgnore.js'
 import { parseSearchParams } from '../../utilities/parseSearchParams.js'
 import { FieldSelect } from '../FieldSelect/index.js'
-import './index.scss'
-import '../../forms/RenderFields/index.scss'
-import { baseClass, type EditManyProps } from './index.js'
+import type { EditManyProps } from './index.js'
 import { OperationContext } from '@payloadcms/ui/providers/Operation'
 
 const Submit: React.FC<{
@@ -50,7 +49,11 @@ const Submit: React.FC<{
   }, [action, submit])
 
   return (
-    <FormSubmit className={`${baseClass}__save`} disabled={disabled} onClick={save}>
+    <FormSubmit
+      className="w-[calc(50%-var(--base))] max-lg:w-full"
+      disabled={disabled}
+      onClick={save}
+    >
       {t('general:save')}
     </FormSubmit>
   )
@@ -75,7 +78,7 @@ const PublishButton: React.FC<{
   }, [action, submit])
 
   return (
-    <FormSubmit className={`${baseClass}__publish`} disabled={disabled} onClick={save}>
+    <FormSubmit className="w-full" disabled={disabled} onClick={save}>
       {t('version:publishChanges')}
     </FormSubmit>
   )
@@ -100,12 +103,7 @@ const SaveDraftButton: React.FC<{
   }, [action, submit])
 
   return (
-    <FormSubmit
-      buttonStyle="secondary"
-      className={`${baseClass}__draft`}
-      disabled={disabled}
-      onClick={save}
-    >
+    <FormSubmit buttonStyle="secondary" className="w-full" disabled={disabled} onClick={save}>
       {t('version:saveDraft')}
     </FormSubmit>
   )
@@ -331,9 +329,9 @@ export const EditManyDrawerContent: React.FC<EditManyDrawerContentProps> = (prop
       versionCount={0}
     >
       <OperationContext value="update">
-        <div className={`${baseClass}__main`}>
-          <div className={`${baseClass}__header`}>
-            <h2 className={`${baseClass}__header__title`}>
+        <div className="flex w-[calc(100%-var(--base)*15)] flex-col min-h-full max-lg:w-full max-lg:min-h-0">
+          <div className="flex mt-[calc(var(--base)*2.5)] mb-(--base) w-full">
+            <h2 className="m-0 grow">
               {t('general:editingLabel', {
                 count,
                 label: getTranslation(count > 1 ? plural : singular, i18n),
@@ -341,7 +339,7 @@ export const EditManyDrawerContent: React.FC<EditManyDrawerContentProps> = (prop
             </h2>
             <button
               aria-label={t('general:close')}
-              className={`${baseClass}__header__close`}
+              className="border-0 bg-transparent p-0 cursor-pointer overflow-hidden size-(--base) [&_svg]:size-[calc(var(--base)*2)] [&_svg]:relative [&_svg]:start-[calc(var(--base)*-0.5)] [&_svg]:top-[calc(var(--base)*-0.5)]"
               id={`close-drawer__${drawerSlug}`}
               onClick={() => closeModal(drawerSlug)}
               type="button"
@@ -350,7 +348,7 @@ export const EditManyDrawerContent: React.FC<EditManyDrawerContentProps> = (prop
             </button>
           </div>
           <Form
-            className={`${baseClass}__form`}
+            className="h-full max-lg:block"
             isInitializing={isInitializing}
             onChange={[onChange]}
             onSuccess={onSuccess}
@@ -381,10 +379,23 @@ export const EditManyDrawerContent: React.FC<EditManyDrawerContentProps> = (prop
                 })}
               </div>
             )}
-            <div className={`${baseClass}__sidebar-wrap`}>
-              <div className={`${baseClass}__sidebar`}>
-                <div className={`${baseClass}__sidebar-sticky-wrap`}>
-                  <div className={`${baseClass}__document-actions`}>
+            <div
+              className={cn(
+                'fixed w-[calc(var(--base)*15)] h-full top-0 right-0 overflow-visible border-l border-border',
+                'max-lg:static max-lg:w-full max-lg:h-auto',
+                'rtl:left-0 rtl:right-auto rtl:border-l-0 rtl:border-r rtl:border-border',
+              )}
+            >
+              <div className="w-full h-full overflow-y-auto">
+                <div className="flex flex-col min-h-full">
+                  <div
+                    className={cn(
+                      'flex p-(--base) gap-[calc(var(--base)*0.5)] sticky top-0 z-(--z-nav) *:relative *:z-1',
+                      'max-lg:fixed max-lg:bottom-0 max-lg:left-0 max-lg:right-0 max-lg:top-auto max-lg:px-(--gutter-h) max-lg:backdrop-blur-sm max-lg:bg-background/80',
+                      '[&_.form-submit]:w-full max-lg:[&_.form-submit]:w-auto max-lg:[&_.form-submit]:grow',
+                      '[&_.form-submit_.btn]:px-[calc(var(--base)*0.5)] [&_.form-submit_.btn]:mb-0',
+                    )}
+                  >
                     {collection?.versions?.drafts ? (
                       <React.Fragment>
                         <SaveDraftButton

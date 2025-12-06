@@ -4,15 +4,13 @@ import { useRouter } from 'next/navigation.js'
 import * as qs from 'qs-esm'
 import React, { Fragment } from 'react'
 
+import { cn } from '@/lib/utils'
 // Import from @payloadcms/ui to share context
 import { useConfig, useLocale, useRouteTransition, useTranslation } from '@payloadcms/ui'
 // useLocaleLoading is not exported from main entry, import from sub-path
 import { useLocaleLoading } from '@payloadcms/ui/providers/Locale'
 import { Popup, PopupList } from '../Popup/index.js'
-import './index.scss'
 import { LocalizerLabel } from './LocalizerLabel/index.js'
-
-const baseClass = 'localizer'
 
 export const Localizer: React.FC<{
   className?: string
@@ -34,7 +32,7 @@ export const Localizer: React.FC<{
     const { locales } = localization
 
     return (
-      <div className={[baseClass, className].filter(Boolean).join(' ')}>
+      <div className={cn('relative flex items-center flex-nowrap', className)}>
         <Popup
           button={<LocalizerLabel />}
           horizontalAlign="right"
@@ -74,18 +72,10 @@ export const Localizer: React.FC<{
                     {localeOptionLabel !== localeOption.code ? (
                       <Fragment>
                         {localeOptionLabel}
-                        &nbsp;
-                        <span
-                          className={`${baseClass}__locale-code`}
-                          data-locale={localeOption.code}
-                        >
-                          {`(${localeOption.code})`}
-                        </span>
+                        <span data-locale={localeOption.code}>{`(${localeOption.code})`}</span>
                       </Fragment>
                     ) : (
-                      <span className={`${baseClass}__locale-code`} data-locale={localeOption.code}>
-                        {localeOptionLabel}
-                      </span>
+                      <span data-locale={localeOption.code}>{localeOptionLabel}</span>
                     )}
                   </PopupList.Button>
                 )

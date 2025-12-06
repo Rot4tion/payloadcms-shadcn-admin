@@ -1,13 +1,11 @@
 'use client'
 import React from 'react'
 
+import { cn } from '@/lib/utils'
 import { usePreferences } from '@payloadcms/ui'
 import { useTranslation } from '@payloadcms/ui'
 import { useWindowInfo } from '@payloadcms/ui'
 import { useNav } from '../context.js'
-import './index.scss'
-
-const baseClass = 'nav-toggler'
 
 export const NavToggler: React.FC<{
   children?: React.ReactNode
@@ -30,9 +28,7 @@ export const NavToggler: React.FC<{
   return (
     <button
       aria-label={`${navOpen ? t('general:close') : t('general:open')} ${t('general:menu')}`}
-      className={[baseClass, navOpen && `${baseClass}--is-open`, className]
-        .filter(Boolean)
-        .join(' ')}
+      className={cn('relative bg-transparent p-0 m-0 border-0 cursor-pointer', className)}
       id={id}
       onClick={async () => {
         setNavOpen(!navOpen)
