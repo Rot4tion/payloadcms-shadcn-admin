@@ -1,3 +1,10 @@
+import {
+  FixedToolbarFeature,
+  HeadingFeature,
+  HorizontalRuleFeature,
+  InlineToolbarFeature,
+  lexicalEditor,
+} from '@payloadcms/richtext-lexical'
 import type { CollectionConfig } from 'payload'
 
 export const Tests: CollectionConfig = {
@@ -49,6 +56,18 @@ export const Tests: CollectionConfig = {
     {
       name: 'richText',
       type: 'richText',
+      editor: lexicalEditor({
+        features({ defaultFeatures, rootFeatures }) {
+          return [
+            ...defaultFeatures,
+            ...rootFeatures,
+            HeadingFeature({ enabledHeadingSizes: ['h1', 'h2', 'h3', 'h4'] }),
+            FixedToolbarFeature(),
+            InlineToolbarFeature(),
+            HorizontalRuleFeature(),
+          ]
+        },
+      }),
     },
     // ===== NUMBER FIELDS =====
     {

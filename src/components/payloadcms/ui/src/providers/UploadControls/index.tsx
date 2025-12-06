@@ -3,5 +3,4 @@
  */
 'use client'
 
-export { useUploadControls } from '@payloadcms/ui'
-
+export { UploadControlsProvider, useUploadControls } from '@payloadcms/ui/providers/UploadControls'
