@@ -2,9 +2,7 @@ import type { PopupProps } from '../Popup/index.js'
 
 import { CheckboxInput } from '../../fields/Checkbox/Input.js'
 import { Popup } from '../Popup/index.js'
-import './index.scss'
-
-const baseClass = 'checkbox-popup'
+import { cn } from '@/lib/utils'
 
 type CheckboxPopupProps = {
   Button: React.ReactNode
@@ -15,6 +13,7 @@ type CheckboxPopupProps = {
   }[]
   selectedValues: string[]
 } & Omit<PopupProps, 'button' | 'render'>
+
 export function CheckboxPopup({
   Button,
   className,
@@ -26,10 +25,10 @@ export function CheckboxPopup({
   return (
     <Popup
       button={Button}
-      className={[baseClass, className].filter(Boolean).join(' ')}
+      className={cn('[&_.checkbox-input]:items-center [&_.checkbox-input_label]:pb-0', className)}
       horizontalAlign="right"
       render={({ close }) => (
-        <div className={`${baseClass}__options`}>
+        <div className="flex flex-col gap-[calc(var(--base)*0.5)] px-[3px]">
           {options.map(({ label, value }) => (
             <CheckboxInput
               checked={selectedValues?.includes(value)}

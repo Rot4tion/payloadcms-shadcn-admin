@@ -2,7 +2,7 @@
 import React, { useEffect, useRef } from 'react'
 
 import { usePatchAnimateHeight } from './usePatchAnimateHeight.js'
-import './index.scss'
+import { cn } from '@/lib/utils'
 
 export const AnimateHeight: React.FC<{
   children: React.ReactNode
@@ -79,15 +79,12 @@ export const AnimateHeight: React.FC<{
   return (
     <div
       aria-hidden={!open}
-      className={[
+      className={cn(
+        // Base: height 0, interpolate-size for smooth transitions
+        'h-0 [interpolate-size:allow-keywords]',
+        open && height === 'auto' && 'h-auto',
         className,
-        'rah-static',
-        open && height === 'auto' && 'rah-static--height-auto',
-        isAnimating && `rah-animating--${open ? 'down' : 'up'}`,
-        isAnimating && height === 'auto' && `rah-animating--to-height-auto`,
-      ]
-        .filter(Boolean)
-        .join(' ')}
+      )}
       id={id}
       ref={containerRef}
       style={{

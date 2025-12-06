@@ -4,9 +4,7 @@ import React, { useMemo, useRef, useState } from 'react'
 import type { PopupProps } from '../Popup/index.js'
 
 import { Popup, PopupList } from '../Popup/index.js'
-import './index.scss'
-
-const baseClass = 'combobox'
+import { cn } from '@/lib/utils'
 
 /**
  * @internal
@@ -82,18 +80,27 @@ export const Combobox: React.FC<ComboboxProps> = (props) => {
   return (
     <Popup
       {...popupProps}
-      className={`${baseClass} ${popupProps.className || ''}`}
+      className={cn(popupProps.className)}
       onToggleClose={handleToggleClose}
       onToggleOpen={handleToggleOpen}
       render={({ close }) => (
-        <div className={`${baseClass}__content`}>
+        <div className="flex flex-col">
           {showSearch && (
             <div
-              className={`${baseClass}__search-wrapper${!hasResults ? ` ${baseClass}__search-wrapper--no-results` : ''}`}
+              className={cn(
+                'pt-(--popup-padding) pb-[calc(var(--base)*0.5)] border-b border-border mb-[calc(var(--base)*0.5)]',
+                !hasResults && 'border-b-0 mb-0',
+              )}
             >
               <input
                 aria-label={searchPlaceholder}
-                className={`${baseClass}__search-input`}
+                className={cn(
+                  'w-full bg-muted text-foreground border-none rounded-sm',
+                  'py-[calc(var(--base)*0.25)] px-[calc(var(--base)*0.5)]',
+                  'outline-none shadow-none',
+                  'placeholder:text-muted-foreground',
+                  'focus:bg-accent focus:outline-none focus:border-none focus:shadow-none',
+                )}
                 onChange={(e) => setSearchValue(e.target.value)}
                 placeholder={searchPlaceholder}
                 ref={searchInputRef}
@@ -113,7 +120,7 @@ export const Combobox: React.FC<ComboboxProps> = (props) => {
 
               return (
                 <div
-                  className={`${baseClass}__entry`}
+                  className="cursor-pointer"
                   key={`${entry.name}-${index}`}
                   onClick={handleClick}
                   onKeyDown={(e) => {

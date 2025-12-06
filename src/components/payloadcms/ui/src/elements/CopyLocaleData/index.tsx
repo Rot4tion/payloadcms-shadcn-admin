@@ -20,9 +20,6 @@ import { DrawerHeader } from '../BulkUpload/Header/index.js'
 import { Button } from '../Button/index.js'
 import { Drawer } from '../Drawer/index.js'
 import { PopupList } from '../Popup/index.js'
-import './index.scss'
-
-const baseClass = 'copy-locale-data'
 
 const drawerSlug = 'copy-locale'
 export const CopyLocaleData: React.FC = () => {
@@ -117,7 +114,6 @@ export const CopyLocaleData: React.FC = () => {
   return (
     <React.Fragment>
       <PopupList.Button
-        id={`${baseClass}__button`}
         onClick={() => {
           if (modified) {
             toast.info(t('general:unsavedChanges'))
@@ -129,7 +125,6 @@ export const CopyLocaleData: React.FC = () => {
         {t('localization:copyToLocale')}
       </PopupList.Button>
       <Drawer
-        className={baseClass}
         gutter={false}
         Header={
           <DrawerHeader
@@ -141,7 +136,7 @@ export const CopyLocaleData: React.FC = () => {
         }
         slug={drawerSlug}
       >
-        <div className={`${baseClass}__sub-header`}>
+        <div className="px-(--gutter-h) flex justify-between items-center border-b border-border">
           <span>
             {fromLocale && toLocale ? (
               <div>
@@ -176,7 +171,7 @@ export const CopyLocaleData: React.FC = () => {
           </Button>
         </div>
 
-        <div className={`${baseClass}__content`}>
+        <div className="py-[calc(var(--base)*1.5)] px-(--gutter-h) flex flex-col gap-(--base) *:flex *:flex-col *:gap-[calc(var(--base)*0.25)]">
           <SelectInput
             label={t('localization:copyFrom')}
             name={'fromLocale'}
