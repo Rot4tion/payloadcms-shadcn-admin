@@ -13,8 +13,8 @@ import { useDocumentDrawer } from '../../../elements/DocumentDrawer/index.js'
 import { Pill } from '../../../elements/Pill/index.js'
 import { ThumbnailComponent } from '../../../elements/Thumbnail/index.js'
 import './index.scss'
-import { useConfig } from '../../../providers/Config/index.js'
-import { useTranslation } from '../../../providers/Translation/index.js'
+import { useConfig } from '@payloadcms/ui'
+import { useTranslation } from '@payloadcms/ui'
 
 const baseClass = 'upload-relationship-details'
 

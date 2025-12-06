@@ -6,7 +6,7 @@ import { useRouter } from 'next/navigation.js'
 import React from 'react'
 
 import { useBulkUpload } from '../../../elements/BulkUpload/index.js'
-import { useTranslation } from '../../../providers/Translation/index.js'
+import { useTranslation } from '@payloadcms/ui'
 import { Button } from '../../Button/index.js'
 
 export function ListBulkUploadButton({

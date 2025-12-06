@@ -10,15 +10,16 @@ import { toast } from 'sonner'
 
 import type { Props as ButtonProps } from '../../Button/types.js'
 
-import { useForm, useFormFields } from '../../../forms/Form/context.js'
+import { useForm, useFormFields } from '@payloadcms/ui'
 import { FolderIcon } from '../../../icons/Folder/index.js'
-import { useConfig } from '../../../providers/Config/index.js'
-import { useDocumentInfo } from '../../../providers/DocumentInfo/index.js'
-import { useTranslation } from '../../../providers/Translation/index.js'
+import { useConfig } from '@payloadcms/ui'
+import { useDocumentInfo } from '@payloadcms/ui'
+import { useTranslation } from '@payloadcms/ui'
 import { Button } from '../../Button/index.js'
-import { formatDrawerSlug, useDrawerDepth } from '../../Drawer/index.js'
+import { formatDrawerSlug } from '../../Drawer/index.js'
 import './index.scss'
 import { MoveItemsToFolderDrawer } from '../Drawers/MoveToFolder/index.js'
+import { useDrawerDepth } from '@payloadcms/ui/elements/Drawer'
 
 const baseClass = 'move-doc-to-folder'
 

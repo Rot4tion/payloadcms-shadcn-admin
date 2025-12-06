@@ -6,7 +6,7 @@ import { getTranslation } from '@payloadcms/translations'
 import React, { useEffect } from 'react'
 
 import { Drawer } from '../../../elements/Drawer/index.js'
-import { useTranslation } from '../../../providers/Translation/index.js'
+import { useTranslation } from '@payloadcms/ui'
 import { BlockSelector } from '../BlockSelector/index.js'
 
 export type Props = {

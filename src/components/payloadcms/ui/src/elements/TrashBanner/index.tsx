@@ -4,9 +4,9 @@ import { getTranslation } from '@payloadcms/translations'
 import React from 'react'
 
 import { TrashIcon } from '../../icons/Trash/index.js'
-import { useConfig } from '../../providers/Config/index.js'
-import { useDocumentInfo } from '../../providers/DocumentInfo/index.js'
-import { useTranslation } from '../../providers/Translation/index.js'
+import { useConfig } from '@payloadcms/ui'
+import { useDocumentInfo } from '@payloadcms/ui'
+import { useTranslation } from '@payloadcms/ui'
 import './index.scss'
 
 const baseClass = 'trash-banner'

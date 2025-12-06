@@ -9,7 +9,7 @@ import { setsAreEqual } from 'payload/shared'
 import React, { useCallback, useMemo, useState } from 'react'
 
 import { CheckboxInput } from '../../../fields/Checkbox/index.js'
-import { useTranslation } from '../../../providers/Translation/index.js'
+import { useTranslation } from '@payloadcms/ui'
 import { DrawerHeader } from '../../BulkUpload/Header/index.js'
 import { Button } from '../../Button/index.js'
 import { Drawer } from '../../Drawer/index.js'

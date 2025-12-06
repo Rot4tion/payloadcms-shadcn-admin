@@ -9,7 +9,7 @@ import React, { useState } from 'react'
 import { cn } from '@/lib/utils'
 import { ErrorPill } from '../../../elements/ErrorPill/index.js'
 import { WatchChildErrors } from '../../../forms/WatchChildErrors/index.js'
-import { useTranslation } from '../../../providers/Translation/index.js'
+import { useTranslation } from '@payloadcms/ui'
 
 type TabProps = {
   readonly hidden?: boolean

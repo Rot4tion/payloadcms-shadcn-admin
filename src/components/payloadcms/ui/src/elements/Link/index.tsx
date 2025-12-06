@@ -3,7 +3,7 @@ import NextLinkImport from 'next/link.js'
 import { useRouter } from 'next/navigation.js'
 import React from 'react'
 
-import { useRouteTransition } from '../../providers/RouteTransition/index.js'
+import { useRouteTransition } from '@payloadcms/ui'
 import { formatUrl } from './formatUrl.js'
 
 const NextLink = 'default' in NextLinkImport ? NextLinkImport.default : NextLinkImport

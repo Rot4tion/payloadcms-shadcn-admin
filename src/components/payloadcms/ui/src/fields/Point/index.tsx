@@ -12,7 +12,7 @@ import { FieldError } from '../../fields/FieldError/index.js'
 import { FieldLabel } from '../../fields/FieldLabel/index.js'
 import { useField } from '../../forms/useField/index.js'
 import { withCondition } from '../../forms/withCondition/index.js'
-import { useTranslation } from '../../providers/Translation/index.js'
+import { useTranslation } from '@payloadcms/ui'
 import { mergeFieldStyles } from '../mergeFieldStyles.js'
 import { fieldBaseClass } from '../shared/index.js'
 

@@ -15,8 +15,8 @@ import {
   ListCreateNewButton,
   ListEmptyTrashButton,
 } from '../../../elements/ListHeader/TitleActions/index.js'
-import { useConfig } from '../../../providers/Config/index.js'
-import { useListQuery } from '../../../providers/ListQuery/index.js'
+import { useConfig } from '@payloadcms/ui'
+import { useListQuery } from '@payloadcms/ui'
 import { ListSelection } from '../ListSelection/index.js'
 
 const drawerBaseClass = 'list-drawer'

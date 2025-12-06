@@ -4,7 +4,7 @@ import React from 'react'
 import { ChevronIcon } from '../../icons/Chevron/index.js'
 import { CloseMenuIcon } from '../../icons/CloseMenu/index.js'
 import { MenuIcon } from '../../icons/Menu/index.js'
-import { useTranslation } from '../../providers/Translation/index.js'
+import { useTranslation } from '@payloadcms/ui'
 import './index.scss'
 
 const baseClass = 'hamburger'

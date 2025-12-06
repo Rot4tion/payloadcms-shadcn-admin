@@ -29,7 +29,7 @@ import type { Option } from '../../ReactSelect/index.js'
 
 import { useDebounce } from '../../../hooks/useDebounce.js'
 import { useEffectEvent } from '../../../hooks/useEffectEvent.js'
-import { useTranslation } from '../../../providers/Translation/index.js'
+import { useTranslation } from '@payloadcms/ui'
 import { Button } from '../../Button/index.js'
 import { ReactSelect } from '../../ReactSelect/index.js'
 import { DefaultFilter } from './DefaultFilter/index.js'

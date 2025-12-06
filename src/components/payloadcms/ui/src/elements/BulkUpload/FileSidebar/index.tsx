@@ -1,15 +1,15 @@
 'use client'
 
 import { useModal } from '../../Modal/index.js'
-import { useWindowInfo } from '@faceless-ui/window-info'
+import { useWindowInfo } from '@payloadcms/ui'
 import { isImage } from 'payload/shared'
 import React from 'react'
 
 import { SelectInput } from '../../../fields/Select/Input.js'
 import { ChevronIcon } from '../../../icons/Chevron/index.js'
 import { XIcon } from '../../../icons/X/index.js'
-import { useConfig } from '../../../providers/Config/index.js'
-import { useTranslation } from '../../../providers/Translation/index.js'
+import { useConfig } from '@payloadcms/ui'
+import { useTranslation } from '@payloadcms/ui'
 import { AnimateHeight } from '../../AnimateHeight/index.js'
 import { Button } from '../../Button/index.js'
 import { Drawer } from '../../Drawer/index.js'

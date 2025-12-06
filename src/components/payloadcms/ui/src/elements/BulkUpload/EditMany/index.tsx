@@ -4,9 +4,9 @@ import type { ClientCollectionConfig } from 'payload'
 
 import React from 'react'
 
-import { useAuth } from '../../../providers/Auth/index.js'
-import { EditDepthProvider } from '../../../providers/EditDepth/index.js'
-import { useTranslation } from '../../../providers/Translation/index.js'
+import { useAuth } from '@payloadcms/ui'
+import { EditDepthProvider } from '@payloadcms/ui'
+import { useTranslation } from '@payloadcms/ui'
 import { Drawer, DrawerToggler } from '../../Drawer/index.js'
 import { useFormsManager } from '../FormsManager/index.js'
 import { EditManyBulkUploadsDrawerContent } from './DrawerContent.js'

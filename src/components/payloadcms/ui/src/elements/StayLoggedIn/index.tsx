@@ -5,10 +5,10 @@ import React, { useCallback } from 'react'
 
 import type { OnCancel } from '../ConfirmationModal/index.js'
 
-import { useAuth } from '../../providers/Auth/index.js'
-import { useConfig } from '../../providers/Config/index.js'
-import { useRouteTransition } from '../../providers/RouteTransition/index.js'
-import { useTranslation } from '../../providers/Translation/index.js'
+import { useAuth } from '@payloadcms/ui'
+import { useConfig } from '@payloadcms/ui'
+import { useRouteTransition } from '@payloadcms/ui'
+import { useTranslation } from '@payloadcms/ui'
 import { ConfirmationModal } from '../ConfirmationModal/index.js'
 
 export const stayLoggedInModalSlug = 'stay-logged-in'

@@ -12,7 +12,7 @@ import { RenderCustomComponent } from '../../elements/RenderCustomComponent/inde
 import { FieldDescription } from '../../fields/FieldDescription/index.js'
 import { FieldError } from '../../fields/FieldError/index.js'
 import { FieldLabel } from '../../fields/FieldLabel/index.js'
-import { useTranslation } from '../../providers/Translation/index.js'
+import { useTranslation } from '@payloadcms/ui'
 import { fieldBaseClass } from '../shared/index.js'
 
 export const PasswordInput: React.FC<PasswordInputProps> = (props) => {

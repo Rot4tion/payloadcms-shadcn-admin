@@ -2,7 +2,7 @@
 
 import React from 'react'
 
-import { useListQuery } from '../../providers/ListQuery/index.js'
+import { useListQuery } from '@payloadcms/ui'
 import { Pagination } from '../Pagination/index.js'
 
 export const RelationshipTablePagination: React.FC = () => {

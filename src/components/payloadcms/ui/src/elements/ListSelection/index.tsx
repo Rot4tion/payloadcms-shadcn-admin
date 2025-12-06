@@ -3,7 +3,7 @@ import React from 'react'
 
 import type { Props as ButtonProps } from '../Button/types.js'
 
-import { useTranslation } from '../../providers/Translation/index.js'
+import { useTranslation } from '@payloadcms/ui'
 import { Button } from '../Button/index.js'
 import './index.scss'
 

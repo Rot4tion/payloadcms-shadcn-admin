@@ -11,7 +11,7 @@ import type { Option, ReactSelectAdapterProps } from './types.js'
 export type { Option } from './types.js'
 
 import { cn } from '@/lib/utils'
-import { useTranslation } from '../../providers/Translation/index.js'
+import { useTranslation } from '@payloadcms/ui'
 import { DraggableSortable } from '../DraggableSortable/index.js'
 import { ShimmerEffect } from '../ShimmerEffect/index.js'
 import { ClearIndicator } from './ClearIndicator/index.js'

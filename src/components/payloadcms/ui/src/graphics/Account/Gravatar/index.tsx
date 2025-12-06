@@ -2,7 +2,7 @@
 import md5 from 'md5'
 import React from 'react'
 
-import { useAuth } from '../../../providers/Auth/index.js'
+import { useAuth } from '@payloadcms/ui'
 
 export const GravatarAccountIcon: React.FC = () => {
   const { user } = useAuth()

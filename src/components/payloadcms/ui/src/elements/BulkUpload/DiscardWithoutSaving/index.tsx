@@ -3,7 +3,7 @@
 import { useModal } from '../../Modal/index.js'
 import React from 'react'
 
-import { useTranslation } from '../../../providers/Translation/index.js'
+import { useTranslation } from '@payloadcms/ui'
 import { ConfirmationModal } from '../../ConfirmationModal/index.js'
 import { useBulkUpload } from '../index.js'
 export const discardBulkUploadModalSlug = 'bulk-upload--discard-without-saving'

@@ -7,8 +7,8 @@ import { useRouter } from 'next/navigation.js'
 import { formatAdminURL } from 'payload/shared'
 import React from 'react'
 
-import { usePreferences } from '../../providers/Preferences/index.js'
-import { useTranslation } from '../../providers/Translation/index.js'
+import { usePreferences } from '@payloadcms/ui'
+import { useTranslation } from '@payloadcms/ui'
 import { Button } from '../Button/index.js'
 import './index.scss'
 

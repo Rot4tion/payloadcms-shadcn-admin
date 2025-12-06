@@ -6,8 +6,8 @@ import React from 'react'
 import { cn } from '@/lib/utils'
 import { FieldLabel } from '../../fields/FieldLabel/index.js'
 import { ChevronIcon } from '../../icons/Chevron/index.js'
-import { useListQuery } from '../../providers/ListQuery/index.js'
-import { useTranslation } from '../../providers/Translation/index.js'
+import { useListQuery } from '@payloadcms/ui'
+import { useTranslation } from '@payloadcms/ui'
 
 export type SortColumnProps = {
   readonly appearance?: 'condensed' | 'default'

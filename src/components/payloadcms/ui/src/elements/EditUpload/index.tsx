@@ -9,7 +9,7 @@ import 'react-image-crop/dist/ReactCrop.css'
 
 import { editDrawerSlug } from '../../elements/Upload/index.js'
 import { PlusIcon } from '../../icons/Plus/index.js'
-import { useTranslation } from '../../providers/Translation/index.js'
+import { useTranslation } from '@payloadcms/ui'
 import { Button } from '../Button/index.js'
 import './index.scss'
 

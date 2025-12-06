@@ -1,7 +1,7 @@
 import React from 'react'
 
-import { useSelection } from '../../providers/Selection/index.js'
-// import { useTranslation } from '../../providers/Translation/index.js'
+import { useSelection } from '@payloadcms/ui'
+// import { useTranslation } from '@payloadcms/ui'
 import { Pill } from '../Pill/index.js'
 
 export const SelectMany: React.FC<{

@@ -5,7 +5,7 @@ import { fieldIsHiddenOrDisabled, fieldIsID } from 'payload/shared'
 import React, { useId, useMemo } from 'react'
 
 import { FieldLabel } from '../../fields/FieldLabel/index.js'
-import { useEditDepth } from '../../providers/EditDepth/index.js'
+import { useEditDepth } from '@payloadcms/ui'
 import { useTableColumns } from '../../providers/TableColumns/index.js'
 import { PillSelector, type SelectablePill } from '../PillSelector/index.js'
 

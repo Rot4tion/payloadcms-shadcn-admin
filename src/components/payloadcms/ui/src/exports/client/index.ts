@@ -42,7 +42,7 @@ export { Link } from '../../elements/Link/index.js'
 export { LeaveWithoutSaving } from '../../elements/LeaveWithoutSaving/index.js'
 export { DocumentTakeOver } from '../../elements/DocumentTakeOver/index.js'
 export { DocumentLocked } from '../../elements/DocumentLocked/index.js'
-export { TableColumnsProvider, useTableColumns } from '../../providers/TableColumns/index.js'
+export { TableColumnsProvider, useTableColumns } from '@payloadcms/ui'
 export {
   RenderDefaultCell,
   useCellProps,
@@ -54,14 +54,15 @@ export { default as DatePicker } from '../../elements/DatePicker/DatePicker.js'
 export { ViewDescription } from '../../elements/ViewDescription/index.js'
 export { AppHeader } from '../../elements/AppHeader/index.js'
 export { RenderCustomComponent } from '../../elements/RenderCustomComponent/index.js'
+// BulkUpload - re-export from @payloadcms/ui for shared drawer context
 export {
   BulkUploadDrawer,
   BulkUploadProvider,
   useBulkUpload,
   useBulkUploadDrawerSlug,
-} from '../../elements/BulkUpload/index.js'
+} from '@payloadcms/ui'
 export { DrawerContentContainer } from '../../elements/DrawerContentContainer/index.js'
-export type { BulkUploadProps } from '../../elements/BulkUpload/index.js'
+export type { BulkUploadProps } from '@payloadcms/ui'
 export { Banner } from '../../elements/Banner/index.js'
 export { Button } from '../../elements/Button/index.js'
 export { AnimateHeight } from '../../elements/AnimateHeight/index.js'
@@ -73,7 +74,8 @@ export { CopyToClipboard } from '../../elements/CopyToClipboard/index.js'
 export { DeleteMany } from '../../elements/DeleteMany/index.js'
 export { DocumentControls } from '../../elements/DocumentControls/index.js'
 export { Dropzone } from '../../elements/Dropzone/index.js'
-export { documentDrawerBaseClass, useDocumentDrawer } from '../../elements/DocumentDrawer/index.js'
+// Re-export from @payloadcms/ui for shared drawer context
+export { documentDrawerBaseClass, useDocumentDrawer } from '@payloadcms/ui'
 export { getHTMLDiffComponents } from '../../elements/HTMLDiff/index.js'
 export type {
   DocumentDrawerProps,
@@ -84,8 +86,8 @@ export { useClickOutside } from '../../hooks/useClickOutside.js'
 export { useClickOutsideContext } from '../../providers/ClickOutside/index.js'
 export { useDocumentDrawerContext } from '../../elements/DocumentDrawer/Provider.js'
 export { DocumentFields } from '../../elements/DocumentFields/index.js'
-export { Drawer, DrawerToggler, formatDrawerSlug } from '../../elements/Drawer/index.js'
-export { useDrawerSlug } from '../../elements/Drawer/useDrawerSlug.js'
+// Re-export from @payloadcms/ui for shared drawer context
+export { Drawer, DrawerToggler, formatDrawerSlug, useDrawerSlug } from '@payloadcms/ui'
 export { EditMany } from '../../elements/EditMany/index.js'
 export { ErrorPill } from '../../elements/ErrorPill/index.js'
 export { FullscreenModal } from '../../elements/FullscreenModal/index.js'
@@ -95,7 +97,7 @@ export { Hamburger } from '../../elements/Hamburger/index.js'
 export { HydrateAuthProvider } from '../../elements/HydrateAuthProvider/index.js'
 export { Locked } from '../../elements/Locked/index.js'
 export { ListControls } from '../../elements/ListControls/index.js'
-export { useListDrawer } from '../../elements/ListDrawer/index.js'
+export { useListDrawer } from '@payloadcms/ui'
 export type {
   ListDrawerProps,
   ListTogglerProps,
@@ -114,9 +116,9 @@ export { LoadingOverlayToggle } from '../../elements/Loading/index.js'
 export { FormLoadingOverlayToggle } from '../../elements/Loading/index.js'
 export { LoadingOverlay } from '../../elements/Loading/index.js'
 export { Logout } from '../../elements/Logout/index.js'
-export { Modal, useModal } from '../../elements/Modal/index.js'
+export { Modal, useModal } from '@payloadcms/ui'
 export { NavToggler } from '../../elements/Nav/NavToggler/index.js'
-export { NavContext, NavProvider, useNav } from '../../elements/Nav/context.js'
+export { NavContext, NavProvider, useNav } from '@payloadcms/ui'
 export { NavGroup } from '../../elements/NavGroup/index.js'
 export { Pagination } from '../../elements/Pagination/index.js'
 export { PerPage } from '../../elements/PerPage/index.js'
@@ -132,7 +134,7 @@ export { SaveButton } from '../../elements/SaveButton/index.js'
 export { SaveDraftButton } from '../../elements/SaveDraftButton/index.js'
 
 // folder elements
-export { FolderProvider, useFolder } from '../../providers/Folders/index.js'
+export { FolderProvider, useFolder } from '@payloadcms/ui'
 export { BrowseByFolderButton } from '../../elements/FolderView/BrowseByFolderButton/index.js'
 export { FolderTypeField } from '../../elements/FolderView/FolderTypeField/index.js'
 export { FolderFileTable } from '../../elements/FolderView/FolderFileTable/index.js'
@@ -248,7 +250,7 @@ export { NullifyLocaleField } from '../../forms/NullifyField/index.js'
 export { RenderFields } from '../../forms/RenderFields/index.js'
 
 export { RowLabel, type RowLabelProps } from '../../forms/RowLabel/index.js'
-export { RowLabelProvider, useRowLabel } from '../../forms/RowLabel/Context/index.js'
+export { RowLabelProvider, useRowLabel } from '@payloadcms/ui'
 
 export { FormSubmit } from '../../forms/Submit/index.js'
 export { WatchChildErrors } from '../../forms/WatchChildErrors/index.js'
@@ -296,7 +298,7 @@ export { Info as InfoIcon } from '../../providers/ToastContainer/icons/Info.js'
 export { Success as SuccessIcon } from '../../providers/ToastContainer/icons/Success.js'
 export { Warning as WarningIcon } from '../../providers/ToastContainer/icons/Warning.js'
 
-// providers
+// providers - re-export from @payloadcms/ui for shared context
 export {
   type RenderDocumentResult,
   type RenderDocumentServerFunction,
@@ -304,54 +306,78 @@ export {
   type ServerFunctionsContextType,
   ServerFunctionsProvider,
   useServerFunctions,
-} from '../../providers/ServerFunctions/index.js'
-export { ActionsProvider, useActions } from '../../providers/Actions/index.js'
-export { AuthProvider, useAuth } from '../../providers/Auth/index.js'
-export type { UserWithToken } from '../../providers/Auth/index.js'
-export { ClientFunctionProvider, useClientFunctions } from '../../providers/ClientFunction/index.js'
-export { useAddClientFunction } from '../../providers/ClientFunction/index.js'
-
-export { LivePreviewProvider } from '../../providers/LivePreview/index.js'
-
-export { ProgressBar } from '../../providers/RouteTransition/ProgressBar/index.js'
+} from '@payloadcms/ui'
+// ====================================================================
+// PROVIDERS: Re-export from @payloadcms/ui to share context with Lexical
+// This is CRITICAL for RichText/Lexical editor to work correctly
+// ====================================================================
 export {
+  ActionsProvider,
+  useActions,
+  AuthProvider,
+  useAuth,
+  ClientFunctionProvider,
+  useClientFunctions,
+  useAddClientFunction,
+  LivePreviewProvider,
   RouteTransitionProvider,
   useRouteTransition,
-} from '../../providers/RouteTransition/index.js'
-export { ConfigProvider, PageConfigProvider, useConfig } from '../../providers/Config/index.js'
-export { DocumentEventsProvider, useDocumentEvents } from '../../providers/DocumentEvents/index.js'
-export { DocumentInfoProvider, useDocumentInfo } from '../../providers/DocumentInfo/index.js'
-export { useDocumentTitle } from '../../providers/DocumentTitle/index.js'
-export type { DocumentInfoContext, DocumentInfoProps } from '../../providers/DocumentInfo/index.js'
-export { useUploadControls } from '../../providers/UploadControls/index.js'
-export { EditDepthProvider, useEditDepth } from '../../providers/EditDepth/index.js'
-export {
+  ConfigProvider,
+  PageConfigProvider,
+  useConfig,
+  DocumentEventsProvider,
+  useDocumentEvents,
+  DocumentInfoProvider,
+  useDocumentInfo,
+  useDocumentTitle,
+  useUploadControls,
+  EditDepthProvider,
+  useEditDepth,
   EntityVisibilityProvider,
   useEntityVisibility,
-} from '../../providers/EntityVisibility/index.js'
-export { UploadEditsProvider, useUploadEdits } from '../../providers/UploadEdits/index.js'
-export {
+  UploadEditsProvider,
+  useUploadEdits,
   ListDrawerContextProvider,
   useListDrawerContext,
-} from '../../elements/ListDrawer/Provider.js'
-export { ListQueryProvider, useListQuery } from '../../providers/ListQuery/index.js'
-export { LocaleProvider, useLocale } from '../../providers/Locale/index.js'
-export { OperationProvider, useOperation } from '../../providers/Operation/index.js'
-export { ParamsProvider, useParams } from '../../providers/Params/index.js'
-export { PreferencesProvider, usePreferences } from '../../providers/Preferences/index.js'
-export { RootProvider } from '../../providers/Root/index.js'
-export {
-  RouteCache as RouteCacheProvider,
+  ListQueryProvider,
+  useListQuery,
+  LocaleProvider,
+  useLocale,
+  OperationProvider,
+  useOperation,
+  ParamsProvider,
+  useParams,
+  PreferencesProvider,
+  usePreferences,
+  RootProvider,
+  RouteCacheProvider,
   useRouteCache,
-} from '../../providers/RouteCache/index.js'
-export { ScrollInfoProvider, useScrollInfo } from '../../providers/ScrollInfo/index.js'
-export { SearchParamsProvider, useSearchParams } from '../../providers/SearchParams/index.js'
-export { SelectionProvider, useSelection } from '../../providers/Selection/index.js'
-export { UploadHandlersProvider, useUploadHandlers } from '../../providers/UploadHandlers/index.js'
-export type { UploadHandlersContext } from '../../providers/UploadHandlers/index.js'
-export { defaultTheme, type Theme, ThemeProvider, useTheme } from '../../providers/Theme/index.js'
-export { TranslationProvider, useTranslation } from '../../providers/Translation/index.js'
-export { useWindowInfo, WindowInfoProvider } from '../../providers/WindowInfo/index.js'
+  ScrollInfoProvider,
+  useScrollInfo,
+  SearchParamsProvider,
+  useSearchParams,
+  SelectionProvider,
+  useSelection,
+  UploadHandlersProvider,
+  useUploadHandlers,
+  defaultTheme,
+  ThemeProvider,
+  useTheme,
+  TranslationProvider,
+  useTranslation,
+  useWindowInfo,
+  WindowInfoProvider,
+} from '@payloadcms/ui'
+export type {
+  Theme,
+  UserWithToken,
+  DocumentInfoContext,
+  DocumentInfoProps,
+  UploadHandlersContext,
+} from '@payloadcms/ui'
+
+// Re-export ProgressBar from local (UI component, not context)
+export { ProgressBar } from '../../providers/RouteTransition/ProgressBar/index.js'
 export { useControllableState } from '../../hooks/useControllableState.js'
 
 export { Text as TextCondition } from '../../elements/WhereBuilder/Condition/Text/index.js'

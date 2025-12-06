@@ -3,7 +3,7 @@
 import React from 'react'
 
 import { FormSubmit } from '../../forms/Submit/index.js'
-import { useTranslation } from '../../providers/Translation/index.js'
+import { useTranslation } from '@payloadcms/ui'
 import { Button } from '../Button/index.js'
 import './index.scss'
 

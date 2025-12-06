@@ -5,8 +5,8 @@ import { getTranslation } from '@payloadcms/translations'
 import { fieldAffectsData, fieldIsID } from 'payload/shared'
 import React from 'react' // TODO: abstract this out to support all routers
 
-import { useConfig } from '../../../providers/Config/index.js'
-import { useTranslation } from '../../../providers/Translation/index.js'
+import { useConfig } from '@payloadcms/ui'
+import { useTranslation } from '@payloadcms/ui'
 import { formatAdminURL } from '../../../utilities/formatAdminURL.js'
 import { getDisplayedFieldValue } from '../../../utilities/getDisplayedFieldValue.js'
 import { isValidReactElement } from '../../../utilities/isValidReactElement.js'

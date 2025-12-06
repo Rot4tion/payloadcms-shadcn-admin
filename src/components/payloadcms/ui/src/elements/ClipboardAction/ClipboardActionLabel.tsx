@@ -4,7 +4,7 @@ import { Fragment } from 'react'
 
 import { CopyIcon } from '../../icons/Copy/index.js'
 import { EditIcon } from '../../icons/Edit/index.js'
-import { useTranslation } from '../../providers/Translation/index.js'
+import { useTranslation } from '@payloadcms/ui'
 
 export const ClipboardActionLabel = ({
   isPaste,

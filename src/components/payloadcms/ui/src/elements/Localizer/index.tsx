@@ -4,10 +4,10 @@ import { useRouter } from 'next/navigation.js'
 import * as qs from 'qs-esm'
 import React, { Fragment } from 'react'
 
-import { useConfig } from '../../providers/Config/index.js'
-import { useLocale, useLocaleLoading } from '../../providers/Locale/index.js'
-import { useRouteTransition } from '../../providers/RouteTransition/index.js'
-import { useTranslation } from '../../providers/Translation/index.js'
+// Import from @payloadcms/ui to share context
+import { useConfig, useLocale, useRouteTransition, useTranslation } from '@payloadcms/ui'
+// useLocaleLoading is not exported from main entry, import from sub-path
+import { useLocaleLoading } from '@payloadcms/ui/providers/Locale'
 import { Popup, PopupList } from '../Popup/index.js'
 import './index.scss'
 import { LocalizerLabel } from './LocalizerLabel/index.js'

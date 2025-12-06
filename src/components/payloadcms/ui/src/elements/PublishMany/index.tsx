@@ -4,9 +4,9 @@ import type { ClientCollectionConfig, Where } from 'payload'
 import { useModal } from '../Modal/index.js'
 import React from 'react'
 
-import { useAuth } from '../../providers/Auth/index.js'
-import { SelectAllStatus, useSelection } from '../../providers/Selection/index.js'
-import { useTranslation } from '../../providers/Translation/index.js'
+import { useAuth } from '@payloadcms/ui'
+import { SelectAllStatus, useSelection } from '@payloadcms/ui'
+import { useTranslation } from '@payloadcms/ui'
 import { ListSelectionButton } from '../ListSelection/index.js'
 import { PublishManyDrawerContent } from './DrawerContent.js'
 

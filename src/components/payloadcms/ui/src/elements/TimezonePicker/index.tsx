@@ -9,7 +9,7 @@ import type { Props } from './types.js'
 
 import { FieldLabel } from '../../fields/FieldLabel/index.js'
 import './index.scss'
-import { useTranslation } from '../../providers/Translation/index.js'
+import { useTranslation } from '@payloadcms/ui'
 import { ReactSelect } from '../ReactSelect/index.js'
 import { formatOptions } from '../WhereBuilder/Condition/Select/formatOptions.js'
 

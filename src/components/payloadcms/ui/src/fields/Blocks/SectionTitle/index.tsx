@@ -2,7 +2,7 @@
 import React from 'react'
 
 import { useField } from '../../../forms/useField/index.js'
-import { useTranslation } from '../../../providers/Translation/index.js'
+import { useTranslation } from '@payloadcms/ui'
 import './index.scss'
 
 const baseClass = 'section-title'

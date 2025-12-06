@@ -1,7 +1,6 @@
-import { createContext, use } from 'react'
+/**
+ * Re-export from @payloadcms/ui to share context
+ */
+'use client'
 
-import type { ITableColumns } from './types.js'
-
-export const TableColumnContext = createContext<ITableColumns>({} as ITableColumns)
-
-export const useTableColumns = (): ITableColumns => use(TableColumnContext)
+export { TableColumnsContext } from '@payloadcms/ui'

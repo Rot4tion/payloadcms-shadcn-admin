@@ -14,8 +14,8 @@ import type {
 
 import { useDocumentDrawer } from '../../elements/DocumentDrawer/index.js'
 import { useEffectEvent } from '../../hooks/useEffectEvent.js'
-import { useConfig } from '../../providers/Config/index.js'
-import { useServerFunctions } from '../../providers/ServerFunctions/index.js'
+import { useConfig } from '@payloadcms/ui'
+import { useServerFunctions } from '@payloadcms/ui'
 import { ListDrawerContextProvider } from '../ListDrawer/Provider.js'
 import { LoadingOverlay } from '../Loading/index.js'
 import { type Option } from '../ReactSelect/index.js'

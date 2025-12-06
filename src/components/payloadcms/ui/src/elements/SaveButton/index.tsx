@@ -4,13 +4,13 @@ import type { SaveButtonClientProps } from 'payload'
 
 import React, { useRef } from 'react'
 
-import { useForm, useFormModified } from '../../forms/Form/context.js'
+import { useForm, useFormModified } from '@payloadcms/ui'
 import { FormSubmit } from '../../forms/Submit/index.js'
 import { useHotkey } from '../../hooks/useHotkey.js'
-import { useDocumentInfo } from '../../providers/DocumentInfo/index.js'
-import { useEditDepth } from '../../providers/EditDepth/index.js'
-import { useOperation } from '../../providers/Operation/index.js'
-import { useTranslation } from '../../providers/Translation/index.js'
+import { useDocumentInfo } from '@payloadcms/ui'
+import { useEditDepth } from '@payloadcms/ui'
+import { useOperation } from '@payloadcms/ui'
+import { useTranslation } from '@payloadcms/ui'
 
 export function SaveButton({ label: labelProp }: SaveButtonClientProps) {
   const { uploadStatus } = useDocumentInfo()

@@ -4,7 +4,7 @@ import React from 'react'
 
 import { DragHandleIcon } from '../../icons/DragHandle/index.js'
 import './index.scss'
-import { useListQuery } from '../../providers/ListQuery/index.js'
+import { useListQuery } from '@payloadcms/ui'
 
 const baseClass = 'sort-row'
 

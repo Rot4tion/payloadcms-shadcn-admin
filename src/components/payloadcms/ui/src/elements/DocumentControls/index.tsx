@@ -13,11 +13,15 @@ import React, { Fragment, useEffect } from 'react'
 
 import type { DocumentDrawerContextType } from '../DocumentDrawer/Provider.js'
 
-import { useFormInitializing, useFormProcessing } from '../../forms/Form/context.js'
-import { useConfig } from '../../providers/Config/index.js'
-import { useEditDepth } from '../../providers/EditDepth/index.js'
+// Import hooks from @payloadcms/ui to share context
+import {
+  useFormInitializing,
+  useFormProcessing,
+  useConfig,
+  useEditDepth,
+  useTranslation,
+} from '@payloadcms/ui'
 import { useLivePreviewContext } from '../../providers/LivePreview/context.js'
-import { useTranslation } from '../../providers/Translation/index.js'
 import { formatDate } from '../../utilities/formatDocTitle/formatDateTitle.js'
 import { Autosave } from '../Autosave/index.js'
 import { Button } from '../Button/index.js'

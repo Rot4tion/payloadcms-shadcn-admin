@@ -4,8 +4,8 @@ import type { ClientUser } from 'payload'
 import React from 'react'
 
 import { CheckboxInput } from '../../fields/Checkbox/Input.js'
-import { useAuth } from '../../providers/Auth/index.js'
-import { useSelection } from '../../providers/Selection/index.js'
+import { useAuth } from '@payloadcms/ui'
+import { useSelection } from '@payloadcms/ui'
 import { Locked } from '../Locked/index.js'
 import './index.scss'
 

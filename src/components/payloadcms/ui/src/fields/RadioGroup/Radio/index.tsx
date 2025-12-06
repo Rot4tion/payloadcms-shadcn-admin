@@ -7,8 +7,8 @@ import React from 'react'
 import { cn } from '@/lib/utils'
 import { Label } from '@/components/ui/label'
 import { RadioGroupItem } from '@/components/ui/radio-group'
-import { useEditDepth } from '../../../providers/EditDepth/index.js'
-import { useTranslation } from '../../../providers/Translation/index.js'
+import { useEditDepth } from '@payloadcms/ui'
+import { useTranslation } from '@payloadcms/ui'
 
 export const Radio: React.FC<{
   id: string

@@ -14,9 +14,9 @@ import { RowLabel } from '../../forms/RowLabel/index.js'
 import { useField } from '../../forms/useField/index.js'
 import { WatchChildErrors } from '../../forms/WatchChildErrors/index.js'
 import { withCondition } from '../../forms/withCondition/index.js'
-import { useDocumentInfo } from '../../providers/DocumentInfo/index.js'
-import { usePreferences } from '../../providers/Preferences/index.js'
-import { useTranslation } from '../../providers/Translation/index.js'
+import { useDocumentInfo } from '@payloadcms/ui'
+import { usePreferences } from '@payloadcms/ui'
+import { useTranslation } from '@payloadcms/ui'
 import { mergeFieldStyles } from '../mergeFieldStyles.js'
 
 const CollapsibleFieldComponent: CollapsibleFieldClientComponent = (props) => {

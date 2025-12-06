@@ -2,7 +2,7 @@ import React from 'react'
 
 import { EyeIcon } from '../../../icons/Eye/index.js'
 import { useLivePreviewContext } from '../../../providers/LivePreview/context.js'
-import { useTranslation } from '../../../providers/Translation/index.js'
+import { useTranslation } from '@payloadcms/ui'
 import './index.scss'
 
 const baseClass = 'live-preview-toggler'

@@ -4,15 +4,15 @@ import type { SaveDraftButtonClientProps } from 'payload'
 
 import React, { useCallback, useRef } from 'react'
 
-import { useForm, useFormModified } from '../../forms/Form/context.js'
+import { useForm, useFormModified } from '@payloadcms/ui'
 import { FormSubmit } from '../../forms/Submit/index.js'
 import { useHotkey } from '../../hooks/useHotkey.js'
-import { useConfig } from '../../providers/Config/index.js'
-import { useDocumentInfo } from '../../providers/DocumentInfo/index.js'
-import { useEditDepth } from '../../providers/EditDepth/index.js'
-import { useLocale } from '../../providers/Locale/index.js'
-import { useOperation } from '../../providers/Operation/index.js'
-import { useTranslation } from '../../providers/Translation/index.js'
+import { useConfig } from '@payloadcms/ui'
+import { useDocumentInfo } from '@payloadcms/ui'
+import { useEditDepth } from '@payloadcms/ui'
+import { useLocale } from '@payloadcms/ui'
+import { useOperation } from '@payloadcms/ui'
+import { useTranslation } from '@payloadcms/ui'
 
 const baseClass = 'save-draft'
 

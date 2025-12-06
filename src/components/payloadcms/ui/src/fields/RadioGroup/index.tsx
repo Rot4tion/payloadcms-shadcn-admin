@@ -10,7 +10,7 @@ import { RenderCustomComponent } from '../../elements/RenderCustomComponent/inde
 import { FieldDescription } from '../../fields/FieldDescription/index.js'
 import { FieldError } from '../../fields/FieldError/index.js'
 import { FieldLabel } from '../../fields/FieldLabel/index.js'
-import { useForm } from '../../forms/Form/context.js'
+import { useForm } from '@payloadcms/ui'
 import { useField } from '../../forms/useField/index.js'
 import { withCondition } from '../../forms/withCondition/index.js'
 import { mergeFieldStyles } from '../mergeFieldStyles.js'

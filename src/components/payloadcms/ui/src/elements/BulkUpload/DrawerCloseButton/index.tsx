@@ -2,7 +2,7 @@
 import React from 'react'
 
 import { XIcon } from '../../../icons/X/index.js'
-import { useTranslation } from '../../../providers/Translation/index.js'
+import { useTranslation } from '@payloadcms/ui'
 import './index.scss'
 
 const baseClass = 'drawer-close-button'

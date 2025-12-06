@@ -17,11 +17,11 @@ import { ArrayAction } from '../../elements/ArrayAction/index.js'
 import { Collapsible } from '../../elements/Collapsible/index.js'
 import { ErrorPill } from '../../elements/ErrorPill/index.js'
 import { ShimmerEffect } from '../../elements/ShimmerEffect/index.js'
-import { useFormSubmitted } from '../../forms/Form/context.js'
+import { useFormSubmitted } from '@payloadcms/ui'
 import { RenderFields } from '../../forms/RenderFields/index.js'
 import { RowLabel } from '../../forms/RowLabel/index.js'
 import { useThrottledValue } from '../../hooks/useThrottledValue.js'
-import { useTranslation } from '../../providers/Translation/index.js'
+import { useTranslation } from '@payloadcms/ui'
 
 type ArrayRowProps = {
   readonly addRow: (rowIndex: number) => Promise<void> | void

@@ -2,8 +2,8 @@
 import React, { useEffect } from 'react'
 
 import { useRouteCache } from '../../providers/RouteCache/index.js'
-import { useRouteTransition } from '../../providers/RouteTransition/index.js'
-import { useTranslation } from '../../providers/Translation/index.js'
+import { useRouteTransition } from '@payloadcms/ui'
+import { useTranslation } from '@payloadcms/ui'
 import { Button } from '../Button/index.js'
 import { Modal, useModal } from '../Modal/index.js'
 import './index.scss'

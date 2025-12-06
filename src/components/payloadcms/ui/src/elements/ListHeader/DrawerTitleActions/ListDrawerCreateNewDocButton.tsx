@@ -1,6 +1,6 @@
 'use client'
 
-import { useTranslation } from '../../../providers/Translation/index.js'
+import { useTranslation } from '@payloadcms/ui'
 import { useListDrawerContext } from '../../ListDrawer/Provider.js'
 import { Pill } from '../../Pill/index.js'
 

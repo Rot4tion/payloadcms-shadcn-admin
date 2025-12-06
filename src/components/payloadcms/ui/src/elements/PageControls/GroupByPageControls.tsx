@@ -5,7 +5,7 @@ import React, { useCallback } from 'react'
 
 import type { IListQueryContext } from '../../providers/ListQuery/types.js'
 
-import { useListQuery } from '../../providers/ListQuery/context.js'
+import { useListQuery } from '@payloadcms/ui'
 import { PageControlsComponent } from './index.js'
 
 /**

@@ -7,9 +7,9 @@ import React, { useMemo } from 'react'
 
 import type { AddCondition, RemoveCondition, UpdateCondition, WhereBuilderProps } from './types.js'
 
-import { useAuth } from '../../providers/Auth/index.js'
-import { useListQuery } from '../../providers/ListQuery/index.js'
-import { useTranslation } from '../../providers/Translation/index.js'
+import { useAuth } from '@payloadcms/ui'
+import { useListQuery } from '@payloadcms/ui'
+import { useTranslation } from '@payloadcms/ui'
 import { reduceFieldsToOptions } from '../../utilities/reduceFieldsToOptions.js'
 import { Button } from '../Button/index.js'
 import { Condition } from './Condition/index.js'

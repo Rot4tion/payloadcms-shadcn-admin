@@ -14,10 +14,10 @@ import { MoveItemsToFolderDrawer } from '../../../elements/FolderView/Drawers/Mo
 import { ListSelection_v4, ListSelectionButton } from '../../../elements/ListSelection/index.js'
 import { PublishMany_v4 } from '../../../elements/PublishMany/index.js'
 import { UnpublishMany_v4 } from '../../../elements/UnpublishMany/index.js'
-import { useConfig } from '../../../providers/Config/index.js'
+import { useConfig } from '@payloadcms/ui'
 import { useFolder } from '../../../providers/Folders/index.js'
 import { useRouteCache } from '../../../providers/RouteCache/index.js'
-import { useTranslation } from '../../../providers/Translation/index.js'
+import { useTranslation } from '@payloadcms/ui'
 
 const moveToFolderDrawerSlug = 'move-to-folder--list'
 

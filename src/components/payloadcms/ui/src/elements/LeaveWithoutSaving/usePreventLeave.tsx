@@ -6,7 +6,7 @@
 import { useRouter } from 'next/navigation.js'
 import { useCallback, useEffect, useRef } from 'react'
 
-import { useRouteTransition } from '../../providers/RouteTransition/index.js'
+import { useRouteTransition } from '@payloadcms/ui'
 
 function on<T extends Document | EventTarget | HTMLElement | Window>(
   obj: null | T,

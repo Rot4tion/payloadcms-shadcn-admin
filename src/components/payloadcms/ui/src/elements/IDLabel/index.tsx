@@ -1,13 +1,13 @@
 'use client'
 import React from 'react'
 
-import './index.scss'
+import { useDrawerDepth } from '@payloadcms/ui/elements/Drawer'
 import { Link } from '../../elements/Link/index.js'
-import { useConfig } from '../../providers/Config/index.js'
-import { useDocumentInfo } from '../../providers/DocumentInfo/index.js'
+import { useConfig } from '@payloadcms/ui'
+import { useDocumentInfo } from '@payloadcms/ui'
 import { formatAdminURL } from '../../utilities/formatAdminURL.js'
 import { sanitizeID } from '../../utilities/sanitizeID.js'
-import { useDrawerDepth } from '../Drawer/index.js'
+import './index.scss'
 
 const baseClass = 'id-label'
 

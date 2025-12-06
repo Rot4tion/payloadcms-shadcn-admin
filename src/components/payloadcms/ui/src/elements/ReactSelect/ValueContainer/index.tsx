@@ -8,7 +8,7 @@ import { components as SelectComponents } from 'react-select'
 
 import type { Option } from '../types.js'
 
-import { useTranslation } from '../../../providers/Translation/index.js'
+import { useTranslation } from '@payloadcms/ui'
 import './index.scss'
 
 const baseClass = 'value-container'

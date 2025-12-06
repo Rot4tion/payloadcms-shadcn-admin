@@ -5,7 +5,7 @@ import type { GenericErrorProps } from 'payload'
 import React from 'react'
 
 import { cn } from '@/lib/utils'
-import { useFormFields, useFormSubmitted } from '../../forms/Form/context.js'
+import { useFormFields, useFormSubmitted } from '@payloadcms/ui'
 
 export const FieldError: React.FC<GenericErrorProps> = (props) => {
   const {

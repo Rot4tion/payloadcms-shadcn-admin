@@ -18,7 +18,7 @@ export type SortComplexProps = {
 
 import type { Option } from '../ReactSelect/index.js'
 
-import { useTranslation } from '../../providers/Translation/index.js'
+import { useTranslation } from '@payloadcms/ui'
 import { ReactSelect } from '../ReactSelect/index.js'
 import './index.scss'
 

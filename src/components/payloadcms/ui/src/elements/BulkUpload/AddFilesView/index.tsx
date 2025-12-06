@@ -2,7 +2,7 @@
 
 import React from 'react'
 
-import { useTranslation } from '../../../providers/Translation/index.js'
+import { useTranslation } from '@payloadcms/ui'
 import { Button } from '../../Button/index.js'
 import { Dropzone } from '../../Dropzone/index.js'
 import { DrawerHeader } from '../Header/index.js'

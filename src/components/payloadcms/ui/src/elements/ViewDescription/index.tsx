@@ -4,7 +4,7 @@ import type { DescriptionFunction, StaticDescription, ViewDescriptionClientProps
 import { getTranslation } from '@payloadcms/translations'
 import React from 'react'
 
-import { useTranslation } from '../../providers/Translation/index.js'
+import { useTranslation } from '@payloadcms/ui'
 
 export type ViewDescriptionComponent = React.ComponentType<any>
 

@@ -179,6 +179,21 @@ export interface Test {
   textareaRequired: string;
   email: string;
   code?: string | null;
+  richText?: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
   number?: number | null;
   /**
    * Required number field
@@ -394,6 +409,7 @@ export interface TestsSelect<T extends boolean = true> {
   textareaRequired?: T;
   email?: T;
   code?: T;
+  richText?: T;
   number?: T;
   numberRequired?: T;
   numberWithMinMax?: T;

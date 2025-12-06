@@ -5,7 +5,7 @@ import React from 'react'
 
 import { cn } from '@/lib/utils'
 import { ChevronIcon } from '../../icons/Chevron/index.js'
-import { useTranslation } from '../../providers/Translation/index.js'
+import { useTranslation } from '@payloadcms/ui'
 import { Popup, PopupList } from '../Popup/index.js'
 
 const defaultLimits = collectionDefaults.admin.pagination.limits

@@ -8,8 +8,8 @@ import type { IListQueryContext } from '../../providers/ListQuery/types.js'
 
 import { Pagination } from '../../elements/Pagination/index.js'
 import { PerPage } from '../../elements/PerPage/index.js'
-import { useListQuery } from '../../providers/ListQuery/context.js'
-import { useTranslation } from '../../providers/Translation/index.js'
+import { useListQuery } from '@payloadcms/ui'
+import { useTranslation } from '@payloadcms/ui'
 
 /**
  * @internal

@@ -9,7 +9,7 @@ import { formatOptions } from '../../../fields/Select/index.js'
 import { SelectInput } from '../../../fields/Select/Input.js'
 import { useField } from '../../../forms/useField/index.js'
 import { useFolder } from '../../../providers/Folders/index.js'
-import { useTranslation } from '../../../providers/Translation/index.js'
+import { useTranslation } from '@payloadcms/ui'
 
 export const FolderTypeField = ({
   options: allSelectOptions,

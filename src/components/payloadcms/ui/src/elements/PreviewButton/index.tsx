@@ -6,7 +6,7 @@ import React from 'react'
 import { ExternalLinkIcon } from '../../icons/ExternalLink/index.js'
 import './index.scss'
 import { usePreviewURL } from '../../providers/LivePreview/context.js'
-import { useTranslation } from '../../providers/Translation/index.js'
+import { useTranslation } from '@payloadcms/ui'
 
 const baseClass = 'preview-btn'
 

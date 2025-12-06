@@ -3,9 +3,9 @@
 import { getTranslation } from '@payloadcms/translations'
 import React from 'react'
 
-import { useConfig } from '../../../providers/Config/index.js'
+import { useConfig } from '@payloadcms/ui'
 import { useFolder } from '../../../providers/Folders/index.js'
-import { useTranslation } from '../../../providers/Translation/index.js'
+import { useTranslation } from '@payloadcms/ui'
 import { Button } from '../../Button/index.js'
 import { CheckboxPopup } from '../../CheckboxPopup/index.js'
 import './index.scss'

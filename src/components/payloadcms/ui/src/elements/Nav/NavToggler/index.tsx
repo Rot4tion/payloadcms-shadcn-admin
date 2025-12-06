@@ -1,9 +1,9 @@
 'use client'
-import { useWindowInfo } from '@faceless-ui/window-info'
 import React from 'react'
 
-import { usePreferences } from '../../../providers/Preferences/index.js'
-import { useTranslation } from '../../../providers/Translation/index.js'
+import { usePreferences } from '@payloadcms/ui'
+import { useTranslation } from '@payloadcms/ui'
+import { useWindowInfo } from '@payloadcms/ui'
 import { useNav } from '../context.js'
 import './index.scss'
 

@@ -1,8 +1,8 @@
 import { formatAdminURL } from 'payload/shared'
 import React from 'react'
 
-import { useConfig } from '../../../providers/Config/index.js'
-import { useTranslation } from '../../../providers/Translation/index.js'
+import { useConfig } from '@payloadcms/ui'
+import { useTranslation } from '@payloadcms/ui'
 import { Link } from '../../Link/index.js'
 import { ColoredFolderIcon } from '../ColoredFolderIcon/index.js'
 import './index.scss'

@@ -13,14 +13,14 @@ import {
   useForm,
   useFormModified,
   useFormSubmitted,
-} from '../../forms/Form/context.js'
+} from '@payloadcms/ui'
 import { useDebounce } from '../../hooks/useDebounce.js'
 import { useEffectEvent } from '../../hooks/useEffectEvent.js'
 import { useQueue } from '../../hooks/useQueue.js'
-import { useConfig } from '../../providers/Config/index.js'
-import { useDocumentInfo } from '../../providers/DocumentInfo/index.js'
-import { useLocale } from '../../providers/Locale/index.js'
-import { useTranslation } from '../../providers/Translation/index.js'
+import { useConfig } from '@payloadcms/ui'
+import { useDocumentInfo } from '@payloadcms/ui'
+import { useLocale } from '@payloadcms/ui'
+import { useTranslation } from '@payloadcms/ui'
 import { formatTimeToNow } from '../../utilities/formatDocTitle/formatDateTitle.js'
 import { reduceFieldsToValuesWithValidation } from '../../utilities/reduceFieldsToValuesWithValidation.js'
 import { LeaveWithoutSaving } from '../LeaveWithoutSaving/index.js'

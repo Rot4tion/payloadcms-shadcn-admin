@@ -5,8 +5,8 @@ import { getTranslation } from '@payloadcms/translations'
 
 import { PeopleIcon } from '../../../icons/People/index.js'
 import { XIcon } from '../../../icons/X/index.js'
-import { useConfig } from '../../../providers/Config/index.js'
-import { useTranslation } from '../../../providers/Translation/index.js'
+import { useConfig } from '@payloadcms/ui'
+import { useTranslation } from '@payloadcms/ui'
 import { Pill } from '../../Pill/index.js'
 import './index.scss'
 

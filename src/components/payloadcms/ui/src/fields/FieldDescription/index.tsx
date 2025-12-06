@@ -4,7 +4,7 @@ import type { GenericDescriptionProps } from 'payload'
 import { getTranslation } from '@payloadcms/translations'
 import React from 'react'
 
-import { useTranslation } from '../../providers/Translation/index.js'
+import { useTranslation } from '@payloadcms/ui'
 import './index.scss'
 
 const baseClass = 'field-description'

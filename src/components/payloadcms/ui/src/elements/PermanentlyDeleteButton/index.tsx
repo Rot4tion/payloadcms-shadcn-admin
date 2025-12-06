@@ -12,10 +12,10 @@ import { toast } from 'sonner'
 
 import type { DocumentDrawerContextType } from '../DocumentDrawer/Provider.js'
 
-import { useConfig } from '../../providers/Config/index.js'
+import { useConfig } from '@payloadcms/ui'
 import { useDocumentTitle } from '../../providers/DocumentTitle/index.js'
-import { useRouteTransition } from '../../providers/RouteTransition/index.js'
-import { useTranslation } from '../../providers/Translation/index.js'
+import { useRouteTransition } from '@payloadcms/ui'
+import { useTranslation } from '@payloadcms/ui'
 import { requests } from '../../utilities/api.js'
 import { Button } from '../Button/index.js'
 import { ConfirmationModal } from '../ConfirmationModal/index.js'

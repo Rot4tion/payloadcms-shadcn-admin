@@ -4,7 +4,7 @@ import type { SanitizedPermissions } from 'payload'
 
 import { useEffect } from 'react'
 
-import { useAuth } from '../../providers/Auth/index.js'
+import { useAuth } from '@payloadcms/ui'
 
 /**
  * The Auth Provider wraps the entire app

@@ -4,7 +4,7 @@ import type { ClientUser } from 'payload'
 import React, { useState } from 'react'
 
 import { LockIcon } from '../../icons/Lock/index.js'
-import { useTranslation } from '../../providers/Translation/index.js'
+import { useTranslation } from '@payloadcms/ui'
 import { isClientUserObject } from '../../utilities/isClientUserObject.js'
 import { Tooltip } from '../Tooltip/index.js'
 import './index.scss'

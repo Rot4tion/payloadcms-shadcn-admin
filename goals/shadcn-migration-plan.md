@@ -91,7 +91,7 @@
 | Point | `ui/src/fields/Point` | Custom | ✅ Done |
 | RadioGroup | `ui/src/fields/RadioGroup` | shadcn/radio-group | ✅ Done |
 | Relationship | `ui/src/fields/Relationship` | shadcn/combobox | ✅ Done (Tailwind + Label/Error layout) |
-| RichText | `ui/src/fields/RichText` | Keep Lexical, style container |
+| RichText | `ui/src/fields/RichText` | Re-export from Lexical (requires shared context) | ✅ Done |
 | Row | `ui/src/fields/Row` | Tailwind flex/grid | ✅ Done |
 | Select | `ui/src/fields/Select` | shadcn/select |
 | Slug | `ui/src/fields/Slug` | shadcn/input + custom |

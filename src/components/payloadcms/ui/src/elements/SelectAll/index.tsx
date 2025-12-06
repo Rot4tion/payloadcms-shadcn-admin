@@ -3,8 +3,8 @@
 import React from 'react'
 
 import { CheckboxInput } from '../../fields/Checkbox/Input.js'
-import { SelectAllStatus, useSelection } from '../../providers/Selection/index.js'
-import { useTranslation } from '../../providers/Translation/index.js'
+import { useSelection, useTranslation } from '@payloadcms/ui'
+import { SelectAllStatus } from '@payloadcms/ui/providers/Selection'
 import './index.scss'
 
 const baseClass = 'select-all'

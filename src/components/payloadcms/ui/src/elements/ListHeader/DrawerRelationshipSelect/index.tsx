@@ -3,8 +3,8 @@
 import { getTranslation } from '@payloadcms/translations'
 
 import { FieldLabel } from '../../../fields/FieldLabel/index.js'
-import { useConfig } from '../../../providers/Config/index.js'
-import { useTranslation } from '../../../providers/Translation/index.js'
+import { useConfig } from '@payloadcms/ui'
+import { useTranslation } from '@payloadcms/ui'
 import { useListDrawerContext } from '../../ListDrawer/Provider.js'
 import { ReactSelect } from '../../ReactSelect/index.js'
 import { listHeaderClass } from '../index.js'

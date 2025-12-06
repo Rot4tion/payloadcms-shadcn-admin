@@ -9,10 +9,10 @@ import { toast } from 'sonner'
 
 import type { UnpublishManyProps } from './index.js'
 
-import { useConfig } from '../../providers/Config/index.js'
-import { useLocale } from '../../providers/Locale/index.js'
+import { useConfig } from '@payloadcms/ui'
+import { useLocale } from '@payloadcms/ui'
 import { useRouteCache } from '../../providers/RouteCache/index.js'
-import { useTranslation } from '../../providers/Translation/index.js'
+import { useTranslation } from '@payloadcms/ui'
 import { requests } from '../../utilities/api.js'
 import { parseSearchParams } from '../../utilities/parseSearchParams.js'
 import { ConfirmationModal } from '../ConfirmationModal/index.js'

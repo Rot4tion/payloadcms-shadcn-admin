@@ -3,9 +3,9 @@
 import React from 'react'
 
 import { SortDownIcon } from '../../icons/Sort/index.js'
-import { useListQuery } from '../../providers/ListQuery/index.js'
+import { useListQuery } from '@payloadcms/ui'
 import './index.scss'
-import { useTranslation } from '../../providers/Translation/index.js'
+import { useTranslation } from '@payloadcms/ui'
 
 export type SortHeaderProps = {
   readonly appearance?: 'condensed' | 'default'

@@ -4,7 +4,7 @@ import type { ClientCollectionConfig } from 'payload'
 import { getTranslation } from '@payloadcms/translations'
 import React from 'react'
 
-import { useTranslation } from '../../../providers/Translation/index.js'
+import { useTranslation } from '@payloadcms/ui'
 import { Button } from '../../Button/index.js'
 
 const baseClass = 'list-create-new-doc'

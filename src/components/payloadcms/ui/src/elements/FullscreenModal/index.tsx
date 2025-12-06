@@ -2,7 +2,7 @@
 import React from 'react'
 
 import { Modal } from '../Modal/index.js'
-import { useEditDepth } from '../../providers/EditDepth/index.js'
+import { useEditDepth } from '@payloadcms/ui'
 
 type FullscreenModalProps = {
   children: React.ReactNode

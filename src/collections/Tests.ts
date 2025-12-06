@@ -46,13 +46,10 @@ export const Tests: CollectionConfig = {
         language: 'javascript',
       },
     },
-    // NOTE: richText field causes context conflict with shadcn-admin
-    // Use /admin route to test richText, or uncomment when using standard admin
-    // {
-    //   name: 'richText',
-    //   type: 'richText',
-    // },
-
+    {
+      name: 'richText',
+      type: 'richText',
+    },
     // ===== NUMBER FIELDS =====
     {
       name: 'number',

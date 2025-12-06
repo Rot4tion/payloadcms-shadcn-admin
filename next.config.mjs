@@ -16,7 +16,7 @@ const nextConfig = {
     }
 
     // Add aliases for local PayloadCMS packages (shadcn-admin only)
-    // Only @payloadcms-local/* aliases - does NOT override @payloadcms/ui
+    // NOTE: Do NOT alias @payloadcms/ui - it breaks Lexical's sub-path imports
     webpackConfig.resolve.alias = {
       ...webpackConfig.resolve.alias,
       // Local package aliases (for direct imports in shadcn-admin)

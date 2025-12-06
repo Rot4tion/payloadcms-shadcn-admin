@@ -8,7 +8,7 @@ import { toast } from 'sonner'
 import type { ClipboardCopyData, OnPasteFn } from './types.js'
 
 import { MoreIcon } from '../../icons/More/index.js'
-import { useTranslation } from '../../providers/Translation/index.js'
+import { useTranslation } from '@payloadcms/ui'
 import { Popup, PopupList } from '../Popup/index.js'
 import { ClipboardActionLabel } from './ClipboardActionLabel.js'
 import { clipboardCopy, clipboardPaste } from './clipboardUtilities.js'

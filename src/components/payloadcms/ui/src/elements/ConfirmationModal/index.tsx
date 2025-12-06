@@ -2,10 +2,11 @@
 import React, { useCallback } from 'react'
 
 import { cn } from '@/lib/utils'
-import { useTranslation } from '../../providers/Translation/index.js'
+import { useTranslation, useModal } from '@payloadcms/ui'
+import { useDrawerDepth } from '@payloadcms/ui/elements/Drawer'
+import { drawerZBase } from '@payloadcms/ui/elements/Drawer'
 import { Button } from '../Button/index.js'
-import { drawerZBase, useDrawerDepth } from '../Drawer/index.js'
-import { Modal, useModal } from '../Modal/index.js'
+import { Modal } from '../Modal/index.js'
 
 export type OnCancel = () => void
 

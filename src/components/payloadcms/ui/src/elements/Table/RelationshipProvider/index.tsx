@@ -6,9 +6,9 @@ import * as qs from 'qs-esm'
 import React, { createContext, use, useCallback, useEffect, useReducer, useRef } from 'react'
 
 import { useDebounce } from '../../../hooks/useDebounce.js'
-import { useConfig } from '../../../providers/Config/index.js'
-import { useLocale } from '../../../providers/Locale/index.js'
-import { useTranslation } from '../../../providers/Translation/index.js'
+import { useConfig } from '@payloadcms/ui'
+import { useLocale } from '@payloadcms/ui'
+import { useTranslation } from '@payloadcms/ui'
 import { reducer } from './reducer.js'
 
 // documents are first set to null when requested
