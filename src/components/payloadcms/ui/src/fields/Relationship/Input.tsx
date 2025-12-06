@@ -17,6 +17,36 @@ import type { ListDrawerProps } from '../../elements/ListDrawer/types.js'
 import type { ReactSelectAdapterProps } from '../../elements/ReactSelect/types.js'
 import type { HasManyValueUnion, Option, RelationshipInputProps, UpdateResults } from './types.js'
 
+import { cn } from '@/lib/utils'
+import { Badge } from '@/components/ui/badge'
+import { Button } from '@/components/ui/button'
+import {
+  Command,
+  CommandEmpty,
+  CommandGroup,
+  CommandInput,
+  CommandItem,
+  CommandList,
+} from '@/components/ui/command'
+import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover'
+import { ChevronsUpDown, X, Check, Loader2 } from 'lucide-react'
+import {
+  DndContext,
+  closestCenter,
+  KeyboardSensor,
+  PointerSensor,
+  useSensor,
+  useSensors,
+  type DragEndEvent,
+} from '@dnd-kit/core'
+import {
+  arrayMove,
+  SortableContext,
+  sortableKeyboardCoordinates,
+  useSortable,
+  horizontalListSortingStrategy,
+} from '@dnd-kit/sortable'
+import { CSS } from '@dnd-kit/utilities'
 import { AddNewRelation } from '../../elements/AddNewRelation/index.js'
 import { useDocumentDrawer } from '../../elements/DocumentDrawer/index.js'
 import { useListDrawer } from '../../elements/ListDrawer/index.js'
@@ -34,15 +64,11 @@ import { useDocumentEvents } from '../../providers/DocumentEvents/index.js'
 import { useLocale } from '../../providers/Locale/index.js'
 import { useTranslation } from '../../providers/Translation/index.js'
 import { sanitizeFilterOptionsQuery } from '../../utilities/sanitizeFilterOptionsQuery.js'
-import { fieldBaseClass } from '../shared/index.js'
 import { createRelationMap } from './createRelationMap.js'
 import { findOptionsByValue } from './findOptionsByValue.js'
 import { optionsReducer } from './optionsReducer.js'
-import './index.scss'
 import { MultiValueLabel } from './select-components/MultiValueLabel/index.js'
 import { SingleValue } from './select-components/SingleValue/index.js'
-
-const baseClass = 'relationship'
 
 export const RelationshipInput: React.FC<RelationshipInputProps> = (props) => {
   const {
@@ -735,161 +761,161 @@ export const RelationshipInput: React.FC<RelationshipInputProps> = (props) => {
 
   return (
     <div
-      className={[
-        fieldBaseClass,
-        baseClass,
+      className={cn(
+        'field-type relationship relative flex flex-col gap-2',
         className,
         showError && 'error',
         errorLoading && 'error-loading',
-        readOnly && `${baseClass}--read-only`,
-        !readOnly && allowCreate && `${baseClass}--allow-create`,
-      ]
-        .filter(Boolean)
-        .join(' ')}
+        readOnly && 'read-only opacity-60',
+      )}
       id={`field-${path.replace(/\./g, '__')}`}
       style={style}
     >
-      <RenderCustomComponent
-        CustomComponent={Label}
-        Fallback={
-          <FieldLabel label={label} localized={localized} path={path} required={required} />
-        }
-      />
-      <div className={`${fieldBaseClass}__wrap`}>
+      <div className="flex items-center justify-between">
+        <RenderCustomComponent
+          CustomComponent={Label}
+          Fallback={
+            <FieldLabel label={label} localized={localized} path={path} required={required} />
+          }
+        />
         <RenderCustomComponent
           CustomComponent={Error}
           Fallback={<FieldError path={path} showError={showError} />}
         />
+      </div>
+      <div className="flex flex-col gap-1.5">
         {BeforeInput}
         {errorLoading ? (
-          <div className={`${baseClass}__error-loading`}>{errorLoading}</div>
+          <div className="text-sm text-destructive">{errorLoading}</div>
         ) : (
-          <div className={`${baseClass}__wrap`}>
-            <ReactSelect
-              backspaceRemovesValue={!(isDrawerOpen || isListDrawerOpen)}
-              components={{
-                MultiValueLabel,
-                SingleValue,
-                ...(appearance !== 'select' && { DropdownIndicator: null }),
-              }}
-              customProps={{
-                disableKeyDown: isDrawerOpen || isListDrawerOpen,
-                disableMouseDown: isDrawerOpen || isListDrawerOpen,
-                onDocumentOpen,
-              }}
-              disabled={readOnly || isDrawerOpen || isListDrawerOpen}
-              filterOption={enableWordBoundarySearch ? filterOption : undefined}
-              getOptionValue={(option: ValueWithRelation) => {
-                if (!option) {
-                  return undefined
-                }
-                return hasMany && Array.isArray(relationTo)
-                  ? `${option.relationTo}_${option.value}`
-                  : (option.value as string)
-              }}
-              isLoading={appearance === 'select' && isLoading}
-              isMulti={hasMany}
-              isSearchable={appearance === 'select'}
-              isSortable={isSortable}
-              menuIsOpen={appearance === 'select' ? menuIsOpen : false}
-              onChange={
-                !readOnly
-                  ? (selected) => {
-                      if (hasMany) {
-                        if (selected === null) {
-                          valueRef.current = []
-                          onChange([])
-                        } else {
-                          valueRef.current = selected as ValueWithRelation[]
-                          onChange(selected as ValueWithRelation[])
-                        }
-                      } else if (hasMany === false) {
-                        if (selected === null) {
-                          valueRef.current = null
-                          onChange(null)
-                        } else {
-                          valueRef.current = selected as ValueWithRelation
-                          onChange(selected as ValueWithRelation)
-                        }
-                      }
-                    }
-                  : undefined
-              }
-              onInputChange={(newSearch) =>
-                handleInputChange({
-                  search: newSearch,
-                  ...(hasMany === true
-                    ? {
-                        hasMany,
-                        value,
-                      }
-                    : {
-                        hasMany,
-                        value,
-                      }),
-                })
-              }
-              onMenuClose={() => {
-                setMenuIsOpen(false)
-              }}
-              onMenuOpen={() => {
-                if (appearance === 'drawer') {
-                  openListDrawer()
-                } else if (appearance === 'select') {
-                  setMenuIsOpen(true)
-                  if (!hasLoadedFirstPageRef.current) {
-                    setIsLoading(true)
-                    updateResultsEffectEvent({
-                      filterOptions,
-                      lastLoadedPage: {},
-                      onSuccess: () => {
-                        hasLoadedFirstPageRef.current = true
-                        setIsLoading(false)
-                      },
-                      ...(hasMany === true
-                        ? {
-                            hasMany,
-                            value,
-                          }
-                        : {
-                            hasMany,
-                            value,
-                          }),
-                    })
+          <div className="flex w-full items-center gap-2">
+            <div className="min-w-0 flex-1">
+              <ReactSelect
+                backspaceRemovesValue={!(isDrawerOpen || isListDrawerOpen)}
+                components={{
+                  MultiValueLabel,
+                  SingleValue,
+                  ...(appearance !== 'select' && { DropdownIndicator: null }),
+                }}
+                customProps={{
+                  disableKeyDown: isDrawerOpen || isListDrawerOpen,
+                  disableMouseDown: isDrawerOpen || isListDrawerOpen,
+                  onDocumentOpen,
+                }}
+                disabled={readOnly || isDrawerOpen || isListDrawerOpen}
+                filterOption={enableWordBoundarySearch ? filterOption : undefined}
+                getOptionValue={(option: ValueWithRelation) => {
+                  if (!option) {
+                    return undefined
                   }
-                }
-              }}
-              onMenuScrollToBottom={() => {
-                setIsLoading(true)
-                updateResultsEffectEvent({
-                  filterOptions,
-                  lastFullyLoadedRelation,
-                  lastLoadedPage,
-                  onSuccess: () => {
-                    setIsLoading(false)
-                  },
-                  search,
-                  sort: false,
-                  ...(hasMany === true
-                    ? {
-                        hasMany,
-                        value: initialValue,
+                  return hasMany && Array.isArray(relationTo)
+                    ? `${option.relationTo}_${option.value}`
+                    : (option.value as string)
+                }}
+                isLoading={appearance === 'select' && isLoading}
+                isMulti={hasMany}
+                isSearchable={appearance === 'select'}
+                isSortable={isSortable}
+                menuIsOpen={appearance === 'select' ? menuIsOpen : false}
+                onChange={
+                  !readOnly
+                    ? (selected) => {
+                        if (hasMany) {
+                          if (selected === null) {
+                            valueRef.current = []
+                            onChange([])
+                          } else {
+                            valueRef.current = selected as ValueWithRelation[]
+                            onChange(selected as ValueWithRelation[])
+                          }
+                        } else if (hasMany === false) {
+                          if (selected === null) {
+                            valueRef.current = null
+                            onChange(null)
+                          } else {
+                            valueRef.current = selected as ValueWithRelation
+                            onChange(selected as ValueWithRelation)
+                          }
+                        }
                       }
-                    : {
-                        hasMany,
-                        value: initialValue,
-                      }),
-                })
-              }}
-              options={
-                typeof formatDisplayedOptions === 'function'
-                  ? formatDisplayedOptions(options)
-                  : options
-              }
-              placeholder={placeholder}
-              showError={showError}
-              value={valueToRender ?? null}
-            />
+                    : undefined
+                }
+                onInputChange={(newSearch) =>
+                  handleInputChange({
+                    search: newSearch,
+                    ...(hasMany === true
+                      ? {
+                          hasMany,
+                          value,
+                        }
+                      : {
+                          hasMany,
+                          value,
+                        }),
+                  })
+                }
+                onMenuClose={() => {
+                  setMenuIsOpen(false)
+                }}
+                onMenuOpen={() => {
+                  if (appearance === 'drawer') {
+                    openListDrawer()
+                  } else if (appearance === 'select') {
+                    setMenuIsOpen(true)
+                    if (!hasLoadedFirstPageRef.current) {
+                      setIsLoading(true)
+                      updateResultsEffectEvent({
+                        filterOptions,
+                        lastLoadedPage: {},
+                        onSuccess: () => {
+                          hasLoadedFirstPageRef.current = true
+                          setIsLoading(false)
+                        },
+                        ...(hasMany === true
+                          ? {
+                              hasMany,
+                              value,
+                            }
+                          : {
+                              hasMany,
+                              value,
+                            }),
+                      })
+                    }
+                  }
+                }}
+                onMenuScrollToBottom={() => {
+                  setIsLoading(true)
+                  updateResultsEffectEvent({
+                    filterOptions,
+                    lastFullyLoadedRelation,
+                    lastLoadedPage,
+                    onSuccess: () => {
+                      setIsLoading(false)
+                    },
+                    search,
+                    sort: false,
+                    ...(hasMany === true
+                      ? {
+                          hasMany,
+                          value: initialValue,
+                        }
+                      : {
+                          hasMany,
+                          value: initialValue,
+                        }),
+                  })
+                }}
+                options={
+                  typeof formatDisplayedOptions === 'function'
+                    ? formatDisplayedOptions(options)
+                    : options
+                }
+                placeholder={placeholder}
+                showError={showError}
+                value={valueToRender ?? null}
+              />
+            </div>
             {!readOnly && allowCreate && (
               <AddNewRelation
                 path={path}

@@ -101,26 +101,28 @@ const CheckboxFieldComponent: CheckboxFieldClientComponent = (props) => {
       )}
       style={styles}
     >
-      <RenderCustomComponent
-        CustomComponent={Error}
-        Fallback={
-          <FieldError alignCaret={isRTL ? 'right' : 'left'} path={path} showError={showError} />
-        }
-      />
-      <CheckboxInput
-        AfterInput={AfterInput}
-        BeforeInput={BeforeInput}
-        checked={checked}
-        id={fieldID}
-        inputRef={null}
-        Label={Label}
-        label={label}
-        name={path}
-        onToggle={onToggle}
-        partialChecked={partialChecked}
-        readOnly={readOnly || disabled}
-        required={required}
-      />
+      <div className="flex items-center justify-between">
+        <CheckboxInput
+          AfterInput={AfterInput}
+          BeforeInput={BeforeInput}
+          checked={checked}
+          id={fieldID}
+          inputRef={null}
+          Label={Label}
+          label={label}
+          name={path}
+          onToggle={onToggle}
+          partialChecked={partialChecked}
+          readOnly={readOnly || disabled}
+          required={required}
+        />
+        <RenderCustomComponent
+          CustomComponent={Error}
+          Fallback={
+            <FieldError alignCaret={isRTL ? 'right' : 'left'} path={path} showError={showError} />
+          }
+        />
+      </div>
       <RenderCustomComponent
         CustomComponent={Description}
         Fallback={<FieldDescription description={description} path={path} />}

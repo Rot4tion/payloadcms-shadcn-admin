@@ -7,7 +7,6 @@ import React from 'react'
 
 import { FormHeader } from '../../elements/FormHeader/index.js'
 import { ResetPasswordForm } from './ResetPasswordForm/index.js'
-import './index.scss'
 
 export const resetPasswordBaseClass = 'reset-password'
 
@@ -33,7 +32,7 @@ export function ResetPassword({ initPageResult, params }: AdminViewServerProps) 
 
   if (user) {
     return (
-      <div className={`${resetPasswordBaseClass}__wrap`}>
+      <div className="flex flex-col gap-4">
         <FormHeader
           description={
             <Translation
@@ -64,7 +63,7 @@ export function ResetPassword({ initPageResult, params }: AdminViewServerProps) 
   }
 
   return (
-    <div className={`${resetPasswordBaseClass}__wrap`}>
+    <div className="flex flex-col gap-4">
       <FormHeader heading={i18n.t('authentication:resetPassword')} />
       <ResetPasswordForm token={token} />
       <Link

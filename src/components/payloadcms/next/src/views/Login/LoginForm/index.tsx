@@ -2,8 +2,6 @@
 
 import React from 'react'
 
-const baseClass = 'login__form'
-
 import type { UserWithToken } from '@payloadcms-local/ui'
 import type { FormState } from 'payload'
 
@@ -21,7 +19,6 @@ import { formatAdminURL, getLoginOptions, getSafeRedirect } from 'payload/shared
 import type { LoginFieldProps } from '../LoginField/index.js'
 
 import { LoginField } from '../LoginField/index.js'
-import './index.scss'
 
 export const LoginForm: React.FC<{
   prefillEmail?: string
@@ -86,7 +83,6 @@ export const LoginForm: React.FC<{
   return (
     <Form
       action={`${apiRoute}/${userSlug}/login`}
-      className={baseClass}
       disableSuccessStatus
       initialState={initialState}
       method="POST"
@@ -94,7 +90,7 @@ export const LoginForm: React.FC<{
       redirect={getSafeRedirect({ fallbackTo: adminRoute, redirectTo: searchParams?.redirect })}
       waitForAutocomplete
     >
-      <div className={`${baseClass}__inputWrap`}>
+      <div className="flex flex-col gap-4 mb-1">
         <LoginField type={loginType} />
         <PasswordField
           field={{

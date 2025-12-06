@@ -13,6 +13,7 @@ import { getTranslation } from '@payloadcms/translations'
 import { tabHasName, toKebabCase } from 'payload/shared'
 import React, { useCallback, useEffect, useState } from 'react'
 
+import { cn } from '@/lib/utils'
 import { useCollapsible } from '../../elements/Collapsible/provider.js'
 import { RenderCustomComponent } from '../../elements/RenderCustomComponent/index.js'
 import { useFormFields } from '../../forms/Form/index.js'
@@ -23,12 +24,8 @@ import { useDocumentInfo } from '../../providers/DocumentInfo/index.js'
 import { usePreferences } from '../../providers/Preferences/index.js'
 import { useTranslation } from '../../providers/Translation/index.js'
 import { FieldDescription } from '../FieldDescription/index.js'
-import { fieldBaseClass } from '../shared/index.js'
 import { TabsProvider } from './provider.js'
 import { TabComponent } from './Tab/index.js'
-import './index.scss'
-
-const baseClass = 'tabs-field'
 
 export { TabsProvider }
 
@@ -185,19 +182,16 @@ const TabsFieldComponent: TabsFieldClientComponent = (props) => {
 
   return (
     <div
-      className={[
-        fieldBaseClass,
+      className={cn(
+        'field-type mt-8 -mx-[var(--gutter-h,1.5rem)]',
         className,
-        baseClass,
-        isWithinCollapsible && `${baseClass}--within-collapsible`,
-        !hasVisibleTabs && `${baseClass}--hidden`,
-      ]
-        .filter(Boolean)
-        .join(' ')}
+        isWithinCollapsible && 'mx-[-1rem]',
+        !hasVisibleTabs && 'hidden',
+      )}
     >
       <TabsProvider>
-        <div className={`${baseClass}__tabs-wrap`}>
-          <div className={`${baseClass}__tabs`}>
+        <div className="overflow-x-auto overflow-y-hidden mb-4">
+          <div className="inline-flex min-w-full border-b border-border px-[var(--gutter-h,1.5rem)]">
             {tabStates.map(({ index, passesCondition, tab }) => (
               <TabComponent
                 hidden={!passesCondition}
@@ -212,7 +206,7 @@ const TabsFieldComponent: TabsFieldClientComponent = (props) => {
             ))}
           </div>
         </div>
-        <div className={`${baseClass}__content-wrap`}>
+        <div className="px-[var(--gutter-h,1.5rem)]">
           {activeTabConfig && (
             <TabContent
               description={activeTabStaticDescription}
@@ -283,13 +277,11 @@ function TabContent({
 
   return (
     <div
-      className={[
-        hidden && `${baseClass}__tab--hidden`,
-        `${baseClass}__tab`,
-        label && `${baseClass}__tabConfigLabel-${toKebabCase(getTranslation(label, i18n))}`,
-      ]
-        .filter(Boolean)
-        .join(' ')}
+      className={cn(
+        'tabs-field__tab',
+        hidden && 'hidden',
+        label && `tabs-field__tabConfigLabel-${toKebabCase(getTranslation(label, i18n))}`,
+      )}
     >
       <RenderCustomComponent
         CustomComponent={Description}

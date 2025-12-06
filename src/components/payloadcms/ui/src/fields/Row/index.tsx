@@ -3,13 +3,10 @@ import type { RowFieldClientComponent } from 'payload'
 
 import React from 'react'
 
+import { cn } from '@/lib/utils'
 import { RenderFields } from '../../forms/RenderFields/index.js'
 import { withCondition } from '../../forms/withCondition/index.js'
-import { fieldBaseClass } from '../shared/index.js'
-import './index.scss'
 import { RowProvider } from './provider.js'
-
-const baseClass = 'row'
 
 const RowFieldComponent: RowFieldClientComponent = (props) => {
   const {
@@ -24,12 +21,9 @@ const RowFieldComponent: RowFieldClientComponent = (props) => {
 
   return (
     <RowProvider>
-      <div
-        className={[fieldBaseClass, baseClass, className].filter(Boolean).join(' ')}
-        style={style || undefined}
-      >
+      <div className={cn('field-type row mb-0', className)} style={style || undefined}>
         <RenderFields
-          className={`${baseClass}__fields`}
+          className="flex-row! flex-wrap! gap-x-4 gap-y-3 *:min-w-0 *:flex-[1_1_calc(var(--field-width,50%)-1rem)]"
           fields={fields}
           forceRender={forceRender}
           margins={false}

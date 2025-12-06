@@ -1,16 +1,14 @@
 import React from 'react'
 
-import './index.scss'
+import { cn } from '@/lib/utils'
 
-export const LineIcon: React.FC = () => (
+export const LineIcon: React.FC<{ className?: string }> = ({ className }) => (
   <svg
-    className="icon icon--line"
+    className={cn('icon icon--line', className)}
     fill="none"
-    height="20"
     viewBox="0 0 20 20"
-    width="20"
     xmlns="http://www.w3.org/2000/svg"
   >
-    <path className="stroke" d="M5.33333 10H14.6667" strokeLinecap="square" />
+    <path className="stroke" stroke="currentColor" d="M5.33333 10H14.6667" strokeLinecap="square" />
   </svg>
 )

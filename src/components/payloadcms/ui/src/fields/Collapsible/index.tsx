@@ -4,6 +4,7 @@ import type { CollapsibleFieldClientComponent, DocumentPreferences } from 'paylo
 import { getTranslation } from '@payloadcms/translations'
 import React, { Fragment, useCallback, useEffect, useMemo, useState } from 'react'
 
+import { cn } from '@/lib/utils'
 import { Collapsible as CollapsibleElement } from '../../elements/Collapsible/index.js'
 import { ErrorPill } from '../../elements/ErrorPill/index.js'
 import { RenderCustomComponent } from '../../elements/RenderCustomComponent/index.js'
@@ -17,10 +18,6 @@ import { useDocumentInfo } from '../../providers/DocumentInfo/index.js'
 import { usePreferences } from '../../providers/Preferences/index.js'
 import { useTranslation } from '../../providers/Translation/index.js'
 import { mergeFieldStyles } from '../mergeFieldStyles.js'
-import './index.scss'
-import { fieldBaseClass } from '../shared/index.js'
-
-const baseClass = 'collapsible-field'
 
 const CollapsibleFieldComponent: CollapsibleFieldClientComponent = (props) => {
   const {
@@ -115,23 +112,20 @@ const CollapsibleFieldComponent: CollapsibleFieldClientComponent = (props) => {
         setErrorCount={setErrorCount}
       />
       <div
-        className={[
-          fieldBaseClass,
-          baseClass,
+        className={cn(
+          'field-type collapsible-field',
           className,
-          fieldHasErrors ? `${baseClass}--has-error` : `${baseClass}--has-no-error`,
-        ]
-          .filter(Boolean)
-          .join(' ')}
+          fieldHasErrors && 'collapsible-field--has-error',
+        )}
         id={`field-${fieldPreferencesKey}`}
         style={styles}
       >
         {BeforeInput}
         <CollapsibleElement
-          className={`${baseClass}__collapsible`}
+          className="collapsible-field__collapsible"
           collapsibleStyle={fieldHasErrors ? 'error' : 'default'}
           header={
-            <div className={`${baseClass}__row-label-wrap`}>
+            <div className="pointer-events-none flex items-center gap-2">
               <RowLabel CustomComponent={Label} label={getTranslation(label, i18n)} path={path} />
               {fieldHasErrors && <ErrorPill count={errorCount} i18n={i18n} withMessage />}
             </div>

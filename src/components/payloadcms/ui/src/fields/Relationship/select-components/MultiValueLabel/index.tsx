@@ -3,17 +3,14 @@ import type { MultiValueProps } from 'react-select'
 
 import React, { Fragment, useState } from 'react'
 import { components } from 'react-select'
+import { Pencil } from 'lucide-react'
 
 import type { ReactSelectAdapterProps } from '../../../../elements/ReactSelect/types.js'
 import type { Option } from '../../types.js'
 
 import { Tooltip } from '../../../../elements/Tooltip/index.js'
-import { EditIcon } from '../../../../icons/Edit/index.js'
 import { useAuth } from '../../../../providers/Auth/index.js'
 import { useTranslation } from '../../../../providers/Translation/index.js'
-import './index.scss'
-
-const baseClass = 'relationship--multi-value-label'
 
 export const MultiValueLabel: React.FC<
   {
@@ -34,12 +31,12 @@ export const MultiValueLabel: React.FC<
   const hasReadPermission = Boolean(permissions?.collections?.[relationTo]?.read)
 
   return (
-    <div className={baseClass} title={label || ''}>
-      <div className={`${baseClass}__content`}>
+    <div className="flex items-center gap-1" title={label || ''}>
+      <div className="flex-1 truncate">
         <components.MultiValueLabel
           {...props}
           innerProps={{
-            className: `${baseClass}__text`,
+            className: 'truncate text-sm',
             ...(draggableProps || {}),
           }}
         />
@@ -48,7 +45,7 @@ export const MultiValueLabel: React.FC<
         <Fragment>
           <button
             aria-label={`Edit ${label}`}
-            className={`${baseClass}__drawer-toggler`}
+            className="flex size-4 shrink-0 items-center justify-center rounded hover:bg-muted"
             onClick={(event) => {
               setShowTooltip(false)
               onDocumentOpen({
@@ -63,16 +60,14 @@ export const MultiValueLabel: React.FC<
                 e.stopPropagation()
               }
             }}
-            onMouseDown={(e) => e.stopPropagation()} // prevents react-select dropdown from opening
+            onMouseDown={(e) => e.stopPropagation()}
             onMouseEnter={() => setShowTooltip(true)}
             onMouseLeave={() => setShowTooltip(false)}
-            onTouchEnd={(e) => e.stopPropagation()} // prevents react-select dropdown from opening
+            onTouchEnd={(e) => e.stopPropagation()}
             type="button"
           >
-            <Tooltip className={`${baseClass}__tooltip`} show={showTooltip}>
-              {t('general:editLabel', { label: '' })}
-            </Tooltip>
-            <EditIcon className={`${baseClass}__icon`} />
+            <Tooltip show={showTooltip}>{t('general:editLabel', { label: '' })}</Tooltip>
+            <Pencil className="size-3 text-muted-foreground" />
           </button>
         </Fragment>
       )}

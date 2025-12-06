@@ -9,7 +9,6 @@ import { useField } from '../../forms/useField/index.js'
 import { withCondition } from '../../forms/withCondition/index.js'
 import { mergeFieldStyles } from '../mergeFieldStyles.js'
 import { RelationshipInput } from './Input.js'
-import './index.scss'
 
 export { RelationshipInput }
 

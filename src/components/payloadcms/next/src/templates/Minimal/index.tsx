@@ -1,8 +1,6 @@
 import React from 'react'
 
-import './index.scss'
-
-const baseClass = 'template-minimal'
+import { cn } from '@/lib/utils'
 
 export type MinimalTemplateProps = {
   children?: React.ReactNode
@@ -14,11 +12,19 @@ export type MinimalTemplateProps = {
 export const MinimalTemplate: React.FC<MinimalTemplateProps> = (props) => {
   const { children, className, style = {}, width = 'normal' } = props
 
-  const classes = [className, baseClass, `${baseClass}--width-${width}`].filter(Boolean).join(' ')
-
   return (
-    <section className={classes} style={style}>
-      <div className={`${baseClass}__wrap`}>{children}</div>
+    <section
+      className={cn(
+        'flex w-full justify-center items-center py-12 px-4 mx-auto min-h-full bg-background text-foreground',
+        className,
+      )}
+      style={style}
+    >
+      <div
+        className={cn('w-full', width === 'normal' && 'max-w-md', width === 'wide' && 'max-w-3xl')}
+      >
+        {children}
+      </div>
     </section>
   )
 }

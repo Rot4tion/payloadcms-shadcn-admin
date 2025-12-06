@@ -3,6 +3,7 @@ import type { CodeFieldClientComponent } from 'payload'
 
 import React, { useCallback, useEffect, useMemo, useState } from 'react'
 
+import { cn } from '@/lib/utils'
 import { CodeEditor } from '../../elements/CodeEditor/index.js'
 import { RenderCustomComponent } from '../../elements/RenderCustomComponent/index.js'
 import { FieldDescription } from '../../fields/FieldDescription/index.js'
@@ -11,16 +12,12 @@ import { FieldLabel } from '../../fields/FieldLabel/index.js'
 import { useField } from '../../forms/useField/index.js'
 import { withCondition } from '../../forms/withCondition/index.js'
 import { mergeFieldStyles } from '../mergeFieldStyles.js'
-import { fieldBaseClass } from '../shared/index.js'
-import './index.scss'
 
-const prismToMonacoLanguageMap = {
+const prismToMonacoLanguageMap: Record<string, string> = {
   js: 'javascript',
   ts: 'typescript',
   tsx: 'typescript',
 }
-
-const baseClass = 'code-field'
 
 const CodeFieldComponent: CodeFieldClientComponent = (props) => {
   const {
@@ -98,48 +95,54 @@ const CodeFieldComponent: CodeFieldClientComponent = (props) => {
 
   return (
     <div
-      className={[
-        fieldBaseClass,
-        baseClass,
+      className={cn(
+        'field-type code-field relative flex flex-col gap-2',
         className,
         showError && 'error',
-        (readOnly || disabled) && 'read-only',
-      ]
-        .filter(Boolean)
-        .join(' ')}
+        (readOnly || disabled) && 'read-only opacity-60',
+      )}
       style={styles}
     >
-      <RenderCustomComponent
-        CustomComponent={Label}
-        Fallback={
-          <FieldLabel label={label} localized={localized} path={path} required={required} />
-        }
-      />
-      <div className={`${fieldBaseClass}__wrap`}>
+      <div className="flex items-center justify-between">
+        <RenderCustomComponent
+          CustomComponent={Label}
+          Fallback={
+            <FieldLabel label={label} localized={localized} path={path} required={required} />
+          }
+        />
         <RenderCustomComponent
           CustomComponent={Error}
           Fallback={<FieldError path={path} showError={showError} />}
         />
-        {BeforeInput}
-        <CodeEditor
-          defaultLanguage={prismToMonacoLanguageMap[language] || language}
-          onChange={handleChange}
-          onMount={onMount}
-          options={editorOptions}
-          readOnly={readOnly || disabled}
-          recalculatedHeightAt={recalculatedHeightAt}
-          value={stringValueRef.current}
-          wrapperProps={{
-            id: `field-${path?.replace(/\./g, '__')}`,
-          }}
-          {...(editorProps || {})}
-        />
-        {AfterInput}
       </div>
-      <RenderCustomComponent
-        CustomComponent={Description}
-        Fallback={<FieldDescription description={description} path={path} />}
-      />
+      <div className="flex flex-col gap-1.5">
+        {BeforeInput}
+        <div
+          className={cn(
+            'overflow-hidden rounded-md border bg-muted/50',
+            showError && 'border-destructive',
+          )}
+        >
+          <CodeEditor
+            defaultLanguage={prismToMonacoLanguageMap[language as string] || language}
+            onChange={handleChange}
+            onMount={onMount}
+            options={editorOptions}
+            readOnly={readOnly || disabled}
+            recalculatedHeightAt={recalculatedHeightAt}
+            value={stringValueRef.current}
+            wrapperProps={{
+              id: `field-${path?.replace(/\./g, '__')}`,
+            }}
+            {...(editorProps || {})}
+          />
+        </div>
+        {AfterInput}
+        <RenderCustomComponent
+          CustomComponent={Description}
+          Fallback={<FieldDescription description={description} path={path} />}
+        />
+      </div>
     </div>
   )
 }

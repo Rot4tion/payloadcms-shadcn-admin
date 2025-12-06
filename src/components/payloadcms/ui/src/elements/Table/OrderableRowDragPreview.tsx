@@ -1,5 +1,7 @@
 import type { ReactNode } from 'react'
 
+import { Table, TableBody } from '@/components/ui/table'
+
 export type Props = {
   readonly children: ReactNode
   readonly className?: string
@@ -9,8 +11,8 @@ export type Props = {
 export const OrderableRowDragPreview = ({ children, className, rowId }: Props) =>
   typeof rowId === 'undefined' ? null : (
     <div className={className}>
-      <table cellPadding={0} cellSpacing={0}>
-        <tbody>{children}</tbody>
-      </table>
+      <Table className="text-[length:inherit]">
+        <TableBody>{children}</TableBody>
+      </Table>
     </div>
   )

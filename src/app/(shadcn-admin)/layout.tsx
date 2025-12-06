@@ -6,7 +6,6 @@ import React from 'react'
 
 import '../(frontend)/global.css'
 import { importMap } from '../(payload)/admin/importMap'
-import './custom.scss'
 
 type Args = {
   children: React.ReactNode

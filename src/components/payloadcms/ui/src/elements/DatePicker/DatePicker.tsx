@@ -1,150 +1,364 @@
 'use client'
-import type { DatePickerProps } from 'react-datepicker'
-
-import React from 'react'
-import ReactDatePickerDefaultImport, { registerLocale, setDefaultLocale } from 'react-datepicker'
-const ReactDatePicker =
-  'default' in ReactDatePickerDefaultImport
-    ? ReactDatePickerDefaultImport.default
-    : ReactDatePickerDefaultImport
+import React, { useState, useMemo, useRef, useEffect } from 'react'
+import { format } from 'date-fns'
+import { CalendarIcon, Clock, X } from 'lucide-react'
 
 import type { Props } from './types.js'
 
-import { CalendarIcon } from '../../icons/Calendar/index.js'
-import { XIcon } from '../../icons/X/index.js'
-import { useTranslation } from '../../providers/Translation/index.js'
-import './library.scss'
-import './index.scss'
-import { getFormattedLocale } from './getFormattedLocale.js'
+import { cn } from '@/lib/utils'
+import { Button } from '@/components/ui/button'
+import { Calendar } from '@/components/ui/calendar'
+import { Input } from '@/components/ui/input'
+import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover'
+import { ScrollArea } from '@/components/ui/scroll-area'
 
-const baseClass = 'date-time-picker'
+// Time picker component with scroll selectors and keyboard input
+function TimePicker({
+  value,
+  onChange,
+  use12Hour = true,
+}: {
+  value: Date | undefined
+  onChange: (date: Date) => void
+  use12Hour?: boolean
+}) {
+  const hours = use12Hour
+    ? Array.from({ length: 12 }, (_, i) => i + 1)
+    : Array.from({ length: 24 }, (_, i) => i)
+  const minutes = Array.from({ length: 12 }, (_, i) => i * 5)
+
+  const currentHour = value ? (use12Hour ? value.getHours() % 12 || 12 : value.getHours()) : 12
+  const currentMinute = value ? value.getMinutes() : 0
+  const currentPeriod = value ? (value.getHours() >= 12 ? 'PM' : 'AM') : 'AM'
+
+  const hourRef = useRef<HTMLDivElement>(null)
+  const minuteRef = useRef<HTMLDivElement>(null)
+
+  // Scroll to selected values on mount
+  useEffect(() => {
+    const scrollToSelected = (
+      ref: React.RefObject<HTMLDivElement | null>,
+      val: number,
+      items: number[],
+    ) => {
+      if (ref.current) {
+        const index = items.indexOf(val)
+        if (index !== -1) {
+          const itemHeight = 32
+          ref.current.scrollTop = index * itemHeight
+        }
+      }
+    }
+    scrollToSelected(hourRef, currentHour, hours)
+    scrollToSelected(minuteRef, Math.floor(currentMinute / 5) * 5, minutes)
+  }, [currentHour, currentMinute, hours, minutes])
+
+  const handleHourChange = (hour: number) => {
+    const newDate = value ? new Date(value) : new Date()
+    if (use12Hour) {
+      const isPM = currentPeriod === 'PM'
+      let h = hour
+      if (isPM && hour !== 12) h = hour + 12
+      if (!isPM && hour === 12) h = 0
+      newDate.setHours(h)
+    } else {
+      newDate.setHours(hour)
+    }
+    onChange(newDate)
+  }
+
+  const handleMinuteChange = (minute: number) => {
+    const newDate = value ? new Date(value) : new Date()
+    newDate.setMinutes(minute)
+    onChange(newDate)
+  }
+
+  const handlePeriodChange = (period: 'AM' | 'PM') => {
+    const newDate = value ? new Date(value) : new Date()
+    const currentHours = newDate.getHours()
+    if (period === 'AM' && currentHours >= 12) {
+      newDate.setHours(currentHours - 12)
+    } else if (period === 'PM' && currentHours < 12) {
+      newDate.setHours(currentHours + 12)
+    }
+    onChange(newDate)
+  }
+
+  // Handle keyboard input for time
+  const handleTimeInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const time = e.target.value
+    if (!time) return
+
+    const [hours, mins] = time.split(':').map(Number)
+    if (isNaN(hours) || isNaN(mins)) return
+
+    const newDate = value ? new Date(value) : new Date()
+    newDate.setHours(hours, mins, 0, 0)
+    onChange(newDate)
+  }
+
+  // Format current time for input
+  const timeInputValue = value
+    ? `${value.getHours().toString().padStart(2, '0')}:${value.getMinutes().toString().padStart(2, '0')}`
+    : ''
+
+  return (
+    <div className="flex flex-col gap-3">
+      {/* Keyboard input */}
+      <div className="flex items-center gap-2">
+        <Clock className="size-4 text-muted-foreground" />
+        <Input
+          type="time"
+          value={timeInputValue}
+          onChange={handleTimeInputChange}
+          className="h-9 w-full"
+        />
+      </div>
+
+      {/* Scroll selectors */}
+      <div className="flex gap-1">
+        {/* Hours */}
+        <ScrollArea className="h-48 w-14 rounded-md border" ref={hourRef}>
+          <div className="p-1">
+            {hours.map((hour) => (
+              <button
+                key={hour}
+                type="button"
+                onClick={() => handleHourChange(hour)}
+                className={cn(
+                  'flex h-8 w-full items-center justify-center rounded-sm text-sm transition-colors',
+                  'hover:bg-accent hover:text-accent-foreground',
+                  'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring',
+                  currentHour === hour &&
+                    'bg-primary text-primary-foreground hover:bg-primary hover:text-primary-foreground',
+                )}
+              >
+                {hour.toString().padStart(2, '0')}
+              </button>
+            ))}
+          </div>
+        </ScrollArea>
+
+        {/* Minutes */}
+        <ScrollArea className="h-48 w-14 rounded-md border" ref={minuteRef}>
+          <div className="p-1">
+            {minutes.map((minute) => (
+              <button
+                key={minute}
+                type="button"
+                onClick={() => handleMinuteChange(minute)}
+                className={cn(
+                  'flex h-8 w-full items-center justify-center rounded-sm text-sm transition-colors',
+                  'hover:bg-accent hover:text-accent-foreground',
+                  'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring',
+                  Math.floor(currentMinute / 5) * 5 === minute &&
+                    'bg-primary text-primary-foreground hover:bg-primary hover:text-primary-foreground',
+                )}
+              >
+                {minute.toString().padStart(2, '0')}
+              </button>
+            ))}
+          </div>
+        </ScrollArea>
+
+        {/* AM/PM */}
+        {use12Hour && (
+          <div className="flex h-48 w-14 flex-col gap-1 rounded-md border p-1">
+            {(['AM', 'PM'] as const).map((period) => (
+              <button
+                key={period}
+                type="button"
+                onClick={() => handlePeriodChange(period)}
+                className={cn(
+                  'flex h-8 w-full items-center justify-center rounded-sm text-sm font-medium transition-colors',
+                  'hover:bg-accent hover:text-accent-foreground',
+                  'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring',
+                  currentPeriod === period &&
+                    'bg-primary text-primary-foreground hover:bg-primary hover:text-primary-foreground',
+                )}
+              >
+                {period}
+              </button>
+            ))}
+          </div>
+        )}
+      </div>
+    </div>
+  )
+}
 
 const DatePicker: React.FC<Props> = (props) => {
   const {
     id,
     displayFormat: customDisplayFormat,
     maxDate,
-    maxTime,
     minDate,
-    minTime,
     monthsToShow = 1,
     onChange: onChangeFromProps,
-    overrides,
     pickerAppearance = 'default',
     placeholder: placeholderText,
     readOnly,
-    timeFormat = 'h:mm aa',
-    timeIntervals = 30,
     value,
   } = props
 
-  // Use the user's AdminUI language preference for the locale
-  const { i18n } = useTranslation()
+  const [open, setOpen] = useState(false)
 
-  let dateFormat = customDisplayFormat
+  // Determine date format based on picker appearance
+  const dateFormat = useMemo(() => {
+    if (customDisplayFormat) return customDisplayFormat
+    switch (pickerAppearance) {
+      case 'dayAndTime':
+        return 'PPP p'
+      case 'timeOnly':
+        return 'p'
+      case 'dayOnly':
+        return 'MMM dd'
+      case 'monthOnly':
+        return 'MMMM yyyy'
+      default:
+        return 'PPP'
+    }
+  }, [customDisplayFormat, pickerAppearance])
 
-  if (!customDisplayFormat) {
-    // when no displayFormat is provided, determine format based on the picker appearance
-    if (pickerAppearance === 'default') {
-      dateFormat = 'MM/dd/yyyy'
-    } else if (pickerAppearance === 'dayAndTime') {
-      dateFormat = 'MMM d, yyy h:mm a'
-    } else if (pickerAppearance === 'timeOnly') {
-      dateFormat = 'h:mm a'
-    } else if (pickerAppearance === 'dayOnly') {
-      dateFormat = 'MMM dd'
-    } else if (pickerAppearance === 'monthOnly') {
-      dateFormat = 'MMMM'
+  const selectedDate = useMemo(() => {
+    if (!value) return undefined
+    return new Date(value)
+  }, [value])
+
+  const handleDateSelect = (date: Date | undefined) => {
+    if (!date) {
+      onChangeFromProps?.(null as unknown as Date)
+      return
+    }
+
+    // Preserve time if dayAndTime mode
+    if (pickerAppearance === 'dayAndTime' && selectedDate) {
+      date.setHours(selectedDate.getHours(), selectedDate.getMinutes())
+    } else if (['dayOnly', 'default', 'monthOnly'].includes(pickerAppearance)) {
+      // Set to noon to avoid timezone issues
+      const tzOffset = date.getTimezoneOffset() / 60
+      date.setHours(12 - tzOffset, 0, 0, 0)
+    }
+
+    date.setMilliseconds(0)
+    onChangeFromProps?.(date)
+
+    // Close popover for non-time pickers
+    if (pickerAppearance !== 'dayAndTime' && pickerAppearance !== 'timeOnly') {
+      setOpen(false)
     }
   }
 
-  const onChange: Extract<
-    DatePickerProps,
-    { selectsMultiple?: never; selectsRange?: never }
-  >['onChange'] = (incomingDate) => {
-    const newDate = incomingDate
-    if (newDate instanceof Date && ['dayOnly', 'default', 'monthOnly'].includes(pickerAppearance)) {
-      const tzOffset = incomingDate.getTimezoneOffset() / 60
-      newDate.setHours(12 - tzOffset, 0)
-    }
-
-    if (newDate instanceof Date && !dateFormat.includes('SSS')) {
-      // Unless the dateFormat includes milliseconds, set milliseconds to 0
-      // This is to ensure that the timestamp is consistent with the displayFormat
-      newDate.setMilliseconds(0)
-    }
-
-    if (typeof onChangeFromProps === 'function') {
-      onChangeFromProps(newDate)
-    }
+  const handleClear = (e: React.MouseEvent) => {
+    e.stopPropagation()
+    onChangeFromProps?.(null as unknown as Date)
   }
 
-  const dateTimePickerProps: Extract<
-    DatePickerProps,
-    { selectsMultiple?: never; selectsRange?: never }
-  > = {
-    customInputRef: 'ref',
-    dateFormat,
-    disabled: readOnly,
-    maxDate,
-    maxTime,
-    minDate,
-    minTime,
-    monthsShown: Math.min(2, monthsToShow),
-    onChange,
-    placeholderText,
-    popperPlacement: 'bottom-start',
-    selected: value && new Date(value),
-    showMonthYearPicker: pickerAppearance === 'monthOnly',
-    showPopperArrow: false,
-    showTimeSelect: pickerAppearance === 'dayAndTime' || pickerAppearance === 'timeOnly',
-    timeFormat,
-    timeIntervals,
-    ...(overrides as Extract<
-      DatePickerProps,
-      { selectsMultiple?: never; selectsRange?: never } // to satisfy TypeScript. Overrides can enable selectsMultiple or selectsRange but then it's up to the user to ensure they pass in the correct onChange
-    >),
+  const displayValue = useMemo(() => {
+    if (!selectedDate) return ''
+    try {
+      return format(selectedDate, dateFormat)
+    } catch {
+      return format(selectedDate, 'PPP')
+    }
+  }, [selectedDate, dateFormat])
+
+  const showTimeInput = pickerAppearance === 'dayAndTime' || pickerAppearance === 'timeOnly'
+
+  const handleTimePickerChange = (date: Date) => {
+    onChangeFromProps?.(date)
   }
 
-  const classes = [baseClass, `${baseClass}__appearance--${pickerAppearance}`]
-    .filter(Boolean)
-    .join(' ')
-
-  React.useEffect(() => {
-    if (i18n.dateFNS) {
-      try {
-        const datepickerLocale = getFormattedLocale(i18n.language)
-        registerLocale(datepickerLocale, i18n.dateFNS)
-        setDefaultLocale(datepickerLocale)
-      } catch (e) {
-        console.warn(`Could not find DatePicker locale for ${i18n.language}`)
-      }
-    }
-  }, [i18n.language, i18n.dateFNS])
+  // Time-only picker
+  if (pickerAppearance === 'timeOnly') {
+    return (
+      <Popover open={open} onOpenChange={setOpen}>
+        <PopoverTrigger asChild disabled={readOnly}>
+          <Button
+            id={id}
+            variant="outline"
+            className={cn(
+              'w-full justify-start text-left font-normal',
+              !selectedDate && 'text-muted-foreground',
+            )}
+            disabled={readOnly}
+          >
+            <Clock className="mr-2 size-4" />
+            {selectedDate ? (
+              format(selectedDate, 'h:mm a')
+            ) : (
+              <span>{placeholderText || 'Pick a time'}</span>
+            )}
+            {selectedDate && !readOnly && (
+              <Button
+                type="button"
+                variant="ghost"
+                size="icon"
+                className="ml-auto -mr-2 size-6 hover:bg-transparent"
+                onClick={handleClear}
+              >
+                <X className="size-3 text-muted-foreground" />
+              </Button>
+            )}
+          </Button>
+        </PopoverTrigger>
+        <PopoverContent className="w-auto p-3" align="start">
+          <TimePicker value={selectedDate} onChange={handleTimePickerChange} use12Hour={true} />
+        </PopoverContent>
+      </Popover>
+    )
+  }
 
   return (
-    <div className={classes} id={id}>
-      <div className={`${baseClass}__icon-wrap`}>
-        {dateTimePickerProps.selected && (
-          <button
-            className={`${baseClass}__clear-button`}
-            onClick={() => onChange(null)}
-            type="button"
-          >
-            <XIcon />
-          </button>
-        )}
-        <CalendarIcon />
-      </div>
-      <div className={`${baseClass}__input-wrapper`}>
-        <ReactDatePicker
-          {...dateTimePickerProps}
-          dropdownMode="select"
-          showMonthDropdown
-          showYearDropdown
-        />
-      </div>
-    </div>
+    <Popover open={open} onOpenChange={setOpen}>
+      <PopoverTrigger asChild disabled={readOnly}>
+        <Button
+          id={id}
+          variant="outline"
+          className={cn(
+            'w-full justify-start text-left font-normal',
+            !selectedDate && 'text-muted-foreground',
+          )}
+          disabled={readOnly}
+        >
+          <CalendarIcon className="mr-2 size-4" />
+          {displayValue || <span>{placeholderText || 'Pick a date'}</span>}
+          {selectedDate && !readOnly && (
+            <Button
+              type="button"
+              variant="ghost"
+              size="icon"
+              className="ml-auto -mr-2 size-6 hover:bg-transparent"
+              onClick={handleClear}
+            >
+              <X className="size-3 text-muted-foreground" />
+            </Button>
+          )}
+        </Button>
+      </PopoverTrigger>
+      <PopoverContent className="w-auto p-0" align="start">
+        <div className={cn('flex', showTimeInput && 'flex-row')}>
+          <Calendar
+            mode="single"
+            selected={selectedDate}
+            onSelect={handleDateSelect}
+            disabled={(date) => {
+              if (minDate && date < minDate) return true
+              if (maxDate && date > maxDate) return true
+              return false
+            }}
+            numberOfMonths={Math.min(2, monthsToShow)}
+            captionLayout={pickerAppearance === 'monthOnly' ? 'dropdown' : 'label'}
+            initialFocus
+          />
+          {showTimeInput && (
+            <div className="border-l border-border p-3">
+              <TimePicker value={selectedDate} onChange={handleTimePickerChange} use12Hour={true} />
+            </div>
+          )}
+        </div>
+      </PopoverContent>
+    </Popover>
   )
 }
 

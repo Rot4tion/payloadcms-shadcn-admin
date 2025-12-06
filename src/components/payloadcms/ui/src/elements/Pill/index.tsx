@@ -7,43 +7,46 @@ import { cva, type VariantProps } from 'class-variance-authority'
 import { Link } from '../Link/index.js'
 import { useDraggableSortable } from '../DraggableSortable/useDraggableSortable/index.js'
 
-const pillVariants = cva('inline-flex items-center gap-1.5 font-medium transition-colors', {
-  variants: {
-    variant: {
-      light: 'bg-muted text-foreground',
-      dark: 'bg-foreground text-background',
-      white: 'bg-background text-foreground border border-border',
-      'always-white': 'bg-white text-gray-900',
-      'light-gray': 'bg-muted/50 text-muted-foreground',
-      error: 'bg-destructive/10 text-destructive',
-      success: 'bg-green-500/10 text-green-700 dark:text-green-400',
-      warning: 'bg-yellow-500/10 text-yellow-700 dark:text-yellow-400',
+const pillVariants = cva(
+  'inline-flex items-center gap-[0.2em] font-normal transition-colors whitespace-nowrap text-[1rem] leading-[calc(var(--base)*1.2)]',
+  {
+    variants: {
+      variant: {
+        light: 'bg-muted text-foreground',
+        dark: 'bg-foreground text-background',
+        white: 'bg-background text-foreground border border-border',
+        'always-white': 'bg-white text-gray-900',
+        'light-gray': 'bg-muted/50 text-muted-foreground',
+        error: 'bg-destructive/10 text-destructive',
+        success: 'bg-green-500/10 text-green-700 dark:text-green-400',
+        warning: 'bg-yellow-500/10 text-yellow-700 dark:text-yellow-400',
+      },
+      size: {
+        small: 'py-0 px-[calc(var(--base)*0.4)] [--pill-icon-size:calc(var(--base)*0.9)]',
+        medium: 'py-[calc(var(--base)*0.2)] px-[calc(var(--base)*0.6)]',
+      },
+      rounded: {
+        true: 'rounded-full text-xs',
+        false: 'rounded-[3px]',
+      },
+      hasAction: {
+        true: 'cursor-pointer hover:opacity-80',
+        false: '',
+      },
+      isDragging: {
+        true: 'opacity-50',
+        false: '',
+      },
     },
-    size: {
-      small: 'px-2 py-0.5 text-xs',
-      medium: 'px-3 py-1 text-sm',
-    },
-    rounded: {
-      true: 'rounded-full',
-      false: 'rounded-md',
-    },
-    hasAction: {
-      true: 'cursor-pointer hover:opacity-80',
-      false: '',
-    },
-    isDragging: {
-      true: 'opacity-50',
-      false: '',
+    defaultVariants: {
+      variant: 'light',
+      size: 'medium',
+      rounded: false,
+      hasAction: false,
+      isDragging: false,
     },
   },
-  defaultVariants: {
-    variant: 'light',
-    size: 'medium',
-    rounded: false,
-    hasAction: false,
-    isDragging: false,
-  },
-})
+)
 
 export type PillStyle =
   | 'always-white'
@@ -166,7 +169,11 @@ const StaticPill: React.FC<PillProps & { isDraggingState?: boolean }> = (props) 
       type={Element === 'button' ? 'button' : undefined}
     >
       <span>{children}</span>
-      {Boolean(icon) && <span className="shrink-0">{icon}</span>}
+      {Boolean(icon) && (
+        <span className="shrink-0 flex items-center [&_.icon]:w-[var(--pill-icon-size,calc(var(--base)*1.2))] [&_.icon]:h-[var(--pill-icon-size,calc(var(--base)*1.2))]">
+          {icon}
+        </span>
+      )}
     </Element>
   )
 }

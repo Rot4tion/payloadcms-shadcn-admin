@@ -42,14 +42,14 @@
 ### 1.3 Medium Priority
 | Component | Path | Shadcn Equivalent |
 |-----------|------|-------------------|
-| Collapsible | `ui/src/elements/Collapsible` | shadcn/collapsible |
-| Tabs | `ui/src/fields/Tabs` | shadcn/tabs |
-| Select | `ui/src/fields/Select` | shadcn/select |
+| Collapsible | `ui/src/elements/Collapsible` | shadcn/collapsible | ✅ Done |
+| Tabs | `ui/src/fields/Tabs` | shadcn/tabs | ✅ Done |
+| Select | `ui/src/fields/Select` | shadcn/select | ✅ Done |
 | Checkbox | `ui/src/fields/Checkbox` | shadcn/checkbox | ✅ Done |
 | RadioGroup | `ui/src/fields/RadioGroup` | shadcn/radio-group | ✅ Done |
 | Switch | N/A | shadcn/switch |
-| Input | `ui/src/fields/Text` | shadcn/input |
-| Textarea | `ui/src/fields/Textarea` | shadcn/textarea |
+| Input | `ui/src/fields/Text` | shadcn/input | ✅ Done |
+| Textarea | `ui/src/fields/Textarea` | shadcn/textarea | ✅ Done |
 
 ---
 
@@ -78,11 +78,11 @@
 ### 3.1 Core Fields (31 directories)
 | Field | Path | Shadcn/Strategy |
 |-------|------|-----------------|
-| Array | `ui/src/fields/Array` | Custom with shadcn components |
+| Array | `ui/src/fields/Array` | Custom with shadcn components | ✅ Done |
 | Blocks | `ui/src/fields/Blocks` | Custom with shadcn components |
 | Checkbox | `ui/src/fields/Checkbox` | shadcn/checkbox | ✅ Done |
 | Code | `ui/src/fields/Code` | Keep Monaco, style container |
-| DateTime | `ui/src/fields/DateTime` | shadcn/date-picker | ✅ Done |
+| DateTime | `ui/src/fields/DateTime` | shadcn/calendar + popover | ✅ Done |
 | Email | `ui/src/fields/Email` | shadcn/input | ✅ Done |
 | Group | `ui/src/fields/Group` | Custom layout | ✅ Done |
 | JSON | `ui/src/fields/JSON` | Keep Monaco, style container |
@@ -90,9 +90,9 @@
 | Password | `ui/src/fields/Password` | shadcn/input type=password | ✅ Done |
 | Point | `ui/src/fields/Point` | Custom | ✅ Done |
 | RadioGroup | `ui/src/fields/RadioGroup` | shadcn/radio-group | ✅ Done |
-| Relationship | `ui/src/fields/Relationship` | shadcn/combobox |
+| Relationship | `ui/src/fields/Relationship` | shadcn/combobox | ✅ Done (Tailwind + Label/Error layout) |
 | RichText | `ui/src/fields/RichText` | Keep Lexical, style container |
-| Row | `ui/src/fields/Row` | Tailwind flex/grid |
+| Row | `ui/src/fields/Row` | Tailwind flex/grid | ✅ Done |
 | Select | `ui/src/fields/Select` | shadcn/select |
 | Slug | `ui/src/fields/Slug` | shadcn/input + custom |
 | Tabs | `ui/src/fields/Tabs` | shadcn/tabs |

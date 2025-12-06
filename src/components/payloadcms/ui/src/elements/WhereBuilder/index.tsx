@@ -14,7 +14,6 @@ import { reduceFieldsToOptions } from '../../utilities/reduceFieldsToOptions.js'
 import { Button } from '../Button/index.js'
 import { Condition } from './Condition/index.js'
 import { fieldTypeConditions, getValidFieldOperators } from './field-types.js'
-import './index.scss'
 
 const baseClass = 'where-builder'
 
@@ -130,20 +129,22 @@ export const WhereBuilder: React.FC<WhereBuilderProps> = (props) => {
   )
 
   return (
-    <div className={baseClass}>
+    <div className="where-builder bg-muted p-4 flex flex-col gap-2 [&_.btn]:m-0 [&_.btn]:self-start">
       {conditions.length > 0 && (
         <React.Fragment>
-          <p className={`${baseClass}__label`}>
+          <p className="text-primary font-medium">
             {t('general:filterWhere', { label: getTranslation(collectionPluralLabel, i18n) })}
           </p>
-          <ul className={`${baseClass}__or-filters`}>
+          <ul className="list-none m-0 p-0 flex flex-col gap-2">
             {conditions.map((or, orIndex) => {
               const compoundOrKey = `${orIndex}_${Array.isArray(or?.and) ? or.and.length : ''}`
 
               return (
-                <li key={compoundOrKey}>
-                  {orIndex !== 0 && <div className={`${baseClass}__label`}>{t('general:or')}</div>}
-                  <ul className={`${baseClass}__and-filters`}>
+                <li key={compoundOrKey} className="flex flex-col gap-2">
+                  {orIndex !== 0 && (
+                    <div className="text-primary font-medium">{t('general:or')}</div>
+                  )}
+                  <ul className="list-none m-0 p-0 flex flex-col gap-2">
                     {Array.isArray(or?.and) &&
                       or.and.map((_, andIndex) => {
                         const condition = conditions[orIndex].and[andIndex]
@@ -155,9 +156,9 @@ export const WhereBuilder: React.FC<WhereBuilderProps> = (props) => {
                         const value = condition?.[fieldPath]?.[operator] || undefined
 
                         return (
-                          <li key={andIndex}>
+                          <li key={andIndex} className="flex flex-col gap-2">
                             {andIndex !== 0 && (
-                              <div className={`${baseClass}__label`}>{t('general:and')}</div>
+                              <div className="text-primary font-medium">{t('general:and')}</div>
                             )}
                             <Condition
                               addCondition={addCondition}
@@ -182,7 +183,6 @@ export const WhereBuilder: React.FC<WhereBuilderProps> = (props) => {
           </ul>
           <Button
             buttonStyle="icon-label"
-            className={`${baseClass}__add-or`}
             icon="plus"
             iconPosition="left"
             iconStyle="with-border"
@@ -200,11 +200,10 @@ export const WhereBuilder: React.FC<WhereBuilderProps> = (props) => {
         </React.Fragment>
       )}
       {conditions.length === 0 && (
-        <div className={`${baseClass}__no-filters`}>
-          <div className={`${baseClass}__label`}>{t('general:noFiltersSet')}</div>
+        <div className="flex flex-col gap-2">
+          <div className="text-primary font-medium">{t('general:noFiltersSet')}</div>
           <Button
             buttonStyle="icon-label"
-            className={`${baseClass}__add-first-filter`}
             icon="plus"
             iconPosition="left"
             iconStyle="with-border"

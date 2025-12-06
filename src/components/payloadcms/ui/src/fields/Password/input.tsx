@@ -6,13 +6,14 @@ import React from 'react'
 
 import type { PasswordInputProps } from './types.js'
 
+import { cn } from '@/lib/utils'
+import { Input } from '@/components/ui/input'
 import { RenderCustomComponent } from '../../elements/RenderCustomComponent/index.js'
 import { FieldDescription } from '../../fields/FieldDescription/index.js'
 import { FieldError } from '../../fields/FieldError/index.js'
 import { FieldLabel } from '../../fields/FieldLabel/index.js'
 import { useTranslation } from '../../providers/Translation/index.js'
 import { fieldBaseClass } from '../shared/index.js'
-import './index.scss'
 
 export const PasswordInput: React.FC<PasswordInputProps> = (props) => {
   const {
@@ -44,15 +45,7 @@ export const PasswordInput: React.FC<PasswordInputProps> = (props) => {
 
   return (
     <div
-      className={[
-        fieldBaseClass,
-        'password',
-        className,
-        showError && 'error',
-        readOnly && 'read-only',
-      ]
-        .filter(Boolean)
-        .join(' ')}
+      className={cn(fieldBaseClass, 'relative', className, readOnly && 'opacity-60')}
       style={{
         ...style,
         width,
@@ -71,7 +64,7 @@ export const PasswordInput: React.FC<PasswordInputProps> = (props) => {
         />
         <div>
           {BeforeInput}
-          <input
+          <Input
             aria-label={getTranslation(label, i18n)}
             autoComplete={autoComplete}
             data-rtl={rtl}
@@ -84,6 +77,8 @@ export const PasswordInput: React.FC<PasswordInputProps> = (props) => {
             ref={inputRef}
             type="password"
             value={value || ''}
+            aria-invalid={showError}
+            className={showError ? 'border-destructive' : undefined}
           />
           {AfterInput}
         </div>

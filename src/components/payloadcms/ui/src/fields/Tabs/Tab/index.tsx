@@ -6,12 +6,10 @@ import { getTranslation } from '@payloadcms/translations'
 import { tabHasName } from 'payload/shared'
 import React, { useState } from 'react'
 
+import { cn } from '@/lib/utils'
 import { ErrorPill } from '../../../elements/ErrorPill/index.js'
 import { WatchChildErrors } from '../../../forms/WatchChildErrors/index.js'
 import { useTranslation } from '../../../providers/Translation/index.js'
-import './index.scss'
-
-const baseClass = 'tabs-field__tab-button'
 
 type TabProps = {
   readonly hidden?: boolean
@@ -43,14 +41,18 @@ export const TabComponent: React.FC<TabProps> = ({
     <React.Fragment>
       <WatchChildErrors fields={tab.fields} path={path} setErrorCount={setErrorCount} />
       <button
-        className={[
-          baseClass,
-          fieldHasErrors && `${baseClass}--has-error`,
-          isActive && `${baseClass}--active`,
-          hidden && `${baseClass}--hidden`,
-        ]
-          .filter(Boolean)
-          .join(' ')}
+        className={cn(
+          // Base styles
+          'relative flex shrink-0 cursor-pointer items-center gap-2 whitespace-nowrap border-0 bg-transparent pb-3 text-sm font-medium transition-all',
+          'me-4 last:me-0',
+          // Underline indicator
+          'after:absolute after:inset-x-0 after:-bottom-px after:h-0.5 after:bg-foreground after:opacity-0 after:transition-opacity',
+          // States
+          'opacity-50 hover:opacity-75 hover:after:opacity-20',
+          isActive && 'opacity-100 after:opacity-100 after:h-0.5',
+          fieldHasErrors && 'text-destructive after:bg-destructive',
+          hidden && 'hidden',
+        )}
         onClick={setIsActive}
         type="button"
       >

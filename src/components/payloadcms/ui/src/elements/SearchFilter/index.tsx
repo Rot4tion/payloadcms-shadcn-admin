@@ -4,10 +4,8 @@ import React, { useEffect, useRef, useState } from 'react'
 
 import type { SearchFilterProps } from './types.js'
 
+import { cn } from '@/lib/utils'
 import { useDebounce } from '../../hooks/useDebounce.js'
-import './index.scss'
-
-const baseClass = 'search-filter'
 
 export function SearchFilter(props: SearchFilterProps) {
   const { handleChange, initialParams, label, searchQueryParam } = props
@@ -51,10 +49,16 @@ export function SearchFilter(props: SearchFilterProps) {
   }, [debouncedSearch, handleChange])
 
   return (
-    <div className={baseClass}>
+    <div className="search-filter relative h-full">
       <input
         aria-label={label}
-        className={`${baseClass}__input`}
+        className={cn(
+          'search-filter__input',
+          'w-full h-full border-none bg-transparent shadow-none',
+          'text-foreground placeholder:text-muted-foreground',
+          'focus:shadow-none focus:outline-none',
+          'font-sans text-base leading-normal',
+        )}
         id="search-filter-input"
         onChange={(e) => {
           shouldUpdateState.current = true

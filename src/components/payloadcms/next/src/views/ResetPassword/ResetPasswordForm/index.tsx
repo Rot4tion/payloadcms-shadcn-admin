@@ -73,7 +73,7 @@ export const ResetPasswordForm: React.FC<Args> = ({ token }) => {
       method="POST"
       onSuccess={onSuccess}
     >
-      <div className="inputWrap">
+      <div className="flex flex-col gap-3">
         <PasswordField
           field={{
             name: 'password',

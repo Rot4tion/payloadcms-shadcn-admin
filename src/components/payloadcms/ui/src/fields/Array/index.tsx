@@ -11,6 +11,7 @@ import { toast } from 'sonner'
 
 import type { ClipboardPasteData } from '../../elements/ClipboardAction/types.js'
 
+import { cn } from '@/lib/utils'
 import { Banner } from '../../elements/Banner/index.js'
 import { Button } from '../../elements/Button/index.js'
 import { clipboardCopy, clipboardPaste } from '../../elements/ClipboardAction/clipboardUtilities.js'
@@ -37,11 +38,7 @@ import { useLocale } from '../../providers/Locale/index.js'
 import { useTranslation } from '../../providers/Translation/index.js'
 import { scrollToID } from '../../utilities/scrollToID.js'
 import { mergeFieldStyles } from '../mergeFieldStyles.js'
-import { fieldBaseClass } from '../shared/index.js'
 import { ArrayRow } from './ArrayRow.js'
-import './index.scss'
-
-const baseClass = 'array-field'
 
 export const ArrayFieldComponent: ArrayFieldClientComponent = (props) => {
   const {
@@ -305,14 +302,11 @@ export const ArrayFieldComponent: ArrayFieldClientComponent = (props) => {
 
   return (
     <div
-      className={[
-        fieldBaseClass,
-        baseClass,
+      className={cn(
+        'field-type array-field flex flex-col gap-2',
         className,
-        fieldHasErrors ? `${baseClass}--has-error` : `${baseClass}--has-no-error`,
-      ]
-        .filter(Boolean)
-        .join(' ')}
+        fieldHasErrors ? 'text-destructive' : 'text-foreground',
+      )}
       id={`field-${path.replace(/\./g, '__')}`}
       style={styles}
     >
@@ -322,10 +316,10 @@ export const ArrayFieldComponent: ArrayFieldClientComponent = (props) => {
           Fallback={<FieldError path={path} showError={showError} />}
         />
       )}
-      <header className={`${baseClass}__header`}>
-        <div className={`${baseClass}__header-wrap`}>
-          <div className={`${baseClass}__header-content`}>
-            <h3 className={`${baseClass}__title`}>
+      <header className="flex flex-col gap-2">
+        <div className="flex w-full items-end justify-between">
+          <div className="flex items-center gap-2">
+            <h3 className="mb-0 text-sm font-medium">
               <RenderCustomComponent
                 CustomComponent={Label}
                 Fallback={
@@ -343,12 +337,12 @@ export const ArrayFieldComponent: ArrayFieldClientComponent = (props) => {
               <ErrorPill count={fieldErrorCount} i18n={i18n} withMessage />
             )}
           </div>
-          <ul className={`${baseClass}__header-actions`}>
+          <ul className="m-0 flex list-none p-0 text-muted-foreground">
             {rows?.length > 0 && (
               <Fragment>
                 <li>
                   <button
-                    className={`${baseClass}__header-action`}
+                    className="ml-2 cursor-pointer border-0 bg-transparent text-sm hover:text-foreground hover:underline focus-visible:underline"
                     onClick={() => toggleCollapseAll(true)}
                     type="button"
                   >
@@ -357,7 +351,7 @@ export const ArrayFieldComponent: ArrayFieldClientComponent = (props) => {
                 </li>
                 <li>
                   <button
-                    className={`${baseClass}__header-action`}
+                    className="ml-2 cursor-pointer border-0 bg-transparent text-sm hover:text-foreground hover:underline focus-visible:underline"
                     onClick={() => toggleCollapseAll(false)}
                     type="button"
                   >
@@ -370,7 +364,7 @@ export const ArrayFieldComponent: ArrayFieldClientComponent = (props) => {
               <ClipboardAction
                 allowCopy={rows?.length > 0}
                 allowPaste={!readOnly}
-                className={`${baseClass}__header-action`}
+                className="ml-2 cursor-pointer text-sm hover:text-foreground hover:underline focus-visible:underline"
                 disabled={disabled}
                 fields={fields}
                 getDataToCopy={getDataToCopy}
@@ -395,7 +389,7 @@ export const ArrayFieldComponent: ArrayFieldClientComponent = (props) => {
       {BeforeInput}
       {(rows?.length > 0 || (!valid && (showRequired || showMinRows))) && (
         <DraggableSortable
-          className={`${baseClass}__draggable-rows`}
+          className="flex flex-col gap-2"
           ids={rows.map((row) => row.id)}
           onDragEnd={({ moveFromIndex, moveToIndex }) => moveRow(moveFromIndex, moveToIndex)}
         >
@@ -469,7 +463,7 @@ export const ArrayFieldComponent: ArrayFieldClientComponent = (props) => {
       {!hasMaxRows && !readOnly && (
         <Button
           buttonStyle="icon-label"
-          className={`${baseClass}__add-row`}
+          className="my-0.5 self-start text-muted-foreground hover:text-foreground disabled:text-muted-foreground/50"
           disabled={disabled}
           icon="plus"
           iconPosition="left"

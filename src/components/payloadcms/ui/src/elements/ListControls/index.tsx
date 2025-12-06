@@ -21,9 +21,6 @@ import { QueryPresetBar } from '../QueryPresets/QueryPresetBar/index.js'
 import { SearchBar } from '../SearchBar/index.js'
 import { WhereBuilder } from '../WhereBuilder/index.js'
 import { getTextFieldsToBeSearched } from './getTextFieldsToBeSearched.js'
-import './index.scss'
-
-const baseClass = 'list-controls'
 
 /**
  * The ListControls component is used to render the controls (search, filter, where)
@@ -123,7 +120,7 @@ export const ListControls: React.FC<ListControlsProps> = (props) => {
   }, [t, listSearchableFields, i18n, searchLabel])
 
   return (
-    <div className={baseClass}>
+    <div className="list-controls flex flex-col gap-0.5 *:mt-2 first:*:mt-0">
       {collectionConfig?.enableQueryPresets && !disableQueryPresets && (
         <QueryPresetBar
           activePreset={activePreset}
@@ -138,9 +135,8 @@ export const ListControls: React.FC<ListControlsProps> = (props) => {
           ),
           enableColumns && (
             <Pill
-              aria-controls={`${baseClass}-columns`}
+              aria-controls="list-controls-columns"
               aria-expanded={visibleDrawer === 'columns'}
-              className={`${baseClass}__toggle-columns`}
               icon={<ChevronIcon direction={visibleDrawer === 'columns' ? 'up' : 'down'} />}
               id="toggle-list-columns"
               key="toggle-list-columns"
@@ -153,9 +149,8 @@ export const ListControls: React.FC<ListControlsProps> = (props) => {
           ),
           enableFilters && (
             <Pill
-              aria-controls={`${baseClass}-where`}
+              aria-controls="list-controls-where"
               aria-expanded={visibleDrawer === 'where'}
-              className={`${baseClass}__toggle-where`}
               icon={<ChevronIcon direction={visibleDrawer === 'where' ? 'up' : 'down'} />}
               id="toggle-list-filters"
               key="toggle-list-filters"
@@ -168,9 +163,8 @@ export const ListControls: React.FC<ListControlsProps> = (props) => {
           ),
           enableSort && (
             <Pill
-              aria-controls={`${baseClass}-sort`}
+              aria-controls="list-controls-sort"
               aria-expanded={visibleDrawer === 'sort'}
-              className={`${baseClass}__toggle-sort`}
               icon={<ChevronIcon />}
               id="toggle-list-sort"
               key="toggle-list-sort"
@@ -183,9 +177,8 @@ export const ListControls: React.FC<ListControlsProps> = (props) => {
           ),
           collectionConfig.admin.groupBy && (
             <Pill
-              aria-controls={`${baseClass}-group-by`}
+              aria-controls="list-controls-group-by"
               aria-expanded={visibleDrawer === 'group-by'}
-              className={`${baseClass}__toggle-group-by`}
               icon={<ChevronIcon direction={visibleDrawer === 'group-by' ? 'up' : 'down'} />}
               id="toggle-group-by"
               key="toggle-group-by"
@@ -203,7 +196,6 @@ export const ListControls: React.FC<ListControlsProps> = (props) => {
           listMenuItems && Array.isArray(listMenuItems) && listMenuItems.length > 0 && (
             <Popup
               button={<Dots ariaLabel={t('general:moreOptions')} />}
-              className={`${baseClass}__popup`}
               horizontalAlign="right"
               id="list-menu"
               key="list-menu"
@@ -222,19 +214,11 @@ export const ListControls: React.FC<ListControlsProps> = (props) => {
         searchQueryParam={query?.search}
       />
       {enableColumns && (
-        <AnimateHeight
-          className={`${baseClass}__columns`}
-          height={visibleDrawer === 'columns' ? 'auto' : 0}
-          id={`${baseClass}-columns`}
-        >
+        <AnimateHeight height={visibleDrawer === 'columns' ? 'auto' : 0} id="list-controls-columns">
           <ColumnSelector collectionSlug={collectionConfig.slug} />
         </AnimateHeight>
       )}
-      <AnimateHeight
-        className={`${baseClass}__where`}
-        height={visibleDrawer === 'where' ? 'auto' : 0}
-        id={`${baseClass}-where`}
-      >
+      <AnimateHeight height={visibleDrawer === 'where' ? 'auto' : 0} id="list-controls-where">
         <WhereBuilder
           collectionPluralLabel={collectionConfig?.labels?.plural}
           collectionSlug={collectionConfig.slug}
@@ -245,9 +229,8 @@ export const ListControls: React.FC<ListControlsProps> = (props) => {
       </AnimateHeight>
       {collectionConfig.admin.groupBy && (
         <AnimateHeight
-          className={`${baseClass}__group-by`}
           height={visibleDrawer === 'group-by' ? 'auto' : 0}
-          id={`${baseClass}-group-by`}
+          id="list-controls-group-by"
         >
           <GroupByBuilder collectionSlug={collectionConfig.slug} fields={collectionConfig.fields} />
         </AnimateHeight>

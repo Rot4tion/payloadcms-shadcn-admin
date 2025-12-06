@@ -2,20 +2,18 @@
 
 import type { ClientCollectionConfig, Column, OrderableEndpointBody } from 'payload'
 
-import './index.scss'
-
 import { DragOverlay } from '@dnd-kit/core'
 import React, { useEffect, useState } from 'react'
 import { toast } from 'sonner'
 
+import { cn } from '@/lib/utils'
+import { Table, TableBody, TableHead, TableHeader, TableRow } from '@/components/ui/table'
 import { useConfig } from '../../providers/Config/index.js'
 import { useListQuery } from '../../providers/ListQuery/index.js'
 import { DraggableSortableItem } from '../DraggableSortable/DraggableSortableItem/index.js'
 import { DraggableSortable } from '../DraggableSortable/index.js'
 import { OrderableRow } from './OrderableRow.js'
 import { OrderableRowDragPreview } from './OrderableRowDragPreview.js'
-
-const baseClass = 'table'
 
 export type Props = {
   readonly appearance?: 'condensed' | 'default'
@@ -160,32 +158,47 @@ export const OrderableTable: React.FC<Props> = ({
   }
 
   const rowIds = localData.map((row) => row.id ?? row._id)
+  const isCondensed = appearance === 'condensed'
 
   return (
     <div
-      className={[baseClass, appearance && `${baseClass}--appearance-${appearance}`]
-        .filter(Boolean)
-        .join(' ')}
+      className={cn(
+        'orderable-table mb-4 overflow-auto w-full isolate',
+        isCondensed && 'rounded-md',
+      )}
     >
       {BeforeTable}
       <DraggableSortable ids={rowIds} onDragEnd={handleDragEnd} onDragStart={handleDragStart}>
-        <table cellPadding="0" cellSpacing="0">
-          <thead>
-            <tr>
+        <Table className="text-[length:inherit]">
+          <TableHeader className={cn(isCondensed && 'bg-muted')}>
+            <TableRow className="hover:bg-transparent border-b-0">
               {activeColumns.map((col, i) => (
-                <th id={`heading-${col.accessor}`} key={i}>
+                <TableHead
+                  id={`heading-${col.accessor}`}
+                  key={i}
+                  className={cn(
+                    'text-muted-foreground font-normal py-3 px-3 whitespace-nowrap min-w-[120px]',
+                    'first:ps-4 last:pe-4',
+                    isCondensed && 'py-1.5 px-1.5 first:ps-3 last:pe-3 border border-border',
+                  )}
+                >
                   {col.Heading}
-                </th>
+                </TableHead>
               ))}
-            </tr>
-          </thead>
-          <tbody>
+            </TableRow>
+          </TableHeader>
+          <TableBody>
             {localData.map((row, rowIndex) => (
               <DraggableSortableItem id={rowIds[rowIndex]} key={rowIds[rowIndex]}>
                 {({ attributes, isDragging, listeners, setNodeRef, transform, transition }) => (
                   <OrderableRow
                     cellMap={cellMap}
-                    className={`row-${rowIndex + 1}`}
+                    className={cn(
+                      `row-${rowIndex + 1}`,
+                      'border-0 hover:bg-muted/50',
+                      rowIndex % 2 === 0 && 'bg-muted/30',
+                      isCondensed && 'bg-transparent',
+                    )}
                     columns={activeColumns}
                     dragAttributes={attributes}
                     dragListeners={listeners}
@@ -200,12 +213,12 @@ export const OrderableTable: React.FC<Props> = ({
                 )}
               </DraggableSortableItem>
             ))}
-          </tbody>
-        </table>
+          </TableBody>
+        </Table>
 
         <DragOverlay>
           <OrderableRowDragPreview
-            className={[baseClass, `${baseClass}--drag-preview`].join(' ')}
+            className="orderable-table cursor-grabbing z-10"
             rowId={dragActiveRowId}
           >
             <OrderableRow cellMap={cellMap} columns={activeColumns} rowId={dragActiveRowId} />

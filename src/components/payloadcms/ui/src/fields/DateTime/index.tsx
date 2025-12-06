@@ -19,7 +19,6 @@ import { withCondition } from '../../forms/withCondition/index.js'
 import { useConfig } from '../../providers/Config/index.js'
 import { useTranslation } from '../../providers/Translation/index.js'
 import { mergeFieldStyles } from '../mergeFieldStyles.js'
-import { fieldBaseClass } from '../shared/index.js'
 
 const DateTimeFieldComponent: DateFieldClientComponent = (props) => {
   const {
@@ -163,11 +162,9 @@ const DateTimeFieldComponent: DateFieldClientComponent = (props) => {
   return (
     <div
       className={cn(
-        fieldBaseClass,
+        'field-type datetime relative flex flex-col gap-2',
         className,
-        showError &&
-          '[&_.react-datepicker__input-container_input]:border-destructive [&_.react-datepicker__input-container_input]:bg-destructive/10',
-        (readOnly || disabled) && 'opacity-60',
+        (readOnly || disabled) && 'pointer-events-none opacity-60',
       )}
       style={styles}
     >
@@ -177,7 +174,7 @@ const DateTimeFieldComponent: DateFieldClientComponent = (props) => {
           <FieldLabel label={label} localized={localized} path={path} required={required} />
         }
       />
-      <div className={`${fieldBaseClass}__wrap`} id={`field-${path.replace(/\./g, '__')}`}>
+      <div className="flex flex-col gap-1.5" id={`field-${path.replace(/\./g, '__')}`}>
         <RenderCustomComponent
           CustomComponent={Error}
           Fallback={<FieldError path={path} showError={showError} />}

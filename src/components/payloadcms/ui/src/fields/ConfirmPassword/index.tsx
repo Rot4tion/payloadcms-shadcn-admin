@@ -3,12 +3,13 @@
 import { confirmPassword } from 'payload/shared'
 import React from 'react'
 
+import { cn } from '@/lib/utils'
+import { Input } from '@/components/ui/input'
 import { useField } from '../../forms/useField/index.js'
 import { useTranslation } from '../../providers/Translation/index.js'
 import { FieldError } from '../FieldError/index.js'
 import { FieldLabel } from '../FieldLabel/index.js'
 import { fieldBaseClass } from '../shared/index.js'
-import './index.scss'
 
 export type ConfirmPasswordFieldProps = {
   readonly disabled?: boolean
@@ -31,28 +32,28 @@ export const ConfirmPasswordField: React.FC<ConfirmPasswordFieldProps> = (props)
     },
   })
 
+  const isDisabled = !!(disabled || disabledFromProps)
+
   return (
-    <div
-      className={[fieldBaseClass, 'confirm-password', showError && 'error']
-        .filter(Boolean)
-        .join(' ')}
-    >
+    <div className={cn(fieldBaseClass, 'relative', isDisabled && 'opacity-60')}>
       <FieldLabel
         htmlFor="field-confirm-password"
         label={t('authentication:confirmPassword')}
         required
       />
       <div className={`${fieldBaseClass}__wrap`}>
-        <FieldError path={path} />
-        <input
+        <FieldError path={path} showError={showError} />
+        <Input
           aria-label={t('authentication:confirmPassword')}
           autoComplete="off"
-          disabled={!!(disabled || disabledFromProps)}
+          disabled={isDisabled}
           id="field-confirm-password"
           name="confirm-password"
-          onChange={setValue}
+          onChange={(e) => setValue(e.target.value)}
           type="password"
           value={(value as string) || ''}
+          aria-invalid={showError}
+          className={showError ? 'border-destructive' : undefined}
         />
       </div>
     </div>

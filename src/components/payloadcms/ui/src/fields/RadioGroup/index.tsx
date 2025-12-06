@@ -75,16 +75,18 @@ const RadioGroupFieldComponent: RadioFieldClientComponent = (props) => {
       )}
       style={styles}
     >
-      <RenderCustomComponent
-        CustomComponent={Error}
-        Fallback={<FieldError path={path} showError={showError} />}
-      />
-      <RenderCustomComponent
-        CustomComponent={Label}
-        Fallback={
-          <FieldLabel label={label} localized={localized} path={path} required={required} />
-        }
-      />
+      <div className="flex items-center justify-between">
+        <RenderCustomComponent
+          CustomComponent={Label}
+          Fallback={
+            <FieldLabel label={label} localized={localized} path={path} required={required} />
+          }
+        />
+        <RenderCustomComponent
+          CustomComponent={Error}
+          Fallback={<FieldError path={path} showError={showError} />}
+        />
+      </div>
       <div className={`${fieldBaseClass}__wrap`}>
         {BeforeInput}
         <RadioGroup

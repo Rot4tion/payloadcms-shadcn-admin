@@ -10,7 +10,6 @@ import React from 'react'
 import { getDocPreferences } from '../Document/getDocPreferences.js'
 import { getDocumentData } from '../Document/getDocumentData.js'
 import { CreateFirstUserClient } from './index.client.js'
-import './index.scss'
 
 export async function CreateFirstUserView({ initPageResult }: AdminViewServerProps) {
   const {
@@ -78,9 +77,9 @@ export async function CreateFirstUserView({ initPageResult }: AdminViewServerPro
   })
 
   return (
-    <div className="create-first-user">
-      <h1>{req.t('general:welcome')}</h1>
-      <p>{req.t('authentication:beginCreateFirstUser')}</p>
+    <div className="flex flex-col gap-4">
+      <h1 className="text-2xl font-semibold text-foreground">{req.t('general:welcome')}</h1>
+      <p className="text-muted-foreground">{req.t('authentication:beginCreateFirstUser')}</p>
       <CreateFirstUserClient
         docPermissions={docPermissionsForForm}
         docPreferences={docPreferences}

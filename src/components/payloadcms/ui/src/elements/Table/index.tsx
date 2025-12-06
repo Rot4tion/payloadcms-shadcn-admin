@@ -4,9 +4,15 @@ import type { Column } from 'payload'
 
 import React from 'react'
 
-import './index.scss'
-
-const baseClass = 'table'
+import { cn } from '@/lib/utils'
+import {
+  Table as ShadcnTable,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from '@/components/ui/table'
 
 export type Props = {
   readonly appearance?: 'condensed' | 'default'
@@ -19,32 +25,45 @@ export const Table: React.FC<Props> = ({ appearance, BeforeTable, columns, data 
   const activeColumns = columns?.filter((col) => col?.active)
 
   if (!activeColumns || activeColumns.length === 0) {
-    return <div>No columns selected</div>
+    return <div className="text-muted-foreground p-4">No columns selected</div>
   }
+
+  const isCondensed = appearance === 'condensed'
 
   return (
     <div
-      className={[baseClass, appearance && `${baseClass}--appearance-${appearance}`]
-        .filter(Boolean)
-        .join(' ')}
+      className={cn('table-wrapper mb-4 overflow-auto w-full isolate', isCondensed && 'rounded-md')}
     >
       {BeforeTable}
-      <table cellPadding="0" cellSpacing="0">
-        <thead>
-          <tr>
+      <ShadcnTable className="text-[length:inherit]">
+        <TableHeader className={cn(isCondensed && 'bg-muted')}>
+          <TableRow className="hover:bg-transparent border-b-0">
             {activeColumns.map((col, i) => (
-              <th id={`heading-${col.accessor.replace(/\./g, '__')}`} key={i}>
+              <TableHead
+                id={`heading-${col.accessor.replace(/\./g, '__')}`}
+                key={i}
+                className={cn(
+                  'text-muted-foreground font-normal py-3 px-3 whitespace-nowrap min-w-[120px]',
+                  'first:ps-4 last:pe-4',
+                  isCondensed && 'py-1.5 px-1.5 first:ps-3 last:pe-3 border border-border',
+                )}
+              >
                 {col.Heading}
-              </th>
+              </TableHead>
             ))}
-          </tr>
-        </thead>
-        <tbody>
+          </TableRow>
+        </TableHeader>
+        <TableBody>
           {data &&
             data?.map((row, rowIndex) => {
               return (
-                <tr
-                  className={`row-${rowIndex + 1}`}
+                <TableRow
+                  className={cn(
+                    `row-${rowIndex + 1}`,
+                    'border-0 hover:bg-muted/50',
+                    rowIndex % 2 === 0 && 'bg-muted/30 rounded-md',
+                    isCondensed && 'bg-transparent',
+                  )}
                   data-id={row.id}
                   key={
                     typeof row.id === 'string' || typeof row.id === 'number'
@@ -56,16 +75,28 @@ export const Table: React.FC<Props> = ({ appearance, BeforeTable, columns, data 
                     const { accessor } = col
 
                     return (
-                      <td className={`cell-${accessor.replace(/\./g, '__')}`} key={colIndex}>
+                      <TableCell
+                        className={cn(
+                          `cell-${accessor.replace(/\./g, '__')}`,
+                          'py-3 px-3 first:ps-4 last:pe-4 align-top whitespace-nowrap min-w-[120px]',
+                          colIndex === 0 && rowIndex % 2 === 0 && 'rounded-l-md',
+                          colIndex === activeColumns.length - 1 &&
+                            rowIndex % 2 === 0 &&
+                            'rounded-r-md',
+                          isCondensed &&
+                            'py-1.5 px-1.5 first:ps-3 last:pe-3 border border-border rounded-none',
+                        )}
+                        key={colIndex}
+                      >
                         {col.renderedCells[rowIndex]}
-                      </td>
+                      </TableCell>
                     )
                   })}
-                </tr>
+                </TableRow>
               )
             })}
-        </tbody>
-      </table>
+        </TableBody>
+      </ShadcnTable>
     </div>
   )
 }

@@ -168,16 +168,44 @@ export interface Media {
 export interface Test {
   id: number;
   text: string;
+  /**
+   * Min 5, Max 20 characters
+   */
+  textWithMinMax?: string | null;
   textarea?: string | null;
-  email?: string | null;
+  /**
+   * Required, min 10 characters
+   */
+  textareaRequired: string;
+  email: string;
   code?: string | null;
   number?: number | null;
+  /**
+   * Required number field
+   */
+  numberRequired: number;
+  /**
+   * Min 1, Max 100
+   */
+  numberWithMinMax?: number | null;
   date?: string | null;
   dateWithTime?: string | null;
   checkbox?: boolean | null;
   select?: ('optionA' | 'optionB' | 'optionC') | null;
-  selectMultiple?: ('tag1' | 'tag2' | 'tag3')[] | null;
+  /**
+   * Required select field
+   */
+  selectRequired: 'reqA' | 'reqB';
+  selectMultiple?: ('tag1' | 'tag2' | 'tag3' | 'tag4' | 'tag5')[] | null;
   radio?: ('option1' | 'option2' | 'option3') | null;
+  /**
+   * Required radio field
+   */
+  radioRequired: 'yes' | 'no';
+  /**
+   * Must be checked
+   */
+  checkboxRequired: boolean;
   json?:
     | {
         [k: string]: unknown;
@@ -194,6 +222,15 @@ export interface Test {
     | {
         arrayText?: string | null;
         arrayNumber?: number | null;
+        id?: string | null;
+      }[]
+    | null;
+  /**
+   * Min 1, Max 3 rows
+   */
+  arrayWithMinMax?:
+    | {
+        itemName: string;
         id?: string | null;
       }[]
     | null;
@@ -352,16 +389,23 @@ export interface MediaSelect<T extends boolean = true> {
  */
 export interface TestsSelect<T extends boolean = true> {
   text?: T;
+  textWithMinMax?: T;
   textarea?: T;
+  textareaRequired?: T;
   email?: T;
   code?: T;
   number?: T;
+  numberRequired?: T;
+  numberWithMinMax?: T;
   date?: T;
   dateWithTime?: T;
   checkbox?: T;
   select?: T;
+  selectRequired?: T;
   selectMultiple?: T;
   radio?: T;
+  radioRequired?: T;
+  checkboxRequired?: T;
   json?: T;
   relationship?: T;
   relationshipMany?: T;
@@ -371,6 +415,12 @@ export interface TestsSelect<T extends boolean = true> {
     | {
         arrayText?: T;
         arrayNumber?: T;
+        id?: T;
+      };
+  arrayWithMinMax?:
+    | T
+    | {
+        itemName?: T;
         id?: T;
       };
   blocks?:

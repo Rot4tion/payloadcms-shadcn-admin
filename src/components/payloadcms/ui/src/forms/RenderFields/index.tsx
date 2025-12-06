@@ -7,13 +7,11 @@ import React from 'react'
 
 import type { RenderFieldsProps } from './types.js'
 
+import { cn } from '@/lib/utils'
 import { RenderIfInViewport } from '../../elements/RenderIfInViewport/index.js'
 import { useOperation } from '../../providers/Operation/index.js'
-import './index.scss'
 import { FieldPathContext } from './context.js'
 import { RenderField } from './RenderField.js'
-
-const baseClass = 'render-fields'
 
 export { RenderFieldsProps as Props }
 
@@ -35,14 +33,12 @@ export const RenderFields: React.FC<RenderFieldsProps> = (props) => {
   if (fields && fields.length > 0) {
     return (
       <RenderIfInViewport
-        className={[
-          baseClass,
+        className={cn(
+          'render-fields flex flex-col',
+          margins === 'small' ? 'gap-4' : 'gap-6',
+          margins === false && 'gap-0',
           className,
-          margins && `${baseClass}--margins-${margins}`,
-          margins === false && `${baseClass}--margins-none`,
-        ]
-          .filter(Boolean)
-          .join(' ')}
+        )}
         forceRender={forceRender}
       >
         {fields.map((field, i) => {

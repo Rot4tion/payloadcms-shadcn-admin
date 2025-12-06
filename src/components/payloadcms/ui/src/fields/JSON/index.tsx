@@ -5,6 +5,7 @@ import { type OnMount } from '@monaco-editor/react'
 import React, { useCallback, useEffect, useMemo, useState } from 'react'
 import { v4 as uuidv4 } from 'uuid'
 
+import { cn } from '@/lib/utils'
 import { defaultOptions } from '../../elements/CodeEditor/constants.js'
 import { CodeEditor } from '../../elements/CodeEditor/index.js'
 import { RenderCustomComponent } from '../../elements/RenderCustomComponent/index.js'
@@ -14,10 +15,6 @@ import { FieldDescription } from '../FieldDescription/index.js'
 import { FieldError } from '../FieldError/index.js'
 import { FieldLabel } from '../FieldLabel/index.js'
 import { mergeFieldStyles } from '../mergeFieldStyles.js'
-import { fieldBaseClass } from '../shared/index.js'
-import './index.scss'
-
-const baseClass = 'json-field'
 
 const JSONFieldComponent: JSONFieldClientComponent = (props) => {
   const {
@@ -141,48 +138,54 @@ const JSONFieldComponent: JSONFieldClientComponent = (props) => {
 
   return (
     <div
-      className={[
-        fieldBaseClass,
-        baseClass,
+      className={cn(
+        'field-type json-field relative flex flex-col gap-2',
         className,
         showError && 'error',
-        (readOnly || disabled) && 'read-only',
-      ]
-        .filter(Boolean)
-        .join(' ')}
+        (readOnly || disabled) && 'read-only opacity-60',
+      )}
       style={styles}
     >
-      <RenderCustomComponent
-        CustomComponent={Label}
-        Fallback={
-          <FieldLabel label={label} localized={localized} path={path} required={required} />
-        }
-      />
-      <div className={`${fieldBaseClass}__wrap`}>
+      <div className="flex items-center justify-between">
+        <RenderCustomComponent
+          CustomComponent={Label}
+          Fallback={
+            <FieldLabel label={label} localized={localized} path={path} required={required} />
+          }
+        />
         <RenderCustomComponent
           CustomComponent={Error}
           Fallback={<FieldError message={jsonError} path={path} showError={showError} />}
         />
-        {BeforeInput}
-        <CodeEditor
-          defaultLanguage="json"
-          maxHeight={maxHeight}
-          onChange={handleChange}
-          onMount={handleMount}
-          options={editorOptions}
-          readOnly={readOnly || disabled}
-          recalculatedHeightAt={recalculatedHeightAt}
-          value={stringValueRef.current}
-          wrapperProps={{
-            id: `field-${path?.replace(/\./g, '__')}`,
-          }}
-        />
-        {AfterInput}
       </div>
-      <RenderCustomComponent
-        CustomComponent={Description}
-        Fallback={<FieldDescription description={description} path={path} />}
-      />
+      <div className="flex flex-col gap-1.5">
+        {BeforeInput}
+        <div
+          className={cn(
+            'overflow-hidden rounded-md border bg-muted/50',
+            showError && 'border-destructive',
+          )}
+        >
+          <CodeEditor
+            defaultLanguage="json"
+            maxHeight={maxHeight}
+            onChange={handleChange}
+            onMount={handleMount}
+            options={editorOptions}
+            readOnly={readOnly || disabled}
+            recalculatedHeightAt={recalculatedHeightAt}
+            value={stringValueRef.current}
+            wrapperProps={{
+              id: `field-${path?.replace(/\./g, '__')}`,
+            }}
+          />
+        </div>
+        {AfterInput}
+        <RenderCustomComponent
+          CustomComponent={Description}
+          Fallback={<FieldDescription description={description} path={path} />}
+        />
+      </div>
     </div>
   )
 }

@@ -13,12 +13,31 @@ export const Tests: CollectionConfig = {
       required: true,
     },
     {
+      name: 'textWithMinMax',
+      type: 'text',
+      minLength: 5,
+      maxLength: 20,
+      admin: {
+        description: 'Min 5, Max 20 characters',
+      },
+    },
+    {
       name: 'textarea',
       type: 'textarea',
     },
     {
+      name: 'textareaRequired',
+      type: 'textarea',
+      required: true,
+      minLength: 10,
+      admin: {
+        description: 'Required, min 10 characters',
+      },
+    },
+    {
       name: 'email',
       type: 'email',
+      required: true,
     },
     {
       name: 'code',
@@ -38,6 +57,23 @@ export const Tests: CollectionConfig = {
     {
       name: 'number',
       type: 'number',
+    },
+    {
+      name: 'numberRequired',
+      type: 'number',
+      required: true,
+      admin: {
+        description: 'Required number field',
+      },
+    },
+    {
+      name: 'numberWithMinMax',
+      type: 'number',
+      min: 1,
+      max: 100,
+      admin: {
+        description: 'Min 1, Max 100',
+      },
     },
 
     // ===== DATE FIELDS =====
@@ -72,6 +108,18 @@ export const Tests: CollectionConfig = {
       ],
     },
     {
+      name: 'selectRequired',
+      type: 'select',
+      required: true,
+      options: [
+        { label: 'Required A', value: 'reqA' },
+        { label: 'Required B', value: 'reqB' },
+      ],
+      admin: {
+        description: 'Required select field',
+      },
+    },
+    {
       name: 'selectMultiple',
       type: 'select',
       hasMany: true,
@@ -79,6 +127,8 @@ export const Tests: CollectionConfig = {
         { label: 'Tag 1', value: 'tag1' },
         { label: 'Tag 2', value: 'tag2' },
         { label: 'Tag 3', value: 'tag3' },
+        { label: 'Tag 4', value: 'tag4' },
+        { label: 'Tag 5', value: 'tag5' },
       ],
     },
     {
@@ -89,6 +139,26 @@ export const Tests: CollectionConfig = {
         { label: 'Option 2', value: 'option2' },
         { label: 'Option 3', value: 'option3' },
       ],
+    },
+    {
+      name: 'radioRequired',
+      type: 'radio',
+      required: true,
+      options: [
+        { label: 'Yes', value: 'yes' },
+        { label: 'No', value: 'no' },
+      ],
+      admin: {
+        description: 'Required radio field',
+      },
+    },
+    {
+      name: 'checkboxRequired',
+      type: 'checkbox',
+      required: true,
+      admin: {
+        description: 'Must be checked',
+      },
     },
 
     // ===== DATA FIELDS =====
@@ -133,6 +203,22 @@ export const Tests: CollectionConfig = {
         {
           name: 'arrayNumber',
           type: 'number',
+        },
+      ],
+    },
+    {
+      name: 'arrayWithMinMax',
+      type: 'array',
+      minRows: 1,
+      maxRows: 3,
+      admin: {
+        description: 'Min 1, Max 3 rows',
+      },
+      fields: [
+        {
+          name: 'itemName',
+          type: 'text',
+          required: true,
         },
       ],
     },

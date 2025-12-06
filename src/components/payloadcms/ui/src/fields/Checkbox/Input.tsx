@@ -2,12 +2,11 @@
 import type { StaticLabel } from 'payload'
 
 import React, { useCallback, useId } from 'react'
+import { Check, Minus } from 'lucide-react'
 
 import { cn } from '@/lib/utils'
-import { Checkbox } from '@/components/ui/checkbox'
 import { RenderCustomComponent } from '../../elements/RenderCustomComponent/index.js'
 import { FieldLabel } from '../../fields/FieldLabel/index.js'
-import { LineIcon } from '../../icons/Line/index.js'
 
 export type CheckboxInputProps = {
   readonly AfterInput?: React.ReactNode
@@ -73,19 +72,35 @@ export const CheckboxInput: React.FC<CheckboxInputProps> = ({
       )}
     >
       {BeforeInput}
-      <Checkbox
+      <button
+        type="button"
+        role="checkbox"
+        aria-checked={partialChecked ? 'mixed' : checked}
         id={id}
-        name={name}
-        checked={partialChecked ? 'indeterminate' : checked}
-        onCheckedChange={handleCheckedChange}
         disabled={readOnly}
-        required={required}
-        aria-labelledby={name}
-        className={cn('size-5', partialChecked && '[&_svg]:hidden')}
-      />
-      {partialChecked && !checked && (
-        <LineIcon className="pointer-events-none absolute size-3.5 text-foreground" />
-      )}
+        onClick={() => handleCheckedChange(!checked)}
+        className={cn(
+          'relative flex size-5 shrink-0 items-center justify-center rounded border shadow-xs transition-colors outline-none',
+          'border-input bg-background',
+          'focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2',
+          'disabled:cursor-not-allowed disabled:opacity-50',
+          checked && 'border-primary bg-primary text-primary-foreground',
+          partialChecked && !checked && 'border-primary bg-primary text-primary-foreground',
+        )}
+      >
+        <Check
+          className={cn(
+            'size-3.5 transition-opacity',
+            checked && !partialChecked ? 'opacity-100' : 'opacity-0',
+          )}
+        />
+        <Minus
+          className={cn(
+            'absolute size-3.5 transition-opacity',
+            partialChecked && !checked ? 'opacity-100' : 'opacity-0',
+          )}
+        />
+      </button>
       {AfterInput}
       <RenderCustomComponent
         CustomComponent={Label}

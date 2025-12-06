@@ -10,9 +10,6 @@ import { Pagination } from '../../elements/Pagination/index.js'
 import { PerPage } from '../../elements/PerPage/index.js'
 import { useListQuery } from '../../providers/ListQuery/context.js'
 import { useTranslation } from '../../providers/Translation/index.js'
-import './index.scss'
-
-const baseClass = 'page-controls'
 
 /**
  * @internal
@@ -35,8 +32,9 @@ export const PageControlsComponent: React.FC<{
   const { i18n } = useTranslation()
 
   return (
-    <div className={baseClass}>
+    <div className="page-controls w-full flex items-center flex-wrap gap-2">
       <Pagination
+        className="w-full sm:w-auto sm:mb-0 mb-2"
         hasNextPage={data.hasNextPage}
         hasPrevPage={data.hasPrevPage}
         limit={data.limit}
@@ -48,8 +46,8 @@ export const PageControlsComponent: React.FC<{
         totalPages={data.totalPages}
       />
       {data.totalDocs > 0 && (
-        <Fragment>
-          <div className={`${baseClass}__page-info`}>
+        <div className="flex items-center gap-2 ms-auto">
+          <div className="text-muted-foreground whitespace-nowrap">
             {data.page * data.limit - (data.limit - 1)}-
             {data.totalPages > 1 && data.totalPages !== data.page
               ? data.limit * data.page
@@ -63,7 +61,7 @@ export const PageControlsComponent: React.FC<{
             resetPage={data.totalDocs <= data.pagingCounter}
           />
           {AfterPageControls}
-        </Fragment>
+        </div>
       )}
     </div>
   )

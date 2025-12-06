@@ -7,14 +7,14 @@ import React from 'react'
 import type { ReactSelectAdapterProps } from '../../elements/ReactSelect/types.js'
 import type { TextInputProps } from './types.js'
 
+import { cn } from '@/lib/utils'
+import { Input } from '@/components/ui/input'
 import { ReactSelect } from '../../elements/ReactSelect/index.js'
 import { RenderCustomComponent } from '../../elements/RenderCustomComponent/index.js'
 import { FieldDescription } from '../../fields/FieldDescription/index.js'
 import { FieldError } from '../../fields/FieldError/index.js'
 import { FieldLabel } from '../../fields/FieldLabel/index.js'
 import { useTranslation } from '../../providers/Translation/index.js'
-import { fieldBaseClass } from '../shared/index.js'
-import './index.scss'
 
 export const TextInput: React.FC<TextInputProps> = (props) => {
   const {
@@ -95,29 +95,28 @@ export const TextInput: React.FC<TextInputProps> = (props) => {
 
   return (
     <div
-      className={[
-        fieldBaseClass,
-        'text',
+      className={cn(
+        'field-type text relative flex flex-col gap-2',
         className,
         showError && 'error',
-        readOnly && 'read-only',
+        readOnly && 'read-only pointer-events-none opacity-60',
         hasMany && 'has-many',
-      ]
-        .filter(Boolean)
-        .join(' ')}
+      )}
       style={style}
     >
-      <RenderCustomComponent
-        CustomComponent={Label}
-        Fallback={
-          <FieldLabel label={label} localized={localized} path={path} required={required} />
-        }
-      />
-      <div className={`${fieldBaseClass}__wrap`}>
+      <div className="flex items-center justify-between">
+        <RenderCustomComponent
+          CustomComponent={Label}
+          Fallback={
+            <FieldLabel label={label} localized={localized} path={path} required={required} />
+          }
+        />
         <RenderCustomComponent
           CustomComponent={Error}
           Fallback={<FieldError path={path} showError={showError} />}
         />
+      </div>
+      <div className="flex flex-col gap-1.5">
         {BeforeInput}
         {hasMany ? (
           <ReactSelect
@@ -150,7 +149,7 @@ export const TextInput: React.FC<TextInputProps> = (props) => {
             value={valueToRender}
           />
         ) : (
-          <input
+          <Input
             data-rtl={rtl}
             disabled={readOnly}
             id={`field-${path?.replace(/\./g, '__')}`}
@@ -161,6 +160,7 @@ export const TextInput: React.FC<TextInputProps> = (props) => {
             ref={inputRef}
             type="text"
             value={value || ''}
+            aria-invalid={showError}
             {...(htmlAttributes ?? {})}
           />
         )}

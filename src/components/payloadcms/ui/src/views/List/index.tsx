@@ -7,6 +7,7 @@ import { useRouter } from 'next/navigation.js'
 import { formatAdminURL, formatFilesize } from 'payload/shared'
 import React, { Fragment, useEffect } from 'react'
 
+import { cn } from '@/lib/utils'
 import { useBulkUpload } from '../../elements/BulkUpload/index.js'
 import { Button } from '../../elements/Button/index.js'
 import { Gutter } from '../../elements/Gutter/index.js'
@@ -29,7 +30,6 @@ import { useTranslation } from '../../providers/Translation/index.js'
 import { useWindowInfo } from '../../providers/WindowInfo/index.js'
 import { ListSelection } from '../../views/List/ListSelection/index.js'
 import { CollectionListHeader } from './ListHeader/index.js'
-import './index.scss'
 
 const baseClass = 'collection-list'
 
@@ -145,14 +145,16 @@ export function DefaultListView(props: ListViewClientProps) {
   return (
     <Fragment>
       <TableColumnsProvider collectionSlug={collectionSlug} columnState={columnState}>
-        <div className={`${baseClass} ${baseClass}--${collectionSlug}`}>
+        <div className={cn('w-full', baseClass, `${baseClass}--${collectionSlug}`)}>
           <SelectionProvider docs={docs} totalDocs={data?.totalDocs}>
             {BeforeList}
-            <Gutter className={`${baseClass}__wrap`}>
+            <Gutter
+              className={cn('pb-[var(--spacing-view-bottom)] space-y-4', `${baseClass}__wrap`)}
+            >
               <CollectionListHeader
                 collectionConfig={collectionConfig}
                 Description={
-                  <div className={`${baseClass}__sub-header`}>
+                  <div className="w-full pt-3">
                     <RenderCustomComponent
                       CustomComponent={Description}
                       Fallback={
@@ -197,12 +199,12 @@ export function DefaultListView(props: ListViewClientProps) {
               />
               {BeforeListTable}
               {docs?.length > 0 && (
-                <div className={`${baseClass}__tables`}>
+                <div className="[&_.table-wrap:not(:last-child)]:mb-8 [&_.table-wrap--group-by:first-child]:mt-8">
                   <RelationshipProvider>{Table}</RelationshipProvider>
                 </div>
               )}
               {docs?.length === 0 && (
-                <div className={`${baseClass}__no-results`}>
+                <div className="flex flex-col items-start gap-4 [&>*]:m-0">
                   <p>
                     {i18n.t(viewType === 'trash' ? 'general:noTrashResults' : 'general:noResults', {
                       label: getTranslation(labels?.plural, i18n),
@@ -232,7 +234,7 @@ export function DefaultListView(props: ListViewClientProps) {
                 <PageControls
                   AfterPageControls={
                     smallBreak ? (
-                      <div className={`${baseClass}__list-selection`}>
+                      <div className="fixed bottom-0 z-10 py-3 w-full bg-background">
                         <ListSelection
                           collectionConfig={collectionConfig}
                           disableBulkDelete={disableBulkDelete}
@@ -240,7 +242,7 @@ export function DefaultListView(props: ListViewClientProps) {
                           label={getTranslation(collectionConfig.labels.plural, i18n)}
                           showSelectAllAcrossPages={!isGroupingBy}
                         />
-                        <div className={`${baseClass}__list-selection-actions`}>
+                        <div className="flex gap-1">
                           {enableRowSelections && typeof onBulkSelect === 'function'
                             ? beforeActions
                               ? [

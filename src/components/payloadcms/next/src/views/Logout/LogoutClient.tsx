@@ -11,10 +11,6 @@ import { useRouter } from 'next/navigation.js'
 import { formatAdminURL } from 'payload/shared'
 import React, { useEffect } from 'react'
 
-import './index.scss'
-
-const baseClass = 'logout'
-
 /**
  * This component should **just** be the inactivity route and do nothing with logging the user out.
  *
@@ -45,10 +41,11 @@ export const LogoutClient: React.FC<{
   const [loginRoute] = React.useState(() =>
     formatAdminURL({
       adminRoute,
-      path: `/login${inactivity && redirect && redirect.length > 0
+      path: `/login${
+        inactivity && redirect && redirect.length > 0
           ? `?redirect=${encodeURIComponent(redirect)}`
           : ''
-        }`,
+      }`,
     }),
   )
 
@@ -76,8 +73,8 @@ export const LogoutClient: React.FC<{
 
   if (!isLoggedIn && inactivity) {
     return (
-      <div className={`${baseClass}__wrap`}>
-        <h2>{t('authentication:loggedOutInactivity')}</h2>
+      <div className="relative z-10 flex flex-col items-start gap-3 w-full max-w-lg">
+        <h2 className="m-0">{t('authentication:loggedOutInactivity')}</h2>
         <Button buttonStyle="secondary" el="link" size="large" url={loginRoute}>
           {t('authentication:logBackIn')}
         </Button>

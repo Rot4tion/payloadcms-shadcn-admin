@@ -2,11 +2,11 @@
 
 import React from 'react'
 
+import { cn } from '@/lib/utils'
 import { PlusIcon } from '../../icons/Plus/index.js'
 import { XIcon } from '../../icons/X/index.js'
 import { DraggableSortable } from '../DraggableSortable/index.js'
 import { Pill } from '../Pill/index.js'
-import './index.scss'
 
 const baseClass = 'pill-selector'
 
@@ -41,9 +41,12 @@ export const PillSelector: React.FC<Props> = ({ draggable, onClick, pills }) => 
         <Pill
           alignIcon="left"
           aria-checked={pill.selected}
-          className={[`${baseClass}__pill`, pill.selected && `${baseClass}__pill--selected`]
-            .filter(Boolean)
-            .join(' ')}
+          className={cn(
+            'cursor-pointer',
+            pill.selected
+              ? 'bg-primary text-primary-foreground shadow-md hover:bg-primary/90'
+              : 'bg-transparent ring-1 ring-border hover:bg-muted',
+          )}
           draggable={Boolean(draggable)}
           icon={pill.selected ? <XIcon /> : <PlusIcon />}
           id={pill.name}
@@ -55,7 +58,7 @@ export const PillSelector: React.FC<Props> = ({ draggable, onClick, pills }) => 
           }}
           size="small"
         >
-          {pill.Label ?? <span className={`${baseClass}__pill-label`}>{pill.name}</span>}
+          {pill.Label ?? <span>{pill.name}</span>}
         </Pill>
       )
     })
@@ -64,7 +67,7 @@ export const PillSelector: React.FC<Props> = ({ draggable, onClick, pills }) => 
   if (draggable) {
     return (
       <DraggableSortable
-        className={baseClass}
+        className={cn(baseClass, 'flex flex-wrap gap-2 p-4 bg-muted/50 rounded-md sm:p-2')}
         ids={pills.map((pill) => pill.name)}
         onDragEnd={({ moveFromIndex, moveToIndex }) => {
           draggable.onDragEnd({
@@ -78,5 +81,9 @@ export const PillSelector: React.FC<Props> = ({ draggable, onClick, pills }) => 
     )
   }
 
-  return <div className={baseClass}>{pillElements}</div>
+  return (
+    <div className={cn(baseClass, 'flex flex-wrap gap-2 p-4 bg-muted/50 rounded-md sm:p-2')}>
+      {pillElements}
+    </div>
+  )
 }

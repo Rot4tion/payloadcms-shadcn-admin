@@ -3,12 +3,10 @@
 import { collectionDefaults, isNumber } from 'payload/shared'
 import React from 'react'
 
+import { cn } from '@/lib/utils'
 import { ChevronIcon } from '../../icons/Chevron/index.js'
 import { useTranslation } from '../../providers/Translation/index.js'
 import { Popup, PopupList } from '../Popup/index.js'
-import './index.scss'
-
-const baseClass = 'per-page'
 
 const defaultLimits = collectionDefaults.admin.pagination.limits
 
@@ -31,13 +29,12 @@ export const PerPage: React.FC<PerPageProps> = ({
   const limitToUse = isNumber(limit) ? limit : defaultLimit
 
   return (
-    <div className={baseClass}>
+    <div className="per-page">
       <Popup
         button={
-          <div className={`${baseClass}__base-button`}>
+          <div className="flex items-center gap-1 cursor-pointer text-muted-foreground hover:text-foreground transition-colors">
             <span>{t('general:perPage', { limit: limitToUse })}</span>
-            &nbsp;
-            <ChevronIcon className={`${baseClass}__icon`} />
+            <ChevronIcon />
           </div>
         }
         horizontalAlign="right"
@@ -45,12 +42,10 @@ export const PerPage: React.FC<PerPageProps> = ({
           <PopupList.ButtonGroup>
             {limits.map((limitNumber, i) => (
               <PopupList.Button
-                className={[
-                  `${baseClass}__button`,
-                  limitNumber === limitToUse && `${baseClass}__button-active`,
-                ]
-                  .filter(Boolean)
-                  .join(' ')}
+                className={cn(
+                  'flex items-center gap-1',
+                  limitNumber === limitToUse && 'font-medium text-primary',
+                )}
                 key={i}
                 onClick={() => {
                   close()
@@ -59,12 +54,7 @@ export const PerPage: React.FC<PerPageProps> = ({
                   }
                 }}
               >
-                {limitNumber === limitToUse && (
-                  <div className={`${baseClass}__chevron`}>
-                    <ChevronIcon direction="right" size="small" />
-                  </div>
-                )}
-                &nbsp;
+                {limitNumber === limitToUse && <ChevronIcon direction="right" size="small" />}
                 <span>{limitNumber}</span>
               </PopupList.Button>
             ))}

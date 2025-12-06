@@ -12,6 +12,7 @@ import React from 'react'
 
 import type { UseDraggableSortableReturn } from '../../elements/DraggableSortable/useDraggableSortable/types.js'
 
+import { cn } from '@/lib/utils'
 import { ArrayAction } from '../../elements/ArrayAction/index.js'
 import { Collapsible } from '../../elements/Collapsible/index.js'
 import { ErrorPill } from '../../elements/ErrorPill/index.js'
@@ -21,9 +22,6 @@ import { RenderFields } from '../../forms/RenderFields/index.js'
 import { RowLabel } from '../../forms/RowLabel/index.js'
 import { useThrottledValue } from '../../hooks/useThrottledValue.js'
 import { useTranslation } from '../../providers/Translation/index.js'
-import './index.scss'
-
-const baseClass = 'array-field'
 
 type ArrayRowProps = {
   readonly addRow: (rowIndex: number) => Promise<void> | void
@@ -94,13 +92,6 @@ export const ArrayRow: React.FC<ArrayRowProps> = ({
 
   const fieldHasErrors = errorCount > 0 && hasSubmitted
 
-  const classNames = [
-    `${baseClass}__row`,
-    fieldHasErrors ? `${baseClass}__row--has-errors` : `${baseClass}__row--no-errors`,
-  ]
-    .filter(Boolean)
-    .join(' ')
-
   return (
     <div
       id={`${parentPath.split('.').join('-')}-row-${rowIndex}`}
@@ -119,7 +110,7 @@ export const ArrayRow: React.FC<ArrayRowProps> = ({
               addRow={addRow}
               copyRow={copyRow}
               duplicateRow={duplicateRow}
-              hasMaxRows={hasMaxRows}
+              hasMaxRows={hasMaxRows ?? false}
               index={rowIndex}
               isSortable={isSortable}
               moveRow={moveRow}
@@ -129,7 +120,7 @@ export const ArrayRow: React.FC<ArrayRowProps> = ({
             />
           ) : undefined
         }
-        className={classNames}
+        className={cn('array-row', fieldHasErrors && 'has-errors')}
         collapsibleStyle={fieldHasErrors ? 'error' : 'default'}
         dragHandleProps={
           isSortable
@@ -141,7 +132,7 @@ export const ArrayRow: React.FC<ArrayRowProps> = ({
             : undefined
         }
         header={
-          <div className={`${baseClass}__row-header`}>
+          <div className="flex items-center gap-2">
             {isLoading ? (
               <ShimmerEffect height="1rem" width="8rem" />
             ) : (
@@ -162,7 +153,7 @@ export const ArrayRow: React.FC<ArrayRowProps> = ({
           <ShimmerEffect />
         ) : (
           <RenderFields
-            className={`${baseClass}__fields`}
+            className="flex flex-col gap-4"
             fields={fields}
             forceRender={forceRender}
             margins="small"

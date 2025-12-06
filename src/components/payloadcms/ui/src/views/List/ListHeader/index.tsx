@@ -18,7 +18,6 @@ import {
 import { useConfig } from '../../../providers/Config/index.js'
 import { useListQuery } from '../../../providers/ListQuery/index.js'
 import { ListSelection } from '../ListSelection/index.js'
-import './index.scss'
 
 const drawerBaseClass = 'list-drawer'
 

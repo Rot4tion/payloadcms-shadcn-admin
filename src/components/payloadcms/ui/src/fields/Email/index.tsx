@@ -69,17 +69,19 @@ const EmailFieldComponent: EmailFieldClientComponent = (props) => {
       className={cn(fieldBaseClass, 'relative', className, (readOnly || disabled) && 'opacity-60')}
       style={styles}
     >
-      <RenderCustomComponent
-        CustomComponent={Label}
-        Fallback={
-          <FieldLabel label={label} localized={localized} path={path} required={required} />
-        }
-      />
-      <div className={`${fieldBaseClass}__wrap`}>
+      <div className="flex items-center justify-between">
+        <RenderCustomComponent
+          CustomComponent={Label}
+          Fallback={
+            <FieldLabel label={label} localized={localized} path={path} required={required} />
+          }
+        />
         <RenderCustomComponent
           CustomComponent={Error}
           Fallback={<FieldError path={path} showError={showError} />}
         />
+      </div>
+      <div className={`${fieldBaseClass}__wrap`}>
         {BeforeInput}
         <Input
           autoComplete={autoComplete}
@@ -95,11 +97,11 @@ const EmailFieldComponent: EmailFieldClientComponent = (props) => {
           className={showError ? 'border-destructive' : undefined}
         />
         {AfterInput}
+        <RenderCustomComponent
+          CustomComponent={Description}
+          Fallback={<FieldDescription description={description} path={path} />}
+        />
       </div>
-      <RenderCustomComponent
-        CustomComponent={Description}
-        Fallback={<FieldDescription description={description} path={path} />}
-      />
     </div>
   )
 }

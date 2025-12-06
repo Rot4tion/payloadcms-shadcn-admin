@@ -4,14 +4,12 @@ import React, { useState } from 'react'
 
 import type { Props } from './types.js'
 
+import { cn } from '@/lib/utils'
 import { useTheme } from '../../providers/Theme/index.js'
 import { ShimmerEffect } from '../ShimmerEffect/index.js'
 import { defaultGlobalEditorOptions, defaultOptions } from './constants.js'
-import './index.scss'
 
 const Editor = 'default' in EditorImport ? EditorImport.default : EditorImport
-
-const baseClass = 'code-editor'
 
 const CodeEditor: React.FC<Props> = (props) => {
   const {
@@ -36,14 +34,12 @@ const CodeEditor: React.FC<Props> = (props) => {
   const [dynamicHeight, setDynamicHeight] = useState(MIN_HEIGHT)
   const { theme } = useTheme()
 
-  const classes = [
-    baseClass,
+  const classes = cn(
+    'code-editor h-auto p-0 bg-muted/50 [direction:ltr]',
     className,
-    rest?.defaultLanguage ? `language--${rest.defaultLanguage}` : '',
-    readOnly && 'read-only',
-  ]
-    .filter(Boolean)
-    .join(' ')
+    rest?.defaultLanguage && `language--${rest.defaultLanguage}`,
+    readOnly && 'opacity-60',
+  )
 
   React.useEffect(() => {
     if (recalculatedHeightAt && recalculatedHeightAt > prevCalculatedHeightAt.current) {

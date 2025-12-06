@@ -34,7 +34,6 @@ import { Button } from '../../Button/index.js'
 import { ReactSelect } from '../../ReactSelect/index.js'
 import { DefaultFilter } from './DefaultFilter/index.js'
 import { getOperatorValueTypes } from './validOperators.js'
-import './index.scss'
 
 const baseClass = 'condition'
 
@@ -139,9 +138,9 @@ export const Condition: React.FC<Props> = (props) => {
 
   return (
     <div className={baseClass}>
-      <div className={`${baseClass}__wrap`}>
-        <div className={`${baseClass}__inputs`}>
-          <div className={`${baseClass}__field`}>
+      <div className="flex items-center gap-4">
+        <div className="flex grow items-center gap-4 [&>div]:flex-1 [&>div]:min-w-0">
+          <div className="[&_.field-label]:pb-0">
             <ReactSelect
               disabled={disabled}
               filterOption={(option, inputValue) =>
@@ -159,7 +158,7 @@ export const Condition: React.FC<Props> = (props) => {
               }
             />
           </div>
-          <div className={`${baseClass}__operator`}>
+          <div>
             <ReactSelect
               disabled={disabled}
               isClearable={false}
@@ -168,7 +167,7 @@ export const Condition: React.FC<Props> = (props) => {
               value={reducedField?.operators.find((o) => operator === o.value) || null}
             />
           </div>
-          <div className={`${baseClass}__value`}>
+          <div>
             {RenderedFilter || (
               <DefaultFilter
                 booleanSelect={booleanSelect}
@@ -185,10 +184,9 @@ export const Condition: React.FC<Props> = (props) => {
             )}
           </div>
         </div>
-        <div className={`${baseClass}__actions`}>
+        <div className="shrink-0 flex gap-2 [&_.btn]:align-middle [&_.btn]:m-0">
           <Button
             buttonStyle="icon-label"
-            className={`${baseClass}__actions-remove`}
             icon="x"
             iconStyle="with-border"
             onClick={() =>
@@ -201,7 +199,6 @@ export const Condition: React.FC<Props> = (props) => {
           />
           <Button
             buttonStyle="icon-label"
-            className={`${baseClass}__actions-add`}
             icon="plus"
             iconStyle="with-border"
             onClick={() =>

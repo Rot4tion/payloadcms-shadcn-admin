@@ -3,14 +3,12 @@ import React, { useState } from 'react'
 
 import type { DragHandleProps } from '../DraggableSortable/DraggableSortableItem/types.js'
 
+import { cn } from '@/lib/utils'
 import { ChevronIcon } from '../../icons/Chevron/index.js'
 import { DragHandleIcon } from '../../icons/DragHandle/index.js'
 import { useTranslation } from '../../providers/Translation/index.js'
-import './index.scss'
 import { AnimateHeight } from '../AnimateHeight/index.js'
 import { CollapsibleProvider, useCollapsible } from './provider.js'
-
-const baseClass = 'collapsible'
 
 export { CollapsibleProvider, useCollapsible }
 
@@ -69,71 +67,63 @@ export const Collapsible: React.FC<CollapsibleProps> = ({
 
   return (
     <div
-      className={[
-        baseClass,
+      className={cn(
+        'collapsible relative rounded-md',
+        // Style variants
+        collapsibleStyle === 'default' && 'border border-border hover:border-muted-foreground/50',
+        collapsibleStyle === 'error' && 'border border-destructive',
+        // State variants
+        isWithinCollapsible && 'nested',
         className,
-        dragHandleProps && `${baseClass}--has-drag-handle`,
-        isCollapsed && `${baseClass}--collapsed`,
-        isWithinCollapsible && `${baseClass}--nested`,
-        hoveringToggle && !disableHeaderToggle && `${baseClass}--hovered`,
-        `${baseClass}--style-${collapsibleStyle}`,
-      ]
-        .filter(Boolean)
-        .join(' ')}
+      )}
     >
       <CollapsibleProvider isCollapsed={isCollapsed} toggle={toggleCollapsible}>
         <div
-          className={`${baseClass}__toggle-wrap${disableHeaderToggle ? ' toggle-disabled' : ''}`}
+          className={cn(
+            'relative flex w-full items-center justify-between gap-1 rounded-t-md px-3 py-2',
+            collapsibleStyle === 'default' && 'bg-muted/50 hover:bg-muted',
+            collapsibleStyle === 'error' && 'bg-destructive/10 hover:bg-destructive/20',
+            isCollapsed && 'rounded-b-md',
+            dragHandleProps && 'pl-2',
+          )}
           onMouseEnter={() => setHoveringToggle(true)}
           onMouseLeave={() => setHoveringToggle(false)}
         >
-          {!disableHeaderToggle && (
-            <button
-              className={[
-                `${baseClass}__toggle`,
-                `${baseClass}__toggle--${isCollapsed ? 'collapsed' : 'open'}`,
-              ]
-                .filter(Boolean)
-                .join(' ')}
-              onClick={toggleCollapsible}
-              type="button"
-            >
-              <span>{t('fields:toggleBlock')}</span>
-            </button>
-          )}
-
           {dragHandleProps && (
             <div
-              className={`${baseClass}__drag`}
+              className="flex size-5 cursor-grab items-center justify-center opacity-50 hover:opacity-100"
               {...dragHandleProps.attributes}
               {...dragHandleProps.listeners}
             >
               <DragHandleIcon />
             </div>
           )}
-          {header ? (
-            <div
-              className={[
-                `${baseClass}__header-wrap`,
-                dragHandleProps && `${baseClass}__header-wrap--has-drag-handle`,
-              ]
-                .filter(Boolean)
-                .join(' ')}
+
+          {/* Clickable header area */}
+          {!disableHeaderToggle ? (
+            <button
+              className="flex flex-1 cursor-pointer items-center text-left"
+              onClick={toggleCollapsible}
+              type="button"
             >
-              {header}
-            </div>
-          ) : null}
-          <div className={`${baseClass}__actions-wrap`}>
-            {actions ? <div className={`${baseClass}__actions`}>{actions}</div> : null}
+              <span className="sr-only">{t('fields:toggleBlock')}</span>
+              {header && <div className="pointer-events-none flex-1 overflow-hidden">{header}</div>}
+            </button>
+          ) : (
+            header && <div className="flex-1 overflow-hidden">{header}</div>
+          )}
+
+          <div className="flex items-center gap-1">
+            {actions && <div className="flex items-center">{actions}</div>}
             {!disableToggleIndicator && (
-              <div className={`${baseClass}__indicator`}>
+              <div className="flex size-5 items-center justify-center">
                 <ChevronIcon direction={!isCollapsed ? 'up' : undefined} />
               </div>
             )}
           </div>
         </div>
         <AnimateHeight height={isCollapsed ? 0 : 'auto'}>
-          <div className={`${baseClass}__content`}>{children}</div>
+          <div className="rounded-b-md bg-background p-4">{children}</div>
         </AnimateHeight>
         {AfterCollapsible}
       </CollapsibleProvider>

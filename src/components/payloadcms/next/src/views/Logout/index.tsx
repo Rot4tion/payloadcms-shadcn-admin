@@ -3,9 +3,6 @@ import type { AdminViewServerProps } from 'payload'
 import React from 'react'
 
 import { LogoutClient } from './LogoutClient.js'
-import './index.scss'
-
-const baseClass = 'logout'
 
 export const LogoutView: React.FC<
   {
@@ -23,7 +20,7 @@ export const LogoutView: React.FC<
   } = initPageResult
 
   return (
-    <div className={`${baseClass}`}>
+    <div className="flex flex-col items-center flex-wrap">
       <LogoutClient
         adminRoute={adminRoute}
         inactivity={inactivity}

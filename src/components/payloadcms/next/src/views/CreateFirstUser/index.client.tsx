@@ -100,7 +100,7 @@ export const CreateFirstUserClient: React.FC<{
       validationOperation="create"
     >
       <EmailAndUsernameFields
-        className="emailAndUsername"
+        className="mb-4"
         loginWithUsername={loginWithUsername}
         operation="create"
         readOnly={false}

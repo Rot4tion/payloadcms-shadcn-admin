@@ -10,13 +10,13 @@ import CreatableSelect from 'react-select/creatable'
 import type { Option, ReactSelectAdapterProps } from './types.js'
 export type { Option } from './types.js'
 
+import { cn } from '@/lib/utils'
 import { useTranslation } from '../../providers/Translation/index.js'
 import { DraggableSortable } from '../DraggableSortable/index.js'
 import { ShimmerEffect } from '../ShimmerEffect/index.js'
 import { ClearIndicator } from './ClearIndicator/index.js'
 import { Control } from './Control/index.js'
 import { DropdownIndicator } from './DropdownIndicator/index.js'
-import './index.scss'
 import { Input } from './Input/index.js'
 import { generateMultiValueDraggableID, MultiValue } from './MultiValue/index.js'
 import { MultiValueLabel } from './MultiValueLabel/index.js'
@@ -63,15 +63,130 @@ const SelectAdapter: React.FC<ReactSelectAdapterProps> = (props) => {
 
   const loadingMessage = () => t('general:loading') + '...'
 
-  const classes = [className, 'react-select', showError && 'react-select--error']
-    .filter(Boolean)
-    .join(' ')
+  const classes = cn('react-select w-full', className, showError && 'react-select--error')
 
+  // Tailwind-based styles for react-select using CSS variables
   const styles: StylesConfig<Option> = {
-    // Remove the default react-select z-index from the menu so that our custom
-    // z-index in the "payload-default" css layer can take effect, in such a way
-    // that end users can easily override it as with other styles.
-    menu: (rsStyles) => ({ ...rsStyles, zIndex: undefined }),
+    container: (base) => ({
+      ...base,
+      width: '100%',
+    }),
+    control: (base) => ({
+      ...base,
+      width: '100%',
+      minHeight: '2.25rem',
+      backgroundColor: 'var(--color-card)',
+      borderColor: showError ? 'var(--color-destructive)' : 'var(--color-border)',
+      borderRadius: 'var(--radius)',
+      boxShadow: 'none',
+      padding: '0.125rem 0.5rem',
+      cursor: 'pointer',
+      '&:hover': {
+        borderColor: showError ? 'var(--color-destructive)' : 'var(--color-ring)',
+      },
+    }),
+    menu: (base) => ({
+      ...base,
+      zIndex: 50,
+      backgroundColor: 'var(--color-popover)',
+      borderRadius: 'var(--radius)',
+      border: '1px solid var(--color-border)',
+      boxShadow: 'var(--shadow-md)',
+      overflow: 'hidden',
+    }),
+    menuList: (base) => ({
+      ...base,
+      padding: '0.25rem',
+    }),
+    option: (base, state) => ({
+      ...base,
+      backgroundColor: state.isFocused ? 'var(--color-accent)' : 'transparent',
+      color: state.isSelected ? 'var(--color-accent-foreground)' : 'var(--color-foreground)',
+      borderRadius: 'calc(var(--radius) - 4px)',
+      padding: '0.375rem 0.5rem',
+      cursor: 'pointer',
+      fontSize: '0.875rem',
+      '&:active': {
+        backgroundColor: 'var(--color-accent)',
+      },
+    }),
+    multiValue: (base) => ({
+      ...base,
+      backgroundColor: 'var(--color-secondary)',
+      borderRadius: 'calc(var(--radius) - 4px)',
+    }),
+    multiValueLabel: (base) => ({
+      ...base,
+      color: 'var(--color-secondary-foreground)',
+      fontSize: '0.75rem',
+      padding: '0.125rem 0.25rem',
+    }),
+    multiValueRemove: (base) => ({
+      ...base,
+      color: 'var(--color-muted-foreground)',
+      '&:hover': {
+        backgroundColor: 'var(--color-destructive)',
+        color: 'var(--color-destructive-foreground)',
+      },
+    }),
+    placeholder: (base) => ({
+      ...base,
+      color: 'var(--color-muted-foreground)',
+      fontSize: '0.875rem',
+    }),
+    singleValue: (base) => ({
+      ...base,
+      color: 'var(--color-foreground)',
+      fontSize: '0.875rem',
+    }),
+    input: (base) => ({
+      ...base,
+      color: 'var(--color-foreground)',
+      fontSize: '0.875rem',
+    }),
+    indicatorSeparator: () => ({
+      display: 'none',
+    }),
+    dropdownIndicator: (base) => ({
+      ...base,
+      color: 'var(--color-muted-foreground)',
+      padding: '0 0.25rem',
+      '&:hover': {
+        color: 'var(--color-foreground)',
+      },
+    }),
+    clearIndicator: (base) => ({
+      ...base,
+      color: 'var(--color-muted-foreground)',
+      padding: '0 0.25rem',
+      '&:hover': {
+        color: 'var(--color-foreground)',
+      },
+    }),
+    noOptionsMessage: (base) => ({
+      ...base,
+      color: 'var(--color-muted-foreground)',
+      fontSize: '0.875rem',
+      padding: '0.5rem',
+    }),
+    loadingMessage: (base) => ({
+      ...base,
+      color: 'var(--color-muted-foreground)',
+      fontSize: '0.875rem',
+    }),
+    groupHeading: (base) => ({
+      ...base,
+      color: 'var(--color-muted-foreground)',
+      fontSize: '0.75rem',
+      fontWeight: 500,
+      padding: '0.25rem 0.5rem',
+      textTransform: 'uppercase',
+    }),
+    valueContainer: (base) => ({
+      ...base,
+      padding: '0',
+      gap: '0.25rem',
+    }),
   }
 
   if (!hasMounted) {
@@ -114,7 +229,6 @@ const SelectAdapter: React.FC<ReactSelectAdapterProps> = (props) => {
         options={options}
         placeholder={getTranslation(placeholder, i18n)}
         styles={styles}
-        unstyled={true}
         value={value}
       />
     )
@@ -192,7 +306,6 @@ const SelectAdapter: React.FC<ReactSelectAdapterProps> = (props) => {
       options={options}
       placeholder={getTranslation(placeholder, i18n)}
       styles={styles}
-      unstyled={true}
       value={value}
     />
   )
