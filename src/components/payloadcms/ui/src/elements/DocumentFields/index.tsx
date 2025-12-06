@@ -58,8 +58,8 @@ export const DocumentFields: React.FC<Args> = ({
         // On mid-break (< 1024px): display: block (stacked)
         'w-full flex max-lg:block',
         forceSidebarWrap && 'block isolate',
-        // Prevent group-field negative margins from overflowing
-        'overflow-hidden',
+        // Prevent group-field negative margins from overflowing horizontally only
+        'overflow-x-hidden',
       )}
     >
       {/* Main content area */}
@@ -77,7 +77,7 @@ export const DocumentFields: React.FC<Args> = ({
         <div
           className={cn(
             // Base padding and grow
-            'grow overflow-hidden',
+            'grow overflow-x-hidden',
             // With sidebar: border-right
             hasSidebarFields && 'border-r border-border',
             // Force wrap or mid-break: no border

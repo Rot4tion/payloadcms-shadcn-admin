@@ -4,9 +4,7 @@ import React, { Fragment } from 'react'
 import { useDocumentInfo } from '@payloadcms/ui'
 import { useDocumentTitle } from '../../providers/DocumentTitle/index.js'
 import { IDLabel } from '../IDLabel/index.js'
-import './index.scss'
-
-const baseClass = 'render-title'
+import { cn } from '@/lib/utils'
 
 export type RenderTitleProps = {
   className?: string
@@ -33,9 +31,16 @@ export const RenderTitle: React.FC<RenderTitleProps> = (props) => {
 
   return (
     <Tag
-      className={[className, baseClass, idAsTitle && `${baseClass}--has-id`]
-        .filter(Boolean)
-        .join(' ')}
+      className={cn(
+        // Base styles - inline-block
+        'inline-block',
+        // h1 styles from PayloadCMS type.scss: font-size: base(1.6)=32px, line-height: base(1.8)=36px
+        // On small screens: font-size: base(1.25)=25px
+        // Use leading-normal to prevent clipping of brackets []
+        element === 'h1' &&
+          'text-[32px] leading-normal font-medium max-sm:text-[25px] max-sm:tracking-tight',
+        className,
+      )}
       data-doc-id={id}
       title={title}
     >
@@ -43,7 +48,11 @@ export const RenderTitle: React.FC<RenderTitleProps> = (props) => {
         EmptySpace
       ) : (
         <Fragment>
-          {idAsTitle ? <IDLabel className={`${baseClass}__id`} id={id} /> : title || EmptySpace}
+          {idAsTitle ? (
+            <IDLabel className="align-middle relative" id={id ?? ''} />
+          ) : (
+            title || EmptySpace
+          )}
         </Fragment>
       )}
     </Tag>
