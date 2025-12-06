@@ -1,10 +1,7 @@
 'use client'
 import { Button, Gutter, useConfig, useStepNav, useTranslation } from '@payloadcms-local/ui'
+import { cn } from '@/lib/utils'
 import React, { useEffect } from 'react'
-
-import './index.scss'
-
-const baseClass = 'not-found'
 
 export const NotFoundClient: React.FC<{
   marginTop?: 'large'
@@ -30,16 +27,18 @@ export const NotFoundClient: React.FC<{
 
   return (
     <div
-      className={[baseClass, marginTop && `${baseClass}--margin-top-${marginTop}`]
-        .filter(Boolean)
-        .join(' ')}
+      className={cn(
+        'flex mt-[var(--base)] max-md:mt-[calc(var(--base)/2)]',
+        marginTop === 'large' &&
+          'mt-[calc(var(--base)*2)] max-xl:mt-[var(--base)] max-md:mt-[calc(var(--base)/2)]',
+      )}
     >
-      <Gutter className={`${baseClass}__wrap`}>
-        <div className={`${baseClass}__content`}>
+      <Gutter className="flex flex-col items-start gap-4 max-w-[720px]">
+        <div className="flex flex-col gap-2 [&>*]:m-0">
           <h1>{t('general:nothingFound')}</h1>
           <p>{t('general:sorryNotFound')}</p>
         </div>
-        <Button className={`${baseClass}__button`} el="link" size="large" to={adminRoute}>
+        <Button className="m-0" el="link" size="large" to={adminRoute}>
           {t('general:backToDashboard')}
         </Button>
       </Gutter>

@@ -12,7 +12,6 @@ import { useConfig } from '@payloadcms/ui'
 import { useLocale } from '@payloadcms/ui'
 import { useTranslation } from '@payloadcms/ui'
 import { mergeFieldStyles } from '../mergeFieldStyles.js'
-import './index.scss'
 import { isFieldRTL } from '../shared/index.js'
 import { TextareaInput } from './Input.js'
 

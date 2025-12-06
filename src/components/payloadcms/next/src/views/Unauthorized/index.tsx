@@ -5,9 +5,6 @@ import { formatAdminURL } from 'payload/shared'
 import React from 'react'
 
 import { FormHeader } from '../../elements/FormHeader/index.js'
-import './index.scss'
-
-const baseClass = 'unauthorized'
 
 export function UnauthorizedView({ initPageResult }: AdminViewServerProps) {
   const {
@@ -27,7 +24,7 @@ export function UnauthorizedView({ initPageResult }: AdminViewServerProps) {
   } = initPageResult
 
   return (
-    <div className={baseClass}>
+    <div>
       <FormHeader
         description={i18n.t('error:notAllowedToAccessPage')}
         heading={i18n.t(
@@ -35,7 +32,7 @@ export function UnauthorizedView({ initPageResult }: AdminViewServerProps) {
         )}
       />
       <Button
-        className={`${baseClass}__button`}
+        className="m-0"
         el="link"
         size="large"
         to={formatAdminURL({
@@ -51,7 +48,7 @@ export function UnauthorizedView({ initPageResult }: AdminViewServerProps) {
 
 export const UnauthorizedViewWithGutter = (props: AdminViewServerProps) => {
   return (
-    <Gutter className={[baseClass, `${baseClass}--with-gutter`].join(' ')}>
+    <Gutter className="mt-[var(--base)]">
       <UnauthorizedView {...props} />
     </Gutter>
   )

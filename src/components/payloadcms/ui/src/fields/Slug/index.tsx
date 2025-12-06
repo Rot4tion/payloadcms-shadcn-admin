@@ -12,7 +12,6 @@ import { useServerFunctions } from '@payloadcms/ui'
 import { useTranslation } from '@payloadcms/ui'
 import { FieldLabel } from '../FieldLabel/index.js'
 import { TextInput } from '../Text/index.js'
-import './index.scss'
 
 /**
  * @experimental This component is experimental and may change or be removed in the future. Use at your own risk.
@@ -76,17 +75,19 @@ export const SlugField: React.FC<SlugFieldClientProps> = ({
   }, [])
 
   return (
-    <div className="field-type slug-field-component">
-      <div className="label-wrapper">
+    <div className="field-type w-full">
+      <div className="flex items-center justify-between gap-[calc(var(--base)/2)]">
         <FieldLabel htmlFor={`field-${path}`} label={label} />
-        {!isLocked && (
-          <Button buttonStyle="none" className="lock-button" onClick={handleGenerate}>
-            {t('authentication:generate')}
+        <div className="flex items-center gap-1">
+          {!isLocked && (
+            <Button buttonStyle="none" className="m-0 pb-1.25" onClick={handleGenerate}>
+              {t('authentication:generate')}
+            </Button>
+          )}
+          <Button buttonStyle="none" className="m-0 pb-1.25" onClick={toggleLock}>
+            {isLocked ? t('general:unlock') : t('general:lock')}
           </Button>
-        )}
-        <Button buttonStyle="none" className="lock-button" onClick={toggleLock}>
-          {isLocked ? t('general:unlock') : t('general:lock')}
-        </Button>
+        </div>
       </div>
       <TextInput
         onChange={setValue}

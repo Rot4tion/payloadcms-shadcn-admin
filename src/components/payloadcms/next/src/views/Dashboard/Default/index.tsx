@@ -9,11 +9,10 @@ import React, { Fragment } from 'react'
 import Link from 'next/link'
 import { Plus, Lock } from 'lucide-react'
 
+import { cn } from '@/lib/utils'
 import { Card, CardHeader, CardTitle, CardAction } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
-
-import './index.scss'
 
 export type DashboardViewClientProps = {
   locale: Locale
@@ -59,9 +58,8 @@ export function DefaultDashboard(props: DashboardViewServerProps) {
   } = props
 
   return (
-    <div className="dashboard">
-      {/* dashboard__wrap - SCSS handles padding and gap with CSS variables */}
-      <div className="dashboard__wrap" style={{ paddingInline: 'var(--gutter-h)' }}>
+    <div className="w-full">
+      <div className="px-[var(--gutter-h)] pb-[var(--spacing-view-bottom)] flex flex-col gap-[var(--base)]">
         {beforeDashboard &&
           RenderServerComponent({
             Component: beforeDashboard,
@@ -83,10 +81,14 @@ export function DefaultDashboard(props: DashboardViewServerProps) {
           ) : (
             navGroups.map(({ entities, label }, groupIndex) => {
               return (
-                <div className="dashboard__group" key={groupIndex}>
-                  <h2 className="dashboard__label">{label}</h2>
-                  {/* dashboard__card-list - SCSS handles responsive grid columns */}
-                  <ul className="dashboard__card-list">
+                <div className="flex flex-col gap-[var(--base)]" key={groupIndex}>
+                  <h2 className="m-0">{label}</h2>
+                  <ul
+                    className={cn(
+                      'p-0 m-0 list-none grid gap-[var(--base)]',
+                      'grid-cols-5 max-xl:grid-cols-4 max-lg:grid-cols-2 max-sm:grid-cols-1',
+                    )}
+                  >
                     {entities.map(({ slug, type, label }, entityIndex) => {
                       let title: string = ''
                       let buttonAriaLabel: string = ''

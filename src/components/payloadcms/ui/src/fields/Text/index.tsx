@@ -13,7 +13,6 @@ import { useLocale } from '@payloadcms/ui'
 import { mergeFieldStyles } from '../mergeFieldStyles.js'
 import { isFieldRTL } from '../shared/index.js'
 import { TextInput } from './Input.js'
-import './index.scss'
 
 export { TextInput, TextInputProps }
 
