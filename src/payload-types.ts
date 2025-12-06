@@ -277,6 +277,222 @@ export interface Test {
   tab1Text?: string | null;
   tab2Text?: string | null;
   tab2Number?: number | null;
+  /**
+   * Full width (100%)
+   */
+  widthFull?: string | null;
+  /**
+   * Half width (50%)
+   */
+  widthHalf1?: string | null;
+  /**
+   * Half width (50%)
+   */
+  widthHalf2?: string | null;
+  /**
+   * 1/3 width
+   */
+  widthThird1?: string | null;
+  /**
+   * 1/3 width
+   */
+  widthThird2?: string | null;
+  /**
+   * 1/3 width
+   */
+  widthThird3?: string | null;
+  /**
+   * 1/4 width
+   */
+  widthQuarter1?: string | null;
+  /**
+   * 1/4 width
+   */
+  widthQuarter2?: string | null;
+  /**
+   * 1/4 width
+   */
+  widthQuarter3?: string | null;
+  /**
+   * 1/4 width
+   */
+  widthQuarter4?: string | null;
+  /**
+   * 70% width
+   */
+  widthMixed1?: string | null;
+  /**
+   * 30% width
+   */
+  widthMixed2?: string | null;
+  /**
+   * This field appears in sidebar
+   */
+  sidebarField?: string | null;
+  /**
+   * Status in sidebar
+   */
+  sidebarSelect?: ('draft' | 'published' | 'archived') | null;
+  /**
+   * Featured toggle in sidebar
+   */
+  sidebarCheckbox?: boolean | null;
+  /**
+   * Publish date in sidebar
+   */
+  sidebarDate?: string | null;
+  /**
+   * Check to show conditional fields below
+   */
+  showConditional?: boolean | null;
+  /**
+   * This field only shows when checkbox above is checked
+   */
+  conditionalText?: string | null;
+  /**
+   * Conditional select field
+   */
+  conditionalSelect?: ('condA' | 'condB') | null;
+  conditionalCollapsibleText?: string | null;
+  /**
+   * Read only text field
+   */
+  readOnlyText?: string | null;
+  /**
+   * Read only number field
+   */
+  readOnlyNumber?: number | null;
+  /**
+   * Read only select field
+   */
+  readOnlySelect?: ('optionA' | 'optionB') | null;
+  /**
+   * This field is hidden in admin
+   */
+  hiddenField?: string | null;
+  /**
+   * Field with custom styles
+   */
+  styledField?: string | null;
+  /**
+   * Field with custom className
+   */
+  customClassField?: string | null;
+  /**
+   * Disabled text field
+   */
+  disabledText?: string | null;
+  /**
+   * Field with placeholder
+   */
+  placeholderText?: string | null;
+  /**
+   * Textarea with placeholder
+   */
+  placeholderTextarea?: string | null;
+  outerText?: string | null;
+  innerText1?: string | null;
+  innerNumber1?: number | null;
+  innerText2?: string | null;
+  innerRowField1?: string | null;
+  innerRowField2?: string | null;
+  layoutTabField1?: string | null;
+  layoutTabField2?: string | null;
+  tabCollapsibleText?: string | null;
+  subTabAText?: string | null;
+  subTabBText?: string | null;
+  namedTab?: {
+    /**
+     * This tab has a name property
+     */
+    namedTabField?: string | null;
+  };
+  /**
+   * Group with complex layout inside
+   */
+  layoutGroup?: {
+    groupRowField1?: string | null;
+    groupRowField2?: string | null;
+    groupRowField3?: string | null;
+    groupCollapsibleText?: string | null;
+  };
+  /**
+   * Array with complex layout in each row
+   */
+  layoutArray?:
+    | {
+        arrayLayoutField1?: string | null;
+        arrayLayoutField2?: number | null;
+        arrayLayoutField3?: ('active' | 'inactive') | null;
+        arrayCheckbox1?: boolean | null;
+        arrayCheckbox2?: boolean | null;
+        arrayCheckbox3?: boolean | null;
+        arrayItemDetails?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  /**
+   * Blocks with various layouts
+   */
+  layoutBlocks?:
+    | (
+        | {
+            leftColumn?: string | null;
+            rightColumn?: string | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'twoColumnBlock';
+          }
+        | {
+            col1?: string | null;
+            col2?: string | null;
+            col3?: string | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'threeColumnBlock';
+          }
+        | {
+            blockTitle?: string | null;
+            blockContent?: {
+              root: {
+                type: string;
+                children: {
+                  type: any;
+                  version: number;
+                  [k: string]: unknown;
+                }[];
+                direction: ('ltr' | 'rtl') | null;
+                format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+                indent: number;
+                version: number;
+              };
+              [k: string]: unknown;
+            } | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'collapsibleBlock';
+          }
+        | {
+            tabbedContent?: string | null;
+            tabbedSettings?:
+              | {
+                  [k: string]: unknown;
+                }
+              | unknown[]
+              | string
+              | number
+              | boolean
+              | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'tabbedBlock';
+          }
+      )[]
+    | null;
+  /**
+   * Text with autoComplete=email
+   */
+  autoCompleteText?: string | null;
   updatedAt: string;
   createdAt: string;
 }
@@ -471,6 +687,109 @@ export interface TestsSelect<T extends boolean = true> {
   tab1Text?: T;
   tab2Text?: T;
   tab2Number?: T;
+  widthFull?: T;
+  widthHalf1?: T;
+  widthHalf2?: T;
+  widthThird1?: T;
+  widthThird2?: T;
+  widthThird3?: T;
+  widthQuarter1?: T;
+  widthQuarter2?: T;
+  widthQuarter3?: T;
+  widthQuarter4?: T;
+  widthMixed1?: T;
+  widthMixed2?: T;
+  sidebarField?: T;
+  sidebarSelect?: T;
+  sidebarCheckbox?: T;
+  sidebarDate?: T;
+  showConditional?: T;
+  conditionalText?: T;
+  conditionalSelect?: T;
+  conditionalCollapsibleText?: T;
+  readOnlyText?: T;
+  readOnlyNumber?: T;
+  readOnlySelect?: T;
+  hiddenField?: T;
+  styledField?: T;
+  customClassField?: T;
+  disabledText?: T;
+  placeholderText?: T;
+  placeholderTextarea?: T;
+  outerText?: T;
+  innerText1?: T;
+  innerNumber1?: T;
+  innerText2?: T;
+  innerRowField1?: T;
+  innerRowField2?: T;
+  layoutTabField1?: T;
+  layoutTabField2?: T;
+  tabCollapsibleText?: T;
+  subTabAText?: T;
+  subTabBText?: T;
+  namedTab?:
+    | T
+    | {
+        namedTabField?: T;
+      };
+  layoutGroup?:
+    | T
+    | {
+        groupRowField1?: T;
+        groupRowField2?: T;
+        groupRowField3?: T;
+        groupCollapsibleText?: T;
+      };
+  layoutArray?:
+    | T
+    | {
+        arrayLayoutField1?: T;
+        arrayLayoutField2?: T;
+        arrayLayoutField3?: T;
+        arrayCheckbox1?: T;
+        arrayCheckbox2?: T;
+        arrayCheckbox3?: T;
+        arrayItemDetails?: T;
+        id?: T;
+      };
+  layoutBlocks?:
+    | T
+    | {
+        twoColumnBlock?:
+          | T
+          | {
+              leftColumn?: T;
+              rightColumn?: T;
+              id?: T;
+              blockName?: T;
+            };
+        threeColumnBlock?:
+          | T
+          | {
+              col1?: T;
+              col2?: T;
+              col3?: T;
+              id?: T;
+              blockName?: T;
+            };
+        collapsibleBlock?:
+          | T
+          | {
+              blockTitle?: T;
+              blockContent?: T;
+              id?: T;
+              blockName?: T;
+            };
+        tabbedBlock?:
+          | T
+          | {
+              tabbedContent?: T;
+              tabbedSettings?: T;
+              id?: T;
+              blockName?: T;
+            };
+      };
+  autoCompleteText?: T;
   updatedAt?: T;
   createdAt?: T;
 }

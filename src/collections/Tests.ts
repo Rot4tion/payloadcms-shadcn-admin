@@ -345,5 +345,693 @@ export const Tests: CollectionConfig = {
         },
       ],
     },
+
+    // ===== LAYOUT CONFIG TESTS =====
+
+    // --- Field Width Variations ---
+    {
+      type: 'row',
+      fields: [
+        {
+          name: 'widthFull',
+          type: 'text',
+          admin: {
+            width: '100%',
+            description: 'Full width (100%)',
+          },
+        },
+      ],
+    },
+    {
+      type: 'row',
+      fields: [
+        {
+          name: 'widthHalf1',
+          type: 'text',
+          admin: {
+            width: '50%',
+            description: 'Half width (50%)',
+          },
+        },
+        {
+          name: 'widthHalf2',
+          type: 'text',
+          admin: {
+            width: '50%',
+            description: 'Half width (50%)',
+          },
+        },
+      ],
+    },
+    {
+      type: 'row',
+      fields: [
+        {
+          name: 'widthThird1',
+          type: 'text',
+          admin: {
+            width: '33%',
+            description: '1/3 width',
+          },
+        },
+        {
+          name: 'widthThird2',
+          type: 'text',
+          admin: {
+            width: '33%',
+            description: '1/3 width',
+          },
+        },
+        {
+          name: 'widthThird3',
+          type: 'text',
+          admin: {
+            width: '33%',
+            description: '1/3 width',
+          },
+        },
+      ],
+    },
+    {
+      type: 'row',
+      fields: [
+        {
+          name: 'widthQuarter1',
+          type: 'text',
+          admin: {
+            width: '25%',
+            description: '1/4 width',
+          },
+        },
+        {
+          name: 'widthQuarter2',
+          type: 'text',
+          admin: {
+            width: '25%',
+            description: '1/4 width',
+          },
+        },
+        {
+          name: 'widthQuarter3',
+          type: 'text',
+          admin: {
+            width: '25%',
+            description: '1/4 width',
+          },
+        },
+        {
+          name: 'widthQuarter4',
+          type: 'text',
+          admin: {
+            width: '25%',
+            description: '1/4 width',
+          },
+        },
+      ],
+    },
+    {
+      type: 'row',
+      fields: [
+        {
+          name: 'widthMixed1',
+          type: 'text',
+          admin: {
+            width: '70%',
+            description: '70% width',
+          },
+        },
+        {
+          name: 'widthMixed2',
+          type: 'text',
+          admin: {
+            width: '30%',
+            description: '30% width',
+          },
+        },
+      ],
+    },
+
+    // --- Sidebar Position ---
+    {
+      name: 'sidebarField',
+      type: 'text',
+      admin: {
+        position: 'sidebar',
+        description: 'This field appears in sidebar',
+      },
+    },
+    {
+      name: 'sidebarSelect',
+      type: 'select',
+      options: [
+        { label: 'Draft', value: 'draft' },
+        { label: 'Published', value: 'published' },
+        { label: 'Archived', value: 'archived' },
+      ],
+      admin: {
+        position: 'sidebar',
+        description: 'Status in sidebar',
+      },
+    },
+    {
+      name: 'sidebarCheckbox',
+      type: 'checkbox',
+      admin: {
+        position: 'sidebar',
+        description: 'Featured toggle in sidebar',
+      },
+    },
+    {
+      name: 'sidebarDate',
+      type: 'date',
+      admin: {
+        position: 'sidebar',
+        description: 'Publish date in sidebar',
+      },
+    },
+
+    // --- Conditional Fields ---
+    {
+      name: 'showConditional',
+      type: 'checkbox',
+      admin: {
+        description: 'Check to show conditional fields below',
+      },
+    },
+    {
+      name: 'conditionalText',
+      type: 'text',
+      admin: {
+        condition: (data) => data.showConditional === true,
+        description: 'This field only shows when checkbox above is checked',
+      },
+    },
+    {
+      name: 'conditionalSelect',
+      type: 'select',
+      options: [
+        { label: 'Conditional A', value: 'condA' },
+        { label: 'Conditional B', value: 'condB' },
+      ],
+      admin: {
+        condition: (data) => data.showConditional === true,
+        description: 'Conditional select field',
+      },
+    },
+    {
+      type: 'collapsible',
+      label: 'Conditional Collapsible',
+      admin: {
+        condition: (data) => data.showConditional === true,
+      },
+      fields: [
+        {
+          name: 'conditionalCollapsibleText',
+          type: 'text',
+        },
+      ],
+    },
+
+    // --- Read Only Fields ---
+    {
+      name: 'readOnlyText',
+      type: 'text',
+      defaultValue: 'This is read only',
+      admin: {
+        readOnly: true,
+        description: 'Read only text field',
+      },
+    },
+    {
+      name: 'readOnlyNumber',
+      type: 'number',
+      defaultValue: 42,
+      admin: {
+        readOnly: true,
+        description: 'Read only number field',
+      },
+    },
+    {
+      name: 'readOnlySelect',
+      type: 'select',
+      defaultValue: 'optionA',
+      options: [
+        { label: 'Option A', value: 'optionA' },
+        { label: 'Option B', value: 'optionB' },
+      ],
+      admin: {
+        readOnly: true,
+        description: 'Read only select field',
+      },
+    },
+
+    // --- Hidden Fields ---
+    {
+      name: 'hiddenField',
+      type: 'text',
+      defaultValue: 'hidden value',
+      admin: {
+        hidden: true,
+        description: 'This field is hidden in admin',
+      },
+    },
+
+    // --- Custom Styles ---
+    {
+      name: 'styledField',
+      type: 'text',
+      admin: {
+        style: {
+          backgroundColor: '#f0f9ff',
+        },
+        description: 'Field with custom styles',
+      },
+    },
+    {
+      name: 'customClassField',
+      type: 'text',
+      admin: {
+        className: 'custom-test-class',
+        description: 'Field with custom className',
+      },
+    },
+
+    // --- Disabled Fields ---
+    {
+      name: 'disabledText',
+      type: 'text',
+      admin: {
+        disabled: true,
+        description: 'Disabled text field',
+      },
+    },
+
+    // --- Placeholder ---
+    {
+      name: 'placeholderText',
+      type: 'text',
+      admin: {
+        placeholder: 'Enter your text here...',
+        description: 'Field with placeholder',
+      },
+    },
+    {
+      name: 'placeholderTextarea',
+      type: 'textarea',
+      admin: {
+        placeholder: 'Write a long description here...',
+        description: 'Textarea with placeholder',
+      },
+    },
+
+    // --- Nested Collapsibles ---
+    {
+      type: 'collapsible',
+      label: 'Outer Collapsible',
+      admin: {
+        initCollapsed: false,
+      },
+      fields: [
+        {
+          name: 'outerText',
+          type: 'text',
+        },
+        {
+          type: 'collapsible',
+          label: 'Inner Collapsible 1',
+          admin: {
+            initCollapsed: true,
+          },
+          fields: [
+            {
+              name: 'innerText1',
+              type: 'text',
+            },
+            {
+              name: 'innerNumber1',
+              type: 'number',
+            },
+          ],
+        },
+        {
+          type: 'collapsible',
+          label: 'Inner Collapsible 2',
+          admin: {
+            initCollapsed: true,
+          },
+          fields: [
+            {
+              name: 'innerText2',
+              type: 'text',
+            },
+            {
+              type: 'row',
+              fields: [
+                {
+                  name: 'innerRowField1',
+                  type: 'text',
+                  admin: { width: '50%' },
+                },
+                {
+                  name: 'innerRowField2',
+                  type: 'text',
+                  admin: { width: '50%' },
+                },
+              ],
+            },
+          ],
+        },
+      ],
+    },
+
+    // --- Nested Tabs ---
+    {
+      type: 'tabs',
+      tabs: [
+        {
+          label: 'Layout Tab',
+          description: 'Tab with layout fields',
+          fields: [
+            {
+              type: 'row',
+              fields: [
+                {
+                  name: 'layoutTabField1',
+                  type: 'text',
+                  admin: { width: '50%' },
+                },
+                {
+                  name: 'layoutTabField2',
+                  type: 'text',
+                  admin: { width: '50%' },
+                },
+              ],
+            },
+            {
+              type: 'collapsible',
+              label: 'Collapsible in Tab',
+              fields: [
+                {
+                  name: 'tabCollapsibleText',
+                  type: 'text',
+                },
+              ],
+            },
+          ],
+        },
+        {
+          label: 'Nested Tab',
+          description: 'Tab with nested tabs',
+          fields: [
+            {
+              type: 'tabs',
+              tabs: [
+                {
+                  label: 'Sub Tab A',
+                  fields: [
+                    {
+                      name: 'subTabAText',
+                      type: 'text',
+                    },
+                  ],
+                },
+                {
+                  label: 'Sub Tab B',
+                  fields: [
+                    {
+                      name: 'subTabBText',
+                      type: 'text',
+                    },
+                  ],
+                },
+              ],
+            },
+          ],
+        },
+        {
+          label: 'Named Tab',
+          name: 'namedTab',
+          fields: [
+            {
+              name: 'namedTabField',
+              type: 'text',
+              admin: {
+                description: 'This tab has a name property',
+              },
+            },
+          ],
+        },
+      ],
+    },
+
+    // --- Complex Group with Layout ---
+    {
+      name: 'layoutGroup',
+      type: 'group',
+      admin: {
+        description: 'Group with complex layout inside',
+      },
+      fields: [
+        {
+          type: 'row',
+          fields: [
+            {
+              name: 'groupRowField1',
+              type: 'text',
+              admin: { width: '33%' },
+            },
+            {
+              name: 'groupRowField2',
+              type: 'text',
+              admin: { width: '33%' },
+            },
+            {
+              name: 'groupRowField3',
+              type: 'text',
+              admin: { width: '33%' },
+            },
+          ],
+        },
+        {
+          type: 'collapsible',
+          label: 'Group Collapsible',
+          fields: [
+            {
+              name: 'groupCollapsibleText',
+              type: 'textarea',
+            },
+          ],
+        },
+      ],
+    },
+
+    // --- Array with Layout ---
+    {
+      name: 'layoutArray',
+      type: 'array',
+      admin: {
+        description: 'Array with complex layout in each row',
+      },
+      fields: [
+        {
+          type: 'row',
+          fields: [
+            {
+              name: 'arrayLayoutField1',
+              type: 'text',
+              admin: { width: '40%' },
+            },
+            {
+              name: 'arrayLayoutField2',
+              type: 'number',
+              admin: { width: '30%' },
+            },
+            {
+              name: 'arrayLayoutField3',
+              type: 'select',
+              options: [
+                { label: 'Active', value: 'active' },
+                { label: 'Inactive', value: 'inactive' },
+              ],
+              admin: { width: '30%' },
+            },
+          ],
+        },
+        {
+          type: 'row',
+          fields: [
+            {
+              name: 'arrayCheckbox1',
+              type: 'checkbox',
+              admin: { width: '33%' },
+            },
+            {
+              name: 'arrayCheckbox2',
+              type: 'checkbox',
+              admin: { width: '33%' },
+            },
+            {
+              name: 'arrayCheckbox3',
+              type: 'checkbox',
+              admin: { width: '33%' },
+            },
+          ],
+        },
+        {
+          type: 'collapsible',
+          label: 'Array Item Details',
+          admin: {
+            initCollapsed: true,
+          },
+          fields: [
+            {
+              name: 'arrayItemDetails',
+              type: 'textarea',
+            },
+          ],
+        },
+      ],
+    },
+
+    // --- Blocks with Layout ---
+    {
+      name: 'layoutBlocks',
+      type: 'blocks',
+      admin: {
+        description: 'Blocks with various layouts',
+      },
+      blocks: [
+        {
+          slug: 'twoColumnBlock',
+          labels: {
+            singular: 'Two Column Block',
+            plural: 'Two Column Blocks',
+          },
+          fields: [
+            {
+              type: 'row',
+              fields: [
+                {
+                  name: 'leftColumn',
+                  type: 'textarea',
+                  admin: { width: '50%' },
+                },
+                {
+                  name: 'rightColumn',
+                  type: 'textarea',
+                  admin: { width: '50%' },
+                },
+              ],
+            },
+          ],
+        },
+        {
+          slug: 'threeColumnBlock',
+          labels: {
+            singular: 'Three Column Block',
+            plural: 'Three Column Blocks',
+          },
+          fields: [
+            {
+              type: 'row',
+              fields: [
+                {
+                  name: 'col1',
+                  type: 'text',
+                  admin: { width: '33%' },
+                },
+                {
+                  name: 'col2',
+                  type: 'text',
+                  admin: { width: '33%' },
+                },
+                {
+                  name: 'col3',
+                  type: 'text',
+                  admin: { width: '33%' },
+                },
+              ],
+            },
+          ],
+        },
+        {
+          slug: 'collapsibleBlock',
+          labels: {
+            singular: 'Collapsible Block',
+            plural: 'Collapsible Blocks',
+          },
+          fields: [
+            {
+              name: 'blockTitle',
+              type: 'text',
+            },
+            {
+              type: 'collapsible',
+              label: 'Block Content',
+              fields: [
+                {
+                  name: 'blockContent',
+                  type: 'richText',
+                },
+              ],
+            },
+          ],
+        },
+        {
+          slug: 'tabbedBlock',
+          labels: {
+            singular: 'Tabbed Block',
+            plural: 'Tabbed Blocks',
+          },
+          fields: [
+            {
+              type: 'tabs',
+              tabs: [
+                {
+                  label: 'Content',
+                  fields: [
+                    {
+                      name: 'tabbedContent',
+                      type: 'textarea',
+                    },
+                  ],
+                },
+                {
+                  label: 'Settings',
+                  fields: [
+                    {
+                      name: 'tabbedSettings',
+                      type: 'json',
+                    },
+                  ],
+                },
+              ],
+            },
+          ],
+        },
+      ],
+    },
+
+    // --- UI Field ---
+    // Commented out - requires a proper component path string, not inline function
+    // {
+    //   name: 'uiDivider',
+    //   type: 'ui',
+    //   admin: {
+    //     components: {
+    //       Field: '@/components/UIDivider#UIDivider',
+    //     },
+    //   },
+    // },
+
+    // --- Auto-complete ---
+    {
+      name: 'autoCompleteText',
+      type: 'text',
+      admin: {
+        autoComplete: 'email',
+        description: 'Text with autoComplete=email',
+      },
+    },
   ],
 }

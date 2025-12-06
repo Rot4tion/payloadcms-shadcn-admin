@@ -131,7 +131,12 @@ const NumberFieldComponent: NumberFieldClientComponent = (props) => {
 
   return (
     <div
-      className={cn(fieldBaseClass, 'relative', className, (readOnly || disabled) && 'opacity-60')}
+      className={cn(
+        fieldBaseClass,
+        'relative flex flex-col gap-2',
+        className,
+        (readOnly || disabled) && 'opacity-60',
+      )}
       style={styles}
     >
       <div className="flex items-center justify-between">
