@@ -272,12 +272,13 @@ Before committing converted component:
 | RichText, Row, Upload | ✅ Done |
 | Select, Slug, Tabs, Text, Textarea | ✅ Done |
 
-### Phase 4: Layout & Views 🔄
+### Phase 4: Layout & Views ✅
 | Component | Status |
 |-----------|--------|
-| DefaultTemplate | 🔄 Partial |
-| Nav, NavWrapper, NavHamburger | 🔄 Partial |
-| DocumentHeader, DocumentFields | ✅ Done |
+| DefaultTemplate, Wrapper | ✅ Done |
+| Nav, NavWrapper, NavHamburger | ✅ Done |
+| DocumentHeader, DocumentTabs, Tab | ✅ Done |
+| FormHeader | ✅ Done |
 | DocumentControls | ⏳ Keep SCSS (complex) |
 | Login, List, Document views | ✅ Done |
 | Dashboard, NotFound, Unauthorized | ✅ Done |

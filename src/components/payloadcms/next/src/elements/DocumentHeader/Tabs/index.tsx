@@ -13,9 +13,7 @@ import React from 'react'
 import { ShouldRenderTabs } from './ShouldRenderTabs.js'
 import { DefaultDocumentTab } from './Tab/index.js'
 import { getTabs } from './tabs/index.js'
-import './index.scss'
-
-const baseClass = 'doc-tabs'
+import { cn } from '@/lib/utils'
 
 export const DocumentTabs: React.FC<{
   collectionConfig: SanitizedCollectionConfig
@@ -30,11 +28,35 @@ export const DocumentTabs: React.FC<{
     globalConfig,
   })
 
+  /**
+   * DocumentTabs - Converted to TailwindCSS
+   *
+   * Original SCSS doc-tabs:
+   * - display: flex
+   * - __tabs: flex, gap: base/2, list-style: none, items-center, m-0, pl-0
+   * - @mid-break: w-full, p-0, overflow-auto, scrollbar-hidden
+   * - ::after gradient overlay on mid-break
+   */
   return (
     <ShouldRenderTabs>
-      <div className={baseClass}>
-        <div className={`${baseClass}__tabs-container`}>
-          <ul className={`${baseClass}__tabs`}>
+      {/* doc-tabs */}
+      <div
+        className={cn(
+          'flex',
+          // mid-break: w-full, p-0, overflow-auto, hide scrollbar
+          'max-lg:w-full max-lg:p-0 max-lg:overflow-auto max-lg:scrollbar-none max-lg:[&::-webkit-scrollbar]:hidden',
+        )}
+      >
+        {/* doc-tabs__tabs-container */}
+        <div className="max-md:mr-(--gutter-h)">
+          {/* doc-tabs__tabs */}
+          <ul
+            className={cn(
+              'flex items-center list-none m-0 pl-0',
+              'max-lg:p-0 max-md:gap-(--gutter-h)',
+            )}
+            style={{ gap: 'calc(var(--base) / 2)' }}
+          >
             {tabs?.map(({ tab: tabConfig, viewPath }, index) => {
               const { condition } = tabConfig || {}
 

@@ -21,8 +21,6 @@ import { DefaultNav } from '../../elements/Nav/index.js'
 import { NavHamburger } from './NavHamburger/index.js'
 import { Wrapper } from './Wrapper/index.js'
 
-const baseClass = 'template-default'
-
 export type DefaultTemplateProps = {
   children?: React.ReactNode
   className?: string
@@ -171,7 +169,7 @@ export const DefaultTemplate: React.FC<DefaultTemplateProps> = ({
                 </NavToggler>
               </div>
             </div>
-            <Wrapper baseClass={baseClass} className={className}>
+            <Wrapper className={className}>
               {NavComponent}
               {/* template-default__wrap - Original: min-w:0, w:100%, grow, relative, bg:theme-bg */}
               <div className="min-w-0 w-full grow relative bg-background">

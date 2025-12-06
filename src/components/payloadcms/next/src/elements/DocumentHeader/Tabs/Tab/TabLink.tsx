@@ -5,11 +5,19 @@ import { Button } from '@payloadcms-local/ui'
 import { useParams, usePathname, useSearchParams } from 'next/navigation.js'
 import { formatAdminURL } from 'payload/shared'
 import React from 'react'
+import { cn } from '@/lib/utils'
 
+/**
+ * DocumentTabLink - Tab link component (Tailwind version)
+ *
+ * Original SCSS doc-tab:
+ * - flex, justify-center, items-center, whitespace-nowrap
+ * - hover: .pill-version-count bg-elevation-150
+ * - --active: .pill-version-count bg-elevation-250
+ */
 export const DocumentTabLink: React.FC<{
   adminRoute: SanitizedConfig['routes']['admin']
   ariaLabel?: string
-  baseClass: string
   children?: React.ReactNode
   href: string
   isActive?: boolean
@@ -17,7 +25,6 @@ export const DocumentTabLink: React.FC<{
 }> = ({
   adminRoute,
   ariaLabel,
-  baseClass,
   children,
   href: hrefFromProps,
   isActive: isActiveFromProps,
@@ -59,7 +66,14 @@ export const DocumentTabLink: React.FC<{
     <Button
       aria-label={ariaLabel}
       buttonStyle="tab"
-      className={[baseClass, isActive && `${baseClass}--active`].filter(Boolean).join(' ')}
+      className={cn(
+        // doc-tab base styles
+        'flex justify-center items-center whitespace-nowrap',
+        // Hover state for pill
+        '[&:hover_.pill-version-count]:bg-muted',
+        // Active state for pill
+        isActive && '[&_.pill-version-count]:bg-muted/80',
+      )}
       disabled={isActive}
       el={!isActive || href !== pathname ? 'link' : 'div'}
       margin={false}

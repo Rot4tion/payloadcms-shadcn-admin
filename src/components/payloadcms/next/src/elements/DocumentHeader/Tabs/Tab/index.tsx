@@ -12,9 +12,6 @@ import { RenderServerComponent } from '@payloadcms-local/ui/elements/RenderServe
 import { Fragment } from 'react'
 
 import { DocumentTabLink } from './TabLink.js'
-import './index.scss'
-
-export const baseClass = 'doc-tab'
 
 export const DefaultDocumentTab: React.FC<{
   apiURL?: string
@@ -63,12 +60,15 @@ export const DefaultDocumentTab: React.FC<{
     <DocumentTabLink
       adminRoute={req.payload.config.routes.admin}
       ariaLabel={labelToRender}
-      baseClass={baseClass}
       href={href}
       isActive={isActive}
       newTab={newTab}
     >
-      <span className={`${baseClass}__label`}>
+      {/* doc-tab__label: flex, relative, items-center, gap-1, w-full, h-full, line-height: base*1.2 */}
+      <span
+        className="flex relative items-center gap-1 w-full h-full"
+        style={{ lineHeight: 'calc(var(--base) * 1.2)' }}
+      >
         {labelToRender}
         {Pill || Pill_Component ? (
           <Fragment>
