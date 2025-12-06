@@ -23,7 +23,6 @@ import { useServerFunctions } from '../../../providers/ServerFunctions/index.js'
 import { useTranslation } from '../../../providers/Translation/index.js'
 import { requests } from '../../../utilities/api.js'
 import { Banner } from '../../Banner/index.js'
-import { DrawerCloseButton } from '../../BulkUpload/DrawerCloseButton/index.js'
 import { Button } from '../../Button/index.js'
 import { DatePickerField } from '../../DatePicker/index.js'
 import { Drawer } from '../../Drawer/index.js'
@@ -300,17 +299,7 @@ export const ScheduleDrawer: React.FC<Props> = ({ slug, defaultType, schedulePub
   }, [date])
 
   return (
-    <Drawer
-      className={baseClass}
-      gutter={false}
-      Header={
-        <div className={`${baseClass}__drawer-header`}>
-          <h2 title={modalTitle}>{modalTitle}</h2>
-          <DrawerCloseButton onClick={() => toggleModal(slug)} />
-        </div>
-      }
-      slug={slug}
-    >
+    <Drawer className={baseClass} gutter={false} title={modalTitle} hoverTitle slug={slug}>
       <Gutter className={`${baseClass}__scheduler`}>
         <FieldLabel label={t('version:type')} required />
         <ul className={`${baseClass}__type`}>

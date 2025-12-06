@@ -5,6 +5,8 @@ export type Props = {
   readonly className?: string
   readonly gutter?: boolean
   readonly Header?: React.ReactNode
+  /** Hide the default close button from SheetContent (use when Header has its own close button) */
+  readonly hideDefaultCloseButton?: boolean
   readonly hoverTitle?: boolean
   readonly slug: string
   readonly title?: string

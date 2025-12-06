@@ -4,8 +4,13 @@ import React, { createContext, use, useCallback } from 'react'
 import type { Props, TogglerProps } from './types.js'
 
 import { cn } from '@/lib/utils'
-import { Sheet, SheetContent, SheetHeader, SheetTitle } from '@/components/ui/sheet'
-import { XIcon } from '../../icons/X/index.js'
+import {
+  Sheet,
+  SheetContent,
+  SheetDescription,
+  SheetHeader,
+  SheetTitle,
+} from '@/components/ui/sheet'
 import { useTranslation } from '../../providers/Translation/index.js'
 import { Gutter } from '../Gutter/index.js'
 import { useModal } from '../Modal/index.js'
@@ -56,6 +61,7 @@ export const Drawer: React.FC<Props> = ({
   className,
   gutter = true,
   Header,
+  hideDefaultCloseButton,
   hoverTitle,
   title,
 }) => {
@@ -81,6 +87,8 @@ export const Drawer: React.FC<Props> = ({
             'data-[state=open]:animate-in data-[state=closed]:animate-out',
             'data-[state=closed]:slide-out-to-right data-[state=open]:slide-in-from-right',
             'duration-200',
+            // Hide default close button when custom Header is provided or explicitly requested
+            (Header || hideDefaultCloseButton) && '[&>button.absolute]:hidden',
             className,
           )}
           style={{
@@ -90,6 +98,7 @@ export const Drawer: React.FC<Props> = ({
           }}
           onInteractOutside={(e) => e.preventDefault()}
           onEscapeKeyDown={(e) => e.preventDefault()}
+          aria-describedby={undefined}
         >
           {/* Blur background for first level */}
           {(!drawerDepth || drawerDepth === 1) && (
@@ -101,6 +110,10 @@ export const Drawer: React.FC<Props> = ({
             left={gutter}
             right={gutter}
           >
+            {/* Hidden title for accessibility when custom Header is provided */}
+            {Header !== undefined && (
+              <SheetTitle className="sr-only">{title || 'Drawer'}</SheetTitle>
+            )}
             {Header}
             {Header === undefined && (
               <SheetHeader className="flex flex-row items-center justify-between mt-10 mb-4 p-0 space-y-0">
@@ -110,19 +123,7 @@ export const Drawer: React.FC<Props> = ({
                 >
                   {title}
                 </SheetTitle>
-                <button
-                  aria-label={t('general:close')}
-                  className={cn(
-                    'flex items-center justify-center',
-                    'size-8 p-0 border-0 bg-transparent cursor-pointer rounded-sm',
-                    'hover:bg-muted transition-colors',
-                  )}
-                  id={`close-drawer__${slug}`}
-                  onClick={() => closeModal(slug)}
-                  type="button"
-                >
-                  <XIcon />
-                </button>
+                {/* Close button is provided by SheetContent - no custom button needed */}
               </SheetHeader>
             )}
             {children}

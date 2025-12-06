@@ -210,6 +210,70 @@
 
 ### 🔴 Critical Rules (MUST FOLLOW)
 
+#### 0. NEVER Modify Shadcn UI Components
+```tsx
+// ❌ NEVER modify files in src/components/ui/
+// These are shadcn components and should remain untouched
+
+// ✅ CORRECT - Only modify files in src/components/payloadcms/
+// Adapt PayloadCMS components to USE shadcn components as-is
+
+// ⚠️ If shadcn component lacks a feature:
+// 1. First check if the feature already exists (e.g., showCloseButton prop)
+// 2. Work around it in the PayloadCMS component
+// 3. Only as LAST RESORT, request user to add feature to shadcn component
+```
+
+#### 0.1 Avoid Duplicate UI Elements
+```tsx
+// ❌ WRONG - Adding custom close button when shadcn already provides one
+<SheetContent>
+  <button onClick={close}>X</button>  // Duplicate! SheetContent has close button
+</SheetContent>
+
+<DialogContent>
+  <button onClick={close}>X</button>  // Duplicate! DialogContent has close button
+</DialogContent>
+
+// ✅ CORRECT - Use shadcn's built-in close button
+<SheetContent>
+  {/* SheetContent already includes close button */}
+  <SheetHeader>...</SheetHeader>
+</SheetContent>
+
+// ✅ CORRECT - If you need to hide shadcn's close button (check if prop exists)
+<DialogContent showCloseButton={false}>
+  {/* Custom close logic */}
+</DialogContent>
+
+// ✅ CORRECT - For Drawer with custom Header, use CSS to hide default close button
+<Drawer Header={<CustomHeader />}>  // Automatically hides SheetContent close button
+  {/* Content */}
+</Drawer>
+```
+
+#### 0.2 Accessibility for Dialog/Sheet
+```tsx
+// ❌ WRONG - Missing DialogTitle causes accessibility warning
+<DialogContent>
+  {children}
+</DialogContent>
+
+// ✅ CORRECT - Always include DialogTitle (can be visually hidden)
+<DialogContent aria-describedby={undefined}>
+  <DialogTitle className="sr-only">Modal</DialogTitle>
+  {children}
+</DialogContent>
+
+// ✅ CORRECT - For Sheet, SheetTitle is required
+<SheetContent>
+  <SheetHeader>
+    <SheetTitle>Title</SheetTitle>
+  </SheetHeader>
+  {children}
+</SheetContent>
+```
+
 #### 1. NO Hardcoded Colors
 ```tsx
 // ❌ WRONG - Never do this

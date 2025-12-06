@@ -2,7 +2,14 @@
 import React, { createContext, useCallback, useContext, useState } from 'react'
 
 import { cn } from '@/lib/utils'
-import { Dialog, DialogContent, DialogOverlay, DialogPortal } from '@/components/ui/dialog'
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogOverlay,
+  DialogPortal,
+  DialogTitle,
+} from '@/components/ui/dialog'
 
 // Modal state type
 type ModalState = {
@@ -129,7 +136,10 @@ export const Modal: React.FC<ModalProps> = ({
           style={style}
           onInteractOutside={closeOnBlur ? undefined : (e) => e.preventDefault()}
           onEscapeKeyDown={closeOnBlur ? undefined : (e) => e.preventDefault()}
+          aria-describedby={undefined}
         >
+          {/* Hidden title for accessibility - content should provide visible title */}
+          <DialogTitle className="sr-only">Modal</DialogTitle>
           {children}
         </DialogContent>
       </DialogPortal>
