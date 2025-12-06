@@ -39,11 +39,9 @@ import { handleGoBack } from '../../utilities/handleGoBack.js'
 import { handleTakeOver } from '../../utilities/handleTakeOver.js'
 import { Auth } from './Auth/index.js'
 import { SetDocumentStepNav } from './SetDocumentStepNav/index.js'
-import './index.scss'
 import { SetDocumentTitle } from './SetDocumentTitle/index.js'
 import { UploadControlsProvider } from '@payloadcms/ui/providers/UploadControls'
-
-const baseClass = 'collection-edit'
+import { cn } from '@/lib/utils'
 
 export type OnSaveContext = {
   getDocPermissions?: boolean
@@ -524,20 +522,17 @@ export function DefaultEditView({
 
   return (
     <main
-      className={[
-        baseClass,
-        (id || globalSlug) && `${baseClass}--is-editing`,
-        globalSlug && `global-edit--${globalSlug}`,
-        collectionSlug && `collection-edit--${collectionSlug}`,
-        isLivePreviewing && previewWindowType === 'iframe' && `${baseClass}--is-live-previewing`,
-      ]
-        .filter(Boolean)
-        .join(' ')}
+      className={cn(
+        // collection-edit base styles
+        'w-full',
+        // Live preview mode - 40% width with gradient
+        isLivePreviewing && previewWindowType === 'iframe' && 'w-[40%] relative',
+      )}
     >
       <OperationProvider operation={operation}>
         <Form
           action={action}
-          className={`${baseClass}__form`}
+          className="h-full w-full"
           disabled={isReadOnlyForIncomingUser || isInitializing || !hasSavePermission || isTrashed}
           disableValidationOnSubmit={!validateBeforeSubmit}
           initialState={!isInitializing && initialState}
@@ -657,21 +652,16 @@ export function DefaultEditView({
             slug={collectionConfig?.slug || globalConfig?.slug}
             user={currentEditor}
           />
-          <div
-            className={[
-              `${baseClass}__main-wrapper`,
-              previewWindowType === 'popup' && `${baseClass}--detached`,
-            ]
-              .filter(Boolean)
-              .join(' ')}
-          >
+          {/* collection-edit__main-wrapper - Original: w-full, flex */}
+          <div className="w-full flex">
+            {/* collection-edit__main - Original: w-full, container-type:inline-size */}
             <div
-              className={[
-                `${baseClass}__main`,
-                previewWindowType === 'popup' && `${baseClass}__main--popup-open`,
-              ]
-                .filter(Boolean)
-                .join(' ')}
+              className={cn(
+                'w-full',
+                // When popup is open, still full width
+                previewWindowType === 'popup' && 'w-full',
+              )}
+              style={{ containerType: 'inline-size' }}
             >
               <DocumentFields
                 AfterFields={AfterFields}
@@ -680,7 +670,7 @@ export function DefaultEditView({
                     <Fragment>
                       {auth && (
                         <Auth
-                          className={`${baseClass}__auth`}
+                          className="mb-8 rounded-sm max-md:mt-0 max-md:mb-5"
                           collectionSlug={collectionConfig.slug}
                           disableLocalStrategy={collectionConfig.auth?.disableLocalStrategy}
                           email={data?.email}

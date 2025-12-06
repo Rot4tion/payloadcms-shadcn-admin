@@ -15,9 +15,6 @@ import {
   NavToggler,
 } from '@payloadcms-local/ui'
 import { RenderServerComponent } from '@payloadcms-local/ui/elements/RenderServerComponent'
-
-import './index.scss'
-
 import React from 'react'
 
 import { DefaultNav } from '../../elements/Nav/index.js'
@@ -154,22 +151,35 @@ export const DefaultTemplate: React.FC<DefaultTemplateProps> = ({
             importMap: payload.importMap,
             serverProps,
           })}
-          <div style={{ position: 'relative' }}>
-            <div className={`${baseClass}__nav-toggler-wrapper`} id="nav-toggler">
-              <div className={`${baseClass}__nav-toggler-container`} id="nav-toggler">
-                <NavToggler className={`${baseClass}__nav-toggler`}>
+          <div className="relative">
+            {/* nav-toggler-wrapper - Original: sticky, z-modal, top:0, left:0, h:0, w:gutter-h, flex, justify-center
+                On small screens: width:unset, justify:unset, .hamburger display:none */}
+            <div
+              className="sticky z-30 top-0 left-0 h-0 flex justify-center rtl:left-auto rtl:right-0 max-md:w-auto max-md:justify-start"
+              style={{ width: 'var(--gutter-h)' }}
+              id="nav-toggler"
+            >
+              {/* nav-toggler-container - Original: h:app-header-height, flex, items-center */}
+              <div
+                className="flex items-center"
+                style={{ height: 'var(--app-header-height)' }}
+                id="nav-toggler"
+              >
+                {/* nav-toggler - Original: flex, items-center. Hamburger hidden on small screens */}
+                <NavToggler className="flex items-center max-md:hidden">
                   <NavHamburger />
                 </NavToggler>
               </div>
             </div>
             <Wrapper baseClass={baseClass} className={className}>
               {NavComponent}
-              <div className={`${baseClass}__wrap`}>
+              {/* template-default__wrap - Original: min-w:0, w:100%, grow, relative, bg:theme-bg */}
+              <div className="min-w-0 w-full grow relative bg-background">
                 <AppHeader
                   CustomAvatar={
                     avatar !== 'gravatar' && avatar !== 'default'
                       ? RenderServerComponent({
-                          Component: avatar.Component,
+                          Component: avatar?.Component,
                           importMap: payload.importMap,
                           serverProps,
                         })

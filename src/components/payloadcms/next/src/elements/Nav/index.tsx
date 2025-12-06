@@ -115,7 +115,8 @@ export const DefaultNav: React.FC<NavProps> = async (props) => {
 
   return (
     <NavWrapper>
-      <nav className="w-full flex flex-col items-start flex-grow">
+      {/* nav__wrap - Original: width:100%, flex-col, items-start, flex-grow:1 */}
+      <nav className="w-full flex flex-col items-start grow">
         {RenderServerComponent({
           clientProps: {
             documentSubViewType,
@@ -151,13 +152,19 @@ export const DefaultNav: React.FC<NavProps> = async (props) => {
             user,
           },
         })}
-        <div className="flex flex-col gap-3 mt-auto mb-0">
+        {/* nav__controls - Original: flex-col, gap:base(0.75)=15px, mt-auto, mb-0, first-child mt:base(1)=20px */}
+        <div
+          className="flex flex-col mt-auto mb-0 [&>*:first-child]:mt-5"
+          style={{ gap: 'calc(var(--base) * 0.75)' }}
+        >
           <SettingsMenuButton settingsMenu={renderedSettingsMenu} />
           {LogoutComponent}
         </div>
       </nav>
-      <div className="absolute top-0 w-screen h-16">
-        <div className="z-10 relative h-full w-full">
+      {/* nav__header - Original: absolute, top:0, width:100vw, height:var(--app-header-height) */}
+      <div className="absolute top-0 w-screen" style={{ height: 'var(--app-header-height)' }}>
+        {/* nav__header-content - Original: z-index:1, relative, h-full, w-full */}
+        <div className="z-[1] relative h-full w-full">
           <NavHamburger />
         </div>
       </div>

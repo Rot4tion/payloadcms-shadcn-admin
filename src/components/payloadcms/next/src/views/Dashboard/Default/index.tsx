@@ -13,6 +13,8 @@ import { Card, CardHeader, CardTitle, CardAction } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
 
+import './index.scss'
+
 export type DashboardViewClientProps = {
   locale: Locale
 }
@@ -57,9 +59,9 @@ export function DefaultDashboard(props: DashboardViewServerProps) {
   } = props
 
   return (
-    <div className="w-full">
-      {/* Gutter replacement - container with responsive padding */}
-      <div className="px-6 pb-12 flex flex-col gap-6">
+    <div className="dashboard">
+      {/* dashboard__wrap - SCSS handles padding and gap with CSS variables */}
+      <div className="dashboard__wrap" style={{ paddingInline: 'var(--gutter-h)' }}>
         {beforeDashboard &&
           RenderServerComponent({
             Component: beforeDashboard,
@@ -81,9 +83,10 @@ export function DefaultDashboard(props: DashboardViewServerProps) {
           ) : (
             navGroups.map(({ entities, label }, groupIndex) => {
               return (
-                <div className="flex flex-col gap-4" key={groupIndex}>
-                  <h2 className="text-xl font-semibold m-0">{label}</h2>
-                  <ul className="p-0 m-0 list-none grid gap-4 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
+                <div className="dashboard__group" key={groupIndex}>
+                  <h2 className="dashboard__label">{label}</h2>
+                  {/* dashboard__card-list - SCSS handles responsive grid columns */}
+                  <ul className="dashboard__card-list">
                     {entities.map(({ slug, type, label }, entityIndex) => {
                       let title: string = ''
                       let buttonAriaLabel: string = ''

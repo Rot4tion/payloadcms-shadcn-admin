@@ -14,14 +14,21 @@ import { useNav } from '../Nav/context.js'
 import { NavToggler } from '../Nav/NavToggler/index.js'
 import { RenderCustomComponent } from '../RenderCustomComponent/index.js'
 import { StepNav } from '../StepNav/index.js'
-import './index.scss'
+import { cn } from '@/lib/utils'
 
-const baseClass = 'app-header'
-
+/**
+ * AppHeader - Top navigation bar (Tailwind version)
+ *
+ * Original SCSS:
+ * - position: relative, width: 100%, height: var(--app-header-height), z-index: var(--z-modal)
+ * - content padding: 0 var(--gutter-h)
+ * - wrapper gap: calc(var(--base) / 2)
+ */
 type Props = {
   CustomAvatar?: React.ReactNode
   CustomIcon?: React.ReactNode
 }
+
 export function AppHeader({ CustomAvatar, CustomIcon }: Props) {
   const { t } = useTranslation()
 
@@ -62,40 +69,100 @@ export function AppHeader({ CustomAvatar, CustomIcon }: Props) {
   const ActionComponents = Actions ? Object.values(Actions) : []
 
   return (
-    <header className={[baseClass, navOpen && `${baseClass}--nav-open`].filter(Boolean).join(' ')}>
-      <div className={`${baseClass}__bg`} />
-      <div className={`${baseClass}__content`}>
-        <div className={`${baseClass}__wrapper`}>
-          <NavToggler className={`${baseClass}__mobile-nav-toggler`} tabIndex={-1}>
+    <header
+      className={cn(
+        // app-header base: relative, w-full, h:app-header-height, z:z-modal(30)
+        'relative w-full z-30',
+      )}
+      style={{ height: 'var(--app-header-height)' }}
+    >
+      {/* app-header__bg - opacity:0, absolute, inset:0, pointer-events:none */}
+      <div className="opacity-0 absolute left-0 top-0 w-full h-full pointer-events-none" />
+
+      {/* app-header__content - flex, items-center, h-full, px:gutter-h, relative, grow */}
+      <div
+        className="flex items-center h-full relative grow"
+        style={{ padding: '0 var(--gutter-h)' }}
+      >
+        {/* app-header__wrapper - flex, gap:base/2, items-center, h-full, grow, justify-between, w-full */}
+        <div
+          className="flex items-center h-full grow justify-between w-full"
+          style={{ gap: 'calc(var(--base) / 2)' }}
+        >
+          {/* app-header__mobile-nav-toggler - hidden by default, flex ONLY on small screens (< 768px) */}
+          <NavToggler
+            className={cn(
+              // Original: display:none by default, display:flex on @include small-break (< 768px)
+              'hidden max-md:flex items-center',
+              navOpen && 'opacity-50',
+            )}
+            tabIndex={-1}
+          >
             <Hamburger />
           </NavToggler>
-          <div className={`${baseClass}__controls-wrapper`}>
-            <div className={`${baseClass}__step-nav-wrapper`}>
-              <StepNav className={`${baseClass}__step-nav`} CustomIcon={CustomIcon} />
+
+          {/* app-header__controls-wrapper - flex, items-center, flex:1, min-w:0 */}
+          <div className="flex items-center flex-1 min-w-0">
+            {/* app-header__step-nav-wrapper - grow:0, overflow:auto, flex, w-full, scrollbar-hide */}
+            <div className="grow-0 overflow-auto flex w-full scrollbar-none [&::-webkit-scrollbar]:hidden">
+              <StepNav CustomIcon={CustomIcon} />
             </div>
-            <div className={`${baseClass}__actions-wrapper`}>
-              <div className={`${baseClass}__actions`} ref={customControlsRef}>
+
+            {/* app-header__actions-wrapper - relative, flex, items-center, gap:base/2, mr:base */}
+            <div
+              className="relative flex items-center"
+              style={{
+                gap: 'calc(var(--base) / 2)',
+                marginRight: 'var(--base)',
+              }}
+            >
+              {/* app-header__actions - flex, items-center, gap:base/2, shrink-0, max-w:600px, whitespace-nowrap */}
+              <div
+                className={cn(
+                  'flex items-center shrink-0 whitespace-nowrap',
+                  'scrollbar-none [&::-webkit-scrollbar]:hidden',
+                  // Responsive max-width: 600px -> 500px (lg) -> 300px (md) -> 150px (sm)
+                  'max-w-[600px] lg:max-w-[500px] md:max-w-[300px] sm:max-w-[150px]',
+                )}
+                style={{ gap: 'calc(var(--base) / 2)' }}
+                ref={customControlsRef}
+              >
                 {ActionComponents.map((Action, i) => (
                   <div
-                    className={
-                      isScrollable && i === ActionComponents.length - 1
-                        ? `${baseClass}__last-action`
-                        : ''
-                    }
+                    className={cn(
+                      isScrollable && i === ActionComponents.length - 1 && 'mr-[var(--base)]',
+                    )}
                     key={i}
                   >
                     {Action}
                   </div>
                 ))}
               </div>
-              {isScrollable && <div className={`${baseClass}__gradient-placeholder`} />}
+
+              {/* app-header__gradient-placeholder - absolute, top:0, right:0, w:base, h:base, gradient */}
+              {isScrollable && (
+                <div
+                  className="absolute top-0 right-0"
+                  style={{
+                    width: 'var(--base)',
+                    height: 'var(--base)',
+                    background: 'linear-gradient(to right, transparent, var(--theme-bg))',
+                  }}
+                />
+              )}
             </div>
-            {localization && (
-              <LocalizerLabel ariaLabel="invisible" className={`${baseClass}__localizer-spacing`} />
-            )}
+
+            {/* app-header__localizer-spacing - visibility:hidden (placeholder) */}
+            {localization && <LocalizerLabel ariaLabel="invisible" className="invisible" />}
+
+            {/* app-header__account - relative, shrink-0, focus styles */}
             <Link
               aria-label={t('authentication:account')}
-              className={`${baseClass}__account`}
+              className={cn(
+                'relative shrink-0',
+                'focus:not-focus-visible:opacity-100',
+                'focus-visible:outline-none focus-visible:after:content-[""] focus-visible:after:border-2 focus-visible:after:border-foreground focus-visible:after:absolute focus-visible:after:inset-0 focus-visible:after:pointer-events-none',
+              )}
               href={formatAdminURL({ adminRoute, path: accountRoute })}
               prefetch={false}
               tabIndex={0}
@@ -105,7 +172,18 @@ export function AppHeader({ CustomAvatar, CustomIcon }: Props) {
           </div>
         </div>
       </div>
-      <Localizer className={`${baseClass}__localizer`} />
+
+      {/* app-header__localizer - absolute, top:50%, right:base(4.5)=90px, transform:translateY(-50%) */}
+      <div
+        className={cn(
+          'absolute top-1/2 -translate-y-1/2',
+          'rtl:right-auto rtl:left-[calc(var(--base)*4.5)]',
+          navOpen && 'sm:hidden',
+        )}
+        style={{ right: 'calc(var(--base) * 4.5)' }}
+      >
+        <Localizer />
+      </div>
     </header>
   )
 }
