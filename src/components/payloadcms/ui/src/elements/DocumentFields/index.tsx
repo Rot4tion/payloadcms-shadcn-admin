@@ -54,12 +54,10 @@ export const DocumentFields: React.FC<Args> = ({
   return (
     <div
       className={cn(
-        // Base: w-full, flex (side by side)
+        // Base: w-full, flex (side by side) - default stretch alignment
         // On mid-break (< 1024px): display: block (stacked)
         'w-full flex max-lg:block',
         forceSidebarWrap && 'block isolate',
-        // Prevent group-field negative margins from overflowing horizontally only
-        'overflow-x-hidden',
       )}
     >
       {/* Main content area */}
@@ -78,21 +76,18 @@ export const DocumentFields: React.FC<Args> = ({
           className={cn(
             // Base padding and grow
             'grow overflow-x-hidden',
-            // With sidebar: border-right
-            hasSidebarFields && 'border-r border-border',
-            // Force wrap or mid-break: no border
-            forceSidebarWrap && 'border-r-0',
-            'max-lg:border-r-0',
+            'pt-[calc(var(--base)*1.5)] pb-[var(--spacing-view-bottom)]',
+            'pl-[var(--gutter-h)]',
+            // With sidebar: border-right and right padding
+            hasSidebarFields && 'border-r border-border pr-[calc(var(--base)*2)]',
+            // No sidebar: use gutter-h for right padding
+            !hasSidebarFields && 'pr-[var(--gutter-h)]',
+            // Force wrap or mid-break: no border, use gutter-h for both sides
+            forceSidebarWrap && 'border-r-0 pr-[var(--gutter-h)]',
+            'max-lg:border-r-0 max-lg:pr-[var(--gutter-h)]',
             // Small break: less top padding
-            'max-sm:pt-2',
+            'max-md:pt-[calc(var(--base)*0.5)]',
           )}
-          style={{
-            paddingTop: 'calc(var(--base) * 1.5)',
-            paddingBottom: 'var(--spacing-view-bottom)',
-            paddingLeft: 'var(--gutter-h)',
-            paddingRight:
-              hasSidebarFields && !forceSidebarWrap ? 'calc(var(--base) * 2)' : 'var(--gutter-h)',
-          }}
         >
           {isTrashed && <TrashBanner />}
           {BeforeFields}
@@ -114,46 +109,33 @@ export const DocumentFields: React.FC<Args> = ({
       {hasSidebarFields ? (
         <div
           className={cn(
-            // Base: sticky, 33.33% width, min-width 325px
-            'sticky shrink-0',
+            // Desktop: sticky, 33.33% width, min-width 325px, fixed viewport height
+            'sticky shrink-0 w-[33.33%] min-w-[325px]',
+            'top-[var(--doc-controls-height)] h-[calc(100vh-var(--doc-controls-height))]',
             // Force wrap: static, full width
-            forceSidebarWrap && 'static w-full h-auto min-w-0 border-l-0',
-            // Mid-break (< 1024px): static, full width, stacked below main
-            'max-lg:static max-lg:w-full max-lg:h-auto max-lg:border-l-0',
-            // Small break: no min-width
-            'max-sm:min-w-0',
+            forceSidebarWrap && 'static w-full h-auto min-w-0',
+            // Mid-break (< 1024px): static, full width, auto height
+            'max-lg:static max-lg:w-full max-lg:h-auto max-lg:min-w-0',
           )}
-          style={{
-            top: forceSidebarWrap ? undefined : 'var(--doc-controls-height)',
-            width: forceSidebarWrap ? '100%' : '33.33%',
-            height: forceSidebarWrap ? 'auto' : 'calc(100vh - var(--doc-controls-height))',
-            minWidth: forceSidebarWrap ? 0 : '325px',
-          }}
         >
           <div
             className={cn(
-              'w-full h-full overflow-y-auto flex flex-col min-h-full',
-              // Mid-break: overflow visible, padding bottom
-              'max-lg:overflow-visible',
+              'w-full h-full overflow-y-auto flex flex-col',
+              // Mid-break: overflow visible
+              'max-lg:overflow-visible max-lg:pb-[calc(var(--base)*3.5)]',
+              forceSidebarWrap && 'pb-0 overflow-visible',
             )}
-            style={{
-              paddingBottom: forceSidebarWrap ? 0 : undefined,
-            }}
           >
             <div
               className={cn(
-                'flex flex-col',
-                // Force wrap or mid-break: no top/bottom padding, smaller gap
-                forceSidebarWrap && 'pt-0 pb-0',
-                'max-lg:pt-0 max-lg:pb-0',
+                'flex flex-col gap-[var(--base)]',
+                'pt-[calc(var(--base)*1.5)] pb-[var(--spacing-view-bottom)]',
+                'pl-[calc(var(--base)*2)] pr-[var(--gutter-h)]',
+                // Force wrap: use gutter-h for left padding, no top/bottom padding
+                forceSidebarWrap && 'pl-[var(--gutter-h)] pt-0 pb-0',
+                // Mid-break: full width padding, no top/bottom padding, smaller gap
+                'max-lg:pl-[var(--gutter-h)] max-lg:pt-0 max-lg:pb-0 max-lg:gap-[calc(var(--base)*0.5)]',
               )}
-              style={{
-                gap: 'var(--base)',
-                paddingTop: forceSidebarWrap ? 0 : 'calc(var(--base) * 1.5)',
-                paddingBottom: forceSidebarWrap ? 0 : 'var(--spacing-view-bottom)',
-                paddingLeft: forceSidebarWrap ? 'var(--gutter-h)' : 'calc(var(--base) * 2)',
-                paddingRight: 'var(--gutter-h)',
-              }}
             >
               <RenderFields
                 fields={sidebarFields}
