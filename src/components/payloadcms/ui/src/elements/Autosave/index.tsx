@@ -8,12 +8,7 @@ import React, { useDeferredValue, useEffect, useRef, useState } from 'react'
 
 import type { OnSaveContext } from '../../views/Edit/index.js'
 
-import {
-  useAllFormFields,
-  useForm,
-  useFormModified,
-  useFormSubmitted,
-} from '@payloadcms/ui'
+import { useAllFormFields, useForm, useFormModified, useFormSubmitted } from '@payloadcms/ui'
 import { useDebounce } from '../../hooks/useDebounce.js'
 import { useEffectEvent } from '../../hooks/useEffectEvent.js'
 import { useQueue } from '../../hooks/useQueue.js'
@@ -24,9 +19,6 @@ import { useTranslation } from '@payloadcms/ui'
 import { formatTimeToNow } from '../../utilities/formatDocTitle/formatDateTitle.js'
 import { reduceFieldsToValuesWithValidation } from '../../utilities/reduceFieldsToValuesWithValidation.js'
 import { LeaveWithoutSaving } from '../LeaveWithoutSaving/index.js'
-import './index.scss'
-
-const baseClass = 'autosave'
 // The minimum time the saving state should be shown
 const minimumAnimationTime = 1000
 
@@ -240,7 +232,7 @@ export const Autosave: React.FC<Props> = ({ id, collection, global: globalDoc })
   })
 
   return (
-    <div className={baseClass}>
+    <div className="whitespace-nowrap">
       {validateOnDraft && !isValid && <LeaveWithoutSaving />}
       {saving && t('general:saving')}
       {!saving && Boolean(lastUpdateTime) && (

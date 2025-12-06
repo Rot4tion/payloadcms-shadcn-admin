@@ -8,10 +8,7 @@ import { PlusIcon } from '../../icons/Plus/index.js'
 import { XIcon } from '../../icons/X/index.js'
 import { useTranslation } from '@payloadcms/ui'
 import { ClipboardActionLabel } from '../ClipboardAction/ClipboardActionLabel.js'
-import './index.scss'
 import { Popup, PopupList } from '../Popup/index.js'
-
-const baseClass = 'array-actions'
 
 export type Props = {
   addRow: (current: number, blockType?: string) => Promise<void> | void
@@ -40,24 +37,27 @@ export const ArrayAction: React.FC<Props> = ({
 }) => {
   const { t } = useTranslation()
 
+  // Action item styles: flex, gap, items-center
+  const actionClass =
+    'flex gap-[calc(var(--base)/2)] items-center [&_svg]:relative [&_.stroke]:stroke-1'
+
   return (
     <Popup
       button={<MoreIcon />}
-      buttonClassName={`${baseClass}__button`}
-      className={baseClass}
+      buttonClassName="bg-transparent border-0 p-0 m-0 cursor-pointer rounded-full hover:bg-muted"
       horizontalAlign="center"
       render={({ close }) => {
         return (
           <PopupList.ButtonGroup buttonSize="small">
             {isSortable && index !== 0 && (
               <PopupList.Button
-                className={`${baseClass}__action ${baseClass}__move-up`}
+                className={actionClass}
                 onClick={() => {
                   moveRow(index, index - 1)
                   close()
                 }}
               >
-                <div className={`${baseClass}__action-chevron`}>
+                <div>
                   <ChevronIcon direction="up" />
                 </div>
                 {t('general:moveUp')}
@@ -65,13 +65,13 @@ export const ArrayAction: React.FC<Props> = ({
             )}
             {isSortable && index < rowCount - 1 && (
               <PopupList.Button
-                className={`${baseClass}__action`}
+                className={actionClass}
                 onClick={() => {
                   moveRow(index, index + 1)
                   close()
                 }}
               >
-                <div className={`${baseClass}__action-chevron`}>
+                <div>
                   <ChevronIcon />
                 </div>
                 {t('general:moveDown')}
@@ -80,7 +80,7 @@ export const ArrayAction: React.FC<Props> = ({
             {!hasMaxRows && (
               <React.Fragment>
                 <PopupList.Button
-                  className={`${baseClass}__action ${baseClass}__add`}
+                  className={actionClass}
                   onClick={() => {
                     void addRow(index + 1)
                     close()
@@ -90,7 +90,7 @@ export const ArrayAction: React.FC<Props> = ({
                   {t('general:addBelow')}
                 </PopupList.Button>
                 <PopupList.Button
-                  className={`${baseClass}__action ${baseClass}__duplicate`}
+                  className={actionClass}
                   onClick={() => {
                     duplicateRow(index)
                     close()
@@ -102,7 +102,7 @@ export const ArrayAction: React.FC<Props> = ({
               </React.Fragment>
             )}
             <PopupList.Button
-              className={`${baseClass}__action ${baseClass}__copy`}
+              className={actionClass}
               onClick={() => {
                 copyRow(index)
                 close()
@@ -111,7 +111,7 @@ export const ArrayAction: React.FC<Props> = ({
               <ClipboardActionLabel isRow />
             </PopupList.Button>
             <PopupList.Button
-              className={`${baseClass}__action ${baseClass}__paste`}
+              className={actionClass}
               onClick={() => {
                 pasteRow(index)
                 close()
@@ -120,7 +120,7 @@ export const ArrayAction: React.FC<Props> = ({
               <ClipboardActionLabel isPaste isRow />
             </PopupList.Button>
             <PopupList.Button
-              className={`${baseClass}__action ${baseClass}__remove`}
+              className={actionClass}
               onClick={() => {
                 removeRow(index)
                 close()

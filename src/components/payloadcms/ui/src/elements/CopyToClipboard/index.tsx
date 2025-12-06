@@ -4,17 +4,29 @@ import React, { useState } from 'react'
 import { CopyIcon } from '../../icons/Copy/index.js'
 import { useTranslation } from '@payloadcms/ui'
 import { Tooltip } from '../Tooltip/index.js'
-import './index.scss'
-
-const baseClass = 'copy-to-clipboard'
+import { cn } from '@/lib/utils'
 
 export type Props = {
+  className?: string
   defaultMessage?: string
   successMessage?: string
   value?: string
 }
 
-export const CopyToClipboard: React.FC<Props> = ({ defaultMessage, successMessage, value }) => {
+/**
+ * CopyToClipboard - Copy button with tooltip (Tailwind version)
+ *
+ * Original SCSS:
+ * - %btn-reset, position: relative, cursor: pointer
+ * - vertical-align: middle, border-radius: 100%
+ * - focus-visible: outline: var(--accessibility-outline)
+ */
+export const CopyToClipboard: React.FC<Props> = ({
+  className,
+  defaultMessage,
+  successMessage,
+  value,
+}) => {
   const [copied, setCopied] = useState(false)
   const [hovered, setHovered] = useState(false)
   const { t } = useTranslation()
@@ -22,7 +34,14 @@ export const CopyToClipboard: React.FC<Props> = ({ defaultMessage, successMessag
   if (value) {
     return (
       <button
-        className={baseClass}
+        className={cn(
+          // btn-reset + base styles
+          'relative cursor-pointer align-middle rounded-full',
+          'bg-transparent border-0 p-0 m-0',
+          'focus:outline-none active:outline-none',
+          'focus-visible:outline-2 focus-visible:outline-ring',
+          className,
+        )}
         onClick={async () => {
           await navigator.clipboard.writeText(value)
           setCopied(true)
