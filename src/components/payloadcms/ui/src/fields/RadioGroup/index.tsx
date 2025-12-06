@@ -5,6 +5,7 @@ import { optionIsObject } from 'payload/shared'
 import React, { useCallback, useMemo } from 'react'
 
 import { cn } from '@/lib/utils'
+import { RadioGroup } from '@/components/ui/radio-group'
 import { RenderCustomComponent } from '../../elements/RenderCustomComponent/index.js'
 import { FieldDescription } from '../../fields/FieldDescription/index.js'
 import { FieldError } from '../../fields/FieldError/index.js'
@@ -86,14 +87,23 @@ const RadioGroupFieldComponent: RadioFieldClientComponent = (props) => {
       />
       <div className={`${fieldBaseClass}__wrap`}>
         {BeforeInput}
-        <ul
+        <RadioGroup
           className={cn(
             'm-0 list-none p-0',
-            layout === 'horizontal' && 'flex flex-wrap',
-            layout === 'horizontal' &&
-              '[&>li]:shrink-0 [&>li]:pr-6 rtl:[&>li]:pl-6 rtl:[&>li]:pr-0',
+            layout === 'horizontal' && 'flex flex-wrap gap-4',
+            layout === 'vertical' && 'flex flex-col gap-2',
           )}
           id={`field-${path.replace(/\./g, '__')}`}
+          value={value || ''}
+          onValueChange={(newValue) => {
+            if (typeof onChangeFromProps === 'function') {
+              onChangeFromProps(newValue)
+            }
+            if (!(readOnly || disabled)) {
+              setValue(newValue, !!disableModifyingFormFromProps)
+            }
+          }}
+          disabled={readOnly || disabled}
         >
           {options.map((option) => {
             let optionValue = ''
@@ -104,33 +114,21 @@ const RadioGroupFieldComponent: RadioFieldClientComponent = (props) => {
               optionValue = option
             }
 
-            const isSelected = String(optionValue) === String(value)
-
             const id = `field-${path}-${optionValue}${uuid ? `-${uuid}` : ''}`
 
             return (
-              <li key={`${path} - ${optionValue}`}>
-                <Radio
-                  id={id}
-                  isSelected={isSelected}
-                  onChange={() => {
-                    if (typeof onChangeFromProps === 'function') {
-                      onChangeFromProps(optionValue)
-                    }
-
-                    if (!(readOnly || disabled)) {
-                      setValue(optionValue, !!disableModifyingFormFromProps)
-                    }
-                  }}
-                  option={optionIsObject(option) ? option : { label: option, value: option }}
-                  path={path}
-                  readOnly={readOnly || disabled}
-                  uuid={uuid}
-                />
-              </li>
+              <Radio
+                key={`${path} - ${optionValue}`}
+                id={id}
+                isSelected={String(optionValue) === String(value)}
+                option={optionIsObject(option) ? option : { label: option, value: option }}
+                path={path}
+                readOnly={readOnly || disabled}
+                uuid={uuid}
+              />
             )
           })}
-        </ul>
+        </RadioGroup>
         {AfterInput}
         <RenderCustomComponent
           CustomComponent={Description}

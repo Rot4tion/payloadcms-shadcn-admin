@@ -1,9 +1,9 @@
 /* SHADCN ADMIN - Using local PayloadCMS packages */
 import type { Metadata } from 'next'
 
+import { importMap } from '@/app/(payload)/admin/importMap'
 import config from '@payload-config'
 import { RootPage, generatePageMetadata } from '@payloadcms-local/next/views'
-import { importMap } from '../importMap'
 
 type Args = {
   params: Promise<{

@@ -1,5 +1,5 @@
 'use client'
-import type { OptionObject, RadioFieldClientProps } from 'payload'
+import type { OptionObject } from 'payload'
 
 import { getTranslation } from '@payloadcms/translations'
 import React from 'react'
@@ -13,13 +13,12 @@ import { useTranslation } from '../../../providers/Translation/index.js'
 export const Radio: React.FC<{
   id: string
   isSelected: boolean
-  onChange: RadioFieldClientProps['onChange']
   option: OptionObject
   path: string
   readOnly?: boolean
   uuid?: string
 }> = (props) => {
-  const { isSelected, onChange, option, path, readOnly, uuid } = props
+  const { option, path, readOnly, uuid } = props
   const { i18n } = useTranslation()
 
   const editDepth = useEditDepth()
@@ -28,14 +27,7 @@ export const Radio: React.FC<{
 
   return (
     <div className="flex items-center gap-2">
-      <RadioGroupItem
-        id={id}
-        value={option.value}
-        disabled={readOnly}
-        checked={isSelected}
-        onClick={() => (typeof onChange === 'function' ? onChange(option.value) : null)}
-        className="size-5"
-      />
+      <RadioGroupItem id={id} value={option.value} disabled={readOnly} className="size-5" />
       <Label
         htmlFor={id}
         className={cn(

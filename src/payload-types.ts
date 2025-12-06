@@ -69,6 +69,7 @@ export interface Config {
   collections: {
     users: User;
     media: Media;
+    Tests: Test;
     'payload-kv': PayloadKv;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
@@ -78,6 +79,7 @@ export interface Config {
   collectionsSelect: {
     users: UsersSelect<false> | UsersSelect<true>;
     media: MediaSelect<false> | MediaSelect<true>;
+    Tests: TestsSelect<false> | TestsSelect<true>;
     'payload-kv': PayloadKvSelect<false> | PayloadKvSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
@@ -161,6 +163,73 @@ export interface Media {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "Tests".
+ */
+export interface Test {
+  id: number;
+  text: string;
+  textarea?: string | null;
+  email?: string | null;
+  code?: string | null;
+  number?: number | null;
+  date?: string | null;
+  dateWithTime?: string | null;
+  checkbox?: boolean | null;
+  select?: ('optionA' | 'optionB' | 'optionC') | null;
+  selectMultiple?: ('tag1' | 'tag2' | 'tag3')[] | null;
+  radio?: ('option1' | 'option2' | 'option3') | null;
+  json?:
+    | {
+        [k: string]: unknown;
+      }
+    | unknown[]
+    | string
+    | number
+    | boolean
+    | null;
+  relationship?: (number | null) | User;
+  relationshipMany?: (number | User)[] | null;
+  upload?: (number | null) | Media;
+  array?:
+    | {
+        arrayText?: string | null;
+        arrayNumber?: number | null;
+        id?: string | null;
+      }[]
+    | null;
+  blocks?:
+    | (
+        | {
+            blockText?: string | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'textBlock';
+          }
+        | {
+            blockImage?: (number | null) | Media;
+            blockCaption?: string | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'imageBlock';
+          }
+      )[]
+    | null;
+  group?: {
+    groupText?: string | null;
+    groupNumber?: number | null;
+  };
+  rowField1?: string | null;
+  rowField2?: string | null;
+  collapsibleText?: string | null;
+  collapsibleTextarea?: string | null;
+  tab1Text?: string | null;
+  tab2Text?: string | null;
+  tab2Number?: number | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-kv".
  */
 export interface PayloadKv {
@@ -190,6 +259,10 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'media';
         value: number | Media;
+      } | null)
+    | ({
+        relationTo: 'Tests';
+        value: number | Test;
       } | null);
   globalSlug?: string | null;
   user: {
@@ -272,6 +345,68 @@ export interface MediaSelect<T extends boolean = true> {
   height?: T;
   focalX?: T;
   focalY?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "Tests_select".
+ */
+export interface TestsSelect<T extends boolean = true> {
+  text?: T;
+  textarea?: T;
+  email?: T;
+  code?: T;
+  number?: T;
+  date?: T;
+  dateWithTime?: T;
+  checkbox?: T;
+  select?: T;
+  selectMultiple?: T;
+  radio?: T;
+  json?: T;
+  relationship?: T;
+  relationshipMany?: T;
+  upload?: T;
+  array?:
+    | T
+    | {
+        arrayText?: T;
+        arrayNumber?: T;
+        id?: T;
+      };
+  blocks?:
+    | T
+    | {
+        textBlock?:
+          | T
+          | {
+              blockText?: T;
+              id?: T;
+              blockName?: T;
+            };
+        imageBlock?:
+          | T
+          | {
+              blockImage?: T;
+              blockCaption?: T;
+              id?: T;
+              blockName?: T;
+            };
+      };
+  group?:
+    | T
+    | {
+        groupText?: T;
+        groupNumber?: T;
+      };
+  rowField1?: T;
+  rowField2?: T;
+  collapsibleText?: T;
+  collapsibleTextarea?: T;
+  tab1Text?: T;
+  tab2Text?: T;
+  tab2Number?: T;
+  updatedAt?: T;
+  createdAt?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema

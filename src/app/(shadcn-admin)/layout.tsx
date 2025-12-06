@@ -1,12 +1,12 @@
 /* SHADCN ADMIN - Using local PayloadCMS packages */
 import config from '@payload-config'
-import type { ServerFunctionClient } from 'payload'
 import { handleServerFunctions, RootLayout } from '@payloadcms-local/next/layouts'
+import type { ServerFunctionClient } from 'payload'
 import React from 'react'
 
-import { importMap } from './shadcn-admin/importMap.js'
-import './custom.scss'
 import '../(frontend)/global.css'
+import { importMap } from '../(payload)/admin/importMap'
+import './custom.scss'
 
 type Args = {
   children: React.ReactNode
