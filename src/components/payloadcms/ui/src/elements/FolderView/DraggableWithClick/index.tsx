@@ -1,9 +1,7 @@
 import { useDraggable } from '@dnd-kit/core'
 import React, { useId, useRef } from 'react'
 
-import './index.scss'
-
-const baseClass = 'draggable-with-click'
+import { cn } from '@/lib/utils'
 
 type Props = {
   readonly as?: React.ElementType
@@ -76,9 +74,7 @@ export const DraggableWithClick = ({
       role="button"
       tabIndex={0}
       {...attributes}
-      className={[baseClass, className, disabled ? `${baseClass}--disabled` : '']
-        .filter(Boolean)
-        .join(' ')}
+      className={cn(!disabled && 'select-none', className)}
       onKeyDown={disabled ? undefined : onKeyDown}
       onPointerDown={disabled ? undefined : onClick ? handlePointerDown : undefined}
       ref={(node) => {

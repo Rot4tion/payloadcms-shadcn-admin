@@ -8,9 +8,6 @@ import { useFolder } from '../../../providers/Folders/index.js'
 import { useTranslation } from '@payloadcms/ui'
 import { Button } from '../../Button/index.js'
 import { CheckboxPopup } from '../../CheckboxPopup/index.js'
-import './index.scss'
-
-const baseClass = 'collection-type'
 
 export function FilterFolderTypePill() {
   const {
@@ -51,7 +48,9 @@ export function FilterFolderTypePill() {
       Button={
         <Button buttonStyle="pill" el="div" icon="chevron" margin={false} size="small">
           {visibleCollectionSlugs.length ? (
-            <span className={`${baseClass}__count`}>{visibleCollectionSlugs.length}</span>
+            <span className="font-semibold tabular-nums bg-background text-foreground px-[3px] rounded-sm -ml-1 mr-[calc(var(--base)*0.25)]">
+              {visibleCollectionSlugs.length}
+            </span>
           ) : null}
           {t('version:type')}
         </Button>

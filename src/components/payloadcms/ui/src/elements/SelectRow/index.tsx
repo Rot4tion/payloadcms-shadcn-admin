@@ -7,9 +7,6 @@ import { CheckboxInput } from '../../fields/Checkbox/Input.js'
 import { useAuth } from '@payloadcms/ui'
 import { useSelection } from '@payloadcms/ui'
 import { Locked } from '../Locked/index.js'
-import './index.scss'
-
-const baseClass = 'select-row'
 
 export const SelectRow: React.FC<{
   rowData: {
@@ -31,7 +28,7 @@ export const SelectRow: React.FC<{
   return (
     <CheckboxInput
       checked={Boolean(selected.get(rowData.id))}
-      className={[baseClass, `${baseClass}__checkbox`].join(' ')}
+      className="block w-min"
       onToggle={() => setSelection(rowData.id)}
     />
   )

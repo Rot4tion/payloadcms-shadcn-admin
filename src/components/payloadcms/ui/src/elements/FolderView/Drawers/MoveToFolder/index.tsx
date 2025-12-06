@@ -25,9 +25,8 @@ import { NoListResults } from '../../../NoListResults/index.js'
 import { Translation } from '../../../Translation/index.js'
 import { FolderBreadcrumbs } from '../../Breadcrumbs/index.js'
 import { ColoredFolderIcon } from '../../ColoredFolderIcon/index.js'
-import './index.scss'
+import { cn } from '@/lib/utils'
 
-const baseClass = 'move-folder-drawer'
 const baseModalSlug = 'move-folder-drawer'
 const confirmModalSlug = `${baseModalSlug}-confirm-move`
 
@@ -233,7 +232,7 @@ function Content({
   }, [drawerSlug, isModalOpen, clearRouteCache, folderAddedToUnderlyingFolder])
 
   return (
-    <div className={baseClass}>
+    <div>
       <DrawerActionHeader
         onCancel={() => {
           closeModal(drawerSlug)
@@ -256,13 +255,13 @@ function Content({
         }
       />
 
-      <div className={`${baseClass}__breadcrumbs-section`}>
+      <div className="p-[calc(var(--base)*0.75)] px-(--gutter-h) border-b border-border/50 flex justify-between">
         <FolderBreadcrumbs
           breadcrumbs={[
             {
               id: null,
               name: (
-                <span className={`${baseClass}__folder-breadcrumbs-root`}>
+                <span className="flex items-center gap-[calc(var(--base)/2)]">
                   <ColoredFolderIcon />
                   {t('folder:folders')}
                 </span>
@@ -289,7 +288,7 @@ function Content({
           <>
             <Button
               buttonStyle="pill"
-              className={`${baseClass}__add-folder-button`}
+              className="ml-(--base)"
               margin={false}
               onClick={() => {
                 openFolderDrawer()
@@ -317,7 +316,7 @@ function Content({
         )}
       </div>
 
-      <DrawerContentContainer className={`${baseClass}__body-section`}>
+      <DrawerContentContainer className="grid grid-rows-[auto_1fr] gap-(--base) [&_.item-card-grid__title]:hidden">
         {subfolders.length > 0 ? (
           FolderResultsComponent
         ) : (

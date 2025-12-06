@@ -2,9 +2,7 @@
 
 import React from 'react'
 
-import './index.scss'
-
-const baseClass = 'simple-table'
+import { cn } from '@/lib/utils'
 
 type TableProps = {
   readonly appearance?: 'condensed' | 'default'
@@ -19,12 +17,8 @@ export const SimpleTable = ({
   tableRows: rows,
 }: TableProps) => {
   return (
-    <div
-      className={[className, baseClass, appearance && `${baseClass}--appearance-${appearance}`]
-        .filter(Boolean)
-        .join(' ')}
-    >
-      <table cellPadding={0} cellSpacing={0} className={`${baseClass}__table`}>
+    <div className={cn('mb-(--base) overflow-auto max-w-full', className)}>
+      <table cellPadding={0} cellSpacing={0} className="min-w-full border-collapse">
         <TableHead>
           <TableRow>{headers}</TableRow>
         </TableHead>
@@ -41,7 +35,7 @@ export const TableHead = ({
   ...rest
 }: React.HTMLAttributes<HTMLTableSectionElement>) => {
   return (
-    <thead className={`${baseClass}__thead ${className || ''}`.trim()} {...rest}>
+    <thead className={cn('text-muted-foreground', className)} {...rest}>
       {children}
     </thead>
   )
@@ -53,7 +47,7 @@ export const TableBody = ({
   ...rest
 }: React.HTMLAttributes<HTMLTableSectionElement>) => {
   return (
-    <tbody className={`${baseClass}__tbody ${className || ''}`.trim()} {...rest}>
+    <tbody className={cn(className)} {...rest}>
       {children}
     </tbody>
   )
@@ -65,7 +59,7 @@ export const TableRow = ({
   ...rest
 }: React.HTMLAttributes<HTMLTableRowElement>) => {
   return (
-    <tr className={`${baseClass}__tr ${className || ''}`.trim()} {...rest}>
+    <tr className={cn(className)} {...rest}>
       {children}
     </tr>
   )
@@ -77,7 +71,13 @@ export const TableCell = ({
   ...rest
 }: React.TdHTMLAttributes<HTMLTableCellElement>) => {
   return (
-    <td className={`${baseClass}__td ${className || ''}`.trim()} {...rest}>
+    <td
+      className={cn(
+        'align-top p-[calc(var(--base)*0.6)] min-w-[150px] relative first:ps-[calc(var(--base)*0.8)] last:pe-[calc(var(--base)*0.8)] max-lg:max-w-[70vw]',
+        className,
+      )}
+      {...rest}
+    >
       {children}
     </td>
   )
@@ -89,7 +89,13 @@ export const TableHeader = ({
   ...rest
 }: React.ThHTMLAttributes<HTMLTableCellElement>) => {
   return (
-    <th className={`${baseClass}__th ${className || ''}`.trim()} {...rest}>
+    <th
+      className={cn(
+        'font-normal text-left rtl:text-right align-top p-[calc(var(--base)*0.6)] min-w-[150px] relative first:ps-[calc(var(--base)*0.8)] last:pe-[calc(var(--base)*0.8)] max-lg:max-w-[70vw]',
+        className,
+      )}
+      {...rest}
+    >
       {children}
     </th>
   )
@@ -101,7 +107,7 @@ export const HiddenCell = ({
   ...rest
 }: { children?: React.ReactNode } & React.TdHTMLAttributes<HTMLTableCellElement>) => {
   return (
-    <td className={`${baseClass}__hidden-cell ${className || ''}`.trim()} {...rest}>
+    <td className={cn('absolute p-0', className)} {...rest}>
       {children}
     </td>
   )

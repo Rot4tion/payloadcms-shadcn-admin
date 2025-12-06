@@ -5,9 +5,6 @@ import React from 'react'
 import { CheckboxInput } from '../../fields/Checkbox/Input.js'
 import { useSelection, useTranslation } from '@payloadcms/ui'
 import { SelectAllStatus } from '@payloadcms/ui/providers/Selection'
-import './index.scss'
-
-const baseClass = 'select-all'
 
 export const SelectAll: React.FC = () => {
   const { selectAll, toggleAll } = useSelection()
@@ -23,7 +20,7 @@ export const SelectAll: React.FC = () => {
       checked={
         selectAll === SelectAllStatus.AllInPage || selectAll === SelectAllStatus.AllAvailable
       }
-      className={[baseClass, `${baseClass}__checkbox`].join(' ')}
+      className="block"
       id="select-all"
       name="select-all"
       onToggle={() => toggleAll()}

@@ -21,9 +21,6 @@ import { requests } from '../../utilities/api.js'
 import { Button } from '../Button/index.js'
 import { ConfirmationModal } from '../ConfirmationModal/index.js'
 import { Translation } from '../Translation/index.js'
-import './index.scss'
-
-const baseClass = 'restore-button'
 
 export type Props = {
   readonly buttonId?: string
@@ -182,7 +179,7 @@ export const RestoreButton: React.FC<Props> = (props) => {
                 }}
               />
               {collectionConfig?.versions?.drafts && (
-                <div className={`${baseClass}__checkbox`}>
+                <div className="py-[calc(var(--base)*0.5)] [&_.checkbox-input_label]:pb-0">
                   <CheckboxInput
                     checked={restoreAsPublished}
                     id="restore-as-published"
@@ -194,7 +191,7 @@ export const RestoreButton: React.FC<Props> = (props) => {
               )}
             </Fragment>
           }
-          className={baseClass}
+          className="flex items-center justify-center h-full backdrop-blur-sm"
           confirmingLabel={t('general:restoring')}
           heading={t('general:confirmRestoration')}
           modalSlug={modalSlug}

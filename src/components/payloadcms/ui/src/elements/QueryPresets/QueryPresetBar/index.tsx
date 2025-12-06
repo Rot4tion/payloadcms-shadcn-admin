@@ -17,13 +17,11 @@ import { ListSelectionButton } from '../../ListSelection/index.js'
 import { Pill } from '../../Pill/index.js'
 import { Translation } from '../../Translation/index.js'
 import { QueryPresetToggler } from '../QueryPresetToggler/index.js'
-import './index.scss'
+import { cn } from '@/lib/utils'
 
 const confirmDeletePresetModalSlug = 'confirm-delete-preset'
 
 const queryPresetsSlug = 'payload-query-presets'
-
-const baseClass = 'query-preset-bar'
 
 export const QueryPresetBar: React.FC<{
   activePreset: QueryPreset
@@ -189,8 +187,8 @@ export const QueryPresetBar: React.FC<{
 
   return (
     <Fragment>
-      <div className={baseClass}>
-        <div className={`${baseClass}__menu`}>
+      <div className="flex gap-[calc(var(--base)*0.5)] justify-between bg-muted/50 rounded-md p-[calc(var(--base)*0.5)]">
+        <div className="flex items-center gap-1 grow">
           <QueryPresetToggler
             activePreset={activePreset}
             openPresetListDrawer={openListDrawer}
@@ -198,7 +196,7 @@ export const QueryPresetBar: React.FC<{
           />
           <Pill
             aria-label={t('general:newLabel', { label: presetConfig?.labels?.singular })}
-            className={`${baseClass}__create-new-preset`}
+            className="h-full px-[3px] bg-transparent shadow-[inset_0_0_0_1px_var(--theme-elevation-150)] hover:bg-transparent"
             icon={<PlusIcon />}
             id="create-new-preset"
             onClick={() => {
@@ -207,7 +205,7 @@ export const QueryPresetBar: React.FC<{
             size="small"
           />
         </div>
-        <div className={`${baseClass}__menu-items`}>
+        <div className="overflow-auto flex gap-[calc(var(--base)*0.5)] [&_button]:text-muted-foreground [&_button]:m-0">
           {hasModifiedPreset && (
             <ListSelectionButton
               id="reset-preset"

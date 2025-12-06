@@ -28,13 +28,11 @@ import { DatePickerField } from '../../DatePicker/index.js'
 import { Drawer } from '../../Drawer/index.js'
 import { Gutter } from '../../Gutter/index.js'
 import { ReactSelect } from '../../ReactSelect/index.js'
-import './index.scss'
 import { ShimmerEffect } from '../../ShimmerEffect/index.js'
+import { cn } from '@/lib/utils'
 import { Table } from '../../Table/index.js'
 import { TimezonePicker } from '../../TimezonePicker/index.js'
 import { buildUpcomingColumns } from './buildUpcomingColumns.js'
-
-const baseClass = 'schedule-publish'
 
 type Props = {
   defaultType?: PublishType
@@ -299,10 +297,10 @@ export const ScheduleDrawer: React.FC<Props> = ({ slug, defaultType, schedulePub
   }, [date])
 
   return (
-    <Drawer className={baseClass} gutter={false} title={modalTitle} hoverTitle slug={slug}>
-      <Gutter className={`${baseClass}__scheduler`}>
+    <Drawer gutter={false} title={modalTitle} hoverTitle slug={slug}>
+      <Gutter className="py-[calc(var(--base)*2)] border-b border-border">
         <FieldLabel label={t('version:type')} required />
-        <ul className={`${baseClass}__type`}>
+        <ul className="list-none m-0 p-0 flex [&_li]:mr-[calc(var(--base)*2)]">
           <li>
             <Radio
               id={`${slug}-type`}
@@ -358,7 +356,7 @@ export const ScheduleDrawer: React.FC<Props> = ({ slug, defaultType, schedulePub
             <br />
           </React.Fragment>
         )}
-        <div className={`${baseClass}__actions`}>
+        <div className="[&_button]:mr-(--base)">
           <Button
             buttonStyle="primary"
             disabled={processing}
@@ -371,7 +369,7 @@ export const ScheduleDrawer: React.FC<Props> = ({ slug, defaultType, schedulePub
           {processing ? <span>{t('general:saving')}</span> : null}
         </div>
       </Gutter>
-      <Gutter className={`${baseClass}__upcoming`}>
+      <Gutter className="py-[calc(var(--base)*2)] [&_h4]:mb-(--base)">
         <h4>{t('general:upcomingEvents')}</h4>
         {!upcoming && <ShimmerEffect />}
         {upcoming?.length === 0 && (

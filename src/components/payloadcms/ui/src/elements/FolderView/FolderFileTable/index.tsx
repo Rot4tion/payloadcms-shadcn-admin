@@ -12,9 +12,6 @@ import { formatDate } from '../../../utilities/formatDocTitle/formatDateTitle.js
 import { ColoredFolderIcon } from '../ColoredFolderIcon/index.js'
 import { DraggableTableRow } from '../DraggableTableRow/index.js'
 import { SimpleTable, TableHeader } from '../SimpleTable/index.js'
-import './index.scss'
-
-const baseClass = 'folder-file-table'
 
 type Props = {
   showRelationCell?: boolean
@@ -117,7 +114,10 @@ export function FolderFileTable({ showRelationCell = true }: Props) {
 
                 if (index === 0) {
                   return (
-                    <span className={`${baseClass}__cell-with-icon`} key={`${itemKey}-${name}`}>
+                    <span
+                      className="grid grid-cols-[auto_1fr] gap-[calc(var(--base)/2)]"
+                      key={`${itemKey}-${name}`}
+                    >
                       <ColoredFolderIcon />
                       {cellValue}
                     </span>
@@ -183,7 +183,10 @@ export function FolderFileTable({ showRelationCell = true }: Props) {
 
                 if (index === 0) {
                   return (
-                    <span className={`${baseClass}__cell-with-icon`} key={`${itemKey}-${name}`}>
+                    <span
+                      className="grid grid-cols-[auto_1fr] gap-[calc(var(--base)/2)]"
+                      key={`${itemKey}-${name}`}
+                    >
                       <DocumentIcon />
                       {cellValue}
                     </span>

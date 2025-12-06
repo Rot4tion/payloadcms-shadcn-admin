@@ -4,15 +4,13 @@ import React from 'react'
 
 import { SortDownIcon } from '../../icons/Sort/index.js'
 import { useListQuery } from '@payloadcms/ui'
-import './index.scss'
 import { useTranslation } from '@payloadcms/ui'
+import { cn } from '@/lib/utils'
 
 export type SortHeaderProps = {
   readonly appearance?: 'condensed' | 'default'
   readonly disable?: boolean
 }
-
-const baseClass = 'sort-header'
 
 function useSort() {
   const { handleSortChange, orderableFieldName, query } = useListQuery()
@@ -38,17 +36,26 @@ export const SortHeader: React.FC<SortHeaderProps> = (props) => {
 
   return (
     <div
-      className={[baseClass, appearance && `${baseClass}--appearance-${appearance}`]
-        .filter(Boolean)
-        .join(' ')}
+      className={cn(
+        'flex gap-[calc(var(--base)/2)] items-center',
+        appearance === 'condensed' && 'gap-[calc(var(--base)/4)]',
+      )}
     >
-      <div className={`${baseClass}__buttons`}>
+      <div
+        className={cn(
+          'flex items-center gap-[calc(var(--base)/4)]',
+          appearance === 'condensed' && 'gap-0',
+        )}
+      >
         <button
           aria-label={t('general:sortByLabelDirection', {
             direction: t('general:ascending'),
             label: 'Order',
           })}
-          className={`${baseClass}__button ${isActive ? `${baseClass}--active` : ''}`}
+          className={cn(
+            'm-0 p-[calc(var(--base)/4)] inline-flex items-center justify-center bg-transparent border-none cursor-pointer opacity-30 hover:opacity-70',
+            isActive && 'opacity-100',
+          )}
           onClick={handleSortPress}
           type="button"
         >

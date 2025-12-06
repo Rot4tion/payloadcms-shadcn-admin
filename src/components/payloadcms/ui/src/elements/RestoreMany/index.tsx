@@ -17,11 +17,8 @@ import { requests } from '../../utilities/api.js'
 import { parseSearchParams } from '../../utilities/parseSearchParams.js'
 import { ConfirmationModal } from '../ConfirmationModal/index.js'
 import { ListSelectionButton } from '../ListSelection/index.js'
-import './index.scss'
 
 const confirmManyRestoreDrawerSlug = `confirm-restore-many-docs`
-
-const baseClass = 'restore-many'
 
 export type Props = {
   collection: ClientCollectionConfig
@@ -184,7 +181,7 @@ export const RestoreMany: React.FC<Props> = (props) => {
               },
             )}
             {collectionConfig?.versions?.drafts && (
-              <div className={`${baseClass}__checkbox`}>
+              <div className="py-[calc(var(--base)*0.5)] [&_.checkbox-input_label]:pb-0">
                 <CheckboxInput
                   checked={restoreAsPublished}
                   id="restore-as-published-many"
@@ -196,7 +193,7 @@ export const RestoreMany: React.FC<Props> = (props) => {
             )}
           </React.Fragment>
         }
-        className={baseClass}
+        className="flex items-center justify-center h-full backdrop-blur-sm"
         confirmingLabel={t('general:restoring')}
         heading={t('general:confirmRestoration')}
         modalSlug={confirmManyRestoreDrawerSlug}

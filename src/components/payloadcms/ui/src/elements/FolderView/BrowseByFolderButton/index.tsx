@@ -5,9 +5,7 @@ import { useConfig } from '@payloadcms/ui'
 import { useTranslation } from '@payloadcms/ui'
 import { Link } from '../../Link/index.js'
 import { ColoredFolderIcon } from '../ColoredFolderIcon/index.js'
-import './index.scss'
-
-const baseClass = 'browse-by-folder-button'
+import { cn } from '@/lib/utils'
 
 export function BrowseByFolderButton({ active }) {
   const { t } = useTranslation()
@@ -21,7 +19,12 @@ export function BrowseByFolderButton({ active }) {
 
   return (
     <Link
-      className={[baseClass, active && 'active'].filter(Boolean).join(' ')}
+      className={cn(
+        'border border-border/50 no-underline p-[calc(var(--base)/2)] flex items-center w-full',
+        'gap-[calc(var(--base)*0.33)] mt-[calc(var(--base)*0.25)] mb-(--base) rounded-md text-foreground',
+        '[&_.icon]:text-muted-foreground/60',
+        active && 'bg-muted/50 font-semibold [&_.icon]:text-muted-foreground',
+      )}
       href={formatAdminURL({
         adminRoute,
         path: foldersRoute,

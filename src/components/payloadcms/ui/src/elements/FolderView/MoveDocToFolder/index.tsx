@@ -17,11 +17,9 @@ import { useDocumentInfo } from '@payloadcms/ui'
 import { useTranslation } from '@payloadcms/ui'
 import { Button } from '../../Button/index.js'
 import { formatDrawerSlug } from '../../Drawer/index.js'
-import './index.scss'
 import { MoveItemsToFolderDrawer } from '../Drawers/MoveToFolder/index.js'
+import { cn } from '@/lib/utils'
 import { useDrawerDepth } from '@payloadcms/ui/elements/Drawer'
-
-const baseClass = 'move-doc-to-folder'
 
 /**
  * This is the button shown on the edit document view. It uses the more generic `MoveDocToFolderButton` component.
@@ -139,7 +137,10 @@ export const MoveDocToFolderButton = ({
     <>
       <Button
         buttonStyle="subtle"
-        className={[baseClass, className].filter(Boolean).join(' ')}
+        className={cn(
+          'm-0 [&_.btn__icon]:text-muted-foreground/60 [&_.btn__label]:font-semibold',
+          className,
+        )}
         icon={<FolderIcon />}
         iconPosition="left"
         onClick={() => {

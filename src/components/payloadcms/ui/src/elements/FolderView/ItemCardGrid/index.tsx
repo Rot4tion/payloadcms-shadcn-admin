@@ -5,9 +5,6 @@ import type { FolderOrDocument } from 'payload/shared'
 import React from 'react'
 
 import { ContextFolderFileCard } from '../FolderFileCard/index.js'
-import './index.scss'
-
-const baseClass = 'item-card-grid'
 
 type ItemCardGridProps = {
   items: FolderOrDocument[]
@@ -25,8 +22,8 @@ type ItemCardGridProps = {
 export function ItemCardGrid({ type, items, subfolderCount, title }: ItemCardGridProps) {
   return (
     <>
-      {title && <p className={`${baseClass}__title`}>{title}</p>}
-      <div className={baseClass}>
+      {title && <p className="text-muted-foreground mb-[calc(var(--base)/2)]">{title}</p>}
+      <div className="gap-(--base) grid grid-cols-[repeat(auto-fill,minmax(250px,1fr))] mb-(--base)">
         {!items || items?.length === 0
           ? null
           : items.map((item, _index) => {

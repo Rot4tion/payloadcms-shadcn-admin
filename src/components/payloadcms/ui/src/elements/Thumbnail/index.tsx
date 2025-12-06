@@ -1,9 +1,7 @@
 'use client'
 import React from 'react'
 
-import './index.scss'
-
-const baseClass = 'thumbnail'
+import { cn } from '@/lib/utils'
 
 import type { SanitizedCollectionConfig } from 'payload'
 
@@ -34,7 +32,20 @@ export const Thumbnail: React.FC<ThumbnailProps> = (props) => {
   } = props
   const [fileExists, setFileExists] = React.useState(undefined)
 
-  const classNames = [baseClass, `${baseClass}--size-${size || 'medium'}`, className].join(' ')
+  const sizeClasses = {
+    none: '',
+    small: 'max-h-[calc(var(--base)*5)] w-[calc(var(--base)*5)]',
+    medium: 'max-h-[calc(var(--base)*7)] w-[calc(var(--base)*7)]',
+    large: 'max-h-[calc(var(--base)*9)] w-[calc(var(--base)*9)]',
+    expand:
+      'max-h-full w-full pt-[100%] relative [&_img]:absolute [&_img]:top-0 [&_svg]:absolute [&_svg]:top-0',
+  }
+  const classNames = cn(
+    size !== 'none' &&
+      'min-h-full shrink-0 self-stretch overflow-hidden [&_img]:w-full [&_img]:h-full [&_img]:object-cover [&_svg]:w-full [&_svg]:h-full [&_svg]:object-cover',
+    sizeClasses[size || 'medium'],
+    className,
+  )
 
   React.useEffect(() => {
     if (!fileSrc) {
@@ -85,7 +96,20 @@ export function ThumbnailComponent(props: ThumbnailComponentProps) {
   const { alt, className = '', filename, fileSrc, imageCacheTag, size } = props
   const [fileExists, setFileExists] = React.useState(undefined)
 
-  const classNames = [baseClass, `${baseClass}--size-${size || 'medium'}`, className].join(' ')
+  const sizeClasses2 = {
+    none: '',
+    small: 'max-h-[calc(var(--base)*5)] w-[calc(var(--base)*5)]',
+    medium: 'max-h-[calc(var(--base)*7)] w-[calc(var(--base)*7)]',
+    large: 'max-h-[calc(var(--base)*9)] w-[calc(var(--base)*9)]',
+    expand:
+      'max-h-full w-full pt-[100%] relative [&_img]:absolute [&_img]:top-0 [&_svg]:absolute [&_svg]:top-0',
+  }
+  const classNames2 = cn(
+    size !== 'none' &&
+      'min-h-full shrink-0 self-stretch overflow-hidden [&_img]:w-full [&_img]:h-full [&_img]:object-cover [&_svg]:w-full [&_svg]:h-full [&_svg]:object-cover',
+    sizeClasses2[size || 'medium'],
+    className,
+  )
 
   React.useEffect(() => {
     if (!fileSrc) {
@@ -116,7 +140,7 @@ export function ThumbnailComponent(props: ThumbnailComponentProps) {
   }
 
   return (
-    <div className={classNames}>
+    <div className={classNames2}>
       {fileExists === undefined && <ShimmerEffect height="100%" />}
       {fileExists && <img alt={alt || filename} src={src} />}
       {fileExists === false && <File />}

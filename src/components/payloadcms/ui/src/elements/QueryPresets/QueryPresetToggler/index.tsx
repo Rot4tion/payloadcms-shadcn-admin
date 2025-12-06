@@ -8,9 +8,7 @@ import { XIcon } from '../../../icons/X/index.js'
 import { useConfig } from '@payloadcms/ui'
 import { useTranslation } from '@payloadcms/ui'
 import { Pill } from '../../Pill/index.js'
-import './index.scss'
-
-const baseClass = 'active-query-preset'
+import { cn } from '@/lib/utils'
 
 export function QueryPresetToggler({
   activePreset,
@@ -30,7 +28,10 @@ export function QueryPresetToggler({
 
   return (
     <Pill
-      className={[baseClass, activePreset && `${baseClass}--active`].filter(Boolean).join(' ')}
+      className={cn(
+        activePreset &&
+          'shadow-[inset_0_0_0_1px_var(--theme-elevation-200)] dark:shadow-[inset_0_0_0_1px_var(--theme-elevation-300)] bg-background dark:bg-muted hover:bg-muted dark:hover:bg-muted/80 dark:text-background pr-1',
+      )}
       id="select-preset"
       onClick={() => {
         openPresetListDrawer()
@@ -38,10 +39,10 @@ export function QueryPresetToggler({
       pillStyle="light"
       size="small"
     >
-      <div className={`${baseClass}__label`}>
-        {activePreset?.isShared && <PeopleIcon className={`${baseClass}__shared`} />}
-        <div className={`${baseClass}__label-text-max-width`}>
-          <div className={`${baseClass}__label-text`}>
+      <div className="flex items-center">
+        {activePreset?.isShared && <PeopleIcon className="mr-0.5" />}
+        <div className="max-w-[100px] overflow-hidden">
+          <div className="text-ellipsis overflow-hidden whitespace-nowrap">
             {activePreset?.title ||
               t('general:selectLabel', {
                 label: getTranslation(presetsConfig.labels.singular, i18n),
@@ -50,7 +51,7 @@ export function QueryPresetToggler({
         </div>
         {activePreset ? (
           <div
-            className={`${baseClass}__clear`}
+            className="flex items-center w-(--pill-icon-size) h-(--pill-icon-size)"
             id="clear-preset"
             onClick={async (e) => {
               e.stopPropagation()

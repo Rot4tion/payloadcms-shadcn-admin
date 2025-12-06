@@ -2,7 +2,7 @@
 import * as React from 'react'
 
 import { useDelay } from '../../hooks/useDelay.js'
-import './index.scss'
+import { cn } from '@/lib/utils'
 
 export type ShimmerEffectProps = {
   readonly animationDelay?: string
@@ -21,14 +21,14 @@ export const ShimmerEffect: React.FC<ShimmerEffectProps> = ({
 }) => {
   return (
     <div
-      className={['shimmer-effect', className].filter(Boolean).join(' ')}
+      className={cn('relative overflow-hidden bg-muted/50', className)}
       style={{
         height: !disableInlineStyles && (typeof height === 'number' ? `${height}px` : height),
         width: !disableInlineStyles && (typeof width === 'number' ? `${width}px` : width),
       }}
     >
       <div
-        className="shimmer-effect__shine"
+        className="absolute scale-150 w-full h-full -translate-x-full animate-[shimmer_1.75s_infinite] opacity-75 bg-gradient-to-r from-muted/50 via-muted to-muted/50"
         style={{
           animationDelay,
         }}

@@ -11,9 +11,6 @@ import { useTranslation } from '@payloadcms/ui'
 import { requests } from '../../utilities/api.js'
 import { Button } from '../Button/index.js'
 import { ConfirmationModal } from '../ConfirmationModal/index.js'
-import './index.scss'
-
-const baseClass = 'status'
 
 export const Status: React.FC = () => {
   const {
@@ -163,19 +160,16 @@ export const Status: React.FC = () => {
 
   if (statusToRender) {
     return (
-      <div
-        className={baseClass}
-        title={`${t('version:status')}: ${t(`version:${displayStatusKey}`)}`}
-      >
-        <div className={`${baseClass}__value-wrap`}>
-          <span className={`${baseClass}__label`}>{t('version:status')}:&nbsp;</span>
-          <span className={`${baseClass}__value`}>{t(`version:${displayStatusKey}`)}</span>
+      <div title={`${t('version:status')}: ${t(`version:${displayStatusKey}`)}`}>
+        <div className="whitespace-nowrap">
+          <span className="text-muted-foreground">{t('version:status')}:&nbsp;</span>
+          <span className="font-semibold">{t(`version:${displayStatusKey}`)}</span>
           {!isTrashed && canUpdate && statusToRender === 'published' && (
             <React.Fragment>
               &nbsp;&mdash;&nbsp;
               <Button
                 buttonStyle="none"
-                className={`${baseClass}__action`}
+                className="underline"
                 id={`action-unpublish`}
                 onClick={() => toggleModal(unPublishModalSlug)}
               >
@@ -190,29 +184,26 @@ export const Status: React.FC = () => {
               />
             </React.Fragment>
           )}
-          {!isTrashed &&
-            canUpdate &&
-            hasPublishedDoc &&
-            statusToRender === 'changed' && (
-              <React.Fragment>
-                &nbsp;&mdash;&nbsp;
-                <Button
-                  buttonStyle="none"
-                  className={`${baseClass}__action`}
-                  id="action-revert-to-published"
-                  onClick={() => toggleModal(revertModalSlug)}
-                >
-                  {t('version:revertToPublished')}
-                </Button>
-                <ConfirmationModal
-                  body={t('version:aboutToRevertToPublished')}
-                  confirmingLabel={t('version:reverting')}
-                  heading={t('version:confirmRevertToSaved')}
-                  modalSlug={revertModalSlug}
-                  onConfirm={() => performAction('revert')}
-                />
-              </React.Fragment>
-            )}
+          {!isTrashed && canUpdate && hasPublishedDoc && statusToRender === 'changed' && (
+            <React.Fragment>
+              &nbsp;&mdash;&nbsp;
+              <Button
+                buttonStyle="none"
+                className="underline"
+                id="action-revert-to-published"
+                onClick={() => toggleModal(revertModalSlug)}
+              >
+                {t('version:revertToPublished')}
+              </Button>
+              <ConfirmationModal
+                body={t('version:aboutToRevertToPublished')}
+                confirmingLabel={t('version:reverting')}
+                heading={t('version:confirmRevertToSaved')}
+                modalSlug={revertModalSlug}
+                onConfirm={() => performAction('revert')}
+              />
+            </React.Fragment>
+          )}
         </div>
       </div>
     )

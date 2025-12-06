@@ -6,7 +6,7 @@ import React from 'react'
 import { useConfig } from '@payloadcms/ui'
 import { useTranslation } from '@payloadcms/ui'
 import { formatDocTitle } from '../../utilities/formatDocTitle/index.js'
-import './index.scss'
+import { cn } from '@/lib/utils'
 
 export type ThumbnailCardProps = {
   alignLabel?: 'center' | 'left'
@@ -18,8 +18,6 @@ export type ThumbnailCardProps = {
   onKeyDown?: () => void
   thumbnail: React.ReactNode
 }
-
-const baseClass = 'thumbnail-card'
 
 export const ThumbnailCard: React.FC<ThumbnailCardProps> = (props) => {
   const {
@@ -36,14 +34,13 @@ export const ThumbnailCard: React.FC<ThumbnailCardProps> = (props) => {
 
   const { i18n } = useTranslation()
 
-  const classes = [
-    baseClass,
+  const classes = cn(
+    'bg-transparent border-0 p-0 m-0 cursor-pointer w-full bg-input border border-border rounded-md shadow-sm transition-[border] duration-100 p-[calc(var(--base)*0.5)]',
+    typeof onClick === 'function' &&
+      'cursor-pointer hover:border-muted-foreground/50 focus:border-muted-foreground/50 active:border-muted-foreground/50',
+    alignLabel === 'center' && 'text-center',
     className,
-    typeof onClick === 'function' && `${baseClass}--has-on-click`,
-    alignLabel && `${baseClass}--align-label-${alignLabel}`,
-  ]
-    .filter(Boolean)
-    .join(' ')
+  )
 
   let title = labelFromProps
 
@@ -59,8 +56,10 @@ export const ThumbnailCard: React.FC<ThumbnailCardProps> = (props) => {
 
   return (
     <button className={classes} onClick={onClick} title={title} type="button">
-      <div className={`${baseClass}__thumbnail`}>{thumbnail}</div>
-      <div className={`${baseClass}__label`}>{title}</div>
+      <div className="flex items-center justify-center">{thumbnail}</div>
+      <div className="py-[calc(var(--base)*0.75)] px-[calc(var(--base)*0.5)] pb-[calc(var(--base)*0.25)] overflow-hidden text-ellipsis whitespace-nowrap font-semibold">
+        {title}
+      </div>
     </button>
   )
 }

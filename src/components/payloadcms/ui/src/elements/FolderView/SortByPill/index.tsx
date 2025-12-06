@@ -9,9 +9,7 @@ import { useFolder } from '../../../providers/Folders/index.js'
 import { useTranslation } from '@payloadcms/ui'
 import { Pill } from '../../Pill/index.js'
 import { Popup, PopupList } from '../../Popup/index.js'
-import './index.scss'
-
-const baseClass = 'sort-by-pill'
+import { cn } from '@/lib/utils'
 
 const sortOnOptions: {
   label: (t: TFunction) => React.ReactNode
@@ -56,16 +54,16 @@ export function SortByPill() {
   return (
     <Popup
       button={
-        <Pill className={`${baseClass}__trigger`} icon={<ChevronIcon />} size="small">
-          {sortDirection === 'asc' ? (
-            <SortUpIcon className={`${baseClass}__sort-icon`} />
-          ) : (
-            <SortDownIcon className={`${baseClass}__sort-icon`} />
-          )}
+        <Pill
+          className="[&_.pill__label]:flex [&_.pill__label]:items-center [&_.pill__label]:gap-1"
+          icon={<ChevronIcon />}
+          size="small"
+        >
+          {sortDirection === 'asc' ? <SortUpIcon /> : <SortDownIcon />}
           {selectedSortOption?.label(t)}
         </Pill>
       }
-      className={baseClass}
+      className=""
       horizontalAlign="right"
       render={({ close }) => (
         <>
@@ -96,7 +94,7 @@ export function SortByPill() {
             {orderOnOptions.map(({ label, value }) => (
               <PopupList.Button
                 active={selectedOrderOption?.value === value}
-                className={`${baseClass}__order-option`}
+                className="flex gap-[calc(var(--base)*0.25)]"
                 key={value}
                 onClick={() => {
                   if (sortDirection !== value) {

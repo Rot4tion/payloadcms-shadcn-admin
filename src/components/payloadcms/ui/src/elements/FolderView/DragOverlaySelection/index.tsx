@@ -5,9 +5,6 @@ import { DragOverlay } from '@dnd-kit/core'
 import { getEventCoordinates } from '@dnd-kit/utilities'
 
 import { FolderFileCard } from '../FolderFileCard/index.js'
-import './index.scss'
-
-const baseClass = 'drag-overlay-selection'
 
 type DragCardsProps = {
   readonly item: FolderOrDocument
@@ -23,10 +20,10 @@ export function DragOverlaySelection({ item, selectedCount }: DragCardsProps) {
         maxWidth: '220px',
       }}
     >
-      <div className={`${baseClass}__cards`}>
+      <div className="grid grid-cols-1 grid-rows-1">
         {Array.from({ length: selectedCount > 1 ? 2 : 1 }).map((_, index) => (
           <div
-            className={`${baseClass}__card`}
+            className="absolute w-full h-full col-start-1 col-end-2 row-start-1 row-end-2"
             key={index}
             style={{
               right: `${index * 3}px`,
@@ -43,7 +40,9 @@ export function DragOverlaySelection({ item, selectedCount }: DragCardsProps) {
           </div>
         ))}
         {selectedCount > 1 ? (
-          <span className={`${baseClass}__card-count`}>{selectedCount}</span>
+          <span className="absolute translate-x-[calc(50%-3px)] -translate-y-[calc(50%+3px)] right-0 top-0 rounded-full leading-none w-[26px] h-[26px] flex items-center justify-center text-green-50 bg-green-600 font-bold tabular-nums">
+            {selectedCount}
+          </span>
         ) : null}
       </div>
     </DragOverlay>

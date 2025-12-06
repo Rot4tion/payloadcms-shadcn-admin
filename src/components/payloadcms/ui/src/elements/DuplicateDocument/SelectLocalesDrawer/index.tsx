@@ -13,7 +13,7 @@ import { useTranslation } from '@payloadcms/ui'
 import { DrawerHeader } from '../../BulkUpload/Header/index.js'
 import { Button } from '../../Button/index.js'
 import { Drawer } from '../../Drawer/index.js'
-import './index.scss'
+import { cn } from '@/lib/utils'
 
 export type LocaleOption = {
   label: string
@@ -38,8 +38,6 @@ const getLocaleOptions = ({
     value: locale.code,
   }))
 }
-
-const baseClass = 'select-locales-drawer'
 
 export const SelectLocalesDrawer: React.FC<SelectLocalesDrawerProps> = ({
   slug,
@@ -77,7 +75,6 @@ export const SelectLocalesDrawer: React.FC<SelectLocalesDrawerProps> = ({
 
   return (
     <Drawer
-      className={baseClass}
       gutter={false}
       Header={
         <DrawerHeader
@@ -89,7 +86,7 @@ export const SelectLocalesDrawer: React.FC<SelectLocalesDrawerProps> = ({
       }
       slug={slug}
     >
-      <div className={`${baseClass}__sub-header`}>
+      <div className="px-(--gutter-h) flex justify-between items-center border-b border-border">
         <span>{t('localization:selectLocaleToDuplicate')}</span>
         <Button
           buttonStyle="primary"
@@ -102,8 +99,8 @@ export const SelectLocalesDrawer: React.FC<SelectLocalesDrawerProps> = ({
           {t('general:duplicate')}
         </Button>
       </div>
-      <div className={`${baseClass}__content`}>
-        <div className={`${baseClass}__item`}>
+      <div className="p-[calc(var(--base)*1.5)] px-(--gutter-h) flex flex-col gap-(--base)">
+        <div className="flex flex-row gap-[calc(var(--base)*0.5)]">
           <CheckboxInput
             checked={allLocalesSelected}
             id="select-locale-all"
@@ -115,7 +112,7 @@ export const SelectLocalesDrawer: React.FC<SelectLocalesDrawerProps> = ({
           />
         </div>
         {localeOptions.map((locale) => (
-          <div className={`${baseClass}__item`} key={locale.value}>
+          <div className="flex flex-row gap-[calc(var(--base)*0.5)]" key={locale.value}>
             <CheckboxInput
               checked={selectedLocales.includes(locale.value)}
               id={`select-locale-${locale.value}`}
