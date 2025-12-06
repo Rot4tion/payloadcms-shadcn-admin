@@ -5,10 +5,11 @@ import { useModal } from '../Modal/index.js'
 import React from 'react'
 
 import { useAuth } from '@payloadcms/ui'
-import { SelectAllStatus, useSelection } from '@payloadcms/ui'
+import { useSelection } from '@payloadcms/ui'
 import { useTranslation } from '@payloadcms/ui'
 import { ListSelectionButton } from '../ListSelection/index.js'
 import { PublishManyDrawerContent } from './DrawerContent.js'
+import { SelectAllStatus } from '@payloadcms/ui/providers/Selection'
 
 export type PublishManyProps = {
   collection: ClientCollectionConfig

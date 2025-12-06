@@ -8,12 +8,13 @@ import type { FieldOption } from '../FieldSelect/reduceFieldOptions.js'
 
 import { useAuth } from '@payloadcms/ui'
 import { EditDepthProvider } from '@payloadcms/ui'
-import { SelectAllStatus, useSelection } from '@payloadcms/ui'
+import { useSelection } from '@payloadcms/ui'
 import { useTranslation } from '@payloadcms/ui'
 import { Drawer } from '../Drawer/index.js'
 import { ListSelectionButton } from '../ListSelection/index.js'
 import { EditManyDrawerContent } from './DrawerContent.js'
 import './index.scss'
+import { SelectAllStatus } from '@payloadcms/ui/providers/Selection'
 
 export const baseClass = 'edit-many'
 

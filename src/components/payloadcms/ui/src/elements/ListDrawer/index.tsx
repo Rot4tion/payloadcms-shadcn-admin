@@ -3,5 +3,6 @@
  */
 'use client'
 
-export { ListDrawer, ListDrawerToggler, useListDrawer } from '@payloadcms/ui'
+export { ListDrawer, ListDrawerToggler } from '@payloadcms/ui/elements/ListDrawer'
 
+export { useListDrawer } from '@payloadcms/ui'

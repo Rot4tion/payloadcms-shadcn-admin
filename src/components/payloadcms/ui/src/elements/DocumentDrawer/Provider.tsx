@@ -3,5 +3,6 @@
  */
 'use client'
 
-export { DocumentDrawerContextProvider, useDocumentDrawerContext } from '@payloadcms/ui'
+export { DocumentDrawerContextProvider } from 'node_modules/@payloadcms/ui/dist/elements/DocumentDrawer/Provider'
 
+export { useDocumentDrawerContext } from '@payloadcms/ui'

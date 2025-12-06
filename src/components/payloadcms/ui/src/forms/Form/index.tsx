@@ -4,10 +4,6 @@
  */
 'use client'
 
-export { Form } from '@payloadcms/ui'
-export type { FormProps } from '@payloadcms/ui'
-
-// Re-export all context and hooks
 export {
   FormContext,
   FormFieldsContext,
@@ -15,6 +11,13 @@ export {
   ProcessingContext,
   SubmittedContext,
   DocumentFormContext,
+} from '@payloadcms/ui/forms/Form'
+
+export { Form } from '@payloadcms/ui'
+export type { FormProps } from '@payloadcms/ui'
+
+// Re-export all context and hooks
+export {
   useForm,
   useFormFields,
   useFormModified,

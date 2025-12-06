@@ -14,7 +14,7 @@ import { useAuth } from '@payloadcms/ui'
 import { useConfig } from '@payloadcms/ui'
 import { useLocale } from '@payloadcms/ui'
 import { useRouteCache } from '../../providers/RouteCache/index.js'
-import { SelectAllStatus, useSelection } from '@payloadcms/ui'
+import { useSelection } from '@payloadcms/ui'
 import { useTranslation } from '@payloadcms/ui'
 import { requests } from '../../utilities/api.js'
 import { parseSearchParams } from '../../utilities/parseSearchParams.js'
@@ -22,6 +22,7 @@ import { ConfirmationModal } from '../ConfirmationModal/index.js'
 import { ListSelectionButton } from '../ListSelection/index.js'
 import { Translation } from '../Translation/index.js'
 import './index.scss'
+import { SelectAllStatus } from '@payloadcms/ui/providers/Selection'
 
 export type Props = {
   collection: ClientCollectionConfig

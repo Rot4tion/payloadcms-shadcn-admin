@@ -3,5 +3,4 @@
  */
 'use client'
 
-export { Modal, useModal, ModalProvider, ModalContainer } from '@payloadcms/ui'
-
+export { Modal, useModal } from '@payloadcms/ui'

@@ -3,5 +3,6 @@
  */
 'use client'
 
-export { Drawer, DrawerToggler, formatDrawerSlug, DrawerContext, useDrawerDepth, DrawerDepthProvider } from '@payloadcms/ui'
+export { useDrawerDepth, DrawerDepthProvider } from '@payloadcms/ui/elements/Drawer'
 
+export { Drawer, DrawerToggler, formatDrawerSlug } from '@payloadcms/ui'

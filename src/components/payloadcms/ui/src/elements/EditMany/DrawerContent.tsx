@@ -22,7 +22,7 @@ import { useAuth } from '@payloadcms/ui'
 import { useConfig } from '@payloadcms/ui'
 import { DocumentInfoProvider } from '@payloadcms/ui'
 import { useLocale } from '@payloadcms/ui'
-import { OperationContext } from '@payloadcms/ui'
+
 import { useRouteCache } from '../../providers/RouteCache/index.js'
 import { useServerFunctions } from '@payloadcms/ui'
 import { useTranslation } from '@payloadcms/ui'
@@ -32,6 +32,7 @@ import { FieldSelect } from '../FieldSelect/index.js'
 import './index.scss'
 import '../../forms/RenderFields/index.scss'
 import { baseClass, type EditManyProps } from './index.js'
+import { OperationContext } from '@payloadcms/ui/providers/Operation'
 
 const Submit: React.FC<{
   readonly action: string

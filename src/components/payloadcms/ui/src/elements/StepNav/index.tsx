@@ -10,8 +10,10 @@ import { useConfig } from '@payloadcms/ui'
 import { useTranslation } from '@payloadcms/ui'
 import { Link } from '../Link/index.js'
 import { RenderCustomComponent } from '../RenderCustomComponent/index.js'
-import { StepNavProvider, useStepNav } from './context.js'
+import { useStepNav } from './context.js'
+
 import { cn } from '@/lib/utils'
+import { StepNavProvider } from '@payloadcms/ui/elements/StepNav'
 
 export { SetStepNav } from './SetStepNav.js'
 

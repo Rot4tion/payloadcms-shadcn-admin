@@ -3,4 +3,6 @@
  */
 'use client'
 
-export { TableColumnsProvider, useTableColumns, TableColumnsContext } from '@payloadcms/ui'
+import { TableColumnsContext } from './context'
+
+export { TableColumnsProvider, useTableColumns } from '@payloadcms/ui'

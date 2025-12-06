@@ -3,4 +3,6 @@
  */
 'use client'
 
-export { StepNavProvider, useStepNav } from '@payloadcms/ui'
+import { StepNavProvider } from '@payloadcms/ui/elements/StepNav'
+
+export { useStepNav } from '@payloadcms/ui'
