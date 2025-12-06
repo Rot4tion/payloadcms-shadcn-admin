@@ -18,9 +18,6 @@ import { DocumentFields } from '../../DocumentFields/index.js'
 import { MoveDocToFolder } from '../../FolderView/MoveDocToFolder/index.js'
 import { Upload_v4 } from '../../Upload/index.js'
 import { useFormsManager } from '../FormsManager/index.js'
-import './index.scss'
-
-const baseClass = 'collection-edit'
 
 // This component receives props only on _pages_
 // When rendered within a drawer, props are empty
@@ -118,7 +115,7 @@ export function EditForm({
     <OperationProvider operation="create">
       <Form
         action={action}
-        className={`${baseClass}__form`}
+        className="w-full h-auto"
         disabled={isInitializing || !hasSavePermission}
         initialState={isInitializing ? undefined : initialState}
         isInitializing={isInitializing}

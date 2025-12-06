@@ -2,18 +2,17 @@
 
 import { useCallback } from 'react'
 
+import { XIcon } from 'lucide-react'
+import { Button } from '@/components/ui/button'
 import { Gutter } from '../../../elements/Gutter/index.js'
 import { useModal } from '../../../elements/Modal/index.js'
 import { RenderTitle } from '../../../elements/RenderTitle/index.js'
 import { useFormModified } from '../../../forms/Form/index.js'
-import { XIcon } from '../../../icons/X/index.js'
 import { useDocumentInfo } from '@payloadcms/ui'
 import { useDocumentTitle } from '../../../providers/DocumentTitle/index.js'
 import { useTranslation } from '@payloadcms/ui'
 import { IDLabel } from '../../IDLabel/index.js'
 import { LeaveWithoutSavingModal } from '../../LeaveWithoutSaving/index.js'
-import { documentDrawerBaseClass } from '../index.js'
-import './index.scss'
 
 const leaveWithoutSavingModalSlug = 'leave-without-saving-doc-drawer'
 
@@ -35,24 +34,21 @@ export const DocumentDrawerHeader: React.FC<{
   }, [isModified, openModal, closeModal, drawerSlug])
 
   return (
-    <Gutter className={`${documentDrawerBaseClass}__header`}>
-      <div className={`${documentDrawerBaseClass}__header-content`}>
-        <h2 className={`${documentDrawerBaseClass}__header-text`}>
-          {<RenderTitle element="span" />}
-        </h2>
-        <button
+    <Gutter className="w-full mt-[calc(var(--base)*2)] flex flex-col gap-[calc(var(--base)*0.5)] border-b border-border pb-(--base) max-lg:mt-[calc(var(--base)*1.5)] max-lg:mb-[calc(var(--base)*0.5)] max-lg:px-(--gutter-h)">
+      <div className="flex justify-between items-start w-full">
+        <h2 className="m-0">{<RenderTitle element="span" />}</h2>
+        <Button
           aria-label={t('general:close')}
-          className={`${documentDrawerBaseClass}__header-close`}
+          variant="ghost"
+          size="icon"
           onClick={handleOnClose}
           type="button"
         >
-          <XIcon />
-        </button>
+          <XIcon className="size-5" />
+        </Button>
       </div>
       {showDocumentID && <DocumentID />}
-      {AfterHeader ? (
-        <div className={`${documentDrawerBaseClass}__after-header`}>{AfterHeader}</div>
-      ) : null}
+      {AfterHeader ? <div className="pt-[calc(var(--base)/4)]">{AfterHeader}</div> : null}
 
       <LeaveWithoutSavingModal
         modalSlug={leaveWithoutSavingModalSlug}

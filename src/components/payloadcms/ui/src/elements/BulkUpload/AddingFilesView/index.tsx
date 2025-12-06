@@ -15,9 +15,6 @@ import { EditForm } from '../EditForm/index.js'
 import { FileSidebar } from '../FileSidebar/index.js'
 import { useFormsManager } from '../FormsManager/index.js'
 import { DrawerHeader } from '../Header/index.js'
-import './index.scss'
-
-const baseClass = 'bulk-upload--file-manager'
 
 export function AddingFilesView() {
   const {
@@ -41,10 +38,10 @@ export function AddingFilesView() {
   const collectionConfig = getEntityConfig({ collectionSlug })
 
   return (
-    <div className={baseClass}>
+    <div className="flex h-full w-full overflow-hidden max-lg:flex-col-reverse">
       <FileSidebar />
 
-      <div className={`${baseClass}__editView`}>
+      <div className="grow h-full max-h-full overflow-auto">
         <DrawerHeader
           onClose={() => openModal(discardBulkUploadModalSlug)}
           title={getTranslation(collectionConfig.labels.singular, i18n)}

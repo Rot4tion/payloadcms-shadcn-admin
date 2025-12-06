@@ -3,12 +3,9 @@
 import React from 'react'
 
 import { useTranslation } from '@payloadcms/ui'
-import { Button } from '../../Button/index.js'
+import { Button } from '@/components/ui/button'
 import { Dropzone } from '../../Dropzone/index.js'
 import { DrawerHeader } from '../Header/index.js'
-import './index.scss'
-
-const baseClass = 'bulk-upload--add-files'
 
 type Props = {
   readonly acceptMimeTypes?: string
@@ -21,26 +18,25 @@ export function AddFilesView({ acceptMimeTypes, onCancel, onDrop }: Props) {
   const inputRef = React.useRef(null)
 
   return (
-    <div className={baseClass}>
+    <div className="h-full flex flex-col">
       <DrawerHeader onClose={onCancel} title={t('upload:addFiles')} />
-      <div className={`${baseClass}__dropArea`}>
+      <div className="h-full p-[calc(var(--base)*2)] px-(--gutter-h)">
         <Dropzone multipleFiles onChange={onDrop}>
           <Button
-            buttonStyle="subtle"
-            iconPosition="left"
+            variant="secondary"
+            size="sm"
             onClick={() => {
               if (inputRef.current) {
                 inputRef.current.click()
               }
             }}
-            size="small"
           >
             {t('upload:selectFile')}
           </Button>
           <input
             accept={acceptMimeTypes}
             aria-hidden="true"
-            className={`${baseClass}__hidden-input`}
+            className="hidden"
             hidden
             multiple
             onChange={(e) => {
@@ -52,7 +48,7 @@ export function AddFilesView({ acceptMimeTypes, onCancel, onDrop }: Props) {
             type="file"
           />
 
-          <p className={`${baseClass}__dragAndDropText`}>
+          <p className="m-0 lowercase self-center">
             {t('general:or')} {t('upload:dragAndDrop')}
           </p>
         </Dropzone>

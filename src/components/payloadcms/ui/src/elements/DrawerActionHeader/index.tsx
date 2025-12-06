@@ -2,12 +2,10 @@
 
 import React from 'react'
 
+import { cn } from '@/lib/utils'
 import { FormSubmit } from '../../forms/Submit/index.js'
 import { useTranslation } from '@payloadcms/ui'
-import { Button } from '../Button/index.js'
-import './index.scss'
-
-const baseClass = 'drawer-action-header'
+import { Button } from '@/components/ui/button'
 
 type DrawerActionHeaderArgs = {
   readonly cancelLabel?: string
@@ -28,12 +26,12 @@ export const DrawerActionHeader = ({
   const { t } = useTranslation()
 
   return (
-    <div className={[baseClass, className].filter(Boolean).join(' ')}>
-      <div className={`${baseClass}__content`}>
-        <h1 className={`${baseClass}__title`}>{title}</h1>
+    <div className={cn('pt-[calc(var(--base)*2)] pb-(--base) border-b border-border', className)}>
+      <div className="mx-(--gutter-h) flex justify-between items-center">
+        <h1 className="m-0">{title}</h1>
 
-        <div className={`${baseClass}__actions`}>
-          <Button aria-label={t('general:cancel')} buttonStyle="secondary" onClick={onCancel}>
+        <div className="flex ml-auto pl-(--base) gap-(--base)">
+          <Button aria-label={t('general:cancel')} variant="secondary" onClick={onCancel}>
             {cancelLabel || t('general:cancel')}
           </Button>
 

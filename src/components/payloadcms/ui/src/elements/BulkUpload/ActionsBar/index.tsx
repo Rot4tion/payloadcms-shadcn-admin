@@ -4,15 +4,13 @@ import type { ClientCollectionConfig } from 'payload'
 
 import React from 'react'
 
-import { ChevronIcon } from '../../../icons/Chevron/index.js'
+import { ChevronLeftIcon, ChevronRightIcon } from 'lucide-react'
+import { cn } from '@/lib/utils'
 import { useConfig } from '@payloadcms/ui'
 import { useTranslation } from '@payloadcms/ui'
-import { Button } from '../../Button/index.js'
+import { Button } from '@/components/ui/button'
 import { EditManyBulkUploads } from '../EditMany/index.js'
 import { useFormsManager } from '../FormsManager/index.js'
-import './index.scss'
-
-const baseClass = 'bulk-upload--actions-bar'
 
 type Props = {
   readonly collectionConfig: ClientCollectionConfig
@@ -23,18 +21,19 @@ export function ActionsBar({ collectionConfig }: Props) {
   const { t } = useTranslation()
 
   return (
-    <div className={baseClass}>
-      <div className={`${baseClass}__navigation`}>
-        <p className={`${baseClass}__locationText`}>
+    <div className="flex px-(--gutter-h) items-center border-b border-border sticky z-1 top-0 bg-background h-(--doc-controls-height)">
+      <div className="flex gap-(--base) items-center w-full max-lg:justify-between">
+        <p className="tabular-nums m-0">
           <strong>{activeIndex + 1}</strong>
           {` ${t('general:of')} `}
           <strong>{forms.length}</strong>
         </p>
 
-        <div className={`${baseClass}__controls`}>
+        <div className="flex gap-[calc(var(--base)/2)]">
           <Button
             aria-label={t('general:previous')}
-            buttonStyle="none"
+            variant="secondary"
+            size="icon-sm"
             onClick={() => {
               const nextIndex = activeIndex - 1
               if (nextIndex < 0) {
@@ -45,11 +44,12 @@ export function ActionsBar({ collectionConfig }: Props) {
             }}
             type="button"
           >
-            <ChevronIcon direction="left" />
+            <ChevronLeftIcon className="size-4" />
           </Button>
           <Button
             aria-label={t('general:next')}
-            buttonStyle="none"
+            variant="secondary"
+            size="icon-sm"
             onClick={() => {
               const nextIndex = activeIndex + 1
               if (nextIndex === forms.length) {
@@ -60,13 +60,13 @@ export function ActionsBar({ collectionConfig }: Props) {
             }}
             type="button"
           >
-            <ChevronIcon direction="right" />
+            <ChevronRightIcon className="size-4" />
           </Button>
         </div>
         <EditManyBulkUploads collection={collectionConfig} />
       </div>
 
-      <Actions className={`${baseClass}__saveButtons`} />
+      <Actions className="max-lg:hidden" />
     </div>
   )
 }
@@ -82,10 +82,10 @@ export function Actions({ className }: ActionsProps) {
   const collectionConfig = getEntityConfig({ collectionSlug })
 
   return (
-    <div className={[`${baseClass}__buttons`, className].filter(Boolean).join(' ')}>
+    <div className={cn('flex gap-(--base) ml-auto whitespace-nowrap', className)}>
       {collectionConfig?.versions?.drafts && hasSavePermission ? (
         <Button
-          buttonStyle="secondary"
+          variant="secondary"
           onClick={() => void saveAllDocs({ overrides: { _status: 'draft' } })}
         >
           {t('version:saveDraft')}

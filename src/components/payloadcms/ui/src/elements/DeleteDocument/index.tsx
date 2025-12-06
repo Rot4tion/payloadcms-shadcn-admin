@@ -20,9 +20,6 @@ import { requests } from '../../utilities/api.js'
 import { ConfirmationModal } from '../ConfirmationModal/index.js'
 import { PopupList } from '../Popup/index.js'
 import { Translation } from '../Translation/index.js'
-import './index.scss'
-
-const baseClass = 'delete-document'
 
 export type Props = {
   readonly buttonId?: string
@@ -182,7 +179,7 @@ export const DeleteDocument: React.FC<Props> = (props) => {
                 }}
               />
               {collectionConfig.trash && (
-                <div className={`${baseClass}__checkbox`}>
+                <div className="py-[calc(var(--base)*0.5)] [&_.checkbox-input_label]:pb-0">
                   <CheckboxInput
                     checked={deletePermanently}
                     id="delete-forever"
@@ -194,7 +191,7 @@ export const DeleteDocument: React.FC<Props> = (props) => {
               )}
             </Fragment>
           }
-          className={baseClass}
+          className="backdrop-blur-sm bg-background/80 flex items-center justify-center h-full"
           confirmingLabel={t('general:deleting')}
           heading={t('general:confirmDeletion')}
           modalSlug={modalSlug}

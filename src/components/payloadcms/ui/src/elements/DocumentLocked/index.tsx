@@ -7,13 +7,10 @@ import { useRouteCache } from '../../providers/RouteCache/index.js'
 import { useRouteTransition } from '@payloadcms/ui'
 import { useTranslation } from '@payloadcms/ui'
 import { isClientUserObject } from '../../utilities/isClientUserObject.js'
-import { Button } from '../Button/index.js'
+import { Button } from '@/components/ui/button'
 import { Modal, useModal } from '../Modal/index.js'
-import './index.scss'
 
 const modalSlug = 'document-locked'
-
-const baseClass = 'document-locked'
 
 const formatDate = (date) => {
   if (!date) {
@@ -52,7 +49,7 @@ export const DocumentLocked: React.FC<{
 
   return (
     <Modal
-      className={baseClass}
+      className="backdrop-blur-sm bg-background/80 flex items-center justify-center h-full"
       // Fixes https://github.com/payloadcms/payload/issues/13778
       closeOnBlur={false}
       onClose={() => {
@@ -60,8 +57,8 @@ export const DocumentLocked: React.FC<{
       }}
       slug={modalSlug}
     >
-      <div className={`${baseClass}__wrapper`}>
-        <div className={`${baseClass}__content`}>
+      <div className="z-1 relative flex flex-col gap-(--base) p-[calc(var(--base)*2)]">
+        <div className="flex flex-col gap-(--base) max-w-[calc(var(--base)*36)] [&>*]:m-0">
           <h1>{t('general:documentLocked')}</h1>
           <p>
             <strong>
@@ -73,38 +70,37 @@ export const DocumentLocked: React.FC<{
             {t('general:editedSince')} <strong>{formatDate(updatedAt)}</strong>
           </p>
         </div>
-        <div className={`${baseClass}__controls`}>
+        <div className="flex gap-(--base) [&_.btn]:m-0">
           <Button
-            buttonStyle="secondary"
+            variant="secondary"
+            size="lg"
             id={`${modalSlug}-go-back`}
             onClick={() => {
               closeModal(modalSlug)
               startRouteTransition(() => handleGoBack())
             }}
-            size="large"
           >
             {t('general:goBack')}
           </Button>
           <Button
-            buttonStyle="secondary"
+            variant="secondary"
+            size="lg"
             id={`${modalSlug}-view-read-only`}
             onClick={() => {
               onReadOnly()
               closeModal(modalSlug)
               clearRouteCache()
             }}
-            size="large"
           >
             {t('general:viewReadOnly')}
           </Button>
           <Button
-            buttonStyle="primary"
+            size="lg"
             id={`${modalSlug}-take-over`}
             onClick={() => {
               onTakeOver()
               closeModal(modalSlug)
             }}
-            size="large"
           >
             {t('general:takeOver')}
           </Button>

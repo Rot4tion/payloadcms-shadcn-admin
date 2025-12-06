@@ -5,13 +5,13 @@ import { useWindowInfo } from '@payloadcms/ui'
 import { isImage } from 'payload/shared'
 import React from 'react'
 
+import { ChevronDownIcon, ChevronUpIcon, XIcon } from 'lucide-react'
+import { cn } from '@/lib/utils'
+import { Button } from '@/components/ui/button'
 import { SelectInput } from '../../../fields/Select/Input.js'
-import { ChevronIcon } from '../../../icons/Chevron/index.js'
-import { XIcon } from '../../../icons/X/index.js'
 import { useConfig } from '@payloadcms/ui'
 import { useTranslation } from '@payloadcms/ui'
 import { AnimateHeight } from '../../AnimateHeight/index.js'
-import { Button } from '../../Button/index.js'
 import { Drawer } from '../../Drawer/index.js'
 import { ErrorPill } from '../../ErrorPill/index.js'
 import { Pill } from '../../Pill/index.js'
@@ -20,13 +20,10 @@ import { createThumbnail } from '../../Thumbnail/createThumbnail.js'
 import { Thumbnail } from '../../Thumbnail/index.js'
 import { Actions } from '../ActionsBar/index.js'
 import { AddFilesView } from '../AddFilesView/index.js'
-import './index.scss'
 import { useFormsManager } from '../FormsManager/index.js'
 import { useBulkUpload } from '../index.js'
 
 const addMoreFilesDrawerSlug = 'bulk-upload-drawer--add-more-files'
-
-const baseClass = 'file-selections'
 
 export function FileSidebar() {
   const {
@@ -82,13 +79,19 @@ export function FileSidebar() {
 
   return (
     <div
-      className={[baseClass, showFiles && `${baseClass}__showingFiles`].filter(Boolean).join(' ')}
+      className={cn(
+        'border-r border-border p-0 flex flex-col w-[300px] overflow-visible max-h-full',
+        'max-lg:flex-col-reverse max-lg:w-full max-lg:sticky max-lg:bottom-0 max-lg:shrink-0',
+        showFiles && 'max-lg:z-[2]',
+      )}
     >
-      {breakpoints.m && showFiles ? <div className={`${baseClass}__mobileBlur`} /> : null}
-      <div className={`${baseClass}__header`}>
+      {breakpoints.m && showFiles ? (
+        <div className="fixed top-0 left-0 w-full h-full opacity-0 transition-opacity duration-100 backdrop-blur-sm bg-background/80 [.max-lg:z-[2]_&]:opacity-100" />
+      ) : null}
+      <div className="sticky top-0 mt-(--base) z-1 flex items-center justify-between w-full bg-background flex-wrap max-lg:mt-0 [&_p]:m-0">
         {selectableCollections?.length > 1 && (
           <SelectInput
-            className={`${baseClass}__collectionSelect`}
+            className="w-full [&_.react-select]:w-full [&_.field-type\_\_wrap]:w-full [&_.field-type\_\_wrap]:py-(--base) [&_.field-type\_\_wrap]:px-[calc(var(--gutter-h)/4)]"
             isClearable={false}
             name="groupBy"
             onChange={(e) => {
@@ -109,8 +112,8 @@ export function FileSidebar() {
             value={bulkUploadCollectionSlug}
           />
         )}
-        <div className={`${baseClass}__headerTopRow`}>
-          <div className={`${baseClass}__header__text`}>
+        <div className="flex items-center justify-between gap-(--base) w-full py-(--base) px-[calc(var(--gutter-h)/4)] max-lg:border-t max-lg:border-border max-lg:py-0 max-lg:pb-[calc(var(--base)*0.8)]">
+          <div className="flex flex-col max-lg:hidden [&_.error-pill]:self-start">
             <ErrorPill count={totalErrorCount} i18n={i18n} withMessage />
             <p>
               <strong
@@ -122,10 +125,10 @@ export function FileSidebar() {
             </p>
           </div>
 
-          <div className={`${baseClass}__header__actions`}>
+          <div className="flex items-center gap-(--base) max-lg:grow max-lg:justify-end">
             {(typeof maxFiles === 'number' ? totalFileCount < maxFiles : true) ? (
               <Pill
-                className={`${baseClass}__header__addFile`}
+                className="h-fit"
                 onClick={() => openModal(addMoreFilesDrawerSlug)}
                 size="small"
               >
@@ -133,11 +136,11 @@ export function FileSidebar() {
               </Pill>
             ) : null}
             <Button
-              buttonStyle="transparent"
-              className={`${baseClass}__toggler`}
+              variant="ghost"
+              className="hidden m-0 py-0 px-0 pt-[calc(var(--base)*0.8)] pb-[calc(var(--base)*0.8)] max-lg:flex max-lg:justify-end max-lg:grow [&_.btn\_\_label]:w-full [&_.btn\_\_label]:flex [&_.btn\_\_label]:items-center [&_.btn\_\_label]:justify-between [&_svg]:max-w-6"
               onClick={() => setShowFiles((prev) => !prev)}
             >
-              <span className={`${baseClass}__toggler__label`}>
+              <span className="hidden max-lg:flex">
                 <strong
                   title={`${totalFileCount} ${t(totalFileCount > 1 ? 'upload:filesToUpload' : 'upload:fileToUpload')}`}
                 >
@@ -145,7 +148,11 @@ export function FileSidebar() {
                   {t(totalFileCount > 1 ? 'upload:filesToUpload' : 'upload:fileToUpload')}
                 </strong>
               </span>
-              <ChevronIcon direction={showFiles ? 'down' : 'up'} />
+              {showFiles ? (
+                <ChevronDownIcon className="size-4" />
+              ) : (
+                <ChevronUpIcon className="size-4" />
+              )}
             </Button>
 
             <Drawer gutter={false} Header={null} slug={addMoreFilesDrawerSlug}>
@@ -157,14 +164,14 @@ export function FileSidebar() {
           </div>
         </div>
 
-        <div className={`${baseClass}__header__mobileDocActions`}>
+        <div className="hidden relative w-full py-[calc(var(--base)*0.8)] px-(--gutter-h) border-t border-border max-lg:flex [&>div]:flex [&>div]:justify-end [&>div]:w-full [&>div_button]:flex-[0.5]">
           <Actions />
         </div>
       </div>
 
-      <div className={`${baseClass}__animateWrapper`}>
+      <div className="overflow-auto">
         <AnimateHeight height={!breakpoints.m || showFiles ? 'auto' : 0}>
-          <div className={`${baseClass}__filesContainer`}>
+          <div className="flex flex-col gap-[calc(var(--base)/4)] mt-[calc(var(--base)/2)] w-full px-[calc(var(--gutter-h)/4)] max-lg:px-(--gutter-h) max-lg:backdrop-blur-sm max-lg:bg-background/80 [&_.shimmer-effect]:rounded-md">
             {isInitializing &&
             forms.length === 0 &&
             (initialFiles?.length > 0 || initialForms?.length > 0)
@@ -178,39 +185,46 @@ export function FileSidebar() {
               : null}
             {forms.map(({ errorCount, formID, formState }, index) => {
               const currentFile = (formState?.file?.value as File) || ({} as File)
+              const isActive = index === activeIndex
+              const hasError = errorCount && errorCount > 0
 
               return (
                 <div
-                  className={[
-                    `${baseClass}__fileRowContainer`,
-                    index === activeIndex && `${baseClass}__fileRowContainer--active`,
-                    errorCount && errorCount > 0 && `${baseClass}__fileRowContainer--error`,
-                  ]
-                    .filter(Boolean)
-                    .join(' ')}
+                  className={cn(
+                    'relative last:mb-[calc(var(--base)/4)] max-lg:z-1',
+                    isActive && '[&_button:first-child]:bg-muted [&_.icon--x]:opacity-100',
+                    hasError && '[&_button:first-child]:bg-destructive/10',
+                    hasError && isActive && '[&_button:first-child]:bg-destructive/20',
+                    hasError && '[&_button:first-child:hover]:bg-destructive/20',
+                  )}
                   key={formID}
                 >
                   <button
-                    className={`${baseClass}__fileRow`}
+                    className="bg-transparent border-0 p-0 m-0 cursor-pointer flex p-[calc(var(--base)/4)] items-center gap-[calc(var(--base)/2)] rounded-md max-w-full w-full hover:bg-muted [&_p]:m-0"
                     onClick={() => setActiveIndex(index)}
                     type="button"
                   >
                     <SidebarThumbnail file={currentFile} formID={formID} />
-                    <div className={`${baseClass}__fileDetails`}>
-                      <p className={`${baseClass}__fileName`} title={currentFile.name}>
+                    <div className="flex flex-col min-w-0">
+                      <p
+                        className="whitespace-nowrap overflow-hidden text-ellipsis"
+                        title={currentFile.name}
+                      >
                         {currentFile.name || t('upload:noFile')}
                       </p>
                     </div>
                     {currentFile instanceof File ? (
-                      <p className={`${baseClass}__fileSize`}>{getFileSize(currentFile)}</p>
+                      <p className="text-[calc(var(--base)/2)] text-muted-foreground shrink-0">
+                        {getFileSize(currentFile)}
+                      </p>
                     ) : null}
-                    <div className={`${baseClass}__remove ${baseClass}__remove--underlay`}>
-                      <XIcon />
+                    <div className="bg-transparent border-0 p-0 m-0 ml-auto pointer-events-none opacity-0 [&_.icon--x]:opacity-75">
+                      <XIcon className="size-4" />
                     </div>
 
                     {errorCount ? (
                       <ErrorPill
-                        className={`${baseClass}__errorCount`}
+                        className="ml-auto absolute translate-x-1/2 -translate-y-1/2 top-0 right-0"
                         count={errorCount}
                         i18n={i18n}
                       />
@@ -219,11 +233,11 @@ export function FileSidebar() {
 
                   <button
                     aria-label={t('general:remove')}
-                    className={`${baseClass}__remove ${baseClass}__remove--overlay`}
+                    className="bg-transparent border-0 p-0 m-0 ml-auto absolute -translate-y-1/2 top-1/2 bottom-1/2 right-[calc(var(--base)/4)] h-5 rounded-md cursor-pointer hover:bg-accent [&_.icon--x]:opacity-75"
                     onClick={() => handleRemoveFile(index)}
                     type="button"
                   >
-                    <XIcon />
+                    <XIcon className="size-4" />
                   </button>
                 </div>
               )
@@ -234,6 +248,9 @@ export function FileSidebar() {
     </div>
   )
 }
+
+const thumbnailClasses =
+  'w-[calc(var(--base)*1.2)] h-[calc(var(--base)*1.2)] rounded-sm shrink-0 object-cover'
 
 function SidebarThumbnail({ file, formID }: { file: File; formID: string }) {
   const [thumbnailURL, setThumbnailURL] = React.useState<null | string>(null)
@@ -274,13 +291,13 @@ function SidebarThumbnail({ file, formID }: { file: File; formID: string }) {
   }, [file])
 
   if (isLoading) {
-    return <ShimmerEffect className={`${baseClass}__thumbnail-shimmer`} disableInlineStyles />
+    return <ShimmerEffect className={thumbnailClasses} disableInlineStyles />
   }
 
   return (
     <Thumbnail
-      className={`${baseClass}__thumbnail`}
-      fileSrc={thumbnailURL}
+      className={thumbnailClasses}
+      fileSrc={thumbnailURL ?? undefined}
       key={`${formID}-${thumbnailURL || 'placeholder'}`}
     />
   )

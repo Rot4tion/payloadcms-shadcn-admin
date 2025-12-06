@@ -4,13 +4,10 @@ import React, { useEffect } from 'react'
 import { useRouteCache } from '../../providers/RouteCache/index.js'
 import { useRouteTransition } from '@payloadcms/ui'
 import { useTranslation } from '@payloadcms/ui'
-import { Button } from '../Button/index.js'
+import { Button } from '@/components/ui/button'
 import { Modal, useModal } from '../Modal/index.js'
-import './index.scss'
 
 const modalSlug = 'document-take-over'
-
-const baseClass = 'document-take-over'
 
 export const DocumentTakeOver: React.FC<{
   handleBackToDashboard: () => void
@@ -32,36 +29,35 @@ export const DocumentTakeOver: React.FC<{
 
   return (
     <Modal
-      className={baseClass}
+      className="backdrop-blur-sm bg-background/80 flex items-center justify-center h-full"
       // // Fixes https://github.com/payloadcms/payload/issues/13778
       closeOnBlur={false}
       slug={modalSlug}
     >
-      <div className={`${baseClass}__wrapper`}>
-        <div className={`${baseClass}__content`}>
+      <div className="z-1 relative flex flex-col gap-(--base) p-[calc(var(--base)*2)]">
+        <div className="flex flex-col gap-(--base) *:m-0">
           <h1>{t('general:editingTakenOver')}</h1>
           <p>{t('general:anotherUserTakenOver')}</p>
         </div>
-        <div className={`${baseClass}__controls`}>
+        <div className="flex gap-(--base) [&_.btn]:m-0">
           <Button
-            buttonStyle="primary"
+            size="lg"
             id={`${modalSlug}-back-to-dashboard`}
             onClick={() => {
               startRouteTransition(() => handleBackToDashboard())
             }}
-            size="large"
           >
             {t('general:backToDashboard')}
           </Button>
           <Button
-            buttonStyle="secondary"
+            variant="secondary"
+            size="lg"
             id={`${modalSlug}-view-read-only`}
             onClick={() => {
               onReadOnly()
               closeModal(modalSlug)
               clearRouteCache()
             }}
-            size="large"
           >
             {t('general:viewReadOnly')}
           </Button>

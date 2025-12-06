@@ -7,12 +7,10 @@ import { useRouter } from 'next/navigation.js'
 import { formatAdminURL } from 'payload/shared'
 import React from 'react'
 
+import { cn } from '@/lib/utils'
 import { usePreferences } from '@payloadcms/ui'
 import { useTranslation } from '@payloadcms/ui'
-import { Button } from '../Button/index.js'
-import './index.scss'
-
-const baseClass = 'default-list-view-tabs'
+import { Button } from '@/components/ui/button'
 
 type DefaultListViewTabsProps = {
   collectionConfig: ClientCollectionConfig
@@ -73,14 +71,11 @@ export const DefaultListViewTabs: React.FC<DefaultListViewTabsProps> = ({
   const allButtonId = allButtonLabel.toLowerCase().replace(/\s+/g, '-')
 
   return (
-    <div className={baseClass}>
+    <div className="flex gap-[calc(var(--base)*0.5)]">
       <Button
-        buttonStyle="tab"
-        className={[`${baseClass}__button`, viewType === 'list' && `${baseClass}__button--active`]
-          .filter(Boolean)
-          .join(' ')}
+        variant={viewType === 'list' ? 'default' : 'outline'}
+        size="sm"
         disabled={viewType === 'list'}
-        el="button"
         id={allButtonId}
         onClick={() => handleViewChange('list')}
       >
@@ -89,15 +84,9 @@ export const DefaultListViewTabs: React.FC<DefaultListViewTabsProps> = ({
 
       {isFoldersEnabled && (
         <Button
-          buttonStyle="tab"
-          className={[
-            `${baseClass}__button`,
-            viewType === 'folders' && `${baseClass}__button--active`,
-          ]
-            .filter(Boolean)
-            .join(' ')}
+          variant={viewType === 'folders' ? 'default' : 'outline'}
+          size="sm"
           disabled={viewType === 'folders'}
-          el="button"
           onClick={() => handleViewChange('folders')}
         >
           {t('folder:byFolder')}
@@ -106,15 +95,9 @@ export const DefaultListViewTabs: React.FC<DefaultListViewTabsProps> = ({
 
       {isTrashEnabled && (
         <Button
-          buttonStyle="tab"
-          className={[
-            `${baseClass}__button`,
-            viewType === 'trash' && `${baseClass}__button--active`,
-          ]
-            .filter(Boolean)
-            .join(' ')}
+          variant={viewType === 'trash' ? 'default' : 'outline'}
+          size="sm"
           disabled={viewType === 'trash'}
-          el="button"
           id="trash-view-pill"
           onClick={() => handleViewChange('trash')}
         >

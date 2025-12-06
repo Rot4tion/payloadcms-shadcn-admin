@@ -21,7 +21,6 @@ import { parseSearchParams } from '../../utilities/parseSearchParams.js'
 import { ConfirmationModal } from '../ConfirmationModal/index.js'
 import { ListSelectionButton } from '../ListSelection/index.js'
 import { Translation } from '../Translation/index.js'
-import './index.scss'
 import { SelectAllStatus } from '@payloadcms/ui/providers/Selection'
 
 export type Props = {
@@ -411,7 +410,7 @@ export function DeleteMany_v4({
               )}
             </p>
             {trash && viewType !== 'trash' && (
-              <div className="delete-documents__checkbox">
+              <div className="py-[calc(var(--base)*0.5)] [&_.checkbox-input_label]:pb-0">
                 <CheckboxInput
                   checked={deletePermanently}
                   id="delete-forever"

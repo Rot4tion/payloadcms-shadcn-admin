@@ -330,6 +330,197 @@ Use these from `src/components/ui/`:
 
 ---
 
+## 🤖 AI CONVERSION WORKFLOW
+
+> **AI Instructions**: When user requests "continue migration" or sends this file, follow this workflow:
+
+### Step 1: Find files to convert
+```bash
+# Find all files still importing SCSS
+grep -r "import '\./index\.scss'" src/components/payloadcms --include="*.tsx"
+
+# Or PowerShell
+Get-ChildItem -Path "src/components/payloadcms" -Filter "*.tsx" -Recurse | Select-String -Pattern "import '\./index\.scss'"
+```
+
+### Step 2: For each file, perform:
+
+#### 2.1 Read both TSX and SCSS files
+```tsx
+// Read both files
+read_file("path/to/component/index.tsx")
+read_file("path/to/component/index.scss")
+```
+
+#### 2.2 Analyze SCSS and convert to Tailwind
+```scss
+// Original SCSS
+.component {
+  display: flex;
+  gap: calc(var(--base) * 0.5);
+  padding: var(--gutter-h);
+  
+  &--active { background: var(--theme-elevation-100); }
+  &__child { margin-top: base(1); }
+}
+```
+↓ Convert to:
+```tsx
+className={cn(
+  'flex gap-[calc(var(--base)*0.5)] px-(--gutter-h)',
+  isActive && 'bg-muted',
+)}
+// child element
+className="mt-(--base)"
+```
+
+#### 2.3 Update TSX file
+1. **Remove SCSS import**: `import './index.scss'`
+2. **Remove baseClass**: `const baseClass = '...'`
+3. **Add cn import**: `import { cn } from '@/lib/utils'`
+4. **Replace className**: Replace `${baseClass}__xxx` with Tailwind classes
+
+#### 2.4 Delete SCSS file
+```bash
+Remove-Item "path/to/component/index.scss"
+```
+
+### Step 3: Check for orphaned SCSS
+```bash
+# Find SCSS files not being imported (orphaned)
+# PowerShell script to find orphaned files:
+Get-ChildItem -Path "src/components/payloadcms" -Filter "index.scss" -Recurse | ForEach-Object {
+  $scssPath = $_.FullName
+  $tsxPath = $scssPath -replace '\.scss$', '.tsx'
+  $serverPath = $scssPath -replace '\.scss$', '.server.tsx'
+  $clientPath = $scssPath -replace '\.scss$', '.client.tsx'
+  
+  $imported = $false
+  foreach ($path in @($tsxPath, $serverPath, $clientPath)) {
+    if (Test-Path $path) {
+      $content = Get-Content $path -Raw
+      if ($content -match "import '\./index\.scss'") {
+        $imported = $true
+        break
+      }
+    }
+  }
+  
+  if (-not $imported) {
+    Write-Host "Orphaned: $scssPath"
+  }
+}
+```
+
+### Step 4: Conversion Rules Quick Reference
+
+| SCSS Pattern | Tailwind Equivalent |
+|--------------|---------------------|
+| `display: flex` | `flex` |
+| `flex-direction: column` | `flex-col` |
+| `align-items: center` | `items-center` |
+| `justify-content: space-between` | `justify-between` |
+| `gap: calc(var(--base) * 0.5)` | `gap-[calc(var(--base)*0.5)]` |
+| `padding: var(--gutter-h)` | `px-(--gutter-h)` |
+| `margin-top: base(1)` | `mt-(--base)` |
+| `background: var(--theme-elevation-100)` | `bg-muted` |
+| `color: var(--theme-text)` | `text-foreground` |
+| `border: 1px solid var(--theme-border-color)` | `border border-border` |
+| `border-radius: var(--style-radius-m)` | `rounded-md` |
+| `cursor: pointer` | `cursor-pointer` |
+| `white-space: nowrap` | `whitespace-nowrap` |
+| `overflow: hidden` | `overflow-hidden` |
+| `position: relative` | `relative` |
+| `position: absolute` | `absolute` |
+| `position: sticky` | `sticky` |
+| `width: 100%` | `w-full` |
+| `height: 100%` | `h-full` |
+| `min-width: 0` | `min-w-0` |
+| `flex-shrink: 0` | `shrink-0` |
+| `flex-grow: 1` | `grow` |
+
+### Step 5: Pseudo-elements & States
+
+| SCSS | Tailwind |
+|------|----------|
+| `&:hover { ... }` | `hover:...` |
+| `&:focus { ... }` | `focus:...` |
+| `&:active { ... }` | `active:...` |
+| `&:focus-visible { ... }` | `focus-visible:...` |
+| `&::before { ... }` | `before:...` hoặc dùng `<div>` riêng |
+| `&::after { ... }` | `after:...` hoặc dùng `<div>` riêng |
+| `&--modifier { ... }` | Dùng `cn()` với conditional |
+| `& > * { ... }` | `*:...` |
+| `& svg { ... }` | `[&_svg]:...` |
+
+### Step 6: Breakpoints Mapping
+
+| SCSS Mixin | Tailwind Prefix |
+|------------|-----------------|
+| `@include small-break` (< 768px) | `max-md:` |
+| `@include mid-break` (< 1024px) | `max-lg:` |
+| `@include large-break` (< 1440px) | `max-xl:` |
+
+### Step 7: Common Patterns
+
+#### Button Reset
+```scss
+// SCSS: @extend %btn-reset
+```
+```tsx
+// Tailwind
+className="bg-transparent border-0 p-0 m-0 cursor-pointer"
+```
+
+#### Form Input
+```scss
+// SCSS: @include formInput
+```
+```tsx
+// Tailwind
+className="border border-input bg-background rounded-md px-3 py-2"
+```
+
+#### Scrollbar Hidden
+```scss
+// SCSS: scrollbar-width: none; -ms-overflow-style: none; &::-webkit-scrollbar { display: none }
+```
+```tsx
+// Tailwind (custom utility or)
+className="scrollbar-none" // if plugin available
+// or
+className="[scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden"
+```
+
+### Step 8: Batch Processing Template
+
+When converting multiple files, use this pattern:
+```tsx
+// 1. Read files
+const files = [
+  'elements/ComponentA/index.tsx',
+  'elements/ComponentB/index.tsx',
+  // ...
+]
+
+// 2. For each file:
+//    - Read TSX + SCSS
+//    - Convert styles
+//    - Update TSX (remove import, baseClass, add Tailwind)
+//    - Delete SCSS
+
+// 3. Verify no build errors
+// 4. Report progress
+```
+
+### ⚠️ SKIP These (Keep SCSS)
+- `views/API/*` - Complex JSON rendering
+- `views/Version/*` - Complex diff rendering
+- `views/Versions/*` - Version list with complex states
+- `elements/DocumentControls/*` - Complex sticky behavior
+
+---
+
 ## 📋 QUICK REFERENCE
 
 ### Breakpoints

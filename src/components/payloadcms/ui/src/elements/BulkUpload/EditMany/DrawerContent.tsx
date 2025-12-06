@@ -13,19 +13,17 @@ import type { FieldOption } from '../../FieldSelect/reduceFieldOptions.js'
 import type { State } from '../FormsManager/reducer.js'
 import type { EditManyBulkUploadsProps } from './index.js'
 
-import { Button } from '../../../elements/Button/index.js'
+import { XIcon } from 'lucide-react'
+import { Button } from '@/components/ui/button'
 import { Form } from '../../../forms/Form/index.js'
 import { FieldPathContext } from '../../../forms/RenderFields/context.js'
 import { RenderField } from '../../../forms/RenderFields/RenderField.js'
-import { XIcon } from '../../../icons/X/index.js'
 import { useAuth } from '@payloadcms/ui'
 import { useServerFunctions } from '@payloadcms/ui'
 import { useTranslation } from '@payloadcms/ui'
 import { abortAndIgnore, handleAbortRef } from '../../../utilities/abortAndIgnore.js'
 import { FieldSelect } from '../../FieldSelect/index.js'
 import { useFormsManager } from '../FormsManager/index.js'
-import { baseClass } from './index.js'
-import './index.scss'
 import '../../../forms/RenderFields/index.scss'
 
 export const EditManyBulkUploadsDrawerContent: React.FC<
@@ -140,26 +138,27 @@ export const EditManyBulkUploadsDrawerContent: React.FC<
   )
 
   return (
-    <div className={`${baseClass}__main`}>
-      <div className={`${baseClass}__header`}>
-        <h2 className={`${baseClass}__header__title`}>
+    <div className="w-[calc(100%-var(--base)*15)] flex flex-col min-h-full max-lg:w-full max-lg:min-h-0">
+      <div className="flex mt-[calc(var(--base)*2.5)] mb-(--base) w-full">
+        <h2 className="m-0 grow">
           {t('general:editingLabel', {
             count: forms.length,
             label: getTranslation(forms.length > 1 ? plural : singular, i18n),
           })}
         </h2>
-        <button
+        <Button
           aria-label={t('general:close')}
-          className={`${baseClass}__header__close`}
+          variant="ghost"
+          size="icon-sm"
           id={`close-drawer__${drawerSlug}`}
           onClick={() => closeModal(drawerSlug)}
           type="button"
         >
-          <XIcon />
-        </button>
+          <XIcon className="size-4" />
+        </Button>
       </div>
       <Form
-        className={`${baseClass}__form`}
+        className="h-full"
         isInitializing={isInitializing}
         onChange={[onChange]}
         onSubmit={handleSubmit}
@@ -192,10 +191,10 @@ export const EditManyBulkUploadsDrawerContent: React.FC<
             </FieldPathContext>
           </div>
         )}
-        <div className={`${baseClass}__sidebar-wrap`}>
-          <div className={`${baseClass}__sidebar`}>
-            <div className={`${baseClass}__sidebar-sticky-wrap`}>
-              <div className={`${baseClass}__document-actions`}>
+        <div className="fixed w-[calc(var(--base)*15)] h-full top-0 right-0 overflow-visible border-l border-border max-lg:static max-lg:w-full max-lg:h-auto rtl:left-0 rtl:right-auto rtl:border-r rtl:border-l-0">
+          <div className="w-full h-full overflow-y-auto">
+            <div className="flex flex-col min-h-full">
+              <div className="flex flex-wrap p-(--base) gap-[calc(var(--base)*0.5)] sticky top-0 z-[var(--z-nav)] max-lg:fixed max-lg:bottom-0 max-lg:left-0 max-lg:right-0 max-lg:top-auto max-lg:px-(--gutter-h)">
                 <Button type="submit">{t('general:applyChanges')}</Button>
               </div>
             </div>
