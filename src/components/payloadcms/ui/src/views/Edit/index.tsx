@@ -31,7 +31,7 @@ import { OperationProvider } from '@payloadcms/ui'
 import { useRouteCache } from '../../providers/RouteCache/index.js'
 import { useRouteTransition } from '@payloadcms/ui'
 import { useServerFunctions } from '@payloadcms/ui'
-import { UploadControlsProvider } from '../../providers/UploadControls/index.js'
+
 import { useUploadEdits } from '../../providers/UploadEdits/index.js'
 import { abortAndIgnore, handleAbortRef } from '../../utilities/abortAndIgnore.js'
 import { handleBackToDashboard } from '../../utilities/handleBackToDashboard.js'
@@ -41,6 +41,7 @@ import { Auth } from './Auth/index.js'
 import { SetDocumentStepNav } from './SetDocumentStepNav/index.js'
 import './index.scss'
 import { SetDocumentTitle } from './SetDocumentTitle/index.js'
+import { UploadControlsProvider } from '@payloadcms/ui/providers/UploadControls'
 
 const baseClass = 'collection-edit'
 
@@ -172,7 +173,7 @@ export function DefaultEditView({
 
   const autosaveEnabled = Boolean(
     (collectionConfig?.versions?.drafts && collectionConfig?.versions?.drafts?.autosave) ||
-      (globalConfig?.versions?.drafts && globalConfig?.versions?.drafts?.autosave),
+    (globalConfig?.versions?.drafts && globalConfig?.versions?.drafts?.autosave),
   )
 
   const [isReadOnlyForIncomingUser, setIsReadOnlyForIncomingUser] = useState(false)

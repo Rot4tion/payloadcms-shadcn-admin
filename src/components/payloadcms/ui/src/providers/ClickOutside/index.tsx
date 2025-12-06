@@ -3,5 +3,6 @@
  */
 'use client'
 
-export { ClickOutsideProvider, useClickOutsideContext } from '@payloadcms/ui'
+export { ClickOutsideProvider } from '@payloadcms/ui/providers/ClickOutside'
 
+export { useClickOutsideContext } from '@payloadcms/ui'

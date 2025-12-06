@@ -3,5 +3,6 @@
  */
 'use client'
 
-export { DocumentDrawer, DocumentDrawerToggler, useDocumentDrawer, documentDrawerBaseClass } from '@payloadcms/ui'
+export { DocumentDrawer, DocumentDrawerToggler } from '@payloadcms/ui/elements/DocumentDrawer'
 
+export { documentDrawerBaseClass, useDocumentDrawer } from '@payloadcms/ui'
