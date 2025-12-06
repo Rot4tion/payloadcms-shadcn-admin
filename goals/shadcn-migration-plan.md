@@ -34,8 +34,8 @@
 | Modal | `ui/src/elements/Modal` | shadcn/dialog | ✅ Done |
 | Drawer | `ui/src/elements/Drawer` | shadcn/sheet | ✅ Done |
 | Popup | `ui/src/elements/Popup` | shadcn/popover | ✅ Done |
-| Table | `ui/src/elements/Table` | shadcn/table | ⏳ Pending |
-| Pagination | `ui/src/elements/Pagination` | Custom | ⏳ Pending |
+| Table | `ui/src/elements/Table` | shadcn/table | ✅ Done |
+| Pagination | `ui/src/elements/Pagination` | Custom | ✅ Done |
 | ConfirmationModal | `ui/src/elements/ConfirmationModal` | Tailwind | ✅ Done |
 | FullscreenModal | `ui/src/elements/FullscreenModal` | Custom Modal | ✅ Done |
 
@@ -54,16 +54,16 @@
 ---
 
 ## Phase 2: Graphics & Icons
-**Status**: ⏳ Pending
+**Status**: ✅ Done
 
 ### 2.1 Graphics (8 items)
 | Item | Path | Action |
 |------|------|--------|
 | Account | `ui/src/graphics/Account` | ✅ Done |
-| File | `ui/src/graphics/File` | Convert to Tailwind |
+| File | `ui/src/graphics/File` | ✅ Done |
 | Icon | `ui/src/graphics/Icon` | ✅ Done |
 | Logo | `ui/src/graphics/Logo` | ✅ Done |
-| Swap | `ui/src/graphics/Swap` | Convert to Tailwind |
+| DefaultBlockImage | `ui/src/graphics/DefaultBlockImage` | ✅ Done |
 
 ### 2.2 Icons (62 items)
 **Strategy**: Replace with Lucide icons where possible
@@ -79,7 +79,7 @@
 | Field | Path | Shadcn/Strategy |
 |-------|------|-----------------|
 | Array | `ui/src/fields/Array` | Custom with shadcn components | ✅ Done |
-| Blocks | `ui/src/fields/Blocks` | Custom with shadcn components |
+| Blocks | `ui/src/fields/Blocks` | Custom with shadcn components | ✅ Done |
 | Checkbox | `ui/src/fields/Checkbox` | shadcn/checkbox | ✅ Done |
 | Code | `ui/src/fields/Code` | Keep Monaco, style container |
 | DateTime | `ui/src/fields/DateTime` | shadcn/calendar + popover | ✅ Done |
@@ -98,7 +98,7 @@
 | Tabs | `ui/src/fields/Tabs` | shadcn/tabs |
 | Text | `ui/src/fields/Text` | shadcn/input |
 | Textarea | `ui/src/fields/Textarea` | shadcn/textarea |
-| Upload | `ui/src/fields/Upload` | Custom with shadcn |
+| Upload | `ui/src/fields/Upload` | Custom with shadcn | ✅ Done |
 
 ### 3.2 Form Components
 | Component | Path | Strategy |

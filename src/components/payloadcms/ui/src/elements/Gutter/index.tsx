@@ -1,5 +1,6 @@
 'use client'
 import React from 'react'
+
 import { cn } from '@/lib/utils'
 
 export type GutterProps = {
@@ -29,10 +30,10 @@ export const Gutter: React.FC<GutterProps> = (props) => {
   return (
     <div
       className={cn(
-        shouldPadLeft && 'pl-6',
-        shouldPadRight && 'pr-6',
-        negativeLeft && '-ml-6',
-        negativeRight && '-mr-6',
+        shouldPadLeft && 'pl-(--gutter-h)',
+        shouldPadRight && 'pr-(--gutter-h)',
+        negativeLeft && '-ml-(--gutter-h)',
+        negativeRight && '-mr-(--gutter-h)',
         className,
       )}
       ref={ref}

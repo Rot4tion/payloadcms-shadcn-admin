@@ -1,6 +1,8 @@
 'use client'
 import React from 'react'
 
+import { cn } from '@/lib/utils'
+
 export type PageProps = {
   isCurrent?: boolean
   isFirstPage?: boolean
@@ -9,8 +11,6 @@ export type PageProps = {
   updatePage?: (page) => void
 }
 
-const baseClass = 'paginator__page'
-
 export const Page: React.FC<PageProps> = ({
   isCurrent,
   isFirstPage = false,
@@ -18,17 +18,21 @@ export const Page: React.FC<PageProps> = ({
   page = 1,
   updatePage,
 }) => {
-  const classes = [
-    baseClass,
-    isCurrent && `${baseClass}--is-current`,
-    isFirstPage && `${baseClass}--is-first-page`,
-    isLastPage && `${baseClass}--is-last-page`,
-  ]
-    .filter(Boolean)
-    .join(' ')
-
   return (
-    <button className={classes} onClick={() => updatePage(page)} type="button">
+    <button
+      className={cn(
+        'inline-flex items-center justify-center',
+        'size-6 p-1 rounded-sm mr-1',
+        'text-sm leading-none text-foreground/80',
+        'transition-colors duration-100',
+        'outline-none focus-visible:ring-2 focus-visible:ring-ring',
+        'cursor-pointer hover:bg-muted',
+        isCurrent && 'bg-muted text-muted-foreground cursor-default hover:bg-muted',
+        isLastPage && 'mr-0',
+      )}
+      onClick={() => updatePage(page)}
+      type="button"
+    >
       {page}
     </button>
   )

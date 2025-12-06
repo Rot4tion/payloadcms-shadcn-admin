@@ -34,12 +34,10 @@ import { useAuth } from '@payloadcms/ui'
 import { useLocale } from '@payloadcms/ui'
 import { useTranslation } from '@payloadcms/ui'
 import { normalizeRelationshipValue } from '../../utilities/normalizeRelationshipValue.js'
+import { cn } from '@/lib/utils'
 import { fieldBaseClass } from '../shared/index.js'
 import { UploadComponentHasMany } from './HasMany/index.js'
 import { UploadComponentHasOne } from './HasOne/index.js'
-import './index.scss'
-
-export const baseClass = 'upload'
 
 type PopulatedDocs = { relationTo: string; value: JsonObject }[]
 
@@ -639,15 +637,7 @@ export function UploadInput(props: UploadInputProps) {
 
   return (
     <div
-      className={[
-        fieldBaseClass,
-        baseClass,
-        className,
-        showError && 'error',
-        readOnly && 'read-only',
-      ]
-        .filter(Boolean)
-        .join(' ')}
+      className={cn(fieldBaseClass, className, showError && 'error', readOnly && 'read-only')}
       id={`field-${path?.replace(/\./g, '__')}`}
       style={style}
     >
@@ -657,14 +647,14 @@ export function UploadInput(props: UploadInputProps) {
           <FieldLabel label={label} localized={localized} path={path} required={required} />
         }
       />
-      <div className={`${baseClass}__wrap`}>
+      <div>
         <RenderCustomComponent
           CustomComponent={Error}
           Fallback={<FieldError path={path} showError={showError} />}
         />
       </div>
       {BeforeInput}
-      <div className={`${baseClass}__dropzoneAndUpload`}>
+      <div className="flex flex-col gap-1">
         {hasMany && Array.isArray(value) && value.length > 0 ? (
           <>
             {populatedDocs && populatedDocs?.length > 0 ? (
@@ -680,7 +670,7 @@ export function UploadInput(props: UploadInputProps) {
                 showCollectionSlug={Array.isArray(relationTo)}
               />
             ) : (
-              <div className={`${baseClass}__loadingRows`}>
+              <div className="flex flex-col gap-1">
                 {value.map((id) => (
                   <ShimmerEffect height="40px" key={typeof id === 'object' ? id.value : id} />
                 ))}
@@ -715,13 +705,12 @@ export function UploadInput(props: UploadInputProps) {
             multipleFiles={hasMany}
             onChange={onLocalFileSelection}
           >
-            <div className={`${baseClass}__dropzoneContent`}>
-              <div className={`${baseClass}__dropzoneContent__buttons`}>
+            <div className="flex flex-wrap gap-1.5 justify-between w-full">
+              <div className="flex gap-2 relative -left-0.5">
                 {canCreate && (
                   <>
                     <Button
                       buttonStyle="pill"
-                      className={`${baseClass}__createNewToggler`}
                       disabled={readOnly || !canCreate}
                       onClick={() => {
                         if (!readOnly) {
@@ -736,14 +725,11 @@ export function UploadInput(props: UploadInputProps) {
                     >
                       {t('general:createNew')}
                     </Button>
-                    <span className={`${baseClass}__dropzoneContent__orText`}>
-                      {t('general:or')}
-                    </span>
+                    <span className="text-muted-foreground lowercase">{t('general:or')}</span>
                   </>
                 )}
                 <Button
                   buttonStyle="pill"
-                  className={`${baseClass}__listToggler`}
                   disabled={readOnly}
                   onClick={openListDrawer}
                   size="small"
@@ -760,7 +746,7 @@ export function UploadInput(props: UploadInputProps) {
               </div>
 
               {canCreate && !readOnly && (
-                <p className={`${baseClass}__dragAndDropText`}>
+                <p className="shrink-0 m-0 lowercase self-center text-muted-foreground sm:hidden">
                   {t('general:or')} {t('upload:dragAndDrop')}
                 </p>
               )}

@@ -2,7 +2,6 @@
 import React from 'react'
 
 import { ClickableArrow } from './ClickableArrow/index.js'
-import './index.scss'
 import { Page } from './Page/index.js'
 import { Separator } from './Separator/index.js'
 
@@ -11,8 +10,6 @@ const nodeTypes = {
   Page,
   Separator,
 }
-
-const baseClass = 'paginator'
 
 export type PaginationProps = {
   hasNextPage?: boolean
@@ -132,7 +129,7 @@ export const Pagination: React.FC<PaginationProps> = (props) => {
   })
 
   return (
-    <div className={baseClass}>
+    <div className="flex items-center">
       {nodes.map((node, i) => {
         if (typeof node === 'number') {
           return (

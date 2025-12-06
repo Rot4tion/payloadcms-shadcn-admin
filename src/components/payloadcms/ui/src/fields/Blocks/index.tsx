@@ -31,7 +31,7 @@ import { useDocumentInfo } from '@payloadcms/ui'
 import { useLocale } from '@payloadcms/ui'
 import { useTranslation } from '@payloadcms/ui'
 import { scrollToID } from '../../utilities/scrollToID.js'
-import './index.scss'
+import { cn } from '@/lib/utils'
 import { FieldDescription } from '../FieldDescription/index.js'
 import { FieldError } from '../FieldError/index.js'
 import { FieldLabel } from '../FieldLabel/index.js'
@@ -39,8 +39,6 @@ import { mergeFieldStyles } from '../mergeFieldStyles.js'
 import { fieldBaseClass } from '../shared/index.js'
 import { BlockRow } from './BlockRow.js'
 import { BlocksDrawer } from './BlocksDrawer/index.js'
-
-const baseClass = 'blocks-field'
 
 const BlocksFieldComponent: BlocksFieldClientComponent = (props) => {
   const { i18n, t } = useTranslation()
@@ -316,14 +314,7 @@ const BlocksFieldComponent: BlocksFieldClientComponent = (props) => {
 
   return (
     <div
-      className={[
-        fieldBaseClass,
-        baseClass,
-        className,
-        fieldHasErrors ? `${baseClass}--has-error` : `${baseClass}--has-no-error`,
-      ]
-        .filter(Boolean)
-        .join(' ')}
+      className={cn(fieldBaseClass, 'flex flex-col gap-2', className)}
       id={`field-${path?.replace(/\./g, '__')}`}
       style={styles}
     >
@@ -333,9 +324,9 @@ const BlocksFieldComponent: BlocksFieldClientComponent = (props) => {
           Fallback={<FieldError path={path} showError={showError} />}
         />
       )}
-      <header className={`${baseClass}__header`}>
-        <div className={`${baseClass}__header-wrap`}>
-          <div className={`${baseClass}__heading-with-error`}>
+      <header>
+        <div className="flex items-end w-full justify-between">
+          <div className={cn('flex items-center gap-2', fieldHasErrors && 'text-destructive')}>
             <h3>
               <RenderCustomComponent
                 CustomComponent={Label}
@@ -354,12 +345,12 @@ const BlocksFieldComponent: BlocksFieldClientComponent = (props) => {
               <ErrorPill count={fieldErrorCount} i18n={i18n} withMessage />
             )}
           </div>
-          <ul className={`${baseClass}__header-actions`}>
+          <ul className="list-none m-0 p-0 flex">
             {rows.length > 0 && (
               <Fragment>
                 <li>
                   <button
-                    className={`${baseClass}__header-action`}
+                    className="cursor-pointer ml-2 hover:underline focus-visible:underline bg-transparent border-none p-0"
                     onClick={() => toggleCollapseAll(true)}
                     type="button"
                   >
@@ -368,7 +359,7 @@ const BlocksFieldComponent: BlocksFieldClientComponent = (props) => {
                 </li>
                 <li>
                   <button
-                    className={`${baseClass}__header-action`}
+                    className="cursor-pointer ml-2 hover:underline focus-visible:underline bg-transparent border-none p-0"
                     onClick={() => toggleCollapseAll(false)}
                     type="button"
                   >
@@ -382,7 +373,7 @@ const BlocksFieldComponent: BlocksFieldClientComponent = (props) => {
                 allowCopy={rows?.length > 0}
                 allowPaste={!readOnly}
                 blocks={clientBlocks}
-                className={`${baseClass}__header-action`}
+                className="cursor-pointer ml-2 hover:underline focus-visible:underline bg-transparent border-none p-0"
                 disabled={disabled}
                 getDataToCopy={() =>
                   reduceFormStateByPath({
@@ -411,7 +402,7 @@ const BlocksFieldComponent: BlocksFieldClientComponent = (props) => {
       />
       {(rows.length > 0 || (!valid && (showRequired || showMinRows))) && (
         <DraggableSortable
-          className={`${baseClass}__rows`}
+          className="flex flex-col gap-2"
           ids={rows.map((row) => row.id)}
           onDragEnd={({ moveFromIndex, moveToIndex }) => moveRow(moveFromIndex, moveToIndex)}
         >
@@ -494,12 +485,13 @@ const BlocksFieldComponent: BlocksFieldClientComponent = (props) => {
       {!hasMaxRows && (
         <Fragment>
           <DrawerToggler
-            className={`${baseClass}__drawer-toggler`}
+            className="bg-transparent m-0 p-0 border-none self-start"
             disabled={readOnly || disabled}
             slug={drawerSlug}
           >
             <Button
               buttonStyle="icon-label"
+              className="text-muted-foreground m-0 hover:text-foreground"
               disabled={readOnly || disabled}
               el="span"
               icon="plus"

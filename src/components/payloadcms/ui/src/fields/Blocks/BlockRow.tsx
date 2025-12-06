@@ -16,10 +16,9 @@ import { RenderFields } from '../../forms/RenderFields/index.js'
 import { RowLabel } from '../../forms/RowLabel/index.js'
 import { useThrottledValue } from '../../hooks/useThrottledValue.js'
 import { useTranslation } from '@payloadcms/ui'
+import { cn } from '@/lib/utils'
 import { RowActions } from './RowActions.js'
 import { SectionTitle } from './SectionTitle/index.js'
-
-const baseClass = 'blocks-field'
 
 type BlocksFieldProps = {
   addRow: (rowIndex: number, blockType: string) => Promise<void> | void
@@ -87,12 +86,7 @@ export const BlockRow: React.FC<BlocksFieldProps> = ({
 
   const showBlockName = !block.admin?.disableBlockName
 
-  const classNames = [
-    `${baseClass}__row`,
-    fieldHasErrors ? `${baseClass}__row--has-errors` : `${baseClass}__row--no-errors`,
-  ]
-    .filter(Boolean)
-    .join(' ')
+  const classNames = cn(fieldHasErrors && 'has-errors')
 
   let blockPermissions: RenderFieldsProps['permissions'] = true
 
@@ -175,19 +169,13 @@ export const BlockRow: React.FC<BlocksFieldProps> = ({
           isLoading ? (
             <ShimmerEffect height="1rem" width="8rem" />
           ) : (
-            <div className={`${baseClass}__block-header`}>
+            <div className="inline-flex max-w-full w-full overflow-hidden gap-1.5">
               <RowLabel
                 CustomComponent={Label}
                 label={
                   <>
-                    <span className={`${baseClass}__block-number`}>
-                      {String(rowIndex + 1).padStart(2, '0')}
-                    </span>
-                    <Pill
-                      className={`${baseClass}__block-pill ${baseClass}__block-pill-${row.blockType}`}
-                      pillStyle="white"
-                      size="small"
-                    >
+                    <span className="shrink-0">{String(rowIndex + 1).padStart(2, '0')}</span>
+                    <Pill className="shrink-0 block leading-none" pillStyle="white" size="small">
                       {getTranslation(block.labels.singular, i18n)}
                     </Pill>
                     {showBlockName && (
@@ -210,7 +198,6 @@ export const BlockRow: React.FC<BlocksFieldProps> = ({
           <ShimmerEffect />
         ) : (
           <RenderFields
-            className={`${baseClass}__fields`}
             fields={fields}
             margins="small"
             parentIndexPath=""

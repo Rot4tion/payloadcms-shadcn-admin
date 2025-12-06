@@ -10,12 +10,9 @@ import { withCondition } from '../../forms/withCondition/index.js'
 import { useConfig } from '@payloadcms/ui'
 import { mergeFieldStyles } from '../mergeFieldStyles.js'
 import { UploadInput } from './Input.js'
-import './index.scss'
 
 export { UploadInput } from './Input.js'
 export type { UploadInputProps } from './Input.js'
-
-export const baseClass = 'upload'
 
 export function UploadComponent(props: UploadFieldClientProps) {
   const {
