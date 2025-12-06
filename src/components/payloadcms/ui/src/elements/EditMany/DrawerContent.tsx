@@ -200,6 +200,7 @@ export const EditManyDrawerContent: React.FC<EditManyDrawerContentProps> = (prop
         docPreferences: null,
         formState: prevFormState,
         operation: 'update',
+        renderAllFields: true,
         schemaPath: collection.slug,
         select,
         signal: controller.signal,
@@ -295,6 +296,7 @@ export const EditManyDrawerContent: React.FC<EditManyDrawerContentProps> = (prop
         docPreferences: null,
         formState,
         operation: 'update',
+        renderAllFields: true,
         schemaPath: collection.slug,
         select: unflatten(
           selected.reduce((acc, option) => {
@@ -358,7 +360,7 @@ export const EditManyDrawerContent: React.FC<EditManyDrawerContentProps> = (prop
               onChange={onFieldSelect}
               permissions={collectionPermissions.fields}
             />
-            {selectedFields.length === 0 ? null : (
+            {selectedFields.length === 0 || isInitializing ? null : (
               <div className="render-fields">
                 {selectedFields.map((option, i) => {
                   const {

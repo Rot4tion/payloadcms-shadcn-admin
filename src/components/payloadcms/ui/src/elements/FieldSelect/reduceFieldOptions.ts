@@ -24,10 +24,10 @@ export type FieldOption = {
 export const ignoreFromBulkEdit = (field: ClientField): boolean =>
   Boolean(
     (fieldAffectsData(field) || field.type === 'ui') &&
-      (field.admin.disableBulkEdit ||
-        field.unique ||
-        fieldIsHiddenOrDisabled(field) ||
-        ('readOnly' in field && field.readOnly)),
+    (field.admin.disableBulkEdit ||
+      field.unique ||
+      fieldIsHiddenOrDisabled(field) ||
+      ('readOnly' in field && field.readOnly)),
   )
 
 export const reduceFieldOptions = ({

@@ -121,8 +121,16 @@ export function RenderField({
     case 'relationship':
       return <RelationshipField {...baseFieldProps} field={clientFieldConfig} path={path} />
 
-    case 'richText':
+    case 'richText': {
+      // RichTextField from lexical requires clientFeatures prop which comes from the field config
+      // If clientFeatures is not present, the field wasn't properly initialized (e.g., in EditMany context)
+      // Return null to avoid "Cannot convert undefined or null to object" error
+      const richTextField = clientFieldConfig as ClientField & { clientFeatures?: unknown }
+      if (!richTextField.clientFeatures) {
+        return null
+      }
       return <RichTextField {...baseFieldProps} field={clientFieldConfig} path={path} />
+    }
 
     case 'row':
       return <RowField {...iterableFieldProps} field={clientFieldConfig} />
