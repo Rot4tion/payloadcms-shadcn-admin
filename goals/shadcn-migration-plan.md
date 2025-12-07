@@ -283,7 +283,10 @@ Before committing converted component:
 | Login, List, Document views | ✅ Done |
 | Dashboard, NotFound, Unauthorized | ✅ Done |
 | Account Settings | ✅ Done |
+| BrowseByFolder, CollectionFolder | ✅ Done |
+| Edit/Auth | ✅ Done |
 | API View, Version views | ⏳ Keep SCSS (complex) |
+| HTMLDiff | ⏳ Keep SCSS (complex diff styling) |
 
 ---
 

@@ -31,10 +31,8 @@ import { useRouteCache } from '../../providers/RouteCache/index.js'
 import { useRouteTransition } from '@payloadcms/ui'
 import { useTranslation } from '@payloadcms/ui'
 import { useWindowInfo } from '@payloadcms/ui'
+import { cn } from '@/lib/utils'
 import { ListSelection } from '../CollectionFolder/ListSelection/index.js'
-import './index.scss'
-
-const baseClass = 'folder-list'
 
 export function DefaultBrowseByFolderView({
   activeCollectionFolderSlugs,
@@ -185,7 +183,10 @@ function BrowseByFolderViewInContext(props: BrowseByFolderViewInContextProps) {
         !breadcrumbs.length
           ? {
               label: (
-                <div className={`${baseClass}__step-nav-icon-label`} key="root">
+                <div
+                  className="m-0 flex items-center gap-[calc(var(--base)*0.25)] [&_.icon]:h-[18px]"
+                  key="root"
+                >
                   <ColoredFolderIcon />
                   {t('folder:browseByFolder')}
                 </div>
@@ -194,12 +195,7 @@ function BrowseByFolderViewInContext(props: BrowseByFolderViewInContextProps) {
           : {
               label: (
                 <DroppableBreadcrumb
-                  className={[
-                    `${baseClass}__step-nav-droppable`,
-                    `${baseClass}__step-nav-icon-label`,
-                  ]
-                    .filter(Boolean)
-                    .join(' ')}
+                  className="m-0 flex items-center gap-[calc(var(--base)*0.25)] [&_.icon]:h-[18px] [&.droppable-button--hover]:opacity-30"
                   id={null}
                   key="root"
                   onClick={() => {
@@ -220,7 +216,7 @@ function BrowseByFolderViewInContext(props: BrowseByFolderViewInContextProps) {
                 crumb.name
               ) : (
                 <DroppableBreadcrumb
-                  className={`${baseClass}__step-nav-droppable`}
+                  className="[&.droppable-button--hover]:opacity-30"
                   id={crumb.id}
                   key={crumb.id}
                   onClick={() => {
@@ -245,9 +241,9 @@ function BrowseByFolderViewInContext(props: BrowseByFolderViewInContextProps) {
   return (
     <Fragment>
       <DndEventListener onDragEnd={onDragEnd} setIsDragging={setIsDragging} />
-      <div className={`${baseClass} ${baseClass}--folders`}>
+      <div className="w-full max-lg:mt-[calc(var(--base)*0.25)] max-md:mb-[calc(var(--base)*2.4)]">
         {BeforeFolderList}
-        <Gutter className={`${baseClass}__wrap`}>
+        <Gutter className="pb-(--spacing-view-bottom) [&>*:not(:last-child)]:mb-(--base) max-lg:py-0">
           <ListHeader
             Actions={[
               !smallBreak && (

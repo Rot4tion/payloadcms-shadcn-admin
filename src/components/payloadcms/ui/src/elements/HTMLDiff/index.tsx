@@ -3,8 +3,6 @@ import React from 'react'
 import { HtmlDiff } from './diff/index.js'
 import './index.scss'
 
-const baseClass = 'html-diff'
-
 export const getHTMLDiffComponents = ({
   fromHTML,
   toHTML,
@@ -25,14 +23,14 @@ export const getHTMLDiffComponents = ({
 
   const From = oldHTML ? (
     <div
-      className={`${baseClass}__diff-old html-diff`}
+      className="html-diff text-sm tracking-wide"
       dangerouslySetInnerHTML={{ __html: oldHTML }}
     />
   ) : null
 
   const To = newHTML ? (
     <div
-      className={`${baseClass}__diff-new html-diff`}
+      className="html-diff text-sm tracking-wide"
       dangerouslySetInnerHTML={{ __html: newHTML }}
     />
   ) : null

@@ -17,10 +17,8 @@ import { useFormFields, useFormModified } from '@payloadcms/ui'
 import { useConfig } from '@payloadcms/ui'
 import { useDocumentInfo } from '@payloadcms/ui'
 import { useTranslation } from '@payloadcms/ui'
-import './index.scss'
+import { cn } from '@/lib/utils'
 import { APIKey } from './APIKey.js'
-
-const baseClass = 'auth-fields'
 
 export const Auth: React.FC<Props> = (props) => {
   const {
@@ -200,7 +198,13 @@ export const Auth: React.FC<Props> = (props) => {
   }
 
   return (
-    <div className={[baseClass, className].filter(Boolean).join(' ')}>
+    <div
+      className={cn(
+        'p-[calc(var(--base)*2)] bg-muted flex flex-col gap-(--base) [&_.btn]:m-0',
+        'max-lg:p-(--base) max-lg:gap-[calc(var(--base)/2)]',
+        className,
+      )}
+    >
       {enableFields && (
         <React.Fragment>
           <EmailAndUsernameFields
@@ -211,7 +215,7 @@ export const Auth: React.FC<Props> = (props) => {
             t={t}
           />
           {(changingPassword || requirePassword) && (!disableLocalStrategy || !enableFields) && (
-            <div className={`${baseClass}__changing-password`}>
+            <div className="flex flex-col gap-(--base) max-lg:gap-[calc(var(--base)/2)]">
               <PasswordField
                 autoComplete="new-password"
                 field={{
@@ -228,7 +232,7 @@ export const Auth: React.FC<Props> = (props) => {
               <ConfirmPasswordField disabled={readOnly || isTrashed} />
             </div>
           )}
-          <div className={`${baseClass}__controls`}>
+          <div className="flex items-center gap-[calc(var(--base)/2)] flex-wrap">
             {changingPassword && !requirePassword && (
               <Button
                 buttonStyle="secondary"
@@ -269,7 +273,7 @@ export const Auth: React.FC<Props> = (props) => {
         </React.Fragment>
       )}
       {useAPIKey && (
-        <div className={`${baseClass}__api-key`}>
+        <div className="[&_.field-type.api-key]:mb-(--base) [&_.field-type.api-key_input]:w-full [&_.field-type.api-key_input]:rounded-r-none">
           {canReadApiKey && (
             <Fragment>
               <CheckboxField
