@@ -23,7 +23,7 @@ export const EditManyBulkUploads: React.FC<EditManyBulkUploadsProps> = (props) =
 
   const { t } = useTranslation()
   const { forms } = useFormsManager() // Access forms managed in bulk uploads
-
+  // @ts-expect-error
   const collectionPermissions = permissions?.collections?.[slug]
   const hasUpdatePermission = collectionPermissions?.update
 

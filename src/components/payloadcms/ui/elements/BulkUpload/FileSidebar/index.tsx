@@ -1,16 +1,15 @@
 'use client'
 
-import { useModal } from '../../Modal/index'
 import { useWindowInfo } from '@payloadcms/ui'
 import { isImage } from 'payload/shared'
 import React from 'react'
+import { useModal } from '../../Modal/index'
 
-import { ChevronDownIcon, ChevronUpIcon, XIcon } from 'lucide-react'
-import { cn } from '@/lib/utils'
 import { Button } from '@/components/ui/button'
+import { cn } from '@/lib/utils'
+import { useConfig, useTranslation } from '@payloadcms/ui'
+import { ChevronDownIcon, ChevronUpIcon, XIcon } from 'lucide-react'
 import { SelectInput } from '../../../fields/Select/Input'
-import { useConfig } from '@payloadcms/ui'
-import { useTranslation } from '@payloadcms/ui'
 import { AnimateHeight } from '../../AnimateHeight/index'
 import { Drawer } from '../../Drawer/index'
 import { ErrorPill } from '../../ErrorPill/index'
@@ -89,6 +88,7 @@ export function FileSidebar() {
         <div className="fixed top-0 left-0 w-full h-full opacity-0 transition-opacity duration-100 backdrop-blur-sm bg-background/80 [.max-lg:z-[2]_&]:opacity-100" />
       ) : null}
       <div className="sticky top-0 mt-(--base) z-1 flex items-center justify-between w-full bg-background flex-wrap max-lg:mt-0 [&_p]:m-0">
+        {/* @ts-expect-error */}
         {selectableCollections?.length > 1 && (
           <SelectInput
             className="w-full [&_.react-select]:w-full [&_.field-type\_\_wrap]:w-full [&_.field-type\_\_wrap]:py-(--base) [&_.field-type\_\_wrap]:px-[calc(var(--gutter-h)/4)]"
@@ -114,6 +114,7 @@ export function FileSidebar() {
         )}
         <div className="flex items-center justify-between gap-(--base) w-full py-(--base) px-[calc(var(--gutter-h)/4)] max-lg:border-t max-lg:border-border max-lg:py-0 max-lg:pb-[calc(var(--base)*0.8)]">
           <div className="flex flex-col max-lg:hidden [&_.error-pill]:self-start">
+            {/* @ts-expect-error */}
             <ErrorPill count={totalErrorCount} i18n={i18n} withMessage />
             <p>
               <strong
