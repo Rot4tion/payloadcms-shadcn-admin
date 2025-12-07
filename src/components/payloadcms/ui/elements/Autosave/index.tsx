@@ -12,14 +12,19 @@ import React, { useDeferredValue, useEffect, useRef, useState } from 'react'
 
 import type { OnSaveContext } from '../../views/Edit/index'
 
-import { useAllFormFields, useForm, useFormModified, useFormSubmitted } from '@payloadcms/ui'
+import {
+  useAllFormFields,
+  useConfig,
+  useDocumentInfo,
+  useForm,
+  useFormModified,
+  useFormSubmitted,
+  useLocale,
+  useTranslation,
+} from '@payloadcms/ui'
 import { useDebounce } from '../../hooks/useDebounce'
 import { useEffectEvent } from '../../hooks/useEffectEvent'
 import { useQueue } from '../../hooks/useQueue'
-import { useConfig } from '@payloadcms/ui'
-import { useDocumentInfo } from '@payloadcms/ui'
-import { useLocale } from '@payloadcms/ui'
-import { useTranslation } from '@payloadcms/ui'
 import { formatTimeToNow } from '../../utilities/formatDocTitle/formatDateTitle'
 import { reduceFieldsToValuesWithValidation } from '../../utilities/reduceFieldsToValuesWithValidation'
 import { LeaveWithoutSaving } from '../LeaveWithoutSaving/index'
@@ -72,10 +77,10 @@ export const Autosave: React.FC<Props> = ({ id, collection, global: globalDoc })
   const autosaveTimeoutRef = useRef<NodeJS.Timeout | null>(null)
 
   const handleAutosave = useEffectEvent(() => {
-    autosaveTimeoutRef.current = undefined
+    autosaveTimeoutRef.current = null
     // We need to log the time in order to figure out if we need to trigger the state off later
-    let startTimestamp = undefined
-    let endTimestamp = undefined
+    let startTimestamp: any = null
+    let endTimestamp: any = null
 
     const hideIndicator = () => {
       // If request was faster than minimum animation time, animate the difference
@@ -98,9 +103,9 @@ export const Autosave: React.FC<Props> = ({ id, collection, global: globalDoc })
 
           setSaving(true)
 
-          let url: string
-          let method: string
-          let entitySlug: string
+          let url: string | undefined
+          let method: string | undefined
+          let entitySlug: string | undefined
 
           if (collection && id) {
             entitySlug = collection.slug
