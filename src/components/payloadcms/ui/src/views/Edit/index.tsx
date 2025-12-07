@@ -659,7 +659,7 @@ export function DefaultEditView({
                 // When live previewing, shrink to 40% - but not when popup is open
                 isLivePreviewing &&
                   previewWindowType !== 'popup' &&
-                  'w-[40%] shrink-0 after:content-[""] after:absolute after:top-0 after:right-0 after:w-[calc(var(--base)*2)] after:h-full after:bg-linear-to-l after:from-black/4 after:to-transparent after:pointer-events-none after:-z-1 dark:after:from-black/40',
+                  'w-[40%] max-lg:hidden shrink-0 after:content-[""] after:absolute after:top-0 after:right-0 after:w-[calc(var(--base)*2)] after:h-full after:bg-linear-to-l after:from-black/4 after:to-transparent after:pointer-events-none after:-z-1 dark:after:from-black/40',
               )}
               style={{ containerType: 'inline-size' }}
             >
