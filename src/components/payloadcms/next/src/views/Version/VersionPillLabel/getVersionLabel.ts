@@ -39,14 +39,14 @@ export function getVersionLabel({
       return {
         name: 'draft',
         label: t('version:draft'),
-        pillStyle: 'light',
+        pillStyle: 'light-gray',
       }
     } else {
+      const isCurrentDraft = version.id === latestDraftVersion?.id
       return {
-        name: version.id === latestDraftVersion?.id ? 'currentDraft' : 'draft',
-        label:
-          version.id === latestDraftVersion?.id ? t('version:currentDraft') : t('version:draft'),
-        pillStyle: 'light',
+        name: isCurrentDraft ? 'currentDraft' : 'draft',
+        label: isCurrentDraft ? t('version:currentDraft') : t('version:draft'),
+        pillStyle: isCurrentDraft ? 'warning' : 'light-gray',
       }
     }
   } else {
@@ -56,7 +56,7 @@ export function getVersionLabel({
       label: isCurrentlyPublished
         ? t('version:currentlyPublished')
         : t('version:previouslyPublished'),
-      pillStyle: isCurrentlyPublished ? 'success' : 'light',
+      pillStyle: isCurrentlyPublished ? 'success' : 'white',
     }
   }
 }

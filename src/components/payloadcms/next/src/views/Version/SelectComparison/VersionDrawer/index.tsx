@@ -11,11 +11,7 @@ import {
 } from '@payloadcms-local/ui'
 import { useSearchParams } from 'next/navigation.js'
 
-import './index.scss'
-
 import React, { useCallback, useEffect, useId, useMemo, useRef, useState } from 'react'
-
-export const baseClass = 'version-drawer'
 export const formatVersionDrawerSlug = ({
   depth,
   uuid,
@@ -124,7 +120,7 @@ export const VersionDrawer: React.FC<{
 
   return (
     <Drawer
-      className={baseClass}
+      className="[&_.table]:w-full [&_.created-at-cell]:bg-transparent [&_.created-at-cell]:border-0 [&_.created-at-cell]:cursor-pointer [&_.created-at-cell]:p-0 [&_.created-at-cell]:underline"
       gutter={true}
       slug={drawerSlug}
       title={t('version:selectVersionToCompare')}

@@ -1,11 +1,9 @@
 'use client'
-const baseClass = 'render-field-diffs'
 import type { VersionField } from 'payload'
-
-import './index.scss'
 
 import { ShimmerEffect } from '@payloadcms-local/ui'
 import React, { Fragment, useEffect } from 'react'
+import { cn } from '@/lib/utils'
 
 export const RenderVersionFieldsToDiff = ({
   parent = false,
@@ -27,7 +25,12 @@ export const RenderVersionFieldsToDiff = ({
   }, [])
 
   return (
-    <div className={`${baseClass}${parent ? ` ${baseClass}--parent` : ''}`}>
+    <div
+      className={cn(
+        'flex flex-col gap-(--base) max-sm:gap-[calc(var(--base)/2)] [&_[role=banner]]:!hidden',
+        parent && 'render-field-diffs--parent',
+      )}
+    >
       {!hasMounted ? (
         <Fragment>
           <ShimmerEffect height="8rem" width="100%" />
@@ -39,24 +42,26 @@ export const RenderVersionFieldsToDiff = ({
             for (const [locale, baseField] of Object.entries(field.fieldByLocale)) {
               LocaleComponents.push(
                 <div
-                  className={`${baseClass}__locale`}
                   data-field-path={baseField.path}
                   data-locale={locale}
                   key={[locale, fieldIndex].join('-')}
                 >
-                  <div className={`${baseClass}__locale-value`}>{baseField.CustomComponent}</div>
+                  <div>{baseField.CustomComponent}</div>
                 </div>,
               )
             }
             return (
-              <div className={`${baseClass}__field`} key={fieldIndex}>
+              <div className="break-anywhere flex flex-col gap-(--base)" key={fieldIndex}>
                 {LocaleComponents}
               </div>
             )
           } else if (field.field) {
             return (
               <div
-                className={`${baseClass}__field field__${field.field.type}`}
+                className={cn(
+                  'break-anywhere flex flex-col gap-(--base)',
+                  `field__${field.field.type}`,
+                )}
                 data-field-path={field.field.path}
                 key={fieldIndex}
               >

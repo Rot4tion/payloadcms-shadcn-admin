@@ -4,9 +4,6 @@ import type { FieldDiffClientProps } from 'payload'
 
 import { getTranslation } from '@payloadcms/translations'
 import { useConfig, useTranslation } from '@payloadcms-local/ui'
-
-import './index.scss'
-
 import { fieldIsArrayType, fieldIsBlockType } from 'payload/shared'
 import React from 'react'
 
@@ -14,8 +11,6 @@ import { useSelectedLocales } from '../../../Default/SelectedLocalesContext.js'
 import { DiffCollapser } from '../../DiffCollapser/index.js'
 import { RenderVersionFieldsToDiff } from '../../RenderVersionFieldsToDiff.js'
 import { getFieldsForRowComparison } from '../../utilities/getFieldsForRowComparison.js'
-
-const baseClass = 'iterable-diff'
 
 export const Iterable: React.FC<FieldDiffClientProps> = ({
   baseVersionField,
@@ -38,7 +33,7 @@ export const Iterable: React.FC<FieldDiffClientProps> = ({
   const maxRows = Math.max(valueToRowCount, valueFromRowCount)
 
   return (
-    <div className={baseClass}>
+    <div>
       <DiffCollapser
         field={field}
         isIterable
@@ -47,7 +42,7 @@ export const Iterable: React.FC<FieldDiffClientProps> = ({
           field.label &&
           typeof field.label !== 'function' && (
             <span>
-              {locale && <span className={`${baseClass}__locale-label`}>{locale}</span>}
+              {locale && <span className="text-muted-foreground mr-1">{locale}</span>}
               {getTranslation(field.label, i18n)}
             </span>
           )
@@ -58,7 +53,7 @@ export const Iterable: React.FC<FieldDiffClientProps> = ({
         valueTo={valueTo}
       >
         {maxRows > 0 && (
-          <div className={`${baseClass}__rows`}>
+          <div className="flex flex-col gap-(--base)">
             {Array.from({ length: maxRows }, (_, i) => {
               const valueToRow = valueTo?.[i] || {}
               const valueFromRow = valueFrom?.[i] || {}
@@ -84,14 +79,14 @@ export const Iterable: React.FC<FieldDiffClientProps> = ({
                 : `${t('fields:block')} ${rowNumber}`
 
               return (
-                <div className={`${baseClass}__row`} key={i}>
+                <div key={i}>
                   <DiffCollapser
                     fields={fields}
                     hideGutter={true}
                     Label={
-                      <div className={`${baseClass}-label-container`}>
-                        <div className={`${baseClass}-label-prefix`}></div>
-                        <span className={`${baseClass}__label`}>{rowLabel}</span>
+                      <div className="flex items-center">
+                        <div></div>
+                        <span>{rowLabel}</span>
                       </div>
                     }
                     locales={selectedLocales}
@@ -107,7 +102,7 @@ export const Iterable: React.FC<FieldDiffClientProps> = ({
           </div>
         )}
         {maxRows === 0 && (
-          <div className={`${baseClass}__no-rows`}>
+          <div className="text-muted-foreground py-2">
             {i18n.t('version:noRowsFound', {
               label:
                 'labels' in field && field.labels?.plural

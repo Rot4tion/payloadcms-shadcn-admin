@@ -8,12 +8,7 @@ import {
   useTranslation,
 } from '@payloadcms-local/ui'
 import { formatDate } from '@payloadcms-local/ui/shared'
-
-import './index.scss'
-
 import React from 'react'
-
-const baseClass = 'date-diff'
 
 export const DateDiffComponent: DateFieldDiffClientComponent = ({
   comparisonValue: valueFrom,
@@ -47,11 +42,11 @@ export const DateDiffComponent: DateFieldDiffClientComponent = ({
 
   const { From, To } = getHTMLDiffComponents({
     fromHTML:
-      `<div class="${baseClass}" data-enable-match="true" data-date="${formattedFromDate}"><p>` +
+      `<div data-enable-match="true" data-date="${formattedFromDate}"><p>` +
       formattedFromDate +
       '</p></div>',
     toHTML:
-      `<div class="${baseClass}" data-enable-match="true" data-date="${formattedToDate}"><p>` +
+      `<div data-enable-match="true" data-date="${formattedToDate}"><p>` +
       formattedToDate +
       '</p></div>',
     tokenizeByCharacter: false,
@@ -59,7 +54,6 @@ export const DateDiffComponent: DateFieldDiffClientComponent = ({
 
   return (
     <FieldDiffContainer
-      className={baseClass}
       From={From}
       i18n={i18n}
       label={{

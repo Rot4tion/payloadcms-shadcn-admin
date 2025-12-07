@@ -8,9 +8,7 @@ import { fetchLatestVersion, fetchVersions } from '../Version/fetchVersions.js'
 import { VersionDrawerCreatedAtCell } from '../Version/SelectComparison/VersionDrawer/CreatedAtCell.js'
 import { buildVersionColumns } from './buildColumns.js'
 import { VersionsViewClient } from './index.client.js'
-import './index.scss'
-
-const baseClass = 'versions'
+import { cn } from '@/lib/utils'
 
 export async function VersionsView(props: DocumentViewServerProps) {
   const {
@@ -149,8 +147,15 @@ export async function VersionsView(props: DocumentViewServerProps) {
         useAsTitle={collectionConfig?.admin?.useAsTitle || globalSlug}
         view={i18n.t('version:versions')}
       />
-      <main className={baseClass}>
-        <GutterComponent className={`${baseClass}__wrap`}>
+      <main className="w-full mb-[calc(var(--base)*2)]">
+        <GutterComponent
+          className={cn(
+            'pt-0 pb-(--spacing-view-bottom) mt-[calc(var(--base)*0.75)]',
+            'max-md:pt-0 max-md:mt-0',
+            '[&_.table]:w-full [&_.table_table]:w-full [&_.table_table]:overflow-auto',
+            '[&_.paginator]:mb-0 max-md:[&_.paginator]:w-full max-md:[&_.paginator]:mb-(--base)',
+          )}
+        >
           <ListQueryProvider
             data={versionsData}
             modifySearchParams
@@ -161,7 +166,6 @@ export async function VersionsView(props: DocumentViewServerProps) {
             }}
           >
             <VersionsViewClient
-              baseClass={baseClass}
               columns={columns}
               fetchURL={fetchURL}
               paginationLimits={collectionConfig?.admin?.pagination?.limits}

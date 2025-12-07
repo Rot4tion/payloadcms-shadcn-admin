@@ -5,13 +5,9 @@ import React, { memo, useCallback, useMemo } from 'react'
 
 import type { CompareOption } from '../Default/types.js'
 
-import './index.scss'
-
 import type { Props } from './types.js'
 
 import { useVersionDrawer } from './VersionDrawer/index.js'
-
-const baseClass = 'compare-version'
 
 export const SelectComparison: React.FC<Props> = memo((props) => {
   const {
@@ -30,7 +26,7 @@ export const SelectComparison: React.FC<Props> = memo((props) => {
     return [
       ...versionFromOptions,
       {
-        label: <span className={`${baseClass}-moreVersions`}>{t('version:moreVersions')}</span>,
+        label: <span className="text-muted-foreground">{t('version:moreVersions')}</span>,
         value: 'more',
       },
     ]
@@ -53,7 +49,7 @@ export const SelectComparison: React.FC<Props> = memo((props) => {
   )
 
   return (
-    <div className={[fieldBaseClass, baseClass].filter(Boolean).join(' ')}>
+    <div className={fieldBaseClass}>
       <ReactSelect
         isClearable={false}
         isSearchable={false}

@@ -11,26 +11,23 @@ import { getTranslation } from '@payloadcms/translations'
 import { useTranslation } from '@payloadcms-local/ui'
 import React from 'react'
 
-import './index.scss'
 import { useSelectedLocales } from '../../../Default/SelectedLocalesContext.js'
 import { DiffCollapser } from '../../DiffCollapser/index.js'
 import { RenderVersionFieldsToDiff } from '../../RenderVersionFieldsToDiff.js'
-
-const baseClass = 'tabs-diff'
 
 export const Tabs: TabsFieldDiffClientComponent = (props) => {
   const { baseVersionField, comparisonValue: valueFrom, field, versionValue: valueTo } = props
   const { selectedLocales } = useSelectedLocales()
 
   return (
-    <div className={baseClass}>
+    <div className="flex flex-col gap-(--base)">
       {baseVersionField.tabs.map((tab, i) => {
         if (!tab?.fields?.length) {
           return null
         }
         const fieldTab = field.tabs?.[i]
         return (
-          <div className={`${baseClass}__tab`} key={i}>
+          <div key={i}>
             {(() => {
               if ('name' in fieldTab && selectedLocales && fieldTab.localized) {
                 // Named localized tab
@@ -44,8 +41,8 @@ export const Tabs: TabsFieldDiffClientComponent = (props) => {
                     versionValue: valueTo?.[tab.name]?.[locale],
                   }
                   return (
-                    <div className={`${baseClass}__tab-locale`} key={[locale, index].join('-')}>
-                      <div className={`${baseClass}__tab-locale-value`}>
+                    <div key={[locale, index].join('-')}>
+                      <div>
                         <Tab key={locale} {...localizedTabProps} />
                       </div>
                     </div>
@@ -101,7 +98,7 @@ const Tab: React.FC<TabProps> = ({
         tab.label &&
         typeof tab.label !== 'function' && (
           <span>
-            {locale && <span className={`${baseClass}__locale-label`}>{locale}</span>}
+            {locale && <span className="text-muted-foreground mr-1">{locale}</span>}
             {getTranslation(tab.label, i18n)}
           </span>
         )

@@ -19,13 +19,11 @@ import React, { type FormEventHandler, useCallback, useEffect, useMemo, useState
 import type { CompareOption, DefaultVersionsViewProps } from './types.js'
 
 import { Restore } from '../Restore/index.js'
-import './index.scss'
 import { SelectComparison } from '../SelectComparison/index.js'
+import { cn } from '@/lib/utils'
 import { type SelectedLocaleOnChange, SelectLocales } from '../SelectLocales/index.js'
 import { SelectedLocalesContext } from './SelectedLocalesContext.js'
 import { SetStepNav } from './SetStepNav.js'
-
-const baseClass = 'view-version'
 
 export const DefaultVersionView: React.FC<DefaultVersionsViewProps> = ({
   canUpdate,
@@ -180,12 +178,13 @@ export const DefaultVersionView: React.FC<DefaultVersionsViewProps> = ({
   )
 
   return (
-    <main className={baseClass}>
-      <Gutter className={`${baseClass}-controls-top`}>
-        <div className={`${baseClass}-controls-top__wrapper`}>
-          <h2>{i18n.t('version:compareVersions')}</h2>
-          <div className={`${baseClass}-controls-top__wrapper-actions`}>
-            <span className={`${baseClass}__modifiedCheckBox`}>
+    <main className="w-full pb-[var(--spacing-view-bottom)]">
+      {/* Controls Top */}
+      <Gutter className="border-b border-border py-4 px-[var(--gutter-h)]">
+        <div className="flex flex-row justify-between items-center max-sm:flex-col max-sm:items-start">
+          <h2 className="text-lg">{i18n.t('version:compareVersions')}</h2>
+          <div className="flex flex-row items-center gap-[var(--base)]">
+            <span className="ml-[var(--base)] flex items-center max-sm:ml-0">
               <CheckboxInput
                 checked={modifiedOnly}
                 id={'modifiedOnly'}
@@ -195,18 +194,15 @@ export const DefaultVersionView: React.FC<DefaultVersionsViewProps> = ({
             </span>
             {localization && (
               <Pill
-                aria-controls={`${baseClass}-locales`}
+                aria-controls="view-version-locales"
                 aria-expanded={localeSelectorOpen}
-                className={`${baseClass}__toggle-locales`}
                 icon={<ChevronIcon direction={localeSelectorOpen ? 'up' : 'down'} />}
                 onClick={() => setLocaleSelectorOpen((localeSelectorOpen) => !localeSelectorOpen)}
                 pillStyle="light"
                 size="small"
               >
-                <span className={`${baseClass}__toggle-locales-label`}>
-                  {t('general:locales')}:{' '}
-                </span>
-                <span className={`${baseClass}__toggle-locales-list`}>
+                <span className="text-muted-foreground">{t('general:locales')}: </span>
+                <span>
                   {locales
                     .filter((locale) => locale.selected)
                     .map((locale) => locale.name)
@@ -225,13 +221,22 @@ export const DefaultVersionView: React.FC<DefaultVersionsViewProps> = ({
           />
         )}
       </Gutter>
-      <Gutter className={`${baseClass}-controls-bottom`}>
-        <div className={`${baseClass}-controls-bottom__wrapper`}>
-          <div className={`${baseClass}__version-from`}>
-            <div className={`${baseClass}__version-from-labels`}>
+
+      {/* Controls Bottom */}
+      <Gutter
+        className={cn(
+          'border-b border-border py-4 px-[var(--gutter-h)] relative',
+          // Vertical separator line
+          'after:content-[""] after:absolute after:top-0 after:bottom-0 after:left-1/2 after:w-px after:bg-border after:-translate-x-1/2',
+        )}
+      >
+        <div className="grid grid-cols-2 gap-[var(--base)]">
+          {/* Version From */}
+          <div className="flex flex-col gap-1.5">
+            <div className="flex flex-row justify-between max-sm:flex-col max-sm:items-start">
               <span>{t('version:comparingAgainst')}</span>
               {versionFromTimeAgo && (
-                <span className={`${baseClass}__time-elapsed`}>{versionFromTimeAgo}</span>
+                <span className="text-muted-foreground">{versionFromTimeAgo}</span>
               )}
             </div>
             <SelectComparison
@@ -244,16 +249,23 @@ export const DefaultVersionView: React.FC<DefaultVersionsViewProps> = ({
             />
           </div>
 
-          <div className={`${baseClass}__version-to`}>
-            <div className={`${baseClass}__version-to-labels`}>
+          {/* Version To */}
+          <div className="flex flex-col gap-1.5">
+            <div className="flex flex-row justify-between max-sm:flex-col max-sm:items-start">
               <span>{t('version:currentlyViewing')}</span>
-              <span className={`${baseClass}__time-elapsed`}>{versionToTimeAgo}</span>
+              <span className="text-muted-foreground">{versionToTimeAgo}</span>
             </div>
-            <div className={`${baseClass}__version-to-version`}>
+            <div
+              className={cn(
+                'flex flex-row items-center justify-between bg-muted py-2 px-3 gap-[calc(var(--base)/2)]',
+                'max-md:flex-col max-md:items-start',
+                '[&_h2]:text-[13px] [&_h2]:font-normal',
+              )}
+            >
               {VersionToCreatedAtLabel}
               {canUpdate && !isTrashed && (
                 <Restore
-                  className={`${baseClass}__restore`}
+                  className="[&_div]:my-0"
                   collectionConfig={collectionConfig}
                   globalConfig={globalConfig}
                   label={collectionConfig?.labels.singular || globalConfig?.label}
@@ -267,6 +279,7 @@ export const DefaultVersionView: React.FC<DefaultVersionsViewProps> = ({
           </div>
         </div>
       </Gutter>
+
       <SetStepNav
         collectionConfig={collectionConfig}
         globalConfig={globalConfig}
@@ -275,7 +288,15 @@ export const DefaultVersionView: React.FC<DefaultVersionsViewProps> = ({
         versionToCreatedAtFormatted={versionToCreatedAtFormatted}
         versionToID={versionToID}
       />
-      <Gutter className={`${baseClass}__diff-wrap`}>
+
+      {/* Diff Wrap */}
+      <Gutter
+        className={cn(
+          'pt-[var(--base)] max-sm:pt-[calc(var(--base)/2)] flex flex-col gap-[var(--base)] relative',
+          // Vertical separator line
+          'after:content-[""] after:absolute after:top-0 after:bottom-0 after:left-1/2 after:w-px after:bg-border after:-translate-x-1/2 after:z-[2]',
+        )}
+      >
         <SelectedLocalesContext value={{ selectedLocales: locales.map((locale) => locale.name) }}>
           {versionToCreatedAt && RenderedDiff}
         </SelectedLocalesContext>

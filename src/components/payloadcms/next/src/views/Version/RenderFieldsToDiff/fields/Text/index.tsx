@@ -2,12 +2,7 @@
 import type { TextFieldDiffClientComponent } from 'payload'
 
 import { FieldDiffContainer, getHTMLDiffComponents, useTranslation } from '@payloadcms-local/ui'
-
-import './index.scss'
-
 import React from 'react'
-
-const baseClass = 'text-diff'
 
 function formatValue(value: unknown): {
   tokenizeByCharacter: boolean
@@ -78,7 +73,6 @@ export const Text: TextFieldDiffClientComponent = ({
 
   return (
     <FieldDiffContainer
-      className={baseClass}
       From={From}
       i18n={i18n}
       label={{

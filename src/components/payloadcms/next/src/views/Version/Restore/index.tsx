@@ -17,11 +17,9 @@ import { requests } from '@payloadcms-local/ui/shared'
 import { useRouter } from 'next/navigation.js'
 import { formatAdminURL } from 'payload/shared'
 
-import './index.scss'
-
 import React, { Fragment, useCallback, useState } from 'react'
+import { cn } from '@/lib/utils'
 
-const baseClass = 'restore-version'
 const modalSlug = 'restore-version'
 
 type Props = {
@@ -115,12 +113,12 @@ export const Restore: React.FC<Props> = ({
 
   return (
     <Fragment>
-      <div className={[baseClass, className].filter(Boolean).join(' ')}>
+      <div className={cn('cursor-pointer flex min-w-max [&_.btn]:my-0', className)}>
         <Button
           buttonStyle="primary"
-          className={[canRestoreAsDraft && `${baseClass}__restore-as-draft-button`]
-            .filter(Boolean)
-            .join(' ')}
+          className={cn(
+            canRestoreAsDraft && 'rounded-r-none mr-0.5 focus:rounded-none focus:outline-offset-0',
+          )}
           onClick={() => toggleModal(modalSlug)}
           size="xsmall"
           SubMenuPopupContent={

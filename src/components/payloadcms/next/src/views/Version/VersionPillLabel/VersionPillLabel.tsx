@@ -1,13 +1,11 @@
 'use client'
 
 import { Pill, useConfig, useTranslation } from '@payloadcms-local/ui'
-import { formatDate } from '@payloadcms-local/ui/shared'
+
 import React from 'react'
 
-import './index.scss'
 import { getVersionLabel } from './getVersionLabel.js'
-
-const baseClass = 'version-pill-label'
+import { formatDate } from '@/components/payloadcms/ui/src/exports/shared/index.js'
 
 const renderPill = (label: React.ReactNode, pillStyle: Parameters<typeof Pill>[0]['pillStyle']) => {
   return (
@@ -96,23 +94,23 @@ export const VersionPillLabel: React.FC<{
   const localeLabel = locale ? locale?.label?.[i18n?.language] || locale?.label : null
 
   return (
-    <div className={baseClass}>
+    <div className="flex items-center gap-[calc(var(--base)/2)] max-sm:flex-col max-sm:items-start max-sm:gap-0">
       {labelFirst ? (
         <React.Fragment>
           {labelStyle === 'pill' ? (
             renderPill(labelText, pillStyle)
           ) : (
-            <span className={`${baseClass}-text`}>{labelText}</span>
+            <span className="font-medium">{labelText}</span>
           )}
-          {showDate && <span className={`${baseClass}-date`}>{formattedDate}</span>}
+          {showDate && <span className="text-muted-foreground">{formattedDate}</span>}
         </React.Fragment>
       ) : (
         <React.Fragment>
-          {showDate && <span className={`${baseClass}-date`}>{formattedDate}</span>}
+          {showDate && <span className="text-muted-foreground">{formattedDate}</span>}
           {labelStyle === 'pill' ? (
             renderPill(labelText, pillStyle)
           ) : (
-            <span className={`${baseClass}-text`}>{labelText}</span>
+            <span className="font-medium">{labelText}</span>
           )}
         </React.Fragment>
       )}

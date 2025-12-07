@@ -5,10 +5,8 @@ import { ChevronIcon, FieldDiffLabel, useConfig, useTranslation } from '@payload
 import { fieldIsArrayType, fieldIsBlockType } from 'payload/shared'
 import React, { useState } from 'react'
 
-import './index.scss'
 import { countChangedFields, countChangedFieldsInRows } from '../utilities/countChangedFields.js'
-
-const baseClass = 'diff-collapser'
+import { cn } from '@/lib/utils'
 
 type Props = {
   hideGutter?: boolean
@@ -89,34 +87,37 @@ export const DiffCollapser: React.FC<Props> = ({
     })
   }
 
-  const contentClassNames = [
-    `${baseClass}__content`,
-    isCollapsed && `${baseClass}__content--is-collapsed`,
-    hideGutter && `${baseClass}__content--hide-gutter`,
-  ]
-    .filter(Boolean)
-    .join(' ')
-
   return (
-    <div className={baseClass}>
+    <div>
       <FieldDiffLabel>
         <button
           aria-label={isCollapsed ? 'Expand' : 'Collapse'}
-          className={`${baseClass}__toggle-button`}
+          className={cn(
+            'cursor-pointer relative z-1 flex items-center',
+            '[&_.icon]:text-muted-foreground',
+            'hover:before:content-[""] hover:before:absolute hover:before:-inset-0.5 hover:before:bg-muted hover:before:rounded-sm hover:before:-z-1',
+          )}
           onClick={() => setIsCollapsed(!isCollapsed)}
           type="button"
         >
-          <div className={`${baseClass}__label`}>{Label}</div>
-
+          <div className="mr-[calc(var(--base)*0.3)] inline-flex h-full">{Label}</div>
           <ChevronIcon direction={isCollapsed ? 'right' : 'down'} size={'small'} />
         </button>
         {changeCount > 0 && isCollapsed && (
-          <span className={`${baseClass}__field-change-count`}>
+          <span className="font-normal ml-[calc(var(--base)*0.3)] py-0.5 px-1 bg-muted rounded-sm text-xs">
             {t('version:changedFieldsCount', { count: changeCount })}
           </span>
         )}
       </FieldDiffLabel>
-      <div className={contentClassNames}>{children}</div>
+      <div
+        className={cn(
+          !hideGutter &&
+            'ltr:border-l-2 ltr:ml-[3px] ltr:pl-[calc(var(--base)*0.5)] rtl:border-r-2 rtl:mr-[3px] rtl:pr-[calc(var(--base)*0.5)] border-border',
+          isCollapsed && 'hidden',
+        )}
+      >
+        {children}
+      </div>
     </div>
   )
 }

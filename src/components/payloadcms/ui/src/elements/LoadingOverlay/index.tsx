@@ -10,9 +10,9 @@ import { defaultLoadingOverlayState, reducer } from './reducer.js'
 
 const animatedDuration = 250
 
-const Context = createContext({
+const Context = createContext<LoadingOverlayContext>({
   isOnScreen: false,
-  toggleLoadingOverlay: undefined,
+  toggleLoadingOverlay: () => {},
 })
 
 export const LoadingOverlayProvider: React.FC<{ children?: React.ReactNode }> = ({ children }) => {

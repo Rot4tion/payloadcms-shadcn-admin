@@ -7,14 +7,9 @@ import type {
 
 import { getTranslation, type I18nClient } from '@payloadcms/translations'
 import { FieldDiffContainer, getHTMLDiffComponents } from '@payloadcms-local/ui/rsc'
-
-import './index.scss'
-
 import React from 'react'
 
 import { generateLabelFromValue } from './generateLabelFromValue.js'
-
-const baseClass = 'relationship-diff'
 
 export type RelationshipValue =
   | { relationTo: string; value: number | string | TypeWithID }
@@ -135,7 +130,6 @@ export const SingleRelationshipDiff: React.FC<{
 
   return (
     <FieldDiffContainer
-      className={`${baseClass}-container ${baseClass}-container--hasOne`}
       From={diff.From}
       i18n={i18n}
       label={{ label: field.label, locale }}
@@ -191,10 +185,9 @@ const ManyRelationshipDiff: React.FC<{
       />
     ))
 
-  const fromNodes =
-    fromArr.length > 0 ? makeNodes(fromArr) : <p className={`${baseClass}__empty`}></p>
+  const fromNodes = fromArr.length > 0 ? makeNodes(fromArr) : <p></p>
 
-  const toNodes = toArr.length > 0 ? makeNodes(toArr) : <p className={`${baseClass}__empty`}></p>
+  const toNodes = toArr.length > 0 ? makeNodes(toArr) : <p></p>
 
   const fromHTML = ReactDOMServer.renderToStaticMarkup(fromNodes)
   const toHTML = ReactDOMServer.renderToStaticMarkup(toNodes)
@@ -207,7 +200,6 @@ const ManyRelationshipDiff: React.FC<{
 
   return (
     <FieldDiffContainer
-      className={`${baseClass}-container ${baseClass}-container--hasMany`}
       From={diff.From}
       i18n={i18n}
       label={{ label: field.label, locale }}
@@ -261,7 +253,7 @@ const RelationshipDocumentDiff = ({
 
   return (
     <div
-      className={`${baseClass}`}
+      className="inline-flex items-center gap-1 py-1"
       data-enable-match="true"
       data-id={
         polymorphic
@@ -271,11 +263,14 @@ const RelationshipDocumentDiff = ({
       data-relation-to={relationTo}
     >
       {pillLabel && (
-        <span className={`${baseClass}__pill`} data-enable-match="false">
+        <span
+          className="text-xs text-muted-foreground bg-muted px-1.5 py-0.5 rounded"
+          data-enable-match="false"
+        >
           {pillLabel}
         </span>
       )}
-      <strong className={`${baseClass}__info`} data-enable-match="false">
+      <strong className="font-medium" data-enable-match="false">
         {title}
       </strong>
     </div>

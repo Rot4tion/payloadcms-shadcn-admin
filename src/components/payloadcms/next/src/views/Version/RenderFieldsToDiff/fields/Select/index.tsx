@@ -6,10 +6,6 @@ import { getTranslation } from '@payloadcms/translations'
 import { FieldDiffContainer, getHTMLDiffComponents, useTranslation } from '@payloadcms-local/ui'
 import React from 'react'
 
-import './index.scss'
-
-const baseClass = 'select-diff'
-
 const getOptionsToRender = (
   value: string,
   options: SelectField['options'],
@@ -101,7 +97,6 @@ export const Select: SelectFieldDiffClientComponent = ({
 
   return (
     <FieldDiffContainer
-      className={baseClass}
       From={From}
       i18n={i18n}
       label={{

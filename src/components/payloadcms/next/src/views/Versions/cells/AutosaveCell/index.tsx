@@ -2,10 +2,7 @@
 import { Pill, useTranslation } from '@payloadcms-local/ui'
 import React from 'react'
 
-import './index.scss'
 import { VersionPillLabel } from '../../../Version/VersionPillLabel/VersionPillLabel.js'
-
-const baseClass = 'autosave-cell'
 
 type AutosaveCellProps = {
   currentlyPublishedVersion?: {
@@ -34,7 +31,7 @@ export const AutosaveCell: React.FC<AutosaveCellProps> = ({
   const { t } = useTranslation()
 
   return (
-    <div className={`${baseClass}__items`}>
+    <div className="flex items-center gap-[calc(var(--base)*0.5)]">
       {rowData?.autosave && <Pill size="small">{t('version:autosave')}</Pill>}
       <VersionPillLabel
         currentlyPublishedVersion={currentlyPublishedVersion}

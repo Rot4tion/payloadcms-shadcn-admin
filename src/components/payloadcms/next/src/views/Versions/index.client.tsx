@@ -13,12 +13,11 @@ import { useSearchParams } from 'next/navigation.js'
 import React from 'react'
 
 export const VersionsViewClient: React.FC<{
-  readonly baseClass: string
   readonly columns: Column[]
   readonly fetchURL: string
   readonly paginationLimits?: SanitizedCollectionConfig['admin']['pagination']['limits']
 }> = (props) => {
-  const { baseClass, columns, paginationLimits } = props
+  const { columns, paginationLimits } = props
 
   const { data, handlePageChange, handlePerPageChange } = useListQuery()
 
@@ -33,14 +32,14 @@ export const VersionsViewClient: React.FC<{
     <React.Fragment>
       <LoadingOverlayToggle name="versions" show={!data} />
       {versionCount === 0 && (
-        <div className={`${baseClass}__no-versions`}>
+        <div className="mt-[calc(var(--base)*1.5)] text-[length:var(--font-body-size)]">
           {i18n.t('version:noFurtherVersionsFound')}
         </div>
       )}
       {versionCount > 0 && (
         <React.Fragment>
           <Table columns={columns} data={data?.docs} />
-          <div className={`${baseClass}__page-controls`}>
+          <div className="w-full flex items-center flex-wrap max-md:flex-wrap">
             <Pagination
               hasNextPage={data.hasNextPage}
               hasPrevPage={data.hasPrevPage}
@@ -54,7 +53,7 @@ export const VersionsViewClient: React.FC<{
             />
             {data?.totalDocs > 0 && (
               <React.Fragment>
-                <div className={`${baseClass}__page-info`}>
+                <div className="ltr:ml-auto ltr:mr-(--base) rtl:mr-auto rtl:ml-(--base) max-md:ltr:ml-0 max-md:rtl:mr-0">
                   {data.page * data.limit - (data.limit - 1)}-
                   {data.totalPages > 1 && data.totalPages !== data.page
                     ? data.limit * data.page
