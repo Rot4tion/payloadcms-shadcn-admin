@@ -11,6 +11,10 @@ export const customCollisionDetection: CollisionDetection = ({
 }) => {
   const droppableContainer = droppableContainers.find(({ id }) => id === 'live-preview-area')
 
+  if (!droppableContainer) {
+    return []
+  }
+
   const rectIntersectionCollisions = rectIntersection({
     ...args,
     collisionRect,
@@ -24,7 +28,11 @@ export const customCollisionDetection: CollisionDetection = ({
   }
 
   // Compute whether the draggable element is completely contained within the preview area
-  const previewAreaRect = droppableContainer?.rect?.current
+  const previewAreaRect = droppableContainer.rect?.current
+
+  if (!previewAreaRect) {
+    return []
+  }
 
   const isContained =
     collisionRect.top >= previewAreaRect.top &&
@@ -35,4 +43,7 @@ export const customCollisionDetection: CollisionDetection = ({
   if (isContained) {
     return rectIntersectionCollisions
   }
+
+  // If not contained, return empty array to reset position
+  return []
 }
