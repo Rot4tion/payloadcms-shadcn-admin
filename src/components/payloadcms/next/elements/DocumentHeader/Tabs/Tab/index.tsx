@@ -15,10 +15,10 @@ import { DocumentTabLink } from './TabLink'
 
 export const DefaultDocumentTab: React.FC<{
   apiURL?: string
-  collectionConfig?: SanitizedCollectionConfig
-  globalConfig?: SanitizedGlobalConfig
-  path?: string
-  permissions?: SanitizedPermissions
+  collectionConfig: SanitizedCollectionConfig
+  globalConfig: SanitizedGlobalConfig
+  path: string
+  permissions: SanitizedPermissions
   req: PayloadRequest
   tabConfig: { readonly Pill_Component?: React.FC } & DocumentTabConfig
 }> = (props) => {
@@ -36,6 +36,7 @@ export const DefaultDocumentTab: React.FC<{
 
   if (typeof tabHref === 'function') {
     href = tabHref({
+      // @ts-expect-error
       apiURL,
       collection: collectionConfig,
       global: globalConfig,
@@ -52,7 +53,7 @@ export const DefaultDocumentTab: React.FC<{
   const labelToRender =
     typeof label === 'function'
       ? label({
-          t: req.i18n.t,
+          t: req.i18n.t as (key: string) => string,
         })
       : label
 
@@ -82,7 +83,7 @@ export const DefaultDocumentTab: React.FC<{
                 payload: req.payload,
                 permissions,
                 req,
-                user: req.user,
+                user: req.user ?? undefined,
               } satisfies DocumentTabServerPropsOnly,
             })}
           </Fragment>

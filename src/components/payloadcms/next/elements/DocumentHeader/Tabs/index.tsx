@@ -83,7 +83,7 @@ export const DocumentTabs: React.FC<{
                     payload: req.payload,
                     permissions,
                     req,
-                    user: req.user,
+                    user: req.user ?? undefined,
                   } satisfies DocumentTabServerPropsOnly,
                 })
               }

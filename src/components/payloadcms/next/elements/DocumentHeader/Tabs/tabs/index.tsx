@@ -1,4 +1,11 @@
-import type { DocumentTabConfig, SanitizedCollectionConfig, SanitizedGlobalConfig } from 'payload'
+import type {
+  DocumentTabConfig,
+  PayloadRequest,
+  SanitizedCollectionConfig,
+  SanitizedConfig,
+  SanitizedGlobalConfig,
+  SanitizedPermissions,
+} from 'payload'
 
 import { VersionsPill } from './VersionsPill/index'
 
@@ -30,11 +37,21 @@ export const getTabs = ({
     },
     {
       tab: {
-        condition: ({ collectionConfig, globalConfig, permissions }) =>
+        condition: ({
+          collectionConfig,
+          globalConfig,
+          permissions,
+        }: {
+          collectionConfig: SanitizedCollectionConfig
+          config: SanitizedConfig
+          globalConfig: SanitizedGlobalConfig
+          permissions: SanitizedPermissions
+          req: PayloadRequest
+        }) =>
           Boolean(
             (collectionConfig?.versions &&
               permissions?.collections?.[collectionConfig?.slug]?.readVersions) ||
-              (globalConfig?.versions && permissions?.globals?.[globalConfig?.slug]?.readVersions),
+            (globalConfig?.versions && permissions?.globals?.[globalConfig?.slug]?.readVersions),
           ),
         href: '/versions',
         label: ({ t }) => t('version:versions'),
@@ -46,7 +63,13 @@ export const getTabs = ({
     },
     {
       tab: {
-        condition: ({ collectionConfig, globalConfig }) =>
+        condition: ({
+          collectionConfig,
+          globalConfig,
+        }: {
+          collectionConfig?: SanitizedCollectionConfig
+          globalConfig?: SanitizedGlobalConfig
+        }) =>
           (collectionConfig && !collectionConfig?.admin?.hideAPIURL) ||
           (globalConfig && !globalConfig?.admin?.hideAPIURL),
         href: '/api',
@@ -58,20 +81,23 @@ export const getTabs = ({
     },
   ]
     .concat(
-      Object.entries(customViews).reduce((acc, [key, value]) => {
-        if (documentViewKeys.includes(key)) {
+      Object.entries(customViews).reduce(
+        (acc, [key, value]) => {
+          if (documentViewKeys.includes(key)) {
+            return acc
+          }
+
+          if (value?.tab) {
+            acc.push({
+              tab: value.tab,
+              viewPath: 'path' in value ? value.path : '',
+            })
+          }
+
           return acc
-        }
-
-        if (value?.tab) {
-          acc.push({
-            tab: value.tab,
-            viewPath: 'path' in value ? value.path : '',
-          })
-        }
-
-        return acc
-      }, []),
+        },
+        [] as Array<{ tab: any; viewPath: string }>,
+      ),
     )
     ?.sort(({ tab: a }, { tab: b }) => {
       if (a.order === undefined && b.order === undefined) {
