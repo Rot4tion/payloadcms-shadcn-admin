@@ -1,10 +1,13 @@
-import type { AdminViewServerProps, DocumentViewServerPropsOnly } from 'payload'
+import type { AdminViewServerProps, CollectionSlug, DocumentViewServerPropsOnly } from 'payload'
 
-import { DocumentInfoProvider, EditDepthProvider, HydrateAuthProvider } from '@/components/payloadcms/ui/exports/client'
 import { RenderServerComponent } from '@/components/payloadcms/ui/elements/RenderServerComponent'
+import {
+  DocumentInfoProvider,
+  EditDepthProvider,
+  HydrateAuthProvider,
+} from '@/components/payloadcms/ui/exports/client'
 import { buildFormState } from '@/components/payloadcms/ui/utilities/buildFormState'
 import { notFound } from 'next/navigation'
-import React from 'react'
 
 import { DocumentHeader } from '../../elements/DocumentHeader/index'
 import { getDocPreferences } from '../Document/getDocPreferences'
@@ -31,11 +34,11 @@ export async function AccountView({ initPageResult, params, searchParams }: Admi
   } = initPageResult
 
   const {
-    admin: { theme, user: userSlug },
+    admin: { theme },
     routes: { api },
     serverURL,
   } = config
-
+  const userSlug = config.admin.user as CollectionSlug
   const collectionConfig = payload?.collections?.[userSlug]?.config
 
   if (collectionConfig && user?.id) {
@@ -118,7 +121,7 @@ export async function AccountView({ initPageResult, params, searchParams }: Admi
         }
         apiURL={`${serverURL}${api}/${userSlug}${user?.id ? `/${user.id}` : ''}`}
         collectionSlug={userSlug}
-        currentEditor={currentEditor}
+        currentEditor={currentEditor!}
         docPermissions={docPermissions}
         hasPublishedDoc={hasPublishedDoc}
         hasPublishPermission={hasPublishPermission}
@@ -128,7 +131,7 @@ export async function AccountView({ initPageResult, params, searchParams }: Admi
         initialState={formState}
         isEditing
         isLocked={isLocked}
-        lastUpdateTime={lastUpdateTime}
+        lastUpdateTime={lastUpdateTime!}
         mostRecentVersionIsAutosaved={mostRecentVersionIsAutosaved}
         unpublishedVersionCount={unpublishedVersionCount}
         versionCount={versionCount}
