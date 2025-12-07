@@ -22,6 +22,7 @@ import { ListQueryProvider } from '@payloadcms/ui'
 import { useServerFunctions } from '@payloadcms/ui'
 import { TableColumnsProvider } from '../../providers/TableColumns/index.js'
 import { useTranslation } from '@payloadcms/ui'
+import { cn } from '@/lib/utils'
 import { AnimateHeight } from '../AnimateHeight/index.js'
 import { ColumnSelector } from '../ColumnSelector/index.js'
 import { useDocumentDrawer } from '../DocumentDrawer/index.js'
@@ -29,9 +30,6 @@ import { RelationshipProvider } from '../Table/RelationshipProvider/index.js'
 import { AddNewButton } from './AddNewButton.js'
 import { DrawerLink } from './cells/DrawerLink/index.js'
 import { RelationshipTablePagination } from './Pagination.js'
-import './index.scss'
-
-const baseClass = 'relationship-table'
 
 type RelationshipTableComponentProps = {
   readonly AfterInput?: React.ReactNode
@@ -288,15 +286,19 @@ export const RelationshipTable: React.FC<RelationshipTableComponentProps> = (pro
   )
 
   return (
-    <div className={baseClass}>
-      <div className={`${baseClass}__header`}>
+    <div className="relative [&_.table_table]:w-full [&_.table_table]:overflow-auto [&_.table_table_[class^='cell']>p]:line-clamp-4 [&_.table_table_[class^='cell']>span]:line-clamp-4 [&_.table_table_[class^='cell']>a]:line-clamp-4 [&_.table_table_[class^='cell']>p]:overflow-hidden [&_.table_table_[class^='cell']>span]:overflow-hidden [&_.table_table_[class^='cell']>a]:overflow-hidden [&_.table_table_[class^='cell']>p]:max-w-[100vw] [&_.table_table_[class^='cell']>span]:max-w-[100vw] [&_.table_table_[class^='cell']>a]:max-w-[100vw] [&_.table_th]:min-w-0 [&_.table_td:first-child]:min-w-0">
+      <div className="flex justify-between mb-(--base)">
         {Label}
-        <div className={`${baseClass}__actions`}>
+        <div className="flex items-center gap-(--base)">
           <AddNewButton
             allowCreate={allowCreate !== false}
-            baseClass={baseClass}
+            baseClass="relationship-table"
             buttonStyle="none"
-            className={`${baseClass}__add-new${isPolymorphic ? '-polymorphic' : ' doc-drawer__toggler'}`}
+            className={cn(
+              isPolymorphic
+                ? 'relationship-table__add-new-polymorphic [&_.btn__label]:flex [&_.btn__label]:whitespace-nowrap [&_.btn__label]:items-center'
+                : 'doc-drawer__toggler',
+            )}
             collections={config.collections}
             i18n={i18n}
             icon={isPolymorphic ? 'plus' : undefined}
@@ -306,11 +308,8 @@ export const RelationshipTable: React.FC<RelationshipTableComponentProps> = (pro
             relationTo={relationTo}
           />
           <Pill
-            aria-controls={`${baseClass}-columns`}
+            aria-controls="relationship-table-columns"
             aria-expanded={openColumnSelector}
-            className={`${baseClass}__toggle-columns ${
-              openColumnSelector ? `${baseClass}__buttons-active` : ''
-            }`}
             icon={<ChevronIcon direction={openColumnSelector ? 'up' : 'down'} />}
             onClick={() => setOpenColumnSelector(!openColumnSelector)}
             pillStyle="light"
@@ -326,7 +325,7 @@ export const RelationshipTable: React.FC<RelationshipTableComponentProps> = (pro
       ) : (
         <Fragment>
           {data?.docs && data.docs.length === 0 && (
-            <div className={`${baseClass}__no-results`}>
+            <div>
               <p>
                 {i18n.t('general:noResults', {
                   label: isPolymorphic
@@ -336,7 +335,7 @@ export const RelationshipTable: React.FC<RelationshipTableComponentProps> = (pro
               </p>
               <AddNewButton
                 allowCreate={canCreate}
-                baseClass={baseClass}
+                baseClass="relationship-table"
                 collections={config.collections}
                 i18n={i18n}
                 label={i18n.t('general:createNewLabel', {
@@ -371,11 +370,10 @@ export const RelationshipTable: React.FC<RelationshipTableComponentProps> = (pro
                   }
                 >
                   <AnimateHeight
-                    className={`${baseClass}__columns`}
                     height={openColumnSelector ? 'auto' : 0}
-                    id={`${baseClass}-columns`}
+                    id="relationship-table-columns"
                   >
-                    <div className={`${baseClass}__columns-inner`}>
+                    <div className="pb-(--base)">
                       {collectionConfig && (
                         <ColumnSelector collectionSlug={collectionConfig.slug} />
                       )}

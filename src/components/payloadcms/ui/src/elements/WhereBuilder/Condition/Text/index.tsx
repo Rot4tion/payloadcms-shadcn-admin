@@ -5,9 +5,6 @@ import type { TextFilterProps as Props } from './types.js'
 
 import { useTranslation } from '../../../../providers/Translation/index.js'
 import { ReactSelect } from '../../../ReactSelect/index.js'
-import './index.scss'
-
-const baseClass = 'condition-value-text'
 
 export const Text: React.FC<Props> = (props) => {
   const {
@@ -76,7 +73,7 @@ export const Text: React.FC<Props> = (props) => {
     />
   ) : (
     <input
-      className={baseClass}
+      className="border border-input bg-background rounded-md px-3 py-2"
       disabled={disabled}
       onChange={(e) => onChange(e.target.value)}
       placeholder={t('general:enterAValue')}

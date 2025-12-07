@@ -6,10 +6,8 @@ import { components as SelectComponents } from 'react-select'
 
 import type { Option } from '../types.js'
 
+import { cn } from '@/lib/utils'
 import { useDraggableSortable } from '../../DraggableSortable/useDraggableSortable/index.js'
-import './index.scss'
-
-const baseClass = 'multi-value'
 
 export function generateMultiValueDraggableID(optionData, valueFunction) {
   return typeof valueFunction === 'function' ? valueFunction(optionData) : optionData?.value
@@ -31,14 +29,12 @@ export const MultiValue: React.FC<MultiValueProps<Option>> = (props) => {
     disabled: !isSortable,
   })
 
-  const classes = [
-    baseClass,
+  const classes = cn(
+    'multi-value [&.rs__multi-value]:flex [&.rs__multi-value]:p-0 [&.rs__multi-value]:border [&.rs__multi-value]:border-border [&.rs__multi-value]:rounded-sm [&.rs__multi-value]:leading-[calc(var(--baseline)-2px)] [&.rs__multi-value]:my-[calc(var(--base)*0.25)] [&.rs__multi-value]:mr-[calc(var(--base)*0.5)] [&.rs__multi-value]:ml-0 [&.rs__multi-value]:transition-[border] [&.rs__multi-value]:duration-200 [&.rs__multi-value]:ease-[cubic-bezier(0.2,0,0,1)] [&.rs__multi-value]:hover:border-[var(--theme-elevation-250)] [&.rs__multi-value]:bg-muted',
     className,
     !isDisabled && isSortable && 'draggable',
-    isDragging && `${baseClass}--is-dragging`,
-  ]
-    .filter(Boolean)
-    .join(' ')
+    isDragging && 'z-[2]',
+  )
 
   return (
     <React.Fragment>

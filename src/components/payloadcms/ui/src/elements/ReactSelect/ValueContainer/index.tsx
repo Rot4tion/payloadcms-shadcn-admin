@@ -9,9 +9,6 @@ import { components as SelectComponents } from 'react-select'
 import type { Option } from '../types.js'
 
 import { useTranslation } from '@payloadcms/ui'
-import './index.scss'
-
-const baseClass = 'value-container'
 
 export const ValueContainer: React.FC<ValueContainerProps<Option, any>> = (props) => {
   // @ts-expect-error-next-line // TODO Fix this - moduleResolution 16 breaks our declare module
@@ -26,9 +23,13 @@ export const ValueContainer: React.FC<ValueContainerProps<Option, any>> = (props
   }
 
   return (
-    <div className={baseClass} ref={customProps?.droppableRef} title={titleText}>
+    <div
+      className="grow min-w-0 flex items-center flex-row gap-[calc(var(--base)/2)] [&_.rs__value-container]:overflow-visible [&_.rs__value-container]:p-0.5 [&_.rs__value-container]:gap-0.5 [&_.rs__value-container>*]:m-0 [&_.rs__value-container>*]:py-0 [&_.rs__value-container>*]:text-current [&_.rs__value-container_.field-label]:pb-0 [&_.rs__value-container--is-multi]:w-[calc(100%+calc(var(--base)*0.25))] [&_.rs__value-container--is-multi.rs__value-container--has-value]:p-0 [&_.rs__value-container--is-multi.rs__value-container--has-value]:ms-[-4px]"
+      ref={customProps?.droppableRef}
+      title={titleText}
+    >
       {customProps?.valueContainerLabel && (
-        <span className={`${baseClass}__label`}>{customProps?.valueContainerLabel}</span>
+        <span className="text-muted-foreground">{customProps?.valueContainerLabel}</span>
       )}
       <SelectComponents.ValueContainer {...props} />
     </div>

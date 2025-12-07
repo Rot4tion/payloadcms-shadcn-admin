@@ -6,9 +6,6 @@ import React from 'react'
 import type { Option as OptionType } from '../types.js'
 
 import { XIcon } from '../../../icons/X/index.js'
-import './index.scss'
-
-const baseClass = 'clear-indicator'
 
 export const ClearIndicator: React.FC<ClearIndicatorProps<OptionType, true>> = (props) => {
   const {
@@ -18,7 +15,7 @@ export const ClearIndicator: React.FC<ClearIndicatorProps<OptionType, true>> = (
 
   return (
     <div
-      className={baseClass}
+      className="cursor-pointer flex focus-visible:outline-[var(--accessibility-outline)]"
       // TODO Fix this - Broke with React 19 types
       ref={typeof ref === 'string' ? null : ref}
       {...restInnerProps}
@@ -31,7 +28,7 @@ export const ClearIndicator: React.FC<ClearIndicatorProps<OptionType, true>> = (
       role="button"
       tabIndex={0}
     >
-      <XIcon className={`${baseClass}__icon`} />
+      <XIcon />
     </div>
   )
 }

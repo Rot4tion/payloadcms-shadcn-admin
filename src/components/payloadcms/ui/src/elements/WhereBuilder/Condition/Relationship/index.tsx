@@ -7,6 +7,7 @@ import React, { useCallback, useEffect, useReducer, useState } from 'react'
 import type { Option } from '../../../ReactSelect/types.js'
 import type { RelationshipFilterProps as Props, ValueWithRelation } from './types.js'
 
+import { cn } from '@/lib/utils'
 import { useDebounce } from '../../../../hooks/useDebounce.js'
 import { useEffectEvent } from '../../../../hooks/useEffectEvent.js'
 import { useConfig } from '../../../../providers/Config/index.js'
@@ -14,9 +15,6 @@ import { useLocale } from '../../../../providers/Locale/index.js'
 import { useTranslation } from '../../../../providers/Translation/index.js'
 import { ReactSelect } from '../../../ReactSelect/index.js'
 import optionsReducer from './optionsReducer.js'
-import './index.scss'
-
-const baseClass = 'condition-value-relationship'
 
 const maxResultsPerRequest = 10
 
@@ -369,16 +367,14 @@ export const RelationshipFilter: React.FC<Props> = (props) => {
     hasLoadedFirstOptions,
   ])
 
-  const classes = ['field-type', baseClass, errorLoading && 'error-loading']
-    .filter(Boolean)
-    .join(' ')
-
   const valueToRender = (findOptionsByValue() || value) as Option
 
   return (
-    <div className={classes}>
+    <div className={cn('field-type', errorLoading && 'error-loading')}>
       {errorLoading ? (
-        <div className={`${baseClass}__error-loading`}>{errorLoading}</div>
+        <div className="border border-destructive min-h-[calc(var(--base)*2)] py-[calc(var(--base)*0.5)] px-[calc(var(--base)*0.75)] bg-destructive/10 text-background">
+          {errorLoading}
+        </div>
       ) : (
         <ReactSelect
           disabled={disabled}

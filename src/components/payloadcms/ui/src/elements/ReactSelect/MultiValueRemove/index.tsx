@@ -5,12 +5,10 @@ import React, { type JSX } from 'react'
 
 import type { Option as OptionType } from '../types.js'
 
+import { cn } from '@/lib/utils'
 import { XIcon } from '../../../icons/X/index.js'
 import { useTranslation } from '@payloadcms/ui'
 import { Tooltip } from '../../Tooltip/index.js'
-import './index.scss'
-
-const baseClass = 'multi-value-remove'
 
 export const MultiValueRemove: React.FC<
   {
@@ -27,7 +25,10 @@ export const MultiValueRemove: React.FC<
   return (
     <button
       aria-label={t('general:remove')}
-      className={[baseClass, className].filter(Boolean).join(' ')}
+      className={cn(
+        'cursor-pointer w-(--base) flex items-center justify-center relative bg-transparent border-0 p-0 text-inherit hover:text-foreground/80 hover:bg-muted',
+        className,
+      )}
       onClick={(e) => {
         setShowTooltip(false)
         onClick(e)
@@ -43,10 +44,8 @@ export const MultiValueRemove: React.FC<
       onTouchEnd={onTouchEnd}
       type="button"
     >
-      <Tooltip className={`${baseClass}__tooltip`} show={showTooltip}>
-        {t('general:remove')}
-      </Tooltip>
-      <XIcon className={`${baseClass}__icon`} />
+      <Tooltip show={showTooltip}>{t('general:remove')}</Tooltip>
+      <XIcon className="w-full h-full" />
     </button>
   )
 }

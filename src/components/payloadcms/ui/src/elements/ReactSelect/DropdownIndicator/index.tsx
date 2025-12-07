@@ -6,9 +6,6 @@ import React, { type JSX } from 'react'
 import type { Option as OptionType } from '../types.js'
 
 import { ChevronIcon } from '../../../icons/Chevron/index.js'
-import './index.scss'
-
-const baseClass = 'dropdown-indicator'
 export const DropdownIndicator: React.FC<
   {
     innerProps: JSX.IntrinsicElements['button']
@@ -20,7 +17,7 @@ export const DropdownIndicator: React.FC<
 
   return (
     <button
-      className={baseClass}
+      className="cursor-pointer flex bg-transparent border-0 p-0 m-0 focus-visible:outline-[var(--accessibility-outline)] [&_.stroke]:stroke-1"
       ref={ref}
       {...restInnerProps}
       onKeyDown={(e) => {
@@ -30,7 +27,7 @@ export const DropdownIndicator: React.FC<
       }}
       type="button"
     >
-      <ChevronIcon className={`${baseClass}__icon`} />
+      <ChevronIcon />
     </button>
   )
 }

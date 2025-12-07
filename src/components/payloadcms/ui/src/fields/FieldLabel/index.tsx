@@ -5,12 +5,12 @@ import type { GenericLabelProps } from 'payload'
 import { getTranslation } from '@payloadcms/translations'
 import React from 'react'
 
+import { cn } from '@/lib/utils'
 import { useForm } from '@payloadcms/ui'
 import { useEditDepth } from '@payloadcms/ui'
 import { useLocale } from '@payloadcms/ui'
 import { useTranslation } from '@payloadcms/ui'
 import { generateFieldID } from '../../utilities/generateFieldID.js'
-import './index.scss'
 
 export const FieldLabel: React.FC<GenericLabelProps> = (props) => {
   const {
@@ -37,11 +37,23 @@ export const FieldLabel: React.FC<GenericLabelProps> = (props) => {
 
   if (label) {
     return (
-      <Element className={`field-label${unstyled ? ' unstyled' : ''}`} htmlFor={htmlFor}>
+      <Element
+        className={cn(
+          'flex items-center',
+          !unstyled &&
+            'pb-[calc(var(--base)*0.25)] text-foreground/80 font-body ltr:mr-auto rtl:ml-auto',
+          unstyled && 'unstyled',
+        )}
+        htmlFor={htmlFor}
+      >
         {getTranslation(label, i18n)}
-        {required && !unstyled && <span className="required">*</span>}
+        {required && !unstyled && (
+          <span className="text-destructive ltr:ml-[calc(var(--base)*0.25)] rtl:mr-[calc(var(--base)*0.25)]">
+            *
+          </span>
+        )}
         {localized && !hideLocale && (
-          <span className="localized">
+          <span className="ltr:ml-[calc(var(--base)*0.25)] rtl:mr-[calc(var(--base)*0.25)]">
             &mdash; {typeof localLabel === 'string' ? localLabel : code}
           </span>
         )}

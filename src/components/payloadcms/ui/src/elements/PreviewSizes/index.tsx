@@ -3,10 +3,8 @@ import type { Data, FileSize, SanitizedCollectionConfig, SanitizedUploadConfig }
 
 import React, { useEffect, useMemo, useState } from 'react'
 
+import { cn } from '@/lib/utils'
 import { FileMeta } from '../FileDetails/FileMeta/index.js'
-import './index.scss'
-
-const baseClass = 'preview-sizes'
 
 type FileInfo = {
   url: string
@@ -47,9 +45,11 @@ const PreviewSizeCard: React.FC<PreviewSizeCardProps> = ({
 }) => {
   return (
     <div
-      className={[`${baseClass}__sizeOption`, active && `${baseClass}--selected`]
-        .filter(Boolean)
-        .join(' ')}
+      className={cn(
+        'p-[calc(var(--base)*0.5)] flex gap-(--base) cursor-pointer transition-colors duration-200 hover:bg-muted',
+        'max-md:p-[calc(var(--base)*0.25)]',
+        active && 'bg-muted',
+      )}
       onClick={typeof onClick === 'function' ? onClick : undefined}
       onKeyDown={(e) => {
         if (typeof onClick !== 'function') {
@@ -62,11 +62,11 @@ const PreviewSizeCard: React.FC<PreviewSizeCardProps> = ({
       role="button"
       tabIndex={0}
     >
-      <div className={`${baseClass}__image`}>
+      <div className="flex w-[30%] min-w-[30%] items-center justify-center">
         <img alt={meta.filename} src={previewSrc} />
       </div>
-      <div className={`${baseClass}__sizeMeta`}>
-        <div className={`${baseClass}__sizeName`}>{name}</div>
+      <div className="py-[calc(var(--base)*0.5)] overflow-hidden text-ellipsis">
+        <div className="text-muted-foreground overflow-hidden text-ellipsis">{name}</div>
         <FileMeta {...meta} />
       </div>
     </div>
@@ -120,16 +120,22 @@ export const PreviewSizes: React.FC<PreviewSizesProps> = ({ doc, imageCacheTag, 
   const originalFilename = 'Original'
 
   return (
-    <div className={baseClass}>
-      <div className={`${baseClass}__imageWrap`}>
-        <div className={`${baseClass}__meta`}>
-          <div className={`${baseClass}__sizeName`}>{selectedSize || originalFilename}</div>
+    <div className="mt-[calc(var(--base)*2)] -mx-[var(--gutter-h)] border-t border-border max-h-[calc(100vh-calc(var(--base)*6))] h-full flex flex-row max-lg:mt-(--base) max-lg:max-h-[calc(100vh-calc(var(--base)*4))] max-md:mt-0 max-md:max-h-[calc(100vh-calc(var(--base)*3.5))] max-md:flex-col max-md:justify-between">
+      <div className="min-w-[60%] border-r border-border max-md:h-[60%] max-md:border-none">
+        <div className="border-b border-border py-(--base) px-[var(--gutter-h)] flex flex-wrap gap-x-(--base) [&_.file-meta]:flex [&_.file-meta]:flex-wrap [&_.file-meta]:gap-x-(--base) [&_.file-meta]:text-wrap [&_.file-meta]:w-full [&_.file-meta__url]:w-full">
+          <div className="text-muted-foreground overflow-hidden text-ellipsis">
+            {selectedSize || originalFilename}
+          </div>
           <FileMeta {...(selectedSize ? orderedSizes[selectedSize] : originalImage)} />
         </div>
-        <img alt={doc.filename} className={`${baseClass}__preview`} src={mainPreviewSrc} />
+        <img
+          alt={doc.filename}
+          className="max-h-[calc(100%-calc(var(--base)*6))] p-[calc(var(--base)*1.5)] pl-[var(--gutter-h)] object-contain max-md:max-h-[calc(100%-calc(var(--base)*4))] max-md:p-[calc(var(--gutter-h)*2)] max-md:px-[var(--gutter-h)]"
+          src={mainPreviewSrc}
+        />
       </div>
-      <div className={`${baseClass}__listWrap`}>
-        <div className={`${baseClass}__list`}>
+      <div className="pr-[var(--gutter-h)] overflow-y-scroll [scrollbar-width:none] [-webkit-scrollbar]:w-0 after:content-[''] after:block after:sticky after:bottom-0 after:left-0 after:h-[calc(var(--base)*4)] after:w-full after:bg-gradient-to-b after:from-transparent after:to-background after:pointer-events-none max-md:border-t max-md:border-border max-md:h-[40%]">
+        <div className="list-none flex flex-col gap-[calc(var(--base)*0.5)] m-0 py-[calc(var(--base)*1.5)] pl-[calc(var(--base)*1.5)] pr-0 max-md:p-[calc(var(--gutter-h)*2)] max-md:px-[var(--gutter-h)]">
           <PreviewSizeCard
             active={!selectedSize}
             meta={originalImage}

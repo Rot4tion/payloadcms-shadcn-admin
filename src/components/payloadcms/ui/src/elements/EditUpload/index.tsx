@@ -7,13 +7,11 @@ import React, { useRef, useState } from 'react'
 import ReactCrop from 'react-image-crop'
 import 'react-image-crop/dist/ReactCrop.css'
 
+import { cn } from '@/lib/utils'
 import { editDrawerSlug } from '../../elements/Upload/index.js'
 import { PlusIcon } from '../../icons/Plus/index.js'
 import { useTranslation } from '@payloadcms/ui'
 import { Button } from '../Button/index.js'
-import './index.scss'
-
-const baseClass = 'edit-upload'
 
 type Props = {
   name: string
@@ -26,9 +24,10 @@ const Input: React.FC<Props> = (props) => {
   const { name, onChange, ref, value } = props
 
   return (
-    <div className={`${baseClass}__input`}>
+    <div className="flex-1">
       {name}
       <input
+        className="w-full border border-input bg-background rounded-md px-3 py-2"
         name={name}
         onChange={(e) => onChange(e.target.value)}
         ref={ref}
@@ -178,16 +177,18 @@ export const EditUpload: React.FC<EditUploadProps> = ({
   const fileSrcToUse = imageCacheTag ? `${fileSrc}?${encodeURIComponent(imageCacheTag)}` : fileSrc
 
   return (
-    <div className={baseClass}>
-      <div className={`${baseClass}__header`}>
-        <h2 title={`${t('general:editing')} ${fileName}`}>
+    <div className="h-full -mx-[var(--gutter-h)] [--edit-upload-cell-spacing:calc(var(--base)*1.5)] [--edit-upload-sidebar-width:calc(350px+var(--gutter-h))] max-lg:[--edit-upload-cell-spacing:var(--gutter-h)] max-md:flex-col">
+      <div className="h-[calc(var(--base)*5)] border-b border-border px-[var(--gutter-h)] flex justify-between items-center">
+        <h2
+          className="m-0 whitespace-nowrap overflow-hidden text-ellipsis"
+          title={`${t('general:editing')} ${fileName}`}
+        >
           {t('general:editing')} {fileName}
         </h2>
-        <div className={`${baseClass}__actions`}>
+        <div className="min-w-[350px] ml-auto rtl:mr-auto rtl:ml-0 py-[calc(var(--base)*0.5)] pl-[calc(var(--base)*1.5)] rtl:pr-[calc(var(--base)*1.5)] rtl:pl-0 justify-end flex gap-[var(--base)] whitespace-nowrap">
           <Button
             aria-label={t('general:cancel')}
             buttonStyle="secondary"
-            className={`${baseClass}__cancel`}
             onClick={() => closeModal(editDrawerSlug)}
           >
             {t('general:cancel')}
@@ -195,7 +196,6 @@ export const EditUpload: React.FC<EditUploadProps> = ({
           <Button
             aria-label={t('general:applyChanges')}
             buttonStyle="primary"
-            className={`${baseClass}__save`}
             disabled={!imageLoaded}
             onClick={saveEdits}
           >
@@ -203,10 +203,10 @@ export const EditUpload: React.FC<EditUploadProps> = ({
           </Button>
         </div>
       </div>
-      <div className={`${baseClass}__toolWrap`}>
-        <div className={`${baseClass}__crop`}>
+      <div className="flex justify-end h-[calc(100%-calc(var(--base)*5))] max-lg:flex-col-reverse">
+        <div className="p-[var(--edit-upload-cell-spacing)] pl-[var(--gutter-h)] flex items-start h-full">
           <div
-            className={`${baseClass}__focal-wrapper`}
+            className="relative inline-flex max-h-full"
             ref={focalWrapRef}
             style={{
               aspectRatio: `${uncroppedPixelWidth / uncroppedPixelHeight}`,
@@ -214,12 +214,11 @@ export const EditUpload: React.FC<EditUploadProps> = ({
           >
             {showCrop ? (
               <ReactCrop
-                className={`${baseClass}__reactCrop`}
                 crop={crop}
                 onChange={(_, c) => setCrop(c)}
                 onComplete={() => setCheckBounds(true)}
                 renderSelectionAddon={() => {
-                  return <div className={`${baseClass}__crop-window`} ref={cropRef} />
+                  return <div className="h-full w-full" ref={cropRef} />
                 }}
               >
                 <img
@@ -241,7 +240,7 @@ export const EditUpload: React.FC<EditUploadProps> = ({
               <DraggableElement
                 boundsRef={showCrop ? cropRef : imageRef}
                 checkBounds={showCrop ? checkBounds : false}
-                className={`${baseClass}__focalPoint`}
+                className="absolute top-1/2 left-1/2 rounded-full flex items-center justify-center cursor-grab w-[50px] h-[50px] -translate-x-1/2 -translate-y-1/2 pointer-events-auto [&_svg]:absolute [&_svg]:inset-0 [&_svg]:bg-black/50 [&_svg]:rounded-full [&_svg]:w-[calc(var(--base)*2)] [&_svg]:h-[calc(var(--base)*2)] [&_svg]:text-white"
                 containerRef={focalWrapRef}
                 initialPosition={focalPosition}
                 onDragEnd={onDragEnd}
@@ -253,15 +252,15 @@ export const EditUpload: React.FC<EditUploadProps> = ({
           </div>
         </div>
         {(showCrop || showFocalPoint) && (
-          <div className={`${baseClass}__sidebar`}>
+          <div className="border-l border-border pt-[var(--edit-upload-cell-spacing)] min-w-[var(--edit-upload-sidebar-width)] [&>div:first-child]:mb-[var(--base)] max-lg:pl-0 max-lg:border-l-0 max-lg:w-full max-md:min-w-0">
             {showCrop && (
-              <div className={`${baseClass}__groupWrap`}>
+              <div className="flex flex-col gap-[calc(var(--base)*0.5)] pr-[var(--gutter-h)] pl-[var(--edit-upload-cell-spacing)] w-full [&+div]:pt-[var(--edit-upload-cell-spacing)] [&+div]:mt-[var(--edit-upload-cell-spacing)] [&+div]:border-t [&+div]:border-border">
                 <div>
-                  <div className={`${baseClass}__titleWrap`}>
-                    <h3>{t('upload:crop')}</h3>
+                  <div className="flex gap-[var(--base)] justify-between items-center">
+                    <h3 className="m-0">{t('upload:crop')}</h3>
                     <Button
                       buttonStyle="none"
-                      className={`${baseClass}__reset`}
+                      className="h-fit rounded-sm bg-muted px-[calc(var(--base)*0.4)]"
                       onClick={() =>
                         setCrop({
                           height: 100,
@@ -276,10 +275,8 @@ export const EditUpload: React.FC<EditUploadProps> = ({
                     </Button>
                   </div>
                 </div>
-                <span className={`${baseClass}__description`}>
-                  {t('upload:cropToolDescription')}
-                </span>
-                <div className={`${baseClass}__inputsWrap`}>
+                <span className="text-muted-foreground">{t('upload:cropToolDescription')}</span>
+                <div className="flex gap-[var(--base)] max-md:flex-col">
                   <Input
                     name={`${t('upload:width')} (px)`}
                     onChange={(value) => fineTuneCrop({ dimension: 'width', value })}
@@ -297,23 +294,21 @@ export const EditUpload: React.FC<EditUploadProps> = ({
             )}
 
             {showFocalPoint && (
-              <div className={`${baseClass}__groupWrap`}>
+              <div className="flex flex-col gap-[calc(var(--base)*0.5)] pr-[var(--gutter-h)] pl-[var(--edit-upload-cell-spacing)] w-full [&+div]:pt-[var(--edit-upload-cell-spacing)] [&+div]:mt-[var(--edit-upload-cell-spacing)] [&+div]:border-t [&+div]:border-border">
                 <div>
-                  <div className={`${baseClass}__titleWrap`}>
-                    <h3>{t('upload:focalPoint')}</h3>
+                  <div className="flex gap-[var(--base)] justify-between items-center">
+                    <h3 className="m-0">{t('upload:focalPoint')}</h3>
                     <Button
                       buttonStyle="none"
-                      className={`${baseClass}__reset`}
+                      className="h-fit rounded-sm bg-muted px-[calc(var(--base)*0.4)]"
                       onClick={centerFocalPoint}
                     >
                       {t('general:reset')}
                     </Button>
                   </div>
                 </div>
-                <span className={`${baseClass}__description`}>
-                  {t('upload:focalPointDescription')}
-                </span>
-                <div className={`${baseClass}__inputsWrap`}>
+                <span className="text-muted-foreground">{t('upload:focalPointDescription')}</span>
+                <div className="flex gap-[var(--base)] max-md:flex-col">
                   <Input
                     name="X %"
                     onChange={(value) => fineTuneFocalPosition({ coordinate: 'x', value })}
@@ -343,6 +338,15 @@ const DraggableElement = ({
   initialPosition = { x: 50, y: 50 },
   onDragEnd,
   setCheckBounds,
+}: {
+  boundsRef: React.RefObject<HTMLElement | undefined>
+  checkBounds: boolean
+  children: React.ReactNode
+  className?: string
+  containerRef: React.RefObject<HTMLElement | undefined>
+  initialPosition?: { x: number; y: number }
+  onDragEnd: (position: { x: number; y: number }) => void
+  setCheckBounds: React.Dispatch<React.SetStateAction<boolean>> | false
 }) => {
   const [position, setPosition] = useState({ x: initialPosition.x, y: initialPosition.y })
   const [isDragging, setIsDragging] = useState(false)
@@ -434,16 +438,17 @@ const DraggableElement = ({
 
   return (
     <div
-      className={[
-        `${baseClass}__draggable-container`,
-        isDragging && `${baseClass}__draggable-container--dragging`,
-      ]
-        .filter(Boolean)
-        .join(' ')}
+      className={cn(
+        'absolute inset-0 pointer-events-none',
+        isDragging && 'pointer-events-auto [&_.focal-point]:cursor-grabbing',
+      )}
       onMouseMove={handleMouseMove}
     >
       <button
-        className={[`${baseClass}__draggable`, className].filter(Boolean).join(' ')}
+        className={cn(
+          'bg-transparent border-0 p-0 m-0 cursor-pointer absolute focal-point',
+          className,
+        )}
         onMouseDown={handleMouseDown}
         onMouseUp={onDrop}
         ref={dragRef}
