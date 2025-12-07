@@ -9,13 +9,11 @@ import type {
 import { getBestFitFromSizes, isImage } from 'payload/shared'
 import React from 'react'
 
-import './index.scss'
 import { Thumbnail } from '../../../../Thumbnail/index.js'
 
-const baseClass = 'file'
-
-export interface FileCellProps
-  extends DefaultCellComponentProps<TextFieldClient | UploadFieldClient> {
+export interface FileCellProps extends DefaultCellComponentProps<
+  TextFieldClient | UploadFieldClient
+> {
   readonly collectionConfig: ClientCollectionConfig
 }
 
@@ -44,9 +42,9 @@ export const FileCell: React.FC<FileCellProps> = ({
     }
 
     return (
-      <div className={baseClass}>
+      <div className="flex flex-nowrap">
         <Thumbnail
-          className={`${baseClass}__thumbnail`}
+          className="inline-block max-w-[calc(var(--base)*2)] h-[calc(var(--base)*2)] rounded-sm"
           collectionSlug={collectionConfig?.slug}
           doc={{
             ...rowData,
@@ -56,7 +54,7 @@ export const FileCell: React.FC<FileCellProps> = ({
           size="small"
           uploadConfig={collectionConfig?.upload}
         />
-        <span className={`${baseClass}__filename`}>{String(filename)}</span>
+        <span className="self-center ltr:ml-(--base) rtl:mr-(--base)">{String(filename)}</span>
       </div>
     )
   } else {

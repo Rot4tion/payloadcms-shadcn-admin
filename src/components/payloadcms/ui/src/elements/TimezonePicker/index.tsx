@@ -8,7 +8,6 @@ import { useMemo } from 'react'
 import type { Props } from './types.js'
 
 import { FieldLabel } from '../../fields/FieldLabel/index.js'
-import './index.scss'
 import { useTranslation } from '@payloadcms/ui'
 import { ReactSelect } from '../ReactSelect/index.js'
 import { formatOptions } from '../WhereBuilder/Condition/Select/formatOptions.js'
@@ -37,7 +36,7 @@ export const TimezonePicker: React.FC<Props> = (props) => {
   const readOnly = Boolean(readOnlyFromProps) || options.length === 1
 
   return (
-    <div className="timezone-picker-wrapper">
+    <div className="flex gap-[calc(var(--base)/4)] mt-[calc(var(--base)/4)] items-center [&_.field-label]:mr-0 [&_.field-label]:text-muted-foreground [&_.field-label]:shrink-0">
       <FieldLabel
         htmlFor={id}
         label={`${t('general:timezone')} ${required ? '*' : ''}`}
@@ -45,7 +44,7 @@ export const TimezonePicker: React.FC<Props> = (props) => {
         unstyled
       />
       <ReactSelect
-        className="timezone-picker"
+        className="inline-block [&_.rs__menu]:min-w-[calc(var(--base)*14)] [&_.rs__menu]:overflow-hidden [&_.rs__menu]:rounded-sm [&_.rs__value-container]:text-center [&_.rs__control]:bg-transparent [&_.rs__control]:border-none [&_.rs__control]:p-0 [&_.rs__control]:pl-[calc(var(--base)*0.25)] [&_.rs__control]:min-h-0 [&_.rs__control]:relative [&_.rs__control]:shadow-none [&_.rs__control]:min-w-(--base) [&_.rs__control:hover]:cursor-pointer [&_.rs__control:hover]:shadow-none [&_.rs__indicators]:ms-[calc(var(--base)*0.25)]"
         disabled={readOnly}
         inputId={id}
         isClearable={!required}

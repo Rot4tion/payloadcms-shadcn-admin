@@ -3,8 +3,6 @@ import type { ClientCollectionConfig, CodeFieldClient, DefaultCellComponentProps
 
 import React from 'react'
 
-import './index.scss'
-
 export interface CodeCellProps extends DefaultCellComponentProps<CodeFieldClient> {
   readonly collectionConfig: ClientCollectionConfig
   readonly nowrap?: boolean
@@ -16,7 +14,10 @@ export const CodeCell: React.FC<CodeCellProps> = ({ cellData, nowrap }) => {
   const noWrapStyle: React.CSSProperties = nowrap ? { whiteSpace: 'nowrap' } : {}
 
   return (
-    <code className="code-cell" style={noWrapStyle}>
+    <code
+      className="text-base leading-(--base) border-0 inline-flex align-middle bg-muted text-foreground rounded-md px-[calc(var(--base)*0.25)] ltr:pl-[calc(var(--base)*0.3375)] rtl:pr-[calc(var(--base)*0.3375)] hover:no-underline"
+      style={noWrapStyle}
+    >
       <span>{textToShow}</span>
     </code>
   )

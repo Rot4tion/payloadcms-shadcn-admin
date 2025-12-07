@@ -20,12 +20,10 @@ import { Button } from '../Button/index.js'
 import { Drawer } from '../Drawer/index.js'
 import { Dropzone } from '../Dropzone/index.js'
 import { EditUpload } from '../EditUpload/index.js'
-import './index.scss'
 import { FileDetails } from '../FileDetails/index.js'
 import { PreviewSizes } from '../PreviewSizes/index.js'
 import { Thumbnail } from '../Thumbnail/index.js'
 
-const baseClass = 'file-field'
 export const editDrawerSlug = 'edit-upload'
 export const sizePreviewSlug = 'preview-sizes'
 
@@ -65,13 +63,13 @@ export const UploadActions = ({
   }
 
   return (
-    <div className={`${baseClass}__upload-actions`}>
+    <div className="flex gap-[calc(var(--base)/2)] flex-wrap mt-[calc(var(--base)*0.5)]">
       {fileTypeIsAdjustable && (
         <React.Fragment>
           {enablePreviewSizes && (
             <Button
               buttonStyle="pill"
-              className={`${baseClass}__previewSizes`}
+              className=""
               margin={false}
               onClick={() => {
                 openModal(sizePreviewSlug)
@@ -84,7 +82,7 @@ export const UploadActions = ({
           {enableAdjustments && (
             <Button
               buttonStyle="pill"
-              className={`${baseClass}__edit`}
+              className="max-md:hidden"
               margin={false}
               onClick={() => {
                 openModal(editDrawerSlug)
@@ -376,7 +374,7 @@ export const Upload_v4: React.FC<UploadProps_v4> = (props) => {
   }, [uploadControlFile, handleFileChange])
 
   return (
-    <div className={[fieldBaseClass, baseClass].filter(Boolean).join(' ')}>
+    <div className={`${fieldBaseClass} relative mb-(--base) bg-muted/50 rounded-sm`}>
       <FieldError message={errorMessage} showError={showError} />
       {data && data.filename && !removedFile && (
         <FileDetails
@@ -392,11 +390,11 @@ export const Upload_v4: React.FC<UploadProps_v4> = (props) => {
         />
       )}
       {((!uploadConfig.hideFileInputOnCreate && !data?.filename) || removedFile) && (
-        <div className={`${baseClass}__upload`}>
+        <div className="flex max-md:flex-wrap max-md:justify-between">
           {!value && !showUrlInput && (
             <Dropzone onChange={handleFileSelection}>
-              <div className={`${baseClass}__dropzoneContent`}>
-                <div className={`${baseClass}__dropzoneButtons`}>
+              <div className="flex flex-wrap gap-[calc(var(--base)*0.4)] justify-between w-full">
+                <div className="flex gap-[calc(var(--base)*0.5)] items-center">
                   <Button
                     buttonStyle="pill"
                     onClick={() => {
@@ -411,7 +409,7 @@ export const Upload_v4: React.FC<UploadProps_v4> = (props) => {
                   <input
                     accept={acceptMimeTypes}
                     aria-hidden="true"
-                    className={`${baseClass}__hidden-input`}
+                    className="hidden"
                     hidden
                     onChange={(e) => {
                       if (e.target.files && e.target.files.length > 0) {
@@ -423,7 +421,7 @@ export const Upload_v4: React.FC<UploadProps_v4> = (props) => {
                   />
                   {uploadConfig?.pasteURL !== false && (
                     <Fragment>
-                      <span className={`${baseClass}__orText`}>{t('general:or')}</span>
+                      <span className="text-muted-foreground lowercase">{t('general:or')}</span>
                       <Button
                         buttonStyle="pill"
                         onClick={() => {
@@ -441,7 +439,7 @@ export const Upload_v4: React.FC<UploadProps_v4> = (props) => {
 
                   {UploadControls ? UploadControls : null}
                 </div>
-                <p className={`${baseClass}__dragAndDropText`}>
+                <p className="shrink-0 m-0 lowercase self-center text-muted-foreground">
                   {t('general:or')} {t('upload:dragAndDrop')}
                 </p>
               </div>
@@ -449,10 +447,10 @@ export const Upload_v4: React.FC<UploadProps_v4> = (props) => {
           )}
           {showUrlInput && (
             <React.Fragment>
-              <div className={`${baseClass}__remote-file-wrap`}>
+              <div className="p-(--base) w-full flex flex-col gap-[calc(var(--base)/2)]">
                 {/* eslint-disable-next-line jsx-a11y/control-has-associated-label */}
                 <input
-                  className={`${baseClass}__remote-file`}
+                  className="bg-background border border-border rounded-sm p-[calc(var(--base)*0.5)] w-full"
                   onChange={(e) => {
                     setFileUrl(e.target.value)
                   }}
@@ -461,9 +459,9 @@ export const Upload_v4: React.FC<UploadProps_v4> = (props) => {
                   type="text"
                   value={fileUrl}
                 />
-                <div className={`${baseClass}__add-file-wrap`}>
+                <div className="flex gap-[calc(var(--base)/2)] flex-wrap">
                   <button
-                    className={`${baseClass}__add-file`}
+                    className="bg-primary text-primary-foreground px-3 py-1 rounded-sm cursor-pointer border-none"
                     onClick={() => {
                       void handleUrlSubmit()
                     }}
@@ -475,7 +473,7 @@ export const Upload_v4: React.FC<UploadProps_v4> = (props) => {
               </div>
               <Button
                 buttonStyle="icon-label"
-                className={`${baseClass}__remove`}
+                className="m-[calc(var(--base)*1.5)] mr-(--base) mb-(--base) self-start max-md:m-(--base) max-md:order-2"
                 icon="x"
                 iconStyle="with-border"
                 onClick={() => {
@@ -491,16 +489,16 @@ export const Upload_v4: React.FC<UploadProps_v4> = (props) => {
           )}
           {value && fileSrc && (
             <React.Fragment>
-              <div className={`${baseClass}__thumbnail-wrap`}>
+              <div className="relative w-[150px] max-md:order-1 max-md:w-1/2 [&_.thumbnail]:relative [&_.thumbnail]:w-full [&_.thumbnail]:h-full [&_.thumbnail]:object-contain [&_.thumbnail]:rounded-l-sm">
                 <Thumbnail
                   collectionSlug={collectionSlug}
                   fileSrc={isImage(value.type) ? fileSrc : null}
                 />
               </div>
-              <div className={`${baseClass}__file-adjustments`}>
+              <div className="p-(--base) w-full flex flex-col gap-[calc(var(--base)/2)] max-md:order-3 max-md:border-t-2 max-md:border-background max-md:p-[calc(var(--base)*0.5)] max-md:gap-0">
                 {/* eslint-disable-next-line jsx-a11y/control-has-associated-label */}
                 <input
-                  className={`${baseClass}__filename`}
+                  className="bg-background border border-border rounded-sm p-[calc(var(--base)*0.5)] w-full"
                   onChange={handleFileNameChange}
                   title={filename || value.name}
                   type="text"
@@ -515,7 +513,7 @@ export const Upload_v4: React.FC<UploadProps_v4> = (props) => {
               </div>
               <Button
                 buttonStyle="icon-label"
-                className={`${baseClass}__remove`}
+                className="m-[calc(var(--base)*1.5)] mr-(--base) mb-(--base) self-start max-md:m-(--base) max-md:order-2"
                 icon="x"
                 iconStyle="with-border"
                 onClick={handleFileRemoval}
@@ -547,7 +545,7 @@ export const Upload_v4: React.FC<UploadProps_v4> = (props) => {
       )}
       {data && hasImageSizes && (
         <Drawer
-          className={`${baseClass}__previewDrawer`}
+          className="[&_h2]:m-0 [&_h2]:mr-(--base) [&_h2]:whitespace-nowrap [&_h2]:overflow-hidden [&_h2]:text-ellipsis [&_h2]:max-w-[calc(100%-var(--base)*2)]"
           hoverTitle
           slug={sizePreviewSlug}
           title={t('upload:sizesFor', { label: data.filename })}

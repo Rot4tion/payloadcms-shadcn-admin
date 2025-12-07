@@ -16,10 +16,8 @@ import { canUseDOM } from '../../../../../utilities/canUseDOM.js'
 import { formatDocTitle } from '../../../../../utilities/formatDocTitle/index.js'
 import { useListRelationships } from '../../../RelationshipProvider/index.js'
 import { FileCell } from '../File/index.js'
-import './index.scss'
 
 type Value = { relationTo: string; value: number | string }
-const baseClass = 'relationship-cell'
 const totalToShow = 3
 
 export type RelationshipCellProps = DefaultCellComponentProps<
@@ -92,7 +90,7 @@ export const RelationshipCell: React.FC<RelationshipCellProps> = ({
   }, [cellData])
 
   return (
-    <div className={baseClass} ref={intersectionRef}>
+    <div ref={intersectionRef}>
       {values.map(({ relationTo, value }, i) => {
         const document = documents[relationTo][value]
         const relatedCollection = getEntityConfig({
