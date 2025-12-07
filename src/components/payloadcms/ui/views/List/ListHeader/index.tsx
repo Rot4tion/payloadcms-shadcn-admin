@@ -35,16 +35,7 @@ export type ListHeaderProps = {
   isTrashEnabled?: boolean
   newDocumentURL: string
   onBulkUploadSuccess?: () => void
-  /** @deprecated This prop will be removed in the next major version.
-   *
-   * Opening of the bulk upload modal is handled internally.
-   *
-   * Prefer `onBulkUploadSuccess` usage to handle the success of the bulk upload.
-   */
-  openBulkUpload: () => void
   smallBreak: boolean
-  /** @deprecated This prop will be removed in the next major version. */
-  t?: TFunction
   TitleActions?: React.ReactNode[]
   viewType?: ViewTypes
 }
@@ -62,7 +53,6 @@ export const CollectionListHeader: React.FC<ListHeaderProps> = ({
   isTrashEnabled,
   newDocumentURL,
   onBulkUploadSuccess,
-  openBulkUpload,
   smallBreak,
   viewType,
 }) => {
@@ -142,7 +132,6 @@ export const CollectionListHeader: React.FC<ListHeaderProps> = ({
             isBulkUploadEnabled={isBulkUploadEnabled}
             key="list-header-bulk-upload"
             onBulkUploadSuccess={onBulkUploadSuccess}
-            openBulkUpload={openBulkUpload}
           />
         ),
         hasDeletePermission && isTrashEnabled && viewType === 'trash' && (

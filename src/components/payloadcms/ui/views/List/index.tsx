@@ -112,12 +112,6 @@ export function DefaultListView(props: ListViewClientProps) {
     }
   }, [data?.docs, isUploadCollection])
 
-  const openBulkUpload = React.useCallback(() => {
-    setCollectionSlug(collectionSlug)
-    openModal(bulkUploadDrawerSlug)
-    setOnSuccess(() => router.refresh())
-  }, [router, collectionSlug, bulkUploadDrawerSlug, openModal, setCollectionSlug, setOnSuccess])
-
   useEffect(() => {
     if (!isInDrawer) {
       const baseLabel = {
@@ -174,7 +168,6 @@ export function DefaultListView(props: ListViewClientProps) {
                 isBulkUploadEnabled={isBulkUploadEnabled && !upload.hideFileInputOnCreate}
                 isTrashEnabled={isTrashEnabled}
                 newDocumentURL={newDocumentURL}
-                openBulkUpload={openBulkUpload}
                 smallBreak={smallBreak}
                 viewType={viewType}
               />

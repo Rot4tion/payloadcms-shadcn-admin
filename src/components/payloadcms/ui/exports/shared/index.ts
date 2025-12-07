@@ -27,9 +27,3 @@ export { hasSavePermission } from '../../utilities/hasSavePermission.js'
 export { isClientUserObject } from '../../utilities/isClientUserObject.js'
 export { isEditing } from '../../utilities/isEditing.js'
 export { sanitizeID } from '../../utilities/sanitizeID.js'
-/**
- * @deprecated
- * The `mergeListSearchAndWhere` function is deprecated.
- * Import this from `payload/shared` instead.
- */
-export { mergeListSearchAndWhere } from 'payload/shared'

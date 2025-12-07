@@ -14,18 +14,11 @@ export function ListBulkUploadButton({
   hasCreatePermission,
   isBulkUploadEnabled,
   onBulkUploadSuccess,
-  openBulkUpload: openBulkUploadFromProps,
 }: {
   collectionSlug: CollectionSlug
   hasCreatePermission: boolean
   isBulkUploadEnabled: boolean
   onBulkUploadSuccess?: () => void
-  /**
-   * @deprecated This prop will be removed in the next major version.
-   *
-   * Prefer using `onBulkUploadSuccess`
-   */
-  openBulkUpload?: () => void
 }) {
   const { drawerSlug: bulkUploadDrawerSlug, setCollectionSlug, setOnSuccess } = useBulkUpload()
   const { t } = useTranslation()
@@ -33,19 +26,15 @@ export function ListBulkUploadButton({
   const router = useRouter()
 
   const openBulkUpload = React.useCallback(() => {
-    if (typeof openBulkUploadFromProps === 'function') {
-      openBulkUploadFromProps()
-    } else {
-      setCollectionSlug(collectionSlug)
-      openModal(bulkUploadDrawerSlug)
-      setOnSuccess(() => {
-        if (typeof onBulkUploadSuccess === 'function') {
-          onBulkUploadSuccess()
-        } else {
-          router.refresh()
-        }
-      })
-    }
+    setCollectionSlug(collectionSlug)
+    openModal(bulkUploadDrawerSlug)
+    setOnSuccess(() => {
+      if (typeof onBulkUploadSuccess === 'function') {
+        onBulkUploadSuccess()
+      } else {
+        router.refresh()
+      }
+    })
   }, [
     router,
     collectionSlug,
@@ -54,7 +43,6 @@ export function ListBulkUploadButton({
     setCollectionSlug,
     setOnSuccess,
     onBulkUploadSuccess,
-    openBulkUploadFromProps,
   ])
 
   if (!hasCreatePermission || !isBulkUploadEnabled) {
