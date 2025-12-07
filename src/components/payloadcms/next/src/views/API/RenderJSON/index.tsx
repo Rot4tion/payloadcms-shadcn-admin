@@ -2,7 +2,7 @@
 import { ChevronIcon } from '@payloadcms-local/ui'
 import * as React from 'react'
 
-import './index.scss'
+import { cn } from '@/lib/utils'
 
 const chars = {
   leftCurlyBracket: '\u007B',
@@ -10,8 +10,6 @@ const chars = {
   rightCurlyBracket: '\u007D',
   rightSquareBracket: '\u005D',
 }
-
-const baseClass = 'query-inspector'
 
 const Bracket = ({
   type,
@@ -27,15 +25,31 @@ const Bracket = ({
   const bracketToRender = position === 'end' ? rightBracket : leftBracket
 
   return (
-    <span className={`${baseClass}__bracket ${baseClass}__bracket--position-${position}`}>
+    <span
+      className={cn(
+        'relative',
+        type === 'array' && 'text-yellow-300',
+        type === 'object' && 'text-yellow-300',
+      )}
+    >
       {bracketToRender}
       {position === 'end' && comma ? ',' : null}
     </span>
   )
 }
 
+// Color classes for different JSON value types
+const valueTypeColors: Record<string, string> = {
+  string: 'text-green-500',
+  number: 'text-amber-500',
+  boolean: 'text-sky-500',
+  null: 'text-rose-500',
+  date: 'text-purple-500',
+}
+
 type Args = {
   isEmpty?: boolean
+  isRoot?: boolean
   object: any[] | Record<string, any>
   objectKey?: string
   parentType?: 'array' | 'object'
@@ -44,6 +58,7 @@ type Args = {
 
 export const RenderJSON = ({
   isEmpty = false,
+  isRoot = false,
   object,
   objectKey,
   parentType = 'object',
@@ -52,34 +67,39 @@ export const RenderJSON = ({
   const objectKeys = object ? Object.keys(object) : []
   const objectLength = objectKeys.length
   const [isOpen, setIsOpen] = React.useState<boolean>(true)
-  const isNested = parentType === 'object' || parentType === 'array'
-  return (
-    <li className={isNested ? `${baseClass}__row-line--nested` : ''}>
-      <button
-        aria-label="toggle"
-        className={`${baseClass}__list-toggle ${isEmpty ? `${baseClass}__list-toggle--empty` : ''}`}
-        onClick={() => setIsOpen(!isOpen)}
-        type="button"
-      >
-        {isEmpty ? null : (
-          <ChevronIcon
-            className={`${baseClass}__toggle-row-icon ${baseClass}__toggle-row-icon--${
-              isOpen ? 'open' : 'closed'
-            }`}
-          />
-        )}
-        <span>
-          {objectKey && `"${objectKey}": `}
-          <Bracket position="start" type={parentType} />
-          {isEmpty ? <Bracket comma={trailingComma} position="end" type={parentType} /> : null}
-        </span>
-      </button>
 
-      <ul
-        className={`${baseClass}__json-children ${isNested ? `${baseClass}__json-children--nested` : ''}`}
-      >
-        {isOpen &&
-          objectKeys.map((key, keyIndex) => {
+  return (
+    <li className="list-none">
+      <div className="flex items-start">
+        {/* Toggle button - fixed width column */}
+        <button
+          aria-label="toggle"
+          className={cn(
+            'bg-transparent border-0 p-0 m-0 cursor-pointer shrink-0 w-5 flex items-center justify-center',
+            '[&_svg_.stroke]:stroke-muted-foreground hover:opacity-70',
+            isEmpty && 'cursor-default pointer-events-none',
+          )}
+          onClick={() => setIsOpen(!isOpen)}
+          type="button"
+        >
+          {isEmpty ? null : (
+            <ChevronIcon
+              className={cn('size-4 transition-transform', isOpen ? 'rotate-0' : '-rotate-90')}
+            />
+          )}
+        </button>
+        {/* Content */}
+        <span>
+          {objectKey && <span className="text-sky-300">{`"${objectKey}"`}</span>}
+          {objectKey && <span className="text-foreground">{`: `}</span>}
+          <Bracket position="start" type={parentType} />
+          {isEmpty && <Bracket comma={trailingComma} position="end" type={parentType} />}
+        </span>
+      </div>
+
+      {!isEmpty && isOpen && (
+        <ul className="m-0 pl-5 border-l border-dashed border-border ml-2.5">
+          {objectKeys.map((key, keyIndex) => {
             let value = object[key]
             let type = 'string'
             const isLastKey = keyIndex === objectLength - 1
@@ -114,39 +134,31 @@ export const RenderJSON = ({
               )
             }
 
-            if (
-              type === 'date' ||
-              type === 'string' ||
-              type === 'null' ||
-              type === 'number' ||
-              type === 'boolean'
-            ) {
-              const parentHasKey = Boolean(parentType === 'object' && key)
+            // Primitive values
+            const parentHasKey = Boolean(parentType === 'object' && key)
 
-              const rowClasses = [
-                `${baseClass}__row-line`,
-                `${baseClass}__value-type--${type}`,
-                `${baseClass}__row-line--${objectKey ? 'nested' : 'top'}`,
-              ]
-                .filter(Boolean)
-                .join(' ')
-
-              return (
-                <li className={rowClasses} key={`${key}-${keyIndex}`}>
-                  {parentHasKey ? <span>{`"${key}": `}</span> : null}
-
-                  <span className={`${baseClass}__value`}>{JSON.stringify(value)}</span>
+            return (
+              <li className="list-none flex items-start" key={`${key}-${keyIndex}`}>
+                <span className="w-5 shrink-0" />
+                <span>
+                  {parentHasKey && <span className="text-sky-300">{`"${key}"`}</span>}
+                  {parentHasKey && <span className="text-foreground">{`: `}</span>}
+                  <span className={valueTypeColors[type] || 'text-foreground'}>
+                    {JSON.stringify(value)}
+                  </span>
                   {isLastKey ? '' : ','}
-                </li>
-              )
-            }
+                </span>
+              </li>
+            )
           })}
-      </ul>
+        </ul>
+      )}
 
       {!isEmpty && (
-        <span className={isNested ? `${baseClass}__bracket--nested` : ''}>
+        <div className="flex items-start">
+          <span className="w-5 shrink-0" />
           <Bracket comma={trailingComma} position="end" type={parentType} />
-        </span>
+        </div>
       )}
     </li>
   )

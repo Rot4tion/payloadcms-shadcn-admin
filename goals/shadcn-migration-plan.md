@@ -285,7 +285,8 @@ Before committing converted component:
 | Account Settings | ✅ Done |
 | BrowseByFolder, CollectionFolder | ✅ Done |
 | Edit/Auth | ✅ Done |
-| API View, Version views | ⏳ Keep SCSS (complex) |
+| API View (index.client, RenderJSON) | ✅ Done |
+| Version views | ⏳ Keep SCSS (complex) |
 | HTMLDiff | ⏳ Keep SCSS (complex diff styling) |
 
 ---
