@@ -86,7 +86,10 @@ export const BlockRow: React.FC<BlocksFieldProps> = ({
 
   const showBlockName = !block.admin?.disableBlockName
 
-  const classNames = cn(fieldHasErrors && 'has-errors')
+  const classNames = cn(
+    fieldHasErrors && 'has-errors',
+    !fieldHasErrors && '[&_.collapsible--error]:text-foreground!',
+  )
 
   let blockPermissions: RenderFieldsProps['permissions'] = true
 

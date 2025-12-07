@@ -314,7 +314,12 @@ const BlocksFieldComponent: BlocksFieldClientComponent = (props) => {
 
   return (
     <div
-      className={cn(fieldBaseClass, 'flex flex-col gap-2', className)}
+      className={cn(
+        fieldBaseClass,
+        'flex flex-col gap-2',
+        className,
+        !fieldHasErrors && '[&_.collapsible--error]:text-foreground!',
+      )}
       id={`field-${path?.replace(/\./g, '__')}`}
       style={styles}
     >
