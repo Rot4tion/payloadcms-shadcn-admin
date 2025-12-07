@@ -4,7 +4,6 @@ import React from 'react'
 import { EyeIcon } from '../../../icons/Eye/index.js'
 import { useLivePreviewContext, useTranslation } from '@payloadcms/ui'
 import { cn } from '@/lib/utils'
-import { Button } from '@/components/ui/button'
 
 export const LivePreviewToggler: React.FC = () => {
   const { isLivePreviewing, setIsLivePreviewing, url: livePreviewURL } = useLivePreviewContext()
@@ -15,12 +14,15 @@ export const LivePreviewToggler: React.FC = () => {
   }
 
   return (
-    <Button
+    <button
       aria-label={isLivePreviewing ? t('general:exitLivePreview') : t('general:livePreview')}
-      variant={isLivePreviewing ? 'secondary' : 'outline'}
-      size="icon"
       className={cn(
-        'size-[calc(var(--base)*1.6)] p-0',
+        'size-[calc(var(--base)*1.6)] p-0 relative cursor-pointer flex items-center justify-center',
+        'bg-transparent border border-(--theme-elevation-100) rounded-(--style-radius-s)',
+        'transition-[border,color,background] duration-100 ease-[cubic-bezier(0,0.2,0.2,1)]',
+        'hover:border-(--theme-elevation-300) hover:bg-(--theme-elevation-100)',
+        isLivePreviewing &&
+          'bg-(--theme-elevation-100) border-(--theme-elevation-200) hover:bg-(--theme-elevation-200)',
         '[&_.icon_.stroke]:transition-colors [&_.icon_.stroke]:duration-100',
       )}
       id="live-preview-toggler"
@@ -31,6 +33,6 @@ export const LivePreviewToggler: React.FC = () => {
       type="button"
     >
       <EyeIcon active={isLivePreviewing} />
-    </Button>
+    </button>
   )
 }

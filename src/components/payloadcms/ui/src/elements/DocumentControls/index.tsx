@@ -37,6 +37,7 @@ import { PublishButton } from '../PublishButton/index.js'
 import { RenderCustomComponent } from '../RenderCustomComponent/index.js'
 import { RestoreButton } from '../RestoreButton/index.js'
 import { SaveButton } from '../SaveButton/index.js'
+import { cn } from '@/lib/utils'
 import './index.scss'
 import { SaveDraftButton } from '../SaveDraftButton/index.js'
 import { Status } from '../Status/index.js'
@@ -332,7 +333,15 @@ export const DocumentControls: React.FC<{
           {showDotMenu && !readOnlyForIncomingUser && (
             <Popup
               button={
-                <div className={`${baseClass}__dots`}>
+                <div
+                  className={cn(
+                    'm-0 flex items-center justify-center flex-col gap-0.5',
+                    'border border-(--theme-elevation-100) rounded-md',
+                    'size-[calc(var(--base)*1.6)]',
+                    'hover:border-(--theme-elevation-500) hover:bg-(--theme-elevation-100)',
+                    '[&>div]:size-[3px] [&>div]:rounded-full [&>div]:bg-current',
+                  )}
+                >
                   <div />
                   <div />
                   <div />

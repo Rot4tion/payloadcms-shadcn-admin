@@ -19,9 +19,9 @@ export const Hamburger: React.FC<{
       className={cn(
         'relative z-1 h-full w-full cursor-pointer rounded-[3px] border-0 p-[calc(var(--base)*0.1)] outline-none',
         'bg-background text-foreground',
-        'shadow-[0_0_0_1px_hsl(var(--border))]',
+        'shadow-[0_0_0_1px_var(--theme-elevation-150)]',
         'transition-[box-shadow,background-color] duration-100 ease-[cubic-bezier(0,0.2,0.2,1)]',
-        'hover:bg-muted hover:shadow-[0_0_0_1px_hsl(var(--muted-foreground))]',
+        'hover:bg-muted hover:shadow-[0_0_0_1px_var(--theme-elevation-500)]',
         'focus:outline-none',
       )}
     >
