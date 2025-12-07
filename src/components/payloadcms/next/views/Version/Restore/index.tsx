@@ -14,7 +14,7 @@ import {
   useTranslation,
 } from '@/components/payloadcms/ui/exports/client'
 import { requests } from '@/components/payloadcms/ui/exports/shared'
-import { useRouter } from 'next/navigation.js'
+import { useRouter } from 'next/navigation'
 import { formatAdminURL } from 'payload/shared'
 
 import React, { Fragment, useCallback, useState } from 'react'

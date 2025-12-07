@@ -9,7 +9,7 @@ import {
   useServerFunctions,
   useTranslation,
 } from '@/components/payloadcms/ui/exports/client'
-import { useSearchParams } from 'next/navigation.js'
+import { useSearchParams } from 'next/navigation'
 
 import React, { useCallback, useEffect, useId, useMemo, useRef, useState } from 'react'
 export const formatVersionDrawerSlug = ({

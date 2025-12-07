@@ -3,7 +3,7 @@ import type { ImportMap, PayloadComponent } from 'payload'
 import { getFromImportMap, isPlainObject, isReactServerComponentOrFunction } from 'payload/shared'
 import React from 'react'
 
-import { removeUndefined } from '../../utilities/removeUndefined.js'
+import { removeUndefined } from '../../utilities/removeUndefined'
 
 type RenderServerComponentFn = (args: {
   readonly clientProps?: object

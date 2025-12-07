@@ -1,9 +1,9 @@
 'use client'
 import React from 'react'
 
-import { ClickableArrow } from './ClickableArrow/index.js'
-import { Page } from './Page/index.js'
-import { Separator } from './Separator/index.js'
+import { ClickableArrow } from './ClickableArrow/index'
+import { Page } from './Page/index'
+import { Separator } from './Separator/index'
 
 const nodeTypes = {
   ClickableArrow,

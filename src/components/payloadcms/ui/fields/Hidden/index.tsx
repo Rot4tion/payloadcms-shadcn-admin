@@ -4,8 +4,8 @@ import type { HiddenFieldProps } from 'payload'
 
 import React, { useEffect } from 'react'
 
-import { useField } from '../../forms/useField/index.js'
-import { withCondition } from '../../forms/withCondition/index.js'
+import { useField } from '../../forms/useField/index'
+import { withCondition } from '../../forms/withCondition/index'
 
 /**
  * Renders an input with `type="hidden"`.

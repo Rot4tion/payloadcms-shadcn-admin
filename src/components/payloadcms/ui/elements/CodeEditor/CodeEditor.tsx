@@ -2,12 +2,12 @@
 import EditorImport from '@monaco-editor/react'
 import React, { useState } from 'react'
 
-import type { Props } from './types.js'
+import type { Props } from './types'
 
 import { cn } from '@/lib/utils'
-import { useTheme } from '../../providers/Theme/index.js'
-import { ShimmerEffect } from '../ShimmerEffect/index.js'
-import { defaultGlobalEditorOptions, defaultOptions } from './constants.js'
+import { useTheme } from '../../providers/Theme/index'
+import { ShimmerEffect } from '../ShimmerEffect/index'
+import { defaultGlobalEditorOptions, defaultOptions } from './constants'
 
 const Editor = 'default' in EditorImport ? EditorImport.default : EditorImport
 

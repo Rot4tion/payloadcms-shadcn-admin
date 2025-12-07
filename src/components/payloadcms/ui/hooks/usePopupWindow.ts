@@ -3,7 +3,7 @@ import type React from 'react'
 
 import { useCallback, useEffect, useRef, useState } from 'react'
 
-import { useConfig } from '../providers/Config/index.js'
+import { useConfig } from '../providers/Config/index'
 
 export interface PopupMessage {
   searchParams: {

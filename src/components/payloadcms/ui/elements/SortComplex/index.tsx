@@ -3,7 +3,7 @@ import type { OptionObject, SanitizedCollectionConfig } from 'payload'
 
 import { getTranslation } from '@payloadcms/translations'
 // TODO: abstract the `next/navigation` dependency out from this component
-import { usePathname, useRouter, useSearchParams } from 'next/navigation.js'
+import { usePathname, useRouter, useSearchParams } from 'next/navigation'
 import { sortableFieldTypes } from 'payload'
 import { fieldAffectsData } from 'payload/shared'
 import * as qs from 'qs-esm'
@@ -16,10 +16,10 @@ export type SortComplexProps = {
   sort?: string
 }
 
-import type { Option } from '../ReactSelect/index.js'
+import type { Option } from '../ReactSelect/index'
 
 import { useTranslation } from '@payloadcms/ui'
-import { ReactSelect } from '../ReactSelect/index.js'
+import { ReactSelect } from '../ReactSelect/index'
 
 export const SortComplex: React.FC<SortComplexProps> = (props) => {
   const { collection, handleChange, modifySearchQuery = true } = props

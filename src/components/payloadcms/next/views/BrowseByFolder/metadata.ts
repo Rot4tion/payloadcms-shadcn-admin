@@ -1,8 +1,8 @@
 import type { Metadata } from 'next'
 
-import type { GenerateViewMetadata } from '../Root/index.js'
+import type { GenerateViewMetadata } from '../Root/index'
 
-import { generateMetadata } from '../../utilities/meta.js'
+import { generateMetadata } from '../../utilities/meta'
 
 export const generateBrowseByFolderMetadata = async (
   args: Parameters<GenerateViewMetadata>[0],

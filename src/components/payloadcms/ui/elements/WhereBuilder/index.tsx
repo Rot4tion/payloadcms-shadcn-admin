@@ -5,15 +5,15 @@ import { getTranslation } from '@payloadcms/translations'
 import { transformWhereQuery, validateWhereQuery } from 'payload/shared'
 import React, { useMemo } from 'react'
 
-import type { AddCondition, RemoveCondition, UpdateCondition, WhereBuilderProps } from './types.js'
+import type { AddCondition, RemoveCondition, UpdateCondition, WhereBuilderProps } from './types'
 
 import { useAuth } from '@payloadcms/ui'
 import { useListQuery } from '@payloadcms/ui'
 import { useTranslation } from '@payloadcms/ui'
-import { reduceFieldsToOptions } from '../../utilities/reduceFieldsToOptions.js'
-import { Button } from '../Button/index.js'
-import { Condition } from './Condition/index.js'
-import { fieldTypeConditions, getValidFieldOperators } from './field-types.js'
+import { reduceFieldsToOptions } from '../../utilities/reduceFieldsToOptions'
+import { Button } from '../Button/index'
+import { Condition } from './Condition/index'
+import { fieldTypeConditions, getValidFieldOperators } from './field-types'
 
 const baseClass = 'where-builder'
 

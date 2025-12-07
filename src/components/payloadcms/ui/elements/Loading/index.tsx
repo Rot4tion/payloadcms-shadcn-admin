@@ -3,9 +3,9 @@ import { getTranslation } from '@payloadcms/translations'
 import React from 'react'
 import { cn } from '@/lib/utils'
 
-import type { LoadingOverlayTypes } from '../../elements/LoadingOverlay/types.js'
+import type { LoadingOverlayTypes } from '../../elements/LoadingOverlay/types'
 
-import { useLoadingOverlay } from '../../elements/LoadingOverlay/index.js'
+import { useLoadingOverlay } from '../../elements/LoadingOverlay/index'
 import { useFormProcessing } from '@payloadcms/ui'
 import { useTranslation } from '@payloadcms/ui'
 

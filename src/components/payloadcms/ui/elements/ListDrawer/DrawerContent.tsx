@@ -1,24 +1,24 @@
 'use client'
 import type { CollectionSlug, ListQuery } from 'payload'
 
-import { useModal } from '../Modal/index.js'
+import { useModal } from '../Modal/index'
 import { hoistQueryParamsToAnd } from 'payload/shared'
 import React, { useCallback, useEffect, useState } from 'react'
 
-import type { ListDrawerContextProps, ListDrawerContextType } from '../ListDrawer/Provider.js'
+import type { ListDrawerContextProps, ListDrawerContextType } from '../ListDrawer/Provider'
 import type {
   ListDrawerProps,
   RenderListServerFnArgs,
   RenderListServerFnReturnType,
-} from './types.js'
+} from './types'
 
-import { useDocumentDrawer } from '../../elements/DocumentDrawer/index.js'
-import { useEffectEvent } from '../../hooks/useEffectEvent.js'
+import { useDocumentDrawer } from '../../elements/DocumentDrawer/index'
+import { useEffectEvent } from '../../hooks/useEffectEvent'
 import { useConfig } from '@payloadcms/ui'
 import { useServerFunctions } from '@payloadcms/ui'
-import { ListDrawerContextProvider } from '../ListDrawer/Provider.js'
-import { LoadingOverlay } from '../Loading/index.js'
-import { type Option } from '../ReactSelect/index.js'
+import { ListDrawerContextProvider } from '../ListDrawer/Provider'
+import { LoadingOverlay } from '../Loading/index'
+import { type Option } from '../ReactSelect/index'
 
 export const ListDrawerContent: React.FC<ListDrawerProps> = ({
   allowCreate = true,

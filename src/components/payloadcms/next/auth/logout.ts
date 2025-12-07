@@ -2,10 +2,10 @@
 
 import type { SanitizedConfig } from 'payload'
 
-import { cookies as getCookies, headers as nextHeaders } from 'next/headers.js'
+import { cookies as getCookies, headers as nextHeaders } from 'next/headers'
 import { createLocalReq, getPayload, logoutOperation } from 'payload'
 
-import { getExistingAuthToken } from '../utilities/getExistingAuthToken.js'
+import { getExistingAuthToken } from '../utilities/getExistingAuthToken'
 
 export async function logout({
   allSessions = false,

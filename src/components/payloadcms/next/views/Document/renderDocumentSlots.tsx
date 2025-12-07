@@ -20,7 +20,7 @@ import type {
 import { ViewDescription } from '@/components/payloadcms/ui/exports/client'
 import { RenderServerComponent } from '@/components/payloadcms/ui/elements/RenderServerComponent'
 
-import { getDocumentPermissions } from './getDocumentPermissions.js'
+import { getDocumentPermissions } from './getDocumentPermissions'
 
 export const renderDocumentSlots: (args: {
   collectionConfig?: SanitizedCollectionConfig

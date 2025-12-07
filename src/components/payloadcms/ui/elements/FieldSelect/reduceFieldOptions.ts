@@ -7,8 +7,8 @@ import {
   getFieldPermissions,
 } from 'payload/shared'
 
-import { createNestedClientFieldPath } from '../../forms/Form/createNestedClientFieldPath.js'
-import { combineFieldLabel } from '../../utilities/combineFieldLabel.js'
+import { createNestedClientFieldPath } from '../../forms/Form/createNestedClientFieldPath'
+import { combineFieldLabel } from '../../utilities/combineFieldLabel'
 
 export type SelectedField = {
   field: ClientField

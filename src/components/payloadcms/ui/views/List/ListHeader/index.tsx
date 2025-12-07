@@ -4,20 +4,20 @@ import type { ClientCollectionConfig, ViewTypes } from 'payload'
 import { getTranslation } from '@payloadcms/translations'
 import React from 'react'
 
-import { CloseModalButton } from '../../../elements/CloseModalButton/index.js'
-import { DefaultListViewTabs } from '../../../elements/DefaultListViewTabs/index.js'
-import { useListDrawerContext } from '../../../elements/ListDrawer/Provider.js'
-import { DrawerRelationshipSelect } from '../../../elements/ListHeader/DrawerRelationshipSelect/index.js'
-import { ListDrawerCreateNewDocButton } from '../../../elements/ListHeader/DrawerTitleActions/index.js'
-import { ListHeader } from '../../../elements/ListHeader/index.js'
+import { CloseModalButton } from '../../../elements/CloseModalButton/index'
+import { DefaultListViewTabs } from '../../../elements/DefaultListViewTabs/index'
+import { useListDrawerContext } from '../../../elements/ListDrawer/Provider'
+import { DrawerRelationshipSelect } from '../../../elements/ListHeader/DrawerRelationshipSelect/index'
+import { ListDrawerCreateNewDocButton } from '../../../elements/ListHeader/DrawerTitleActions/index'
+import { ListHeader } from '../../../elements/ListHeader/index'
 import {
   ListBulkUploadButton,
   ListCreateNewButton,
   ListEmptyTrashButton,
-} from '../../../elements/ListHeader/TitleActions/index.js'
+} from '../../../elements/ListHeader/TitleActions/index'
 import { useConfig } from '@payloadcms/ui'
 import { useListQuery } from '@payloadcms/ui'
-import { ListSelection } from '../ListSelection/index.js'
+import { ListSelection } from '../ListSelection/index'
 
 const drawerBaseClass = 'list-drawer'
 

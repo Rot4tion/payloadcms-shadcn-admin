@@ -5,13 +5,13 @@ import type { SanitizedFieldPermissions } from 'payload'
 import { fieldIsHiddenOrDisabled, getFieldPaths, getFieldPermissions } from 'payload/shared'
 import React from 'react'
 
-import type { RenderFieldsProps } from './types.js'
+import type { RenderFieldsProps } from './types'
 
 import { cn } from '@/lib/utils'
-import { RenderIfInViewport } from '../../elements/RenderIfInViewport/index.js'
+import { RenderIfInViewport } from '../../elements/RenderIfInViewport/index'
 import { useOperation } from '@payloadcms/ui'
-import { FieldPathContext } from './context.js'
-import { RenderField } from './RenderField.js'
+import { FieldPathContext } from './context'
+import { RenderField } from './RenderField'
 
 export { RenderFieldsProps as Props }
 

@@ -2,7 +2,7 @@ import type { FormState, UploadEdits } from 'payload'
 
 import { v4 as uuidv4 } from 'uuid'
 
-import type { InitialForms } from './index.js'
+import type { InitialForms } from './index'
 
 export type State = {
   activeIndex: number

@@ -3,12 +3,12 @@ import type { ClientUser } from 'payload'
 
 import React, { useEffect } from 'react'
 
-import { useRouteCache } from '../../providers/RouteCache/index.js'
+import { useRouteCache } from '../../providers/RouteCache/index'
 import { useRouteTransition } from '@payloadcms/ui'
 import { useTranslation } from '@payloadcms/ui'
-import { isClientUserObject } from '../../utilities/isClientUserObject.js'
+import { isClientUserObject } from '../../utilities/isClientUserObject'
 import { Button } from '@/components/ui/button'
-import { Modal, useModal } from '../Modal/index.js'
+import { Modal, useModal } from '../Modal/index'
 
 const modalSlug = 'document-locked'
 

@@ -1,5 +1,5 @@
 'use client'
-import type { HasManyValueUnion } from './types.js'
+import type { HasManyValueUnion } from './types'
 
 type RelationMap = {
   [relation: string]: (number | string)[]

@@ -9,8 +9,8 @@ import { cn } from '@/lib/utils'
 import { useConfig } from '@payloadcms/ui'
 import { useTranslation } from '@payloadcms/ui'
 import { Button } from '@/components/ui/button'
-import { EditManyBulkUploads } from '../EditMany/index.js'
-import { useFormsManager } from '../FormsManager/index.js'
+import { EditManyBulkUploads } from '../EditMany/index'
+import { useFormsManager } from '../FormsManager/index'
 
 type Props = {
   readonly collectionConfig: ClientCollectionConfig

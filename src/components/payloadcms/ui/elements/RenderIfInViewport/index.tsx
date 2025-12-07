@@ -3,7 +3,7 @@ import type { ClientComponentProps } from 'payload'
 
 import React from 'react'
 
-import { useIntersect } from '../../hooks/useIntersect.js'
+import { useIntersect } from '../../hooks/useIntersect'
 
 export const RenderIfInViewport: React.FC<
   {

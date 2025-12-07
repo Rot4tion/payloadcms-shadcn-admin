@@ -3,9 +3,9 @@ import type { MetaConfig } from 'payload'
 
 import { getTranslation } from '@payloadcms/translations'
 
-import type { GenerateEditViewMetadata } from '../Document/getMetaBySegment.js'
+import type { GenerateEditViewMetadata } from '../Document/getMetaBySegment'
 
-import { generateMetadata } from '../../utilities/meta.js'
+import { generateMetadata } from '../../utilities/meta'
 
 /**
  * @todo Remove the type assertion. This is currently required because of how the `Metadata` type from `next` consumes the `URL` type.

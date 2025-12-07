@@ -2,25 +2,25 @@
 
 import type { SanitizedCollectionConfig } from 'payload'
 
-import { useModal } from '../Modal/index.js'
+import { useModal } from '../Modal/index'
 import { getTranslation } from '@payloadcms/translations'
-import { useRouter } from 'next/navigation.js'
+import { useRouter } from 'next/navigation'
 import { formatAdminURL } from 'payload/shared'
 import * as qs from 'qs-esm'
 import React, { Fragment, useCallback, useState } from 'react'
 import { toast } from 'sonner'
 
-import type { DocumentDrawerContextType } from '../DocumentDrawer/Provider.js'
+import type { DocumentDrawerContextType } from '../DocumentDrawer/Provider'
 
-import { CheckboxInput } from '../../fields/Checkbox/Input.js'
+import { CheckboxInput } from '../../fields/Checkbox/Input'
 import { useConfig } from '@payloadcms/ui'
-import { useDocumentTitle } from '../../providers/DocumentTitle/index.js'
+import { useDocumentTitle } from '../../providers/DocumentTitle/index'
 import { useRouteTransition } from '@payloadcms/ui'
 import { useTranslation } from '@payloadcms/ui'
-import { requests } from '../../utilities/api.js'
-import { Button } from '../Button/index.js'
-import { ConfirmationModal } from '../ConfirmationModal/index.js'
-import { Translation } from '../Translation/index.js'
+import { requests } from '../../utilities/api'
+import { Button } from '../Button/index'
+import { ConfirmationModal } from '../ConfirmationModal/index'
+import { Translation } from '../Translation/index'
 
 export type Props = {
   readonly buttonId?: string

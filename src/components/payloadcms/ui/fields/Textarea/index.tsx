@@ -4,16 +4,16 @@ import type { TextareaFieldClientComponent, TextareaFieldValidation } from 'payl
 import { getTranslation } from '@payloadcms/translations'
 import React, { useCallback, useMemo } from 'react'
 
-import type { TextAreaInputProps } from './types.js'
+import type { TextAreaInputProps } from './types'
 
-import { useField } from '../../forms/useField/index.js'
-import { withCondition } from '../../forms/withCondition/index.js'
+import { useField } from '../../forms/useField/index'
+import { withCondition } from '../../forms/withCondition/index'
 import { useConfig } from '@payloadcms/ui'
 import { useLocale } from '@payloadcms/ui'
 import { useTranslation } from '@payloadcms/ui'
-import { mergeFieldStyles } from '../mergeFieldStyles.js'
-import { isFieldRTL } from '../shared/index.js'
-import { TextareaInput } from './Input.js'
+import { mergeFieldStyles } from '../mergeFieldStyles'
+import { isFieldRTL } from '../shared/index'
+import { TextareaInput } from './Input'
 
 export { TextareaInput, TextAreaInputProps }
 

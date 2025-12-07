@@ -2,22 +2,22 @@
 
 import type { PublishButtonClientProps } from 'payload'
 
-import { useModal } from '../Modal/index.js'
+import { useModal } from '../Modal/index'
 import * as qs from 'qs-esm'
 import React, { useCallback, useEffect, useState } from 'react'
 
 import { useForm, useFormModified } from '@payloadcms/ui'
-import { FormSubmit } from '../../forms/Submit/index.js'
-import { useHotkey } from '../../hooks/useHotkey.js'
+import { FormSubmit } from '../../forms/Submit/index'
+import { useHotkey } from '../../hooks/useHotkey'
 import { useConfig } from '@payloadcms/ui'
 import { useDocumentInfo } from '@payloadcms/ui'
 import { useEditDepth } from '@payloadcms/ui'
 import { useLocale } from '@payloadcms/ui'
 import { useOperation } from '@payloadcms/ui'
 import { useTranslation } from '@payloadcms/ui'
-import { traverseForLocalizedFields } from '../../utilities/traverseForLocalizedFields.js'
-import { PopupList } from '../Popup/index.js'
-import { ScheduleDrawer } from './ScheduleDrawer/index.js'
+import { traverseForLocalizedFields } from '../../utilities/traverseForLocalizedFields'
+import { PopupList } from '../Popup/index'
+import { ScheduleDrawer } from './ScheduleDrawer/index'
 
 export function PublishButton({ label: labelProp }: PublishButtonClientProps) {
   const {

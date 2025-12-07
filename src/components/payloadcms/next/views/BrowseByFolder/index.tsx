@@ -1,10 +1,10 @@
 import type React from 'react'
 
-import { notFound } from 'next/navigation.js'
+import { notFound } from 'next/navigation'
 
-import type { BuildFolderViewArgs } from './buildView.js'
+import type { BuildFolderViewArgs } from './buildView'
 
-import { buildBrowseByFolderView } from './buildView.js'
+import { buildBrowseByFolderView } from './buildView'
 
 export const BrowseByFolder: React.FC<BuildFolderViewArgs> = async (args) => {
   try {

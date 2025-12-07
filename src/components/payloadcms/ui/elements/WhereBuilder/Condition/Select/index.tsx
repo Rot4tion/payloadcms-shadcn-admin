@@ -3,11 +3,11 @@
 import { getTranslation } from '@payloadcms/translations'
 import React from 'react'
 
-import type { SelectFilterProps as Props } from './types.js'
+import type { SelectFilterProps as Props } from './types'
 
-import { useTranslation } from '../../../../providers/Translation/index.js'
-import { ReactSelect } from '../../../ReactSelect/index.js'
-import { formatOptions } from './formatOptions.js'
+import { useTranslation } from '../../../../providers/Translation/index'
+import { ReactSelect } from '../../../ReactSelect/index'
+import { formatOptions } from './formatOptions'
 
 export const Select: React.FC<Props> = ({
   disabled,

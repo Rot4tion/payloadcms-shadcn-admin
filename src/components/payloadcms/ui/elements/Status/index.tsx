@@ -1,5 +1,5 @@
 'use client'
-import { useModal } from '../Modal/index.js'
+import { useModal } from '../Modal/index'
 import React, { useCallback } from 'react'
 import { toast } from 'sonner'
 
@@ -8,9 +8,9 @@ import { useConfig } from '@payloadcms/ui'
 import { useDocumentInfo } from '@payloadcms/ui'
 import { useLocale } from '@payloadcms/ui'
 import { useTranslation } from '@payloadcms/ui'
-import { requests } from '../../utilities/api.js'
-import { Button } from '../Button/index.js'
-import { ConfirmationModal } from '../ConfirmationModal/index.js'
+import { requests } from '../../utilities/api'
+import { Button } from '../Button/index'
+import { ConfirmationModal } from '../ConfirmationModal/index'
 
 export const Status: React.FC = () => {
   const {

@@ -14,7 +14,7 @@ import type {
 
 import React from 'react'
 
-import type { GetDocPermissions } from './useGetDocPermissions.js'
+import type { GetDocPermissions } from './useGetDocPermissions'
 
 export type DocumentInfoProps = {
   readonly action?: string

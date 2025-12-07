@@ -40,10 +40,10 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select'
-import { RenderCustomComponent } from '../../elements/RenderCustomComponent/index.js'
-import { FieldDescription } from '../../fields/FieldDescription/index.js'
-import { FieldError } from '../../fields/FieldError/index.js'
-import { FieldLabel } from '../../fields/FieldLabel/index.js'
+import { RenderCustomComponent } from '../../elements/RenderCustomComponent/index'
+import { FieldDescription } from '../../fields/FieldDescription/index'
+import { FieldError } from '../../fields/FieldError/index'
+import { FieldLabel } from '../../fields/FieldLabel/index'
 import { useTranslation } from '@payloadcms/ui'
 
 // Sortable Badge component for drag & drop

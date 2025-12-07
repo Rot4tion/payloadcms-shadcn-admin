@@ -1,8 +1,8 @@
 'use client'
 import type { ValueWithRelation } from 'payload'
 
-import type { Option } from '../../elements/ReactSelect/types.js'
-import type { OptionGroup } from './types.js'
+import type { Option } from '../../elements/ReactSelect/types'
+import type { OptionGroup } from './types'
 
 type Args = {
   allowEdit: boolean

@@ -1,8 +1,8 @@
 import type { AdminViewConfig, SanitizedConfig } from 'payload'
 
-import type { ViewFromConfig } from './getRouteData.js'
+import type { ViewFromConfig } from './getRouteData'
 
-import { isPathMatchingRoute } from './isPathMatchingRoute.js'
+import { isPathMatchingRoute } from './isPathMatchingRoute'
 
 export const getCustomViewByRoute = ({
   config,

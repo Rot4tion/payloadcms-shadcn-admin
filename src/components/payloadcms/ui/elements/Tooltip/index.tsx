@@ -2,7 +2,7 @@
 import React, { useEffect } from 'react'
 import { cn } from '@/lib/utils'
 
-import { useIntersect } from '../../hooks/useIntersect.js'
+import { useIntersect } from '../../hooks/useIntersect'
 
 export type Props = {
   alignCaret?: 'center' | 'left' | 'right'

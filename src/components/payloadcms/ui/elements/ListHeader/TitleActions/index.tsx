@@ -1,4 +1,4 @@
-export { ListBulkUploadButton } from './ListBulkUploadButton.js'
-export { ListCreateNewButton } from './ListCreateNewDocButton.js'
-export { ListCreateNewDocInFolderButton } from './ListCreateNewDocInFolderButton.js'
-export { ListEmptyTrashButton } from './ListEmptyTrashButton.js'
+export { ListBulkUploadButton } from './ListBulkUploadButton'
+export { ListCreateNewButton } from './ListCreateNewDocButton'
+export { ListCreateNewDocInFolderButton } from './ListCreateNewDocInFolderButton'
+export { ListEmptyTrashButton } from './ListEmptyTrashButton'

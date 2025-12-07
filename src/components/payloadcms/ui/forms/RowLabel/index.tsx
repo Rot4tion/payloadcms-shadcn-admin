@@ -1,10 +1,10 @@
 'use client'
 import React from 'react'
 
-import type { RowLabelProps } from './types.js'
+import type { RowLabelProps } from './types'
 
-import { RenderCustomComponent } from '../../elements/RenderCustomComponent/index.js'
-import { RowLabelProvider } from './Context/index.js'
+import { RenderCustomComponent } from '../../elements/RenderCustomComponent/index'
+import { RowLabelProvider } from './Context/index'
 export type { RowLabelProps }
 
 const baseClass = 'row-label'

@@ -3,7 +3,7 @@ import type { DefaultDocumentIDType, Payload, PayloadRequest } from 'payload'
 import { dequal } from 'dequal/lite'
 import { cache } from 'react'
 
-import { removeUndefined } from './removeUndefined.js'
+import { removeUndefined } from './removeUndefined'
 
 type PreferenceDoc<T> = {
   id: DefaultDocumentIDType | undefined

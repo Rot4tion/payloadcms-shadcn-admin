@@ -1,4 +1,4 @@
-import type { UploadProps_v4 } from '../../Upload/index.js'
+import type { UploadProps_v4 } from '../../Upload/index'
 
 export type EditFormProps = {
   readonly submitted?: boolean

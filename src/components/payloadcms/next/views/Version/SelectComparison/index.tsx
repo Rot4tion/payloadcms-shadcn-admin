@@ -3,11 +3,11 @@
 import { fieldBaseClass, ReactSelect, useTranslation } from '@/components/payloadcms/ui/exports/client'
 import React, { memo, useCallback, useMemo } from 'react'
 
-import type { CompareOption } from '../Default/types.js'
+import type { CompareOption } from '../Default/types'
 
-import type { Props } from './types.js'
+import type { Props } from './types'
 
-import { useVersionDrawer } from './VersionDrawer/index.js'
+import { useVersionDrawer } from './VersionDrawer/index'
 
 export const SelectComparison: React.FC<Props> = memo((props) => {
   const {

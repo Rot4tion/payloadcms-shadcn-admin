@@ -1,15 +1,15 @@
 import type { FieldDiffClientProps, FieldDiffServerProps, FieldTypes } from 'payload'
 
-import { Collapsible } from './Collapsible/index.js'
-import { DateDiffComponent } from './Date/index.js'
-import { Group } from './Group/index.js'
-import { Iterable } from './Iterable/index.js'
-import { Relationship } from './Relationship/index.js'
-import { Row } from './Row/index.js'
-import { Select } from './Select/index.js'
-import { Tabs } from './Tabs/index.js'
-import { Text } from './Text/index.js'
-import { Upload } from './Upload/index.js'
+import { Collapsible } from './Collapsible/index'
+import { DateDiffComponent } from './Date/index'
+import { Group } from './Group/index'
+import { Iterable } from './Iterable/index'
+import { Relationship } from './Relationship/index'
+import { Row } from './Row/index'
+import { Select } from './Select/index'
+import { Tabs } from './Tabs/index'
+import { Text } from './Text/index'
+import { Upload } from './Upload/index'
 
 export const diffComponents: Record<
   FieldTypes,

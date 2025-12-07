@@ -1,1 +1,1 @@
-export { ListDrawerCreateNewDocButton } from './ListDrawerCreateNewDocButton.js'
+export { ListDrawerCreateNewDocButton } from './ListDrawerCreateNewDocButton'

@@ -2,8 +2,8 @@ import type { Data, DefaultDocumentIDType, FormState, Operation } from 'payload'
 import type React from 'react'
 import type { HTMLAttributes } from 'react'
 
-import type { Props as DrawerProps } from '../Drawer/types.js'
-import type { DocumentDrawerContextProps } from './Provider.js'
+import type { Props as DrawerProps } from '../Drawer/types'
+import type { DocumentDrawerContextProps } from './Provider'
 
 export type DocumentDrawerProps = {
   readonly AfterFields?: React.ReactNode

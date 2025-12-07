@@ -4,15 +4,15 @@ import type { ImportMap, LanguageOptions, SanitizedConfig, ServerFunctionClient 
 import { rtlLanguages } from '@payloadcms/translations'
 import { ProgressBar, RootProvider } from '@/components/payloadcms/ui/exports/client'
 import { getClientConfig } from '@/components/payloadcms/ui/utilities/getClientConfig'
-import { cookies as nextCookies } from 'next/headers.js'
+import { cookies as nextCookies } from 'next/headers'
 import { applyLocaleFiltering } from 'payload/shared'
 import React from 'react'
 
-import { getNavPrefs } from '../../elements/Nav/getNavPrefs.js'
-import { getRequestTheme } from '../../utilities/getRequestTheme.js'
-import { initReq } from '../../utilities/initReq.js'
-import { checkDependencies } from './checkDependencies.js'
-import { NestProviders } from './NestProviders.js'
+import { getNavPrefs } from '../../elements/Nav/getNavPrefs'
+import { getRequestTheme } from '../../utilities/getRequestTheme'
+import { initReq } from '../../utilities/initReq'
+import { checkDependencies } from './checkDependencies'
+import { NestProviders } from './NestProviders'
 
 import '@/components/payloadcms/ui/scss/app.css'
 

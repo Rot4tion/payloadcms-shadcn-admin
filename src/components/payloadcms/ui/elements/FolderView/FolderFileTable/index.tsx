@@ -4,14 +4,14 @@ import { getTranslation } from '@payloadcms/translations'
 import { extractID } from 'payload/shared'
 import React from 'react'
 
-import { DocumentIcon } from '../../../icons/Document/index.js'
+import { DocumentIcon } from '../../../icons/Document/index'
 import { useConfig } from '@payloadcms/ui'
-import { useFolder } from '../../../providers/Folders/index.js'
+import { useFolder } from '../../../providers/Folders/index'
 import { useTranslation } from '@payloadcms/ui'
-import { formatDate } from '../../../utilities/formatDocTitle/formatDateTitle.js'
-import { ColoredFolderIcon } from '../ColoredFolderIcon/index.js'
-import { DraggableTableRow } from '../DraggableTableRow/index.js'
-import { SimpleTable, TableHeader } from '../SimpleTable/index.js'
+import { formatDate } from '../../../utilities/formatDocTitle/formatDateTitle'
+import { ColoredFolderIcon } from '../ColoredFolderIcon/index'
+import { DraggableTableRow } from '../DraggableTableRow/index'
+import { SimpleTable, TableHeader } from '../SimpleTable/index'
 
 type Props = {
   showRelationCell?: boolean

@@ -3,10 +3,10 @@ import type { ClientUser } from 'payload'
 
 import React from 'react'
 
-import { CheckboxInput } from '../../fields/Checkbox/Input.js'
+import { CheckboxInput } from '../../fields/Checkbox/Input'
 import { useAuth } from '@payloadcms/ui'
 import { useSelection } from '@payloadcms/ui'
-import { Locked } from '../Locked/index.js'
+import { Locked } from '../Locked/index'
 
 export const SelectRow: React.FC<{
   rowData: {

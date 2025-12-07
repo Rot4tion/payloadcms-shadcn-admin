@@ -8,7 +8,7 @@ import type {
   TextFieldClient,
 } from 'payload'
 
-import { traverseFields } from './traverseFields.js'
+import { traverseFields } from './traverseFields'
 
 const baseAuthFields: ClientField[] = [
   {

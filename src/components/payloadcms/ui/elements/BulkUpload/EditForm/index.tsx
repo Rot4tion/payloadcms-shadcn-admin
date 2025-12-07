@@ -2,22 +2,22 @@
 
 import React, { useCallback, useEffect } from 'react'
 
-import type { EditFormProps } from './types.js'
+import type { EditFormProps } from './types'
 
-import { Form, useForm } from '../../../forms/Form/index.js'
-import { type FormProps } from '../../../forms/Form/types.js'
-import { WatchChildErrors } from '../../../forms/WatchChildErrors/index.js'
+import { Form, useForm } from '../../../forms/Form/index'
+import { type FormProps } from '../../../forms/Form/types'
+import { WatchChildErrors } from '../../../forms/WatchChildErrors/index'
 import { useConfig } from '@payloadcms/ui'
-import { useDocumentEvents } from '../../../providers/DocumentEvents/index.js'
+import { useDocumentEvents } from '../../../providers/DocumentEvents/index'
 import { useDocumentInfo } from '@payloadcms/ui'
 import { OperationProvider } from '@payloadcms/ui'
 import { useServerFunctions } from '@payloadcms/ui'
-import { abortAndIgnore, handleAbortRef } from '../../../utilities/abortAndIgnore.js'
-import { useDocumentDrawerContext } from '../../DocumentDrawer/Provider.js'
-import { DocumentFields } from '../../DocumentFields/index.js'
-import { MoveDocToFolder } from '../../FolderView/MoveDocToFolder/index.js'
-import { Upload_v4 } from '../../Upload/index.js'
-import { useFormsManager } from '../FormsManager/index.js'
+import { abortAndIgnore, handleAbortRef } from '../../../utilities/abortAndIgnore'
+import { useDocumentDrawerContext } from '../../DocumentDrawer/Provider'
+import { DocumentFields } from '../../DocumentFields/index'
+import { MoveDocToFolder } from '../../FolderView/MoveDocToFolder/index'
+import { Upload_v4 } from '../../Upload/index'
+import { useFormsManager } from '../FormsManager/index'
 
 // This component receives props only on _pages_
 // When rendered within a drawer, props are empty

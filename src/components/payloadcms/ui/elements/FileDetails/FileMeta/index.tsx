@@ -12,7 +12,7 @@ export type FileMetaProps = {
   width?: number
 }
 
-import { CopyToClipboard } from '../../CopyToClipboard/index.js'
+import { CopyToClipboard } from '../../CopyToClipboard/index'
 
 export const FileMeta: React.FC<FileMetaProps> = (props) => {
   const { filename, filesize, height, mimeType, url: fileURL, width } = props

@@ -2,9 +2,9 @@
 import React from 'react'
 
 import { cn } from '@/lib/utils'
-import { ChevronIcon } from '../../icons/Chevron/index.js'
-import { CloseMenuIcon } from '../../icons/CloseMenu/index.js'
-import { MenuIcon } from '../../icons/Menu/index.js'
+import { ChevronIcon } from '../../icons/Chevron/index'
+import { CloseMenuIcon } from '../../icons/CloseMenu/index'
+import { MenuIcon } from '../../icons/Menu/index'
 import { useTranslation } from '@payloadcms/ui'
 
 export const Hamburger: React.FC<{

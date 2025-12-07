@@ -6,11 +6,11 @@ import { RenderServerComponent } from '@/components/payloadcms/ui/elements/Rende
 import { EntityType, groupNavItems } from '@/components/payloadcms/ui/exports/shared'
 import React from 'react'
 
-import { NavHamburger } from './NavHamburger/index.js'
-import { NavWrapper } from './NavWrapper/index.js'
-import { SettingsMenuButton } from './SettingsMenuButton/index.js'
-import { getNavPrefs } from './getNavPrefs.js'
-import { DefaultNavClient } from './index.client.js'
+import { NavHamburger } from './NavHamburger/index'
+import { NavWrapper } from './NavWrapper/index'
+import { SettingsMenuButton } from './SettingsMenuButton/index'
+import { getNavPrefs } from './getNavPrefs'
+import { DefaultNavClient } from './index.client'
 
 export type NavProps = {
   req?: PayloadRequest

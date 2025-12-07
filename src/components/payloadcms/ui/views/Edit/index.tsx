@@ -2,25 +2,25 @@
 
 import type { ClientUser, DocumentViewClientProps } from 'payload'
 
-import { useModal } from '../../elements/Modal/index.js'
-import { useRouter, useSearchParams } from 'next/navigation.js'
+import { useModal } from '../../elements/Modal/index'
+import { useRouter, useSearchParams } from 'next/navigation'
 import { formatAdminURL } from 'payload/shared'
 import React, { Fragment, useCallback, useEffect, useMemo, useRef, useState } from 'react'
 
-import type { FormProps } from '../../forms/Form/index.js'
-import type { FormOnSuccess } from '../../forms/Form/types.js'
-import type { LockedState } from '../../utilities/buildFormState.js'
+import type { FormProps } from '../../forms/Form/index'
+import type { FormOnSuccess } from '../../forms/Form/types'
+import type { LockedState } from '../../utilities/buildFormState'
 
-import { DocumentControls } from '../../elements/DocumentControls/index.js'
-import { DocumentDrawerHeader } from '../../elements/DocumentDrawer/DrawerHeader/index.js'
-import { useDocumentDrawerContext } from '../../elements/DocumentDrawer/Provider.js'
-import { DocumentFields } from '../../elements/DocumentFields/index.js'
-import { DocumentLocked } from '../../elements/DocumentLocked/index.js'
-import { DocumentTakeOver } from '../../elements/DocumentTakeOver/index.js'
-import { LeaveWithoutSaving } from '../../elements/LeaveWithoutSaving/index.js'
-import { LivePreviewWindow } from '../../elements/LivePreview/Window/index.js'
-import { Upload } from '../../elements/Upload/index.js'
-import { Form } from '../../forms/Form/index.js'
+import { DocumentControls } from '../../elements/DocumentControls/index'
+import { DocumentDrawerHeader } from '../../elements/DocumentDrawer/DrawerHeader/index'
+import { useDocumentDrawerContext } from '../../elements/DocumentDrawer/Provider'
+import { DocumentFields } from '../../elements/DocumentFields/index'
+import { DocumentLocked } from '../../elements/DocumentLocked/index'
+import { DocumentTakeOver } from '../../elements/DocumentTakeOver/index'
+import { LeaveWithoutSaving } from '../../elements/LeaveWithoutSaving/index'
+import { LivePreviewWindow } from '../../elements/LivePreview/Window/index'
+import { Upload } from '../../elements/Upload/index'
+import { Form } from '../../forms/Form/index'
 import {
   useAuth,
   useConfig,
@@ -31,17 +31,17 @@ import {
   useRouteTransition,
   useServerFunctions,
 } from '@payloadcms/ui'
-import { useDocumentEvents } from '../../providers/DocumentEvents/index.js'
-import { useRouteCache } from '../../providers/RouteCache/index.js'
+import { useDocumentEvents } from '../../providers/DocumentEvents/index'
+import { useRouteCache } from '../../providers/RouteCache/index'
 
-import { useUploadEdits } from '../../providers/UploadEdits/index.js'
-import { abortAndIgnore, handleAbortRef } from '../../utilities/abortAndIgnore.js'
-import { handleBackToDashboard } from '../../utilities/handleBackToDashboard.js'
-import { handleGoBack } from '../../utilities/handleGoBack.js'
-import { handleTakeOver } from '../../utilities/handleTakeOver.js'
-import { Auth } from './Auth/index.js'
-import { SetDocumentStepNav } from './SetDocumentStepNav/index.js'
-import { SetDocumentTitle } from './SetDocumentTitle/index.js'
+import { useUploadEdits } from '../../providers/UploadEdits/index'
+import { abortAndIgnore, handleAbortRef } from '../../utilities/abortAndIgnore'
+import { handleBackToDashboard } from '../../utilities/handleBackToDashboard'
+import { handleGoBack } from '../../utilities/handleGoBack'
+import { handleTakeOver } from '../../utilities/handleTakeOver'
+import { Auth } from './Auth/index'
+import { SetDocumentStepNav } from './SetDocumentStepNav/index'
+import { SetDocumentTitle } from './SetDocumentTitle/index'
 import { UploadControlsProvider } from '@payloadcms/ui/providers/UploadControls'
 import { cn } from '@/lib/utils'
 

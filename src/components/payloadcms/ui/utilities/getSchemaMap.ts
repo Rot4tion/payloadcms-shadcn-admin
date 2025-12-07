@@ -3,7 +3,7 @@ import type { FieldSchemaMap, SanitizedConfig } from 'payload'
 
 import { cache } from 'react'
 
-import { buildFieldSchemaMap } from './buildFieldSchemaMap/index.js'
+import { buildFieldSchemaMap } from './buildFieldSchemaMap/index'
 
 let cachedSchemaMap = global._payload_schemaMap
 

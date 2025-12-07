@@ -4,7 +4,7 @@ import type { MarkOptional } from 'ts-essentials'
 
 import React from 'react'
 
-import { WatchCondition } from './WatchCondition.js'
+import { WatchCondition } from './WatchCondition'
 
 export const withCondition = <P extends MarkOptional<FieldPaths, 'indexPath' | 'path'>>(
   Field: React.ComponentType<P>,

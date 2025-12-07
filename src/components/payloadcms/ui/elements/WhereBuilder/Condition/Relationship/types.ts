@@ -7,7 +7,7 @@ import type {
   UploadFieldClient,
 } from 'payload'
 
-import type { DefaultFilterProps } from '../types.js'
+import type { DefaultFilterProps } from '../types'
 
 export type RelationshipFilterProps = {
   readonly field: RelationshipFieldClient | UploadFieldClient

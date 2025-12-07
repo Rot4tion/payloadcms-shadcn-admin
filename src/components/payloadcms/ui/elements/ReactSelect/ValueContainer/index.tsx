@@ -6,7 +6,7 @@ import { getTranslation } from '@payloadcms/translations'
 import React from 'react'
 import { components as SelectComponents } from 'react-select'
 
-import type { Option } from '../types.js'
+import type { Option } from '../types'
 
 import { useTranslation } from '@payloadcms/ui'
 

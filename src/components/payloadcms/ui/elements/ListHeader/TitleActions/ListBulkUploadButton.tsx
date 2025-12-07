@@ -1,13 +1,13 @@
 'use client'
 import type { CollectionSlug } from 'payload'
 
-import { useModal } from '../../Modal/index.js'
-import { useRouter } from 'next/navigation.js'
+import { useModal } from '../../Modal/index'
+import { useRouter } from 'next/navigation'
 import React from 'react'
 
-import { useBulkUpload } from '../../../elements/BulkUpload/index.js'
+import { useBulkUpload } from '../../../elements/BulkUpload/index'
 import { useTranslation } from '@payloadcms/ui'
-import { Button } from '../../Button/index.js'
+import { Button } from '../../Button/index'
 
 export function ListBulkUploadButton({
   collectionSlug,

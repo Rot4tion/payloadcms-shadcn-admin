@@ -4,8 +4,8 @@ import type { StaticLabel } from 'payload'
 import React from 'react'
 
 import { cn } from '@/lib/utils'
-import { FieldLabel } from '../../fields/FieldLabel/index.js'
-import { ChevronIcon } from '../../icons/Chevron/index.js'
+import { FieldLabel } from '../../fields/FieldLabel/index'
+import { ChevronIcon } from '../../icons/Chevron/index'
 import { useListQuery } from '@payloadcms/ui'
 import { useTranslation } from '@payloadcms/ui'
 

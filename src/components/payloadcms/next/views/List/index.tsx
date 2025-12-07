@@ -15,7 +15,7 @@ import type {
 import { DefaultListView, HydrateAuthProvider, ListQueryProvider } from '@/components/payloadcms/ui/exports/client'
 import { RenderServerComponent } from '@/components/payloadcms/ui/elements/RenderServerComponent'
 import { getColumns, renderFilters, renderTable, upsertPreferences } from '@/components/payloadcms/ui/exports/rsc'
-import { notFound } from 'next/navigation.js'
+import { notFound } from 'next/navigation'
 import {
   appendUploadSelectFields,
   combineWhereConstraints,
@@ -27,12 +27,12 @@ import {
 } from 'payload/shared'
 import React, { Fragment } from 'react'
 
-import { getDocumentPermissions } from '../Document/getDocumentPermissions.js'
-import { enrichDocsWithVersionStatus } from './enrichDocsWithVersionStatus.js'
-import { handleGroupBy } from './handleGroupBy.js'
-import { renderListViewSlots } from './renderListViewSlots.js'
-import { resolveAllFilterOptions } from './resolveAllFilterOptions.js'
-import { transformColumnsToSelect } from './transformColumnsToSelect.js'
+import { getDocumentPermissions } from '../Document/getDocumentPermissions'
+import { enrichDocsWithVersionStatus } from './enrichDocsWithVersionStatus'
+import { handleGroupBy } from './handleGroupBy'
+import { renderListViewSlots } from './renderListViewSlots'
+import { resolveAllFilterOptions } from './resolveAllFilterOptions'
+import { transformColumnsToSelect } from './transformColumnsToSelect'
 
 /**
  * @internal

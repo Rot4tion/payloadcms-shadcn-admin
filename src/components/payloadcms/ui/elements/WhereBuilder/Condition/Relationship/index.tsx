@@ -4,17 +4,17 @@ import type { PaginatedDocs, Where } from 'payload'
 import * as qs from 'qs-esm'
 import React, { useCallback, useEffect, useReducer, useState } from 'react'
 
-import type { Option } from '../../../ReactSelect/types.js'
-import type { RelationshipFilterProps as Props, ValueWithRelation } from './types.js'
+import type { Option } from '../../../ReactSelect/types'
+import type { RelationshipFilterProps as Props, ValueWithRelation } from './types'
 
 import { cn } from '@/lib/utils'
-import { useDebounce } from '../../../../hooks/useDebounce.js'
-import { useEffectEvent } from '../../../../hooks/useEffectEvent.js'
-import { useConfig } from '../../../../providers/Config/index.js'
-import { useLocale } from '../../../../providers/Locale/index.js'
-import { useTranslation } from '../../../../providers/Translation/index.js'
-import { ReactSelect } from '../../../ReactSelect/index.js'
-import optionsReducer from './optionsReducer.js'
+import { useDebounce } from '../../../../hooks/useDebounce'
+import { useEffectEvent } from '../../../../hooks/useEffectEvent'
+import { useConfig } from '../../../../providers/Config/index'
+import { useLocale } from '../../../../providers/Locale/index'
+import { useTranslation } from '../../../../providers/Translation/index'
+import { ReactSelect } from '../../../ReactSelect/index'
+import optionsReducer from './optionsReducer'
 
 const maxResultsPerRequest = 10
 

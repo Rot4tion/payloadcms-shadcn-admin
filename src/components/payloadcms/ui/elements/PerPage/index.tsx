@@ -4,9 +4,9 @@ import { collectionDefaults, isNumber } from 'payload/shared'
 import React from 'react'
 
 import { cn } from '@/lib/utils'
-import { ChevronIcon } from '../../icons/Chevron/index.js'
+import { ChevronIcon } from '../../icons/Chevron/index'
 import { useTranslation } from '@payloadcms/ui'
-import { Popup, PopupList } from '../Popup/index.js'
+import { Popup, PopupList } from '../Popup/index'
 
 const defaultLimits = collectionDefaults.admin.pagination.limits
 

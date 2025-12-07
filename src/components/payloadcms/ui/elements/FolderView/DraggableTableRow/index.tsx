@@ -3,8 +3,8 @@ import { useDroppable } from '@dnd-kit/core'
 import React from 'react'
 
 import { cn } from '@/lib/utils'
-import { DraggableWithClick } from '../DraggableWithClick/index.js'
-import { HiddenCell, TableCell } from '../SimpleTable/index.js'
+import { DraggableWithClick } from '../DraggableWithClick/index'
+import { HiddenCell, TableCell } from '../SimpleTable/index'
 type Props = {
   readonly columns: React.ReactNode[]
   readonly disabled?: boolean

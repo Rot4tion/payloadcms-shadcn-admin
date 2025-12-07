@@ -4,9 +4,9 @@ import type { RowFieldClientComponent } from 'payload'
 import React from 'react'
 
 import { cn } from '@/lib/utils'
-import { RenderFields } from '../../forms/RenderFields/index.js'
-import { withCondition } from '../../forms/withCondition/index.js'
-import { RowProvider } from './provider.js'
+import { RenderFields } from '../../forms/RenderFields/index'
+import { withCondition } from '../../forms/withCondition/index'
+import { RowProvider } from './provider'
 
 const RowFieldComponent: RowFieldClientComponent = (props) => {
   const {

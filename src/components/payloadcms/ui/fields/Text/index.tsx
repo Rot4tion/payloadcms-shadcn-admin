@@ -3,16 +3,16 @@ import type { TextFieldClientComponent } from 'payload'
 
 import React, { useCallback, useEffect, useMemo, useState } from 'react'
 
-import type { Option } from '../../elements/ReactSelect/types.js'
-import type { TextInputProps } from './types.js'
+import type { Option } from '../../elements/ReactSelect/types'
+import type { TextInputProps } from './types'
 
-import { useField } from '../../forms/useField/index.js'
-import { withCondition } from '../../forms/withCondition/index.js'
+import { useField } from '../../forms/useField/index'
+import { withCondition } from '../../forms/withCondition/index'
 import { useConfig } from '@payloadcms/ui'
 import { useLocale } from '@payloadcms/ui'
-import { mergeFieldStyles } from '../mergeFieldStyles.js'
-import { isFieldRTL } from '../shared/index.js'
-import { TextInput } from './Input.js'
+import { mergeFieldStyles } from '../mergeFieldStyles'
+import { isFieldRTL } from '../shared/index'
+import { TextInput } from './Input'
 
 export { TextInput, TextInputProps }
 

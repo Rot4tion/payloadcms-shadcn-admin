@@ -1,12 +1,12 @@
 'use client'
 import type { ClientBlock, ClientField, Labels } from 'payload'
 
-import { useModal } from '../../elements/Modal/index.js'
+import { useModal } from '../../elements/Modal/index'
 import React from 'react'
 
-import { ArrayAction } from '../../elements/ArrayAction/index.js'
-import { useDrawerSlug } from '../../elements/Drawer/useDrawerSlug.js'
-import { BlocksDrawer } from './BlocksDrawer/index.js'
+import { ArrayAction } from '../../elements/ArrayAction/index'
+import { useDrawerSlug } from '../../elements/Drawer/useDrawerSlug'
+import { BlocksDrawer } from './BlocksDrawer/index'
 
 export const RowActions: React.FC<{
   readonly addRow: (rowIndex: number, blockType: string) => Promise<void> | void

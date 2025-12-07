@@ -4,7 +4,7 @@ import type { PreviewButtonClientProps } from 'payload'
 import React from 'react'
 
 import { cn } from '@/lib/utils'
-import { ExternalLinkIcon } from '../../icons/ExternalLink/index.js'
+import { ExternalLinkIcon } from '../../icons/ExternalLink/index'
 import { useLivePreviewContext, useTranslation } from '@payloadcms/ui'
 
 export function PreviewButton(props: PreviewButtonClientProps) {

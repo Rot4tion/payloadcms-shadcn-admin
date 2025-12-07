@@ -5,8 +5,8 @@ import { Translation } from '@/components/payloadcms/ui/exports/shared'
 import { formatAdminURL } from 'payload/shared'
 import React from 'react'
 
-import { FormHeader } from '../../elements/FormHeader/index.js'
-import { ResetPasswordForm } from './ResetPasswordForm/index.js'
+import { FormHeader } from '../../elements/FormHeader/index'
+import { ResetPasswordForm } from './ResetPasswordForm/index'
 
 export const resetPasswordBaseClass = 'reset-password'
 

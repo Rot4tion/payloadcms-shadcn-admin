@@ -3,7 +3,7 @@ import React, { useState, useMemo, useRef, useEffect } from 'react'
 import { format } from 'date-fns'
 import { CalendarIcon, Clock, X } from 'lucide-react'
 
-import type { Props } from './types.js'
+import type { Props } from './types'
 
 import { cn } from '@/lib/utils'
 import { Button } from '@/components/ui/button'

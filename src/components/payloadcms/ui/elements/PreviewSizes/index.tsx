@@ -4,7 +4,7 @@ import type { Data, FileSize, SanitizedCollectionConfig, SanitizedUploadConfig }
 import React, { useEffect, useMemo, useState } from 'react'
 
 import { cn } from '@/lib/utils'
-import { FileMeta } from '../FileDetails/FileMeta/index.js'
+import { FileMeta } from '../FileDetails/FileMeta/index'
 
 type FileInfo = {
   url: string

@@ -8,7 +8,7 @@ import type {
   TypedUser,
 } from 'payload'
 
-import { defaultValuePromise } from './promise.js'
+import { defaultValuePromise } from './promise'
 
 type Args<T> = {
   data: T

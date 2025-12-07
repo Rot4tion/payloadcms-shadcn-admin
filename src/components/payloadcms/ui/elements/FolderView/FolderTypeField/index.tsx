@@ -2,13 +2,13 @@ import type { Option, OptionObject, SelectFieldClientProps } from 'payload'
 
 import React from 'react'
 
-import type { ReactSelectAdapterProps } from '../../ReactSelect/types.js'
+import type { ReactSelectAdapterProps } from '../../ReactSelect/types'
 
-import { mergeFieldStyles } from '../../../fields/mergeFieldStyles.js'
-import { formatOptions } from '../../../fields/Select/index.js'
-import { SelectInput } from '../../../fields/Select/Input.js'
-import { useField } from '../../../forms/useField/index.js'
-import { useFolder } from '../../../providers/Folders/index.js'
+import { mergeFieldStyles } from '../../../fields/mergeFieldStyles'
+import { formatOptions } from '../../../fields/Select/index'
+import { SelectInput } from '../../../fields/Select/Input'
+import { useField } from '../../../forms/useField/index'
+import { useFolder } from '../../../providers/Folders/index'
 import { useTranslation } from '@payloadcms/ui'
 
 export const FolderTypeField = ({

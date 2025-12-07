@@ -1,5 +1,5 @@
 import type { Metadata } from 'next'
-import type { Icon } from 'next/dist/lib/metadata/types/metadata-types.js'
+import type { Icon } from 'next/dist/lib/metadata/types/metadata-types'
 import type { MetaConfig } from 'payload'
 
 import { payloadFaviconDark, payloadFaviconLight, staticOGImage } from '@/components/payloadcms/ui/assets'

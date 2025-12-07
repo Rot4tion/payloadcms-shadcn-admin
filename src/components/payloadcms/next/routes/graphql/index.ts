@@ -1,3 +1,3 @@
-export { POST as GRAPHQL_POST } from './handler.js'
+export { POST as GRAPHQL_POST } from './handler'
 
-export { GET as GRAPHQL_PLAYGROUND_GET } from './playground.js'
+export { GET as GRAPHQL_PLAYGROUND_GET } from './playground'

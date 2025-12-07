@@ -12,7 +12,7 @@ import type {
   SetSubmitted,
   Submit,
   ValidateForm,
-} from './types.js'
+} from './types'
 
 const submit: Submit = () => undefined
 const getSiblingData: GetSiblingData = () => undefined

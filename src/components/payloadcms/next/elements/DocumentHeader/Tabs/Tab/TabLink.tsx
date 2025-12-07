@@ -2,7 +2,7 @@
 import type { SanitizedConfig } from 'payload'
 
 import { Button } from '@/components/payloadcms/ui/exports/client'
-import { useParams, usePathname, useSearchParams } from 'next/navigation.js'
+import { useParams, usePathname, useSearchParams } from 'next/navigation'
 import { formatAdminURL } from 'payload/shared'
 import React from 'react'
 import { cn } from '@/lib/utils'

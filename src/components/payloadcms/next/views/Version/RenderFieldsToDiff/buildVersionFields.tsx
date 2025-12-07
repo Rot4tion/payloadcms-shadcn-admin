@@ -26,7 +26,7 @@ import {
   tabHasName,
 } from 'payload/shared'
 
-import { diffComponents } from './fields/index.js'
+import { diffComponents } from './fields/index'
 
 export type BuildVersionFieldsArgs = {
   clientSchemaMap: ClientFieldSchemaMap

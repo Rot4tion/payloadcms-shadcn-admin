@@ -4,10 +4,10 @@ import type { NavPreferences } from 'payload'
 import React, { useState } from 'react'
 
 import { cn } from '@/lib/utils'
-import { ChevronIcon } from '../../icons/Chevron/index.js'
+import { ChevronIcon } from '../../icons/Chevron/index'
 import { usePreferences } from '@payloadcms/ui'
-import { AnimateHeight } from '../AnimateHeight/index.js'
-import { useNav } from '../Nav/context.js'
+import { AnimateHeight } from '../AnimateHeight/index'
+import { useNav } from '../Nav/context'
 
 type Props = {
   children: React.ReactNode

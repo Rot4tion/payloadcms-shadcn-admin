@@ -1,25 +1,25 @@
 'use client'
 import type { SanitizedCollectionConfig } from 'payload'
 
-import { useModal } from '../Modal/index.js'
+import { useModal } from '../Modal/index'
 import { getTranslation } from '@payloadcms/translations'
-import { useRouter } from 'next/navigation.js'
+import { useRouter } from 'next/navigation'
 import { formatAdminURL } from 'payload/shared'
 import React, { Fragment, useCallback, useState } from 'react'
 import { toast } from 'sonner'
 
-import type { DocumentDrawerContextType } from '../DocumentDrawer/Provider.js'
+import type { DocumentDrawerContextType } from '../DocumentDrawer/Provider'
 
-import { CheckboxInput } from '../../fields/Checkbox/Input.js'
+import { CheckboxInput } from '../../fields/Checkbox/Input'
 import { useForm } from '@payloadcms/ui'
 import { useConfig } from '@payloadcms/ui'
-import { useDocumentTitle } from '../../providers/DocumentTitle/index.js'
+import { useDocumentTitle } from '../../providers/DocumentTitle/index'
 import { useRouteTransition } from '@payloadcms/ui'
 import { useTranslation } from '@payloadcms/ui'
-import { requests } from '../../utilities/api.js'
-import { ConfirmationModal } from '../ConfirmationModal/index.js'
-import { PopupList } from '../Popup/index.js'
-import { Translation } from '../Translation/index.js'
+import { requests } from '../../utilities/api'
+import { ConfirmationModal } from '../ConfirmationModal/index'
+import { PopupList } from '../Popup/index'
+import { Translation } from '../Translation/index'
 
 export type Props = {
   readonly buttonId?: string

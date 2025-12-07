@@ -1,7 +1,7 @@
 import type { ClientTranslationsObject, I18nClient } from '@payloadcms/translations'
 
 import { initI18n } from '@payloadcms/translations'
-import { cookies, headers } from 'next/headers.js'
+import { cookies, headers } from 'next/headers'
 import { getRequestLanguage, type SanitizedConfig } from 'payload'
 
 /**

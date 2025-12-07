@@ -7,12 +7,12 @@ import React from 'react' // TODO: abstract this out to support all routers
 
 import { useConfig } from '@payloadcms/ui'
 import { useTranslation } from '@payloadcms/ui'
-import { formatAdminURL } from '../../../utilities/formatAdminURL.js'
-import { getDisplayedFieldValue } from '../../../utilities/getDisplayedFieldValue.js'
-import { isValidReactElement } from '../../../utilities/isValidReactElement.js'
-import { Link } from '../../Link/index.js'
-import { CodeCell } from './fields/Code/index.js'
-import { cellComponents } from './fields/index.js'
+import { formatAdminURL } from '../../../utilities/formatAdminURL'
+import { getDisplayedFieldValue } from '../../../utilities/getDisplayedFieldValue'
+import { isValidReactElement } from '../../../utilities/isValidReactElement'
+import { Link } from '../../Link/index'
+import { CodeCell } from './fields/Code/index'
+import { cellComponents } from './fields/index'
 
 export const DefaultCell: React.FC<DefaultCellComponentProps> = (props) => {
   const {

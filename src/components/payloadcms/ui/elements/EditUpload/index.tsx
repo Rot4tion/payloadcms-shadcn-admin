@@ -2,16 +2,16 @@
 
 import type { UploadEdits } from 'payload'
 
-import { useModal } from '../Modal/index.js'
+import { useModal } from '../Modal/index'
 import React, { useRef, useState } from 'react'
 import ReactCrop from 'react-image-crop'
 import 'react-image-crop/dist/ReactCrop.css'
 
 import { cn } from '@/lib/utils'
-import { editDrawerSlug } from '../../elements/Upload/index.js'
-import { PlusIcon } from '../../icons/Plus/index.js'
+import { editDrawerSlug } from '../../elements/Upload/index'
+import { PlusIcon } from '../../icons/Plus/index'
 import { useTranslation } from '@payloadcms/ui'
-import { Button } from '../Button/index.js'
+import { Button } from '../Button/index'
 
 type Props = {
   name: string

@@ -1,7 +1,7 @@
 'use client'
 import React, { useEffect, useRef } from 'react'
 
-import { usePatchAnimateHeight } from './usePatchAnimateHeight.js'
+import { usePatchAnimateHeight } from './usePatchAnimateHeight'
 import { cn } from '@/lib/utils'
 
 export const AnimateHeight: React.FC<{

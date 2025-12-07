@@ -5,10 +5,10 @@ import type { JsonObject } from 'payload'
 import { getBestFitFromSizes, isImage } from 'payload/shared'
 import React from 'react'
 
-import type { ReloadDoc } from '../types.js'
+import type { ReloadDoc } from '../types'
 
-import { RelationshipContent } from '../RelationshipContent/index.js'
-import { UploadCard } from '../UploadCard/index.js'
+import { RelationshipContent } from '../RelationshipContent/index'
+import { UploadCard } from '../UploadCard/index'
 import { cn } from '@/lib/utils'
 
 type Props = {

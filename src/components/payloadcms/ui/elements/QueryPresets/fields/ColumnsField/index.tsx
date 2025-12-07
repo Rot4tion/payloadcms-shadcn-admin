@@ -4,9 +4,9 @@ import type { ColumnPreference, JSONFieldClientComponent } from 'payload'
 import { toWords, transformColumnsToSearchParams } from 'payload/shared'
 import React from 'react'
 
-import { FieldLabel } from '../../../../fields/FieldLabel/index.js'
-import { useField } from '../../../../forms/useField/index.js'
-import { Pill } from '../../../Pill/index.js'
+import { FieldLabel } from '../../../../fields/FieldLabel/index'
+import { useField } from '../../../../forms/useField/index'
+import { Pill } from '../../../Pill/index'
 
 export const QueryPresetsColumnField: JSONFieldClientComponent = ({
   field: { label, required },

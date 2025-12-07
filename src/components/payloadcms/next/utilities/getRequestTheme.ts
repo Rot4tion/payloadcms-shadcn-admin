@@ -1,4 +1,4 @@
-import type { ReadonlyRequestCookies } from 'next/dist/server/web/spec-extension/adapters/request-cookies.js'
+import type { ReadonlyRequestCookies } from 'next/dist/server/web/spec-extension/adapters/request-cookies'
 import type { SanitizedConfig } from 'payload'
 
 import { defaultTheme, type Theme } from '@/components/payloadcms/ui/exports/client'

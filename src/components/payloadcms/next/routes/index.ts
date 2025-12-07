@@ -1,4 +1,4 @@
-export { GRAPHQL_PLAYGROUND_GET, GRAPHQL_POST } from './graphql/index.js'
+export { GRAPHQL_PLAYGROUND_GET, GRAPHQL_POST } from './graphql/index'
 
 export {
   DELETE as REST_DELETE,
@@ -6,4 +6,4 @@ export {
   OPTIONS as REST_OPTIONS,
   PATCH as REST_PATCH,
   POST as REST_POST,
-} from './rest/index.js'
+} from './rest/index'

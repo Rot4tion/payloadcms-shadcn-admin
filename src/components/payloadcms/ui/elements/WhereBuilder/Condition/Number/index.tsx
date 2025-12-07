@@ -2,10 +2,10 @@
 import { getTranslation } from '@payloadcms/translations'
 import React from 'react'
 
-import type { NumberFilterProps as Props } from './types.js'
+import type { NumberFilterProps as Props } from './types'
 
-import { useTranslation } from '../../../../providers/Translation/index.js'
-import { ReactSelect } from '../../../ReactSelect/index.js'
+import { useTranslation } from '../../../../providers/Translation/index'
+import { ReactSelect } from '../../../ReactSelect/index'
 
 export const NumberFilter: React.FC<Props> = (props) => {
   const {

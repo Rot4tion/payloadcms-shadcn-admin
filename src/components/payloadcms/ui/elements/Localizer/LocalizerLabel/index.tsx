@@ -3,7 +3,7 @@ import { getTranslation } from '@payloadcms/translations'
 import React from 'react'
 
 import { cn } from '@/lib/utils'
-import { ChevronIcon } from '../../../icons/Chevron/index.js'
+import { ChevronIcon } from '../../../icons/Chevron/index'
 import { useLocale } from '@payloadcms/ui'
 import { useTranslation } from '@payloadcms/ui'
 

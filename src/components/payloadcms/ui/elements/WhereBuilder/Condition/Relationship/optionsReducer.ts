@@ -1,7 +1,7 @@
 'use client'
 import { getTranslation } from '@payloadcms/translations'
 
-import type { Action, Option } from './types.js'
+import type { Action, Option } from './types'
 
 const reduceToIDs = (options) =>
   options.reduce((ids, option) => {

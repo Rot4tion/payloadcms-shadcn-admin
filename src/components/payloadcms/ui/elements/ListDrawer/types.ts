@@ -7,7 +7,7 @@ import type {
 import type React from 'react'
 import type { HTMLAttributes } from 'react'
 
-import type { ListDrawerContextProps } from './Provider.js'
+import type { ListDrawerContextProps } from './Provider'
 
 /**
  * @internal - this may change in a minor release

@@ -3,10 +3,10 @@ import type { ClientCollectionConfig, PaginatedDocs } from 'payload'
 
 import React, { useCallback } from 'react'
 
-import type { IListQueryContext } from '../../providers/ListQuery/types.js'
+import type { IListQueryContext } from '../../providers/ListQuery/types'
 
 import { useListQuery } from '@payloadcms/ui'
-import { PageControlsComponent } from './index.js'
+import { PageControlsComponent } from './index'
 
 /**
  * If `groupBy` is set in the query, multiple tables will render, one for each group.

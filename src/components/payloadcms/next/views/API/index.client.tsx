@@ -14,12 +14,12 @@ import {
   useLocale,
   useTranslation,
 } from '@/components/payloadcms/ui/exports/client'
-import { useSearchParams } from 'next/navigation.js'
+import { useSearchParams } from 'next/navigation'
 import * as React from 'react'
 
 import { cn } from '@/lib/utils'
-import { LocaleSelector } from './LocaleSelector/index.js'
-import { RenderJSON } from './RenderJSON/index.js'
+import { LocaleSelector } from './LocaleSelector/index'
+import { RenderJSON } from './RenderJSON/index'
 
 export const APIViewClient: React.FC = () => {
   const { id, collectionSlug, globalSlug, initialData, isTrashed } = useDocumentInfo()

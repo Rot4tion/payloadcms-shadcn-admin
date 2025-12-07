@@ -1,9 +1,9 @@
 import type { AdminViewServerProps, ListQuery } from 'payload'
 import type React from 'react'
 
-import { notFound } from 'next/navigation.js'
+import { notFound } from 'next/navigation'
 
-import { renderListView } from '../List/index.js'
+import { renderListView } from '../List/index'
 
 type RenderTrashViewArgs = {
   customCellProps?: Record<string, any>

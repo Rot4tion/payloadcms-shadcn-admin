@@ -14,7 +14,7 @@ import {
   FolderFileTable,
   ItemCardGrid,
   // eslint-disable-next-line payload/no-imports-from-exports-dir -- This component is returned via server functions, it must reference the exports dir
-} from '../exports/client/index.js'
+} from '../exports/client/index'
 
 type GetFolderResultsComponentAndDataResult = {
   breadcrumbs?: FolderBreadcrumb[]

@@ -1,6 +1,6 @@
 'use client'
 import { toast, useRouteTransition } from '@/components/payloadcms/ui/exports/client'
-import { useRouter } from 'next/navigation.js'
+import { useRouter } from 'next/navigation'
 import React, { useEffect } from 'react'
 
 type Props = {

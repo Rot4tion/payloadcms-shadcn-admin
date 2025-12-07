@@ -3,12 +3,12 @@ import type { RelationshipFieldClientComponent, ValueWithRelation } from 'payloa
 
 import React, { useCallback, useMemo } from 'react'
 
-import type { Value } from './types.js'
+import type { Value } from './types'
 
-import { useField } from '../../forms/useField/index.js'
-import { withCondition } from '../../forms/withCondition/index.js'
-import { mergeFieldStyles } from '../mergeFieldStyles.js'
-import { RelationshipInput } from './Input.js'
+import { useField } from '../../forms/useField/index'
+import { withCondition } from '../../forms/withCondition/index'
+import { mergeFieldStyles } from '../mergeFieldStyles'
+import { RelationshipInput } from './Input'
 
 export { RelationshipInput }
 

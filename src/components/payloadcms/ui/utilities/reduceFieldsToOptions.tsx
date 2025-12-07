@@ -5,14 +5,14 @@ import type { ClientField, SanitizedFieldPermissions, SanitizedFieldsPermissions
 import { getTranslation } from '@payloadcms/translations'
 import { fieldAffectsData, fieldIsHiddenOrDisabled, fieldIsID, tabHasName } from 'payload/shared'
 
-import type { ReducedField } from '../elements/WhereBuilder/types.js'
+import type { ReducedField } from '../elements/WhereBuilder/types'
 
 import {
   fieldTypeConditions,
   getValidFieldOperators,
-} from '../elements/WhereBuilder/field-types.js'
-import { createNestedClientFieldPath } from '../forms/Form/createNestedClientFieldPath.js'
-import { combineFieldLabel } from './combineFieldLabel.js'
+} from '../elements/WhereBuilder/field-types'
+import { createNestedClientFieldPath } from '../forms/Form/createNestedClientFieldPath'
+import { combineFieldLabel } from './combineFieldLabel'
 
 type ReduceFieldOptionsArgs = {
   fieldPermissions?: SanitizedFieldPermissions | SanitizedFieldsPermissions

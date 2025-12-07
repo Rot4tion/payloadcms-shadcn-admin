@@ -2,11 +2,11 @@
 
 import type { CollectionSlug } from 'payload'
 
-import { headers as nextHeaders } from 'next/headers.js'
+import { headers as nextHeaders } from 'next/headers'
 import { createLocalReq, getPayload, refreshOperation } from 'payload'
 
-import { getExistingAuthToken } from '../utilities/getExistingAuthToken.js'
-import { setPayloadAuthCookie } from '../utilities/setPayloadAuthCookie.js'
+import { getExistingAuthToken } from '../utilities/getExistingAuthToken'
+import { setPayloadAuthCookie } from '../utilities/setPayloadAuthCookie'
 
 export async function refresh({ config }: { config: any }) {
   const payload = await getPayload({ config, cron: true })

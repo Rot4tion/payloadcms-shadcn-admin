@@ -13,17 +13,17 @@ import {
   useRouteTransition,
   useTranslation,
 } from '@/components/payloadcms/ui/exports/client'
-import { usePathname, useRouter, useSearchParams } from 'next/navigation.js'
+import { usePathname, useRouter, useSearchParams } from 'next/navigation'
 import React, { type FormEventHandler, useCallback, useEffect, useMemo, useState } from 'react'
 
-import type { CompareOption, DefaultVersionsViewProps } from './types.js'
+import type { CompareOption, DefaultVersionsViewProps } from './types'
 
-import { Restore } from '../Restore/index.js'
-import { SelectComparison } from '../SelectComparison/index.js'
+import { Restore } from '../Restore/index'
+import { SelectComparison } from '../SelectComparison/index'
 import { cn } from '@/lib/utils'
-import { type SelectedLocaleOnChange, SelectLocales } from '../SelectLocales/index.js'
-import { SelectedLocalesContext } from './SelectedLocalesContext.js'
-import { SetStepNav } from './SetStepNav.js'
+import { type SelectedLocaleOnChange, SelectLocales } from '../SelectLocales/index'
+import { SelectedLocalesContext } from './SelectedLocalesContext'
+import { SetStepNav } from './SetStepNav'
 
 export const DefaultVersionView: React.FC<DefaultVersionsViewProps> = ({
   canUpdate,

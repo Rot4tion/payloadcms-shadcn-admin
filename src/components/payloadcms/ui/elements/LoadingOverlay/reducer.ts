@@ -1,5 +1,5 @@
 'use client'
-import type { Action, State } from './types.js'
+import type { Action, State } from './types'
 
 export const defaultLoadingOverlayState = {
   isLoading: false,

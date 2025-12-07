@@ -2,7 +2,7 @@
 import { Pill, useTranslation } from '@/components/payloadcms/ui/exports/client'
 import React from 'react'
 
-import { VersionPillLabel } from '../../../Version/VersionPillLabel/VersionPillLabel.js'
+import { VersionPillLabel } from '../../../Version/VersionPillLabel/VersionPillLabel'
 
 type AutosaveCellProps = {
   currentlyPublishedVersion?: {

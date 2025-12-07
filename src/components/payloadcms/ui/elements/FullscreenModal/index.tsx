@@ -1,7 +1,7 @@
 'use client'
 import React from 'react'
 
-import { Modal } from '../Modal/index.js'
+import { Modal } from '../Modal/index'
 import { useEditDepth } from '@payloadcms/ui'
 
 type FullscreenModalProps = {

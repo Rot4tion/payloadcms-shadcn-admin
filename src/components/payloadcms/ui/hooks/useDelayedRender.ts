@@ -1,7 +1,7 @@
 'use client'
 import * as React from 'react'
 
-import { useDelay } from './useDelay.js'
+import { useDelay } from './useDelay'
 
 type DelayedRenderProps = {
   /** Time in ms to wait before "mounting" the component. */

@@ -1,13 +1,13 @@
 import { Gutter, ListQueryProvider, SetDocumentStepNav } from '@/components/payloadcms/ui/exports/client'
-import { notFound } from 'next/navigation.js'
+import { notFound } from 'next/navigation'
 import { type DocumentViewServerProps, type PaginatedDocs, type Where } from 'payload'
 import { isNumber } from 'payload/shared'
 import React from 'react'
 
-import { fetchLatestVersion, fetchVersions } from '../Version/fetchVersions.js'
-import { VersionDrawerCreatedAtCell } from '../Version/SelectComparison/VersionDrawer/CreatedAtCell.js'
-import { buildVersionColumns } from './buildColumns.js'
-import { VersionsViewClient } from './index.client.js'
+import { fetchLatestVersion, fetchVersions } from '../Version/fetchVersions'
+import { VersionDrawerCreatedAtCell } from '../Version/SelectComparison/VersionDrawer/CreatedAtCell'
+import { buildVersionColumns } from './buildColumns'
+import { VersionsViewClient } from './index.client'
 import { cn } from '@/lib/utils'
 
 export async function VersionsView(props: DocumentViewServerProps) {

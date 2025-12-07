@@ -4,9 +4,9 @@ import type { DateFieldClient, DefaultCellComponentProps } from 'payload'
 import { getObjectDotNotation } from 'payload/shared'
 import React from 'react'
 
-import { useConfig } from '../../../../../providers/Config/index.js'
-import { useTranslation } from '../../../../../providers/Translation/index.js'
-import { formatDate } from '../../../../../utilities/formatDocTitle/formatDateTitle.js'
+import { useConfig } from '../../../../../providers/Config/index'
+import { useTranslation } from '../../../../../providers/Translation/index'
+import { formatDate } from '../../../../../utilities/formatDocTitle/formatDateTitle'
 
 export const DateCell: React.FC<
   DefaultCellComponentProps<{ accessor?: string } & DateFieldClient>

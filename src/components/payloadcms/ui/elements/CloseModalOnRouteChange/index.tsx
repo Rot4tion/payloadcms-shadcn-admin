@@ -1,10 +1,10 @@
 'use client'
 
-import { useModal } from '../Modal/index.js'
-import { usePathname } from 'next/navigation.js'
+import { useModal } from '../Modal/index'
+import { usePathname } from 'next/navigation'
 import { useEffect, useRef } from 'react'
 
-import { useEffectEvent } from '../../hooks/useEffectEvent.js'
+import { useEffectEvent } from '../../hooks/useEffectEvent'
 
 export function CloseModalOnRouteChange() {
   const { closeAllModals } = useModal()

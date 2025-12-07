@@ -10,7 +10,7 @@ import { useForm } from '@payloadcms/ui'
 import { useEditDepth } from '@payloadcms/ui'
 import { useLocale } from '@payloadcms/ui'
 import { useTranslation } from '@payloadcms/ui'
-import { generateFieldID } from '../../utilities/generateFieldID.js'
+import { generateFieldID } from '../../utilities/generateFieldID'
 
 export const FieldLabel: React.FC<GenericLabelProps> = (props) => {
   const {

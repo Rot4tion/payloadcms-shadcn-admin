@@ -4,10 +4,10 @@ import type { SanitizedCollectionConfig, StaticLabel } from 'payload'
 import { fieldIsHiddenOrDisabled, fieldIsID } from 'payload/shared'
 import React, { useId, useMemo } from 'react'
 
-import { FieldLabel } from '../../fields/FieldLabel/index.js'
+import { FieldLabel } from '../../fields/FieldLabel/index'
 import { useEditDepth } from '@payloadcms/ui'
-import { useTableColumns } from '../../providers/TableColumns/index.js'
-import { PillSelector, type SelectablePill } from '../PillSelector/index.js'
+import { useTableColumns } from '../../providers/TableColumns/index'
+import { PillSelector, type SelectablePill } from '../PillSelector/index'
 
 export type Props = {
   readonly collectionSlug: SanitizedCollectionConfig['slug']

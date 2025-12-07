@@ -1,13 +1,13 @@
 'use client'
-import type { LinkProps } from 'next/link.js'
+import type { LinkProps } from 'next/link'
 
 import * as React from 'react'
 
 import { cn } from '@/lib/utils'
-import { Link } from '../../Link/index.js'
+import { Link } from '../../Link/index'
 
-export { PopupListDivider as Divider } from '../PopupDivider/index.js'
-export { PopupListGroupLabel as GroupLabel } from '../PopupGroupLabel/index.js'
+export { PopupListDivider as Divider } from '../PopupDivider/index'
+export { PopupListGroupLabel as GroupLabel } from '../PopupGroupLabel/index'
 
 const textAlignClasses = {
   left: 'text-left rtl:text-right',

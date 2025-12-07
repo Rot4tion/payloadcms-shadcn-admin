@@ -11,7 +11,7 @@ import type React from 'react'
 import { RenderServerComponent } from '@/components/payloadcms/ui/elements/RenderServerComponent'
 import { Fragment } from 'react'
 
-import { DocumentTabLink } from './TabLink.js'
+import { DocumentTabLink } from './TabLink'
 
 export const DefaultDocumentTab: React.FC<{
   apiURL?: string

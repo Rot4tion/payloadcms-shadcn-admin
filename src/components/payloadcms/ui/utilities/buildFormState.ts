@@ -10,14 +10,14 @@ import type {
 import { canAccessAdmin, formatErrors } from 'payload'
 import { getSelectMode, reduceFieldsToValues } from 'payload/shared'
 
-import { fieldSchemasToFormState } from '../forms/fieldSchemasToFormState/index.js'
-import { renderField } from '../forms/fieldSchemasToFormState/renderField.js'
-import { getClientConfig } from './getClientConfig.js'
-import { getClientSchemaMap } from './getClientSchemaMap.js'
-import { getSchemaMap } from './getSchemaMap.js'
-import { handleFormStateLocking } from './handleFormStateLocking.js'
-import { handleLivePreview } from './handleLivePreview.js'
-import { handlePreview } from './handlePreview.js'
+import { fieldSchemasToFormState } from '../forms/fieldSchemasToFormState/index'
+import { renderField } from '../forms/fieldSchemasToFormState/renderField'
+import { getClientConfig } from './getClientConfig'
+import { getClientSchemaMap } from './getClientSchemaMap'
+import { getSchemaMap } from './getSchemaMap'
+import { handleFormStateLocking } from './handleFormStateLocking'
+import { handleLivePreview } from './handleLivePreview'
+import { handlePreview } from './handlePreview'
 
 export type LockedState = {
   isLocked: boolean

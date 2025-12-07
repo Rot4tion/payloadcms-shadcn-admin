@@ -7,7 +7,7 @@ import { EmailField, Form, FormSubmit, TextField, useConfig, useTranslation } fr
 import { email, text } from 'payload/shared'
 import React, { useState } from 'react'
 
-import { FormHeader } from '../../../elements/FormHeader/index.js'
+import { FormHeader } from '../../../elements/FormHeader/index'
 
 export const ForgotPasswordForm: React.FC = () => {
   const { config, getEntityConfig } = useConfig()

@@ -3,19 +3,19 @@
 import { getTranslation } from '@payloadcms/translations'
 import React, { Fragment } from 'react'
 
-import type { StepNavItem } from './types.js'
+import type { StepNavItem } from './types'
 
-import { PayloadIcon } from '../../graphics/Icon/index.js'
+import { PayloadIcon } from '../../graphics/Icon/index'
 import { useConfig } from '@payloadcms/ui'
 import { useTranslation } from '@payloadcms/ui'
-import { Link } from '../Link/index.js'
-import { RenderCustomComponent } from '../RenderCustomComponent/index.js'
-import { useStepNav } from './context.js'
+import { Link } from '../Link/index'
+import { RenderCustomComponent } from '../RenderCustomComponent/index'
+import { useStepNav } from './context'
 
 import { cn } from '@/lib/utils'
 import { StepNavProvider } from '@payloadcms/ui/elements/StepNav'
 
-export { SetStepNav } from './SetStepNav.js'
+export { SetStepNav } from './SetStepNav'
 
 const StepNav: React.FC<{
   readonly className?: string

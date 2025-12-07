@@ -4,9 +4,9 @@ import type { EditViewProps } from 'payload'
 
 import React from 'react'
 
-import { ExternalLinkIcon } from '../../../../icons/ExternalLink/index.js'
+import { ExternalLinkIcon } from '../../../../icons/ExternalLink/index'
 import { useLivePreviewContext, useTranslation } from '@payloadcms/ui'
-import { PreviewFrameSizeInput } from '../SizeInput/index.js'
+import { PreviewFrameSizeInput } from '../SizeInput/index'
 import { Button } from '@/components/ui/button'
 import {
   DropdownMenu,

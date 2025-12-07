@@ -1,7 +1,7 @@
 import type { LabelFunction } from 'payload'
 import type { CommonProps, GroupBase, Props as ReactSelectStateManagerProps } from 'react-select'
 
-import type { DocumentDrawerProps } from '../DocumentDrawer/types.js'
+import type { DocumentDrawerProps } from '../DocumentDrawer/types'
 
 type CustomSelectProps = {
   disableKeyDown?: boolean

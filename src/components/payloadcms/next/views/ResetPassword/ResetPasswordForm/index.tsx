@@ -9,7 +9,7 @@ import {
   useConfig,
   useTranslation,
 } from '@/components/payloadcms/ui/exports/client'
-import { useRouter } from 'next/navigation.js'
+import { useRouter } from 'next/navigation'
 import { type FormState } from 'payload'
 import { formatAdminURL } from 'payload/shared'
 import React from 'react'

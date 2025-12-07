@@ -2,21 +2,21 @@
 import type { ClientCollectionConfig, ViewTypes, Where } from 'payload'
 
 import { getTranslation } from '@payloadcms/translations'
-import { useRouter, useSearchParams } from 'next/navigation.js'
+import { useRouter, useSearchParams } from 'next/navigation'
 import { mergeListSearchAndWhere } from 'payload/shared'
 import * as qs from 'qs-esm'
 import React from 'react'
 import { toast } from 'sonner'
-import { useModal } from '../Modal/index.js'
+import { useModal } from '../Modal/index'
 
 import { useAuth, useConfig, useLocale, useSelection, useTranslation } from '@payloadcms/ui'
 import { SelectAllStatus } from '@payloadcms/ui/providers/Selection'
-import { CheckboxInput } from '../../fields/Checkbox/Input.js'
-import { useRouteCache } from '../../providers/RouteCache/index.js'
-import { requests } from '../../utilities/api.js'
-import { parseSearchParams } from '../../utilities/parseSearchParams.js'
-import { ConfirmationModal } from '../ConfirmationModal/index.js'
-import { ListSelectionButton } from '../ListSelection/index.js'
+import { CheckboxInput } from '../../fields/Checkbox/Input'
+import { useRouteCache } from '../../providers/RouteCache/index'
+import { requests } from '../../utilities/api'
+import { parseSearchParams } from '../../utilities/parseSearchParams'
+import { ConfirmationModal } from '../ConfirmationModal/index'
+import { ListSelectionButton } from '../ListSelection/index'
 
 const confirmManyRestoreDrawerSlug = `confirm-restore-many-docs`
 

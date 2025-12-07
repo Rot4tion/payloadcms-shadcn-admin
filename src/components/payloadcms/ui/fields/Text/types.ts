@@ -2,7 +2,7 @@ import type { StaticDescription, StaticLabel } from 'payload'
 import type { ChangeEvent, JSX } from 'react'
 import type React from 'react'
 
-import type { Option, ReactSelectAdapterProps } from '../../elements/ReactSelect/types.js'
+import type { Option, ReactSelectAdapterProps } from '../../elements/ReactSelect/types'
 
 export type SharedTextFieldProps =
   | {

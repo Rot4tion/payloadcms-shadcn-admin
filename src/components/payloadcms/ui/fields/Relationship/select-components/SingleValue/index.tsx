@@ -5,12 +5,12 @@ import React, { Fragment, useState } from 'react'
 import { components as SelectComponents } from 'react-select'
 import { Pencil } from 'lucide-react'
 
-import type { ReactSelectAdapterProps } from '../../../../elements/ReactSelect/types.js'
-import type { Option } from '../../types.js'
+import type { ReactSelectAdapterProps } from '../../../../elements/ReactSelect/types'
+import type { Option } from '../../types'
 
-import { Tooltip } from '../../../../elements/Tooltip/index.js'
-import { useAuth } from '../../../../providers/Auth/index.js'
-import { useTranslation } from '../../../../providers/Translation/index.js'
+import { Tooltip } from '../../../../elements/Tooltip/index'
+import { useAuth } from '../../../../providers/Auth/index'
+import { useTranslation } from '../../../../providers/Translation/index'
 
 export const SingleValue: React.FC<
   {

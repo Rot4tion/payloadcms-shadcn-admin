@@ -3,7 +3,7 @@ import type { Field, FieldSchemaMap, SanitizedConfig, TextField } from 'payload'
 
 import { confirmPassword, password } from 'payload/shared'
 
-import { traverseFields } from './traverseFields.js'
+import { traverseFields } from './traverseFields'
 
 const baseAuthFields: Field[] = [
   {

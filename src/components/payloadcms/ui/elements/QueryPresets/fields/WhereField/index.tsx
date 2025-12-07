@@ -5,12 +5,12 @@ import { getTranslation } from '@payloadcms/translations'
 import { toWords } from 'payload/shared'
 import React from 'react'
 
-import { FieldLabel } from '../../../../fields/FieldLabel/index.js'
-import { useField } from '../../../../forms/useField/index.js'
-import { useConfig } from '../../../../providers/Config/index.js'
-import { useListQuery } from '../../../../providers/ListQuery/index.js'
-import { useTranslation } from '../../../../providers/Translation/index.js'
-import { Pill } from '../../../Pill/index.js'
+import { FieldLabel } from '../../../../fields/FieldLabel/index'
+import { useField } from '../../../../forms/useField/index'
+import { useConfig } from '../../../../providers/Config/index'
+import { useListQuery } from '../../../../providers/ListQuery/index'
+import { useTranslation } from '../../../../providers/Translation/index'
+import { Pill } from '../../../Pill/index'
 
 /** @todo: improve this */
 const transformWhereToNaturalLanguage = (

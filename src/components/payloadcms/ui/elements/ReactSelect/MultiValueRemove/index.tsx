@@ -3,12 +3,12 @@ import type { MultiValueRemoveProps } from 'react-select'
 
 import React, { type JSX } from 'react'
 
-import type { Option as OptionType } from '../types.js'
+import type { Option as OptionType } from '../types'
 
 import { cn } from '@/lib/utils'
-import { XIcon } from '../../../icons/X/index.js'
+import { XIcon } from '../../../icons/X/index'
 import { useTranslation } from '@payloadcms/ui'
-import { Tooltip } from '../../Tooltip/index.js'
+import { Tooltip } from '../../Tooltip/index'
 
 export const MultiValueRemove: React.FC<
   {

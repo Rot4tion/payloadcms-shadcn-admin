@@ -5,10 +5,10 @@ import ObjectIdImport from 'bson-objectid'
 import { dequal } from 'dequal/lite' // lite: no need for Map and Set support
 import { deepCopyObjectSimpleWithoutReactComponents } from 'payload/shared'
 
-import type { FieldAction } from './types.js'
+import type { FieldAction } from './types'
 
-import { mergeServerFormState } from './mergeServerFormState.js'
-import { flattenRows, separateRows } from './rows.js'
+import { mergeServerFormState } from './mergeServerFormState'
+import { flattenRows, separateRows } from './rows'
 
 const ObjectId = 'default' in ObjectIdImport ? ObjectIdImport.default : ObjectIdImport
 

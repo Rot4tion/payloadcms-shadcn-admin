@@ -1,10 +1,10 @@
 import type React from 'react'
 
-import { notFound } from 'next/navigation.js'
+import { notFound } from 'next/navigation'
 
-import type { BuildCollectionFolderViewStateArgs } from './buildView.js'
+import type { BuildCollectionFolderViewStateArgs } from './buildView'
 
-import { buildCollectionFolderView } from './buildView.js'
+import { buildCollectionFolderView } from './buildView'
 
 export const CollectionFolderView: React.FC<BuildCollectionFolderViewStateArgs> = async (args) => {
   try {

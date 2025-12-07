@@ -6,11 +6,11 @@ import { getTranslation } from '@payloadcms/translations'
 import React from 'react'
 
 import { useConfig } from '@payloadcms/ui'
-import { useFolder } from '../../../providers/Folders/index.js'
+import { useFolder } from '../../../providers/Folders/index'
 import { useTranslation } from '@payloadcms/ui'
-import { Button } from '../../Button/index.js'
-import { useDocumentDrawer } from '../../DocumentDrawer/index.js'
-import { Popup, PopupList } from '../../Popup/index.js'
+import { Button } from '../../Button/index'
+import { useDocumentDrawer } from '../../DocumentDrawer/index'
+import { Popup, PopupList } from '../../Popup/index'
 
 const baseClass = 'create-new-doc-in-folder'
 

@@ -10,9 +10,9 @@ import type {
 import { RenderServerComponent } from '@/components/payloadcms/ui/elements/RenderServerComponent'
 import React from 'react'
 
-import { ShouldRenderTabs } from './ShouldRenderTabs.js'
-import { DefaultDocumentTab } from './Tab/index.js'
-import { getTabs } from './tabs/index.js'
+import { ShouldRenderTabs } from './ShouldRenderTabs'
+import { DefaultDocumentTab } from './Tab/index'
+import { getTabs } from './tabs/index'
 import { cn } from '@/lib/utils'
 
 export const DocumentTabs: React.FC<{

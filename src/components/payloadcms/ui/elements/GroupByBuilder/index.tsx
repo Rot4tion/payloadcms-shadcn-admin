@@ -3,12 +3,12 @@ import type { ClientField, Field, SanitizedCollectionConfig } from 'payload'
 
 import React, { useMemo } from 'react'
 
-import { SelectInput } from '../../fields/Select/Input.js'
+import { SelectInput } from '../../fields/Select/Input'
 import { useAuth } from '@payloadcms/ui'
 import { useListQuery } from '@payloadcms/ui'
 import { useTranslation } from '@payloadcms/ui'
-import { reduceFieldsToOptions } from '../../utilities/reduceFieldsToOptions.js'
-import { ReactSelect } from '../ReactSelect/index.js'
+import { reduceFieldsToOptions } from '../../utilities/reduceFieldsToOptions'
+import { ReactSelect } from '../ReactSelect/index'
 
 export type Props = {
   readonly collectionSlug: SanitizedCollectionConfig['slug']

@@ -3,11 +3,11 @@ import React from 'react'
 
 import { cn } from '@/lib/utils'
 import { useDrawerDepth } from '@payloadcms/ui/elements/Drawer'
-import { Link } from '../../elements/Link/index.js'
+import { Link } from '../../elements/Link/index'
 import { useConfig } from '@payloadcms/ui'
 import { useDocumentInfo } from '@payloadcms/ui'
-import { formatAdminURL } from '../../utilities/formatAdminURL.js'
-import { sanitizeID } from '../../utilities/sanitizeID.js'
+import { formatAdminURL } from '../../utilities/formatAdminURL'
+import { sanitizeID } from '../../utilities/sanitizeID'
 
 export const IDLabel: React.FC<{ className?: string; id: string; prefix?: string }> = ({
   id,

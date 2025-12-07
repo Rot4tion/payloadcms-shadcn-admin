@@ -2,8 +2,8 @@ import type { ArrayFieldClient, BlocksFieldClient, ClientConfig, ClientField } f
 
 import { fieldShouldBeLocalized, groupHasName } from 'payload/shared'
 
-import { fieldHasChanges } from './fieldHasChanges.js'
-import { getFieldsForRowComparison } from './getFieldsForRowComparison.js'
+import { fieldHasChanges } from './fieldHasChanges'
+import { getFieldsForRowComparison } from './getFieldsForRowComparison'
 
 type Args = {
   config: ClientConfig

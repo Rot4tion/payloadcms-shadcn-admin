@@ -1,7 +1,7 @@
 'use client'
 import React, { useEffect } from 'react'
 
-import { useResize } from '../../../hooks/useResize.js'
+import { useResize } from '../../../hooks/useResize'
 import { useLivePreviewContext } from '@payloadcms/ui'
 
 export const DeviceContainer: React.FC<{

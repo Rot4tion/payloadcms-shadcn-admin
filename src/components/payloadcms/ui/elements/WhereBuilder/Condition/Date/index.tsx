@@ -2,10 +2,10 @@
 import { getTranslation } from '@payloadcms/translations'
 import React from 'react'
 
-import type { DateFilterProps as Props } from './types.js'
+import type { DateFilterProps as Props } from './types'
 
-import { useTranslation } from '../../../../providers/Translation/index.js'
-import { DatePickerField } from '../../../DatePicker/index.js'
+import { useTranslation } from '../../../../providers/Translation/index'
+import { DatePickerField } from '../../../DatePicker/index'
 
 const baseClass = 'condition-value-date'
 

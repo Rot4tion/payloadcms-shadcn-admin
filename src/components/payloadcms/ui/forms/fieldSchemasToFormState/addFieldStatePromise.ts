@@ -32,11 +32,11 @@ import {
   tabHasName,
 } from 'payload/shared'
 
-import type { RenderFieldMethod } from './types.js'
+import type { RenderFieldMethod } from './types'
 
-import { resolveFilterOptions } from '../../utilities/resolveFilterOptions.js'
-import { isRowCollapsed } from './isRowCollapsed.js'
-import { iterateFields } from './iterateFields.js'
+import { resolveFilterOptions } from '../../utilities/resolveFilterOptions'
+import { isRowCollapsed } from './isRowCollapsed'
+import { iterateFields } from './iterateFields'
 
 const ObjectId = 'default' in ObjectIdImport ? ObjectIdImport.default : ObjectIdImport
 

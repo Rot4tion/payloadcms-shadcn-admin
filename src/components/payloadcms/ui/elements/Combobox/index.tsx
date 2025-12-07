@@ -1,9 +1,9 @@
 'use client'
 import React, { useMemo, useRef, useState } from 'react'
 
-import type { PopupProps } from '../Popup/index.js'
+import type { PopupProps } from '../Popup/index'
 
-import { Popup, PopupList } from '../Popup/index.js'
+import { Popup, PopupList } from '../Popup/index'
 import { cn } from '@/lib/utils'
 
 /**

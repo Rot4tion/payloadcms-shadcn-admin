@@ -5,9 +5,9 @@ import { FieldLabel } from '@/components/payloadcms/ui/exports/client'
 import { cn } from '@/lib/utils'
 import React from 'react'
 
-import { ResetPreferences } from '../ResetPreferences/index.js'
-import { ToggleTheme } from '../ToggleTheme/index.js'
-import { LanguageSelector } from './LanguageSelector.js'
+import { ResetPreferences } from '../ResetPreferences/index'
+import { ToggleTheme } from '../ToggleTheme/index'
+import { LanguageSelector } from './LanguageSelector'
 
 export const Settings: React.FC<{
   readonly className?: string

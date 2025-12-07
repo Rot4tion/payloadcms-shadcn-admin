@@ -5,7 +5,7 @@ import { ChevronIcon, FieldDiffLabel, useConfig, useTranslation } from '@/compon
 import { fieldIsArrayType, fieldIsBlockType } from 'payload/shared'
 import React, { useState } from 'react'
 
-import { countChangedFields, countChangedFieldsInRows } from '../utilities/countChangedFields.js'
+import { countChangedFields, countChangedFieldsInRows } from '../utilities/countChangedFields'
 import { cn } from '@/lib/utils'
 
 type Props = {

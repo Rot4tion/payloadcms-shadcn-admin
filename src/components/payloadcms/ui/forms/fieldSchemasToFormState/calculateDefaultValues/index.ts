@@ -7,7 +7,7 @@ import type {
   TypedUser,
 } from 'payload'
 
-import { iterateFields } from './iterateFields.js'
+import { iterateFields } from './iterateFields'
 
 type Args = {
   data: Data

@@ -4,15 +4,15 @@ import type { UploadFieldClientProps, ValueWithRelation } from 'payload'
 
 import React, { useMemo } from 'react'
 
-import { BulkUploadProvider } from '../../elements/BulkUpload/index.js'
-import { useField } from '../../forms/useField/index.js'
-import { withCondition } from '../../forms/withCondition/index.js'
+import { BulkUploadProvider } from '../../elements/BulkUpload/index'
+import { useField } from '../../forms/useField/index'
+import { withCondition } from '../../forms/withCondition/index'
 import { useConfig } from '@payloadcms/ui'
-import { mergeFieldStyles } from '../mergeFieldStyles.js'
-import { UploadInput } from './Input.js'
+import { mergeFieldStyles } from '../mergeFieldStyles'
+import { UploadInput } from './Input'
 
-export { UploadInput } from './Input.js'
-export type { UploadInputProps } from './Input.js'
+export { UploadInput } from './Input'
+export type { UploadInputProps } from './Input'
 
 export function UploadComponent(props: UploadFieldClientProps) {
   const {

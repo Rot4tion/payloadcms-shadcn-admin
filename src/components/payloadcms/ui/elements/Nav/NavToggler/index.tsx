@@ -5,7 +5,7 @@ import { cn } from '@/lib/utils'
 import { usePreferences } from '@payloadcms/ui'
 import { useTranslation } from '@payloadcms/ui'
 import { useWindowInfo } from '@payloadcms/ui'
-import { useNav } from '../context.js'
+import { useNav } from '../context'
 
 export const NavToggler: React.FC<{
   children?: React.ReactNode

@@ -1,6 +1,6 @@
 import { cn } from '@/lib/utils'
-import { SearchIcon } from '../../icons/Search/index.js'
-import { SearchFilter } from '../SearchFilter/index.js'
+import { SearchIcon } from '../../icons/Search/index'
+import { SearchFilter } from '../SearchFilter/index'
 
 type SearchBarProps = {
   Actions?: React.ReactNode[]

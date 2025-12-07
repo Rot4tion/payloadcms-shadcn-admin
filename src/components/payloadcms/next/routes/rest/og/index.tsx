@@ -2,12 +2,12 @@ import type { PayloadHandler } from 'payload'
 
 import { PayloadIcon } from '@/components/payloadcms/ui/exports/shared'
 import fs from 'fs/promises'
-import { ImageResponse } from 'next/og.js'
+import { ImageResponse } from 'next/og'
 import path from 'path'
 import React from 'react'
 import { fileURLToPath } from 'url'
 
-import { OGImage } from './image.js'
+import { OGImage } from './image'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)

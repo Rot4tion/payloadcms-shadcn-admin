@@ -1,4 +1,4 @@
-import { cookies as getCookies } from 'next/headers.js'
+import { cookies as getCookies } from 'next/headers'
 
 type Cookie = {
   name: string

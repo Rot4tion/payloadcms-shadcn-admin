@@ -11,10 +11,10 @@ import { DefaultCollectionFolderView, HydrateAuthProvider } from '@/components/p
 import { RenderServerComponent } from '@/components/payloadcms/ui/elements/RenderServerComponent'
 import { getFolderResultsComponentAndData, upsertPreferences } from '@/components/payloadcms/ui/exports/rsc'
 import { formatAdminURL } from '@/components/payloadcms/ui/exports/shared'
-import { redirect } from 'next/navigation.js'
+import { redirect } from 'next/navigation'
 import React from 'react'
 
-// import { renderFolderViewSlots } from './renderFolderViewSlots.js'
+// import { renderFolderViewSlots } from './renderFolderViewSlots'
 
 export type BuildCollectionFolderViewStateArgs = {
   disableBulkDelete?: boolean

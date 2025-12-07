@@ -3,9 +3,9 @@ import type { DefaultCellComponentProps } from 'payload'
 
 import React from 'react'
 
-import { useListDrawerContext } from '../../../elements/ListDrawer/Provider.js'
-import { DefaultCell } from '../../../elements/Table/DefaultCell/index.js'
-import { useTableColumns } from '../../../providers/TableColumns/index.js'
+import { useListDrawerContext } from '../../../elements/ListDrawer/Provider'
+import { DefaultCell } from '../../../elements/Table/DefaultCell/index'
+import { useTableColumns } from '../../../providers/TableColumns/index'
 
 const CellPropsContext = React.createContext<DefaultCellComponentProps | null>(null)
 

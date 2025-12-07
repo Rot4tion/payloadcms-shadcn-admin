@@ -6,19 +6,19 @@ import { getFieldPermissions } from 'payload/shared'
 import React, { Fragment, useCallback, useEffect, useMemo, useState } from 'react'
 import { toast } from 'sonner'
 
-import type { Props } from './types.js'
+import type { Props } from './types'
 
-import { Button } from '../../../elements/Button/index.js'
-import { EmailAndUsernameFields } from '../../../elements/EmailAndUsername/index.js'
-import { CheckboxField } from '../../../fields/Checkbox/index.js'
-import { ConfirmPasswordField } from '../../../fields/ConfirmPassword/index.js'
-import { PasswordField } from '../../../fields/Password/index.js'
+import { Button } from '../../../elements/Button/index'
+import { EmailAndUsernameFields } from '../../../elements/EmailAndUsername/index'
+import { CheckboxField } from '../../../fields/Checkbox/index'
+import { ConfirmPasswordField } from '../../../fields/ConfirmPassword/index'
+import { PasswordField } from '../../../fields/Password/index'
 import { useFormFields, useFormModified } from '@payloadcms/ui'
 import { useConfig } from '@payloadcms/ui'
 import { useDocumentInfo } from '@payloadcms/ui'
 import { useTranslation } from '@payloadcms/ui'
 import { cn } from '@/lib/utils'
-import { APIKey } from './APIKey.js'
+import { APIKey } from './APIKey'
 
 export const Auth: React.FC<Props> = (props) => {
   const {

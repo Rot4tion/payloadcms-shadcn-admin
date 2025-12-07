@@ -8,13 +8,13 @@ import type {
 
 import React from 'react'
 
-import type { ReducedField, Value } from '../../types.js'
+import type { ReducedField, Value } from '../../types'
 
-import { DateFilter } from '../Date/index.js'
-import { NumberFilter } from '../Number/index.js'
-import { RelationshipFilter } from '../Relationship/index.js'
-import { Select } from '../Select/index.js'
-import { Text } from '../Text/index.js'
+import { DateFilter } from '../Date/index'
+import { NumberFilter } from '../Number/index'
+import { RelationshipFilter } from '../Relationship/index'
+import { Select } from '../Select/index'
+import { Text } from '../Text/index'
 
 type Props = {
   booleanSelect: boolean

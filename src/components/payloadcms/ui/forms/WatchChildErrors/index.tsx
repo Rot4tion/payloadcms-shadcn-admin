@@ -2,9 +2,9 @@
 import type { ClientField } from 'payload'
 import type React from 'react'
 
-import { useThrottledEffect } from '../../hooks/useThrottledEffect.js'
+import { useThrottledEffect } from '../../hooks/useThrottledEffect'
 import { useAllFormFields, useFormSubmitted } from '@payloadcms/ui'
-import { buildPathSegments } from './buildPathSegments.js'
+import { buildPathSegments } from './buildPathSegments'
 
 type TrackSubSchemaErrorCountProps = {
   fields?: ClientField[]

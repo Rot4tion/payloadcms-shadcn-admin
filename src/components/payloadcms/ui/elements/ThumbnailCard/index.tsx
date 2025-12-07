@@ -5,7 +5,7 @@ import React from 'react'
 
 import { useConfig } from '@payloadcms/ui'
 import { useTranslation } from '@payloadcms/ui'
-import { formatDocTitle } from '../../utilities/formatDocTitle/index.js'
+import { formatDocTitle } from '../../utilities/formatDocTitle/index'
 import { cn } from '@/lib/utils'
 
 export type ThumbnailCardProps = {

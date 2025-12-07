@@ -2,7 +2,7 @@
 
 import React from 'react'
 
-import { CheckboxInput } from '../../fields/Checkbox/Input.js'
+import { CheckboxInput } from '../../fields/Checkbox/Input'
 import { useSelection, useTranslation } from '@payloadcms/ui'
 import { SelectAllStatus } from '@payloadcms/ui/providers/Selection'
 

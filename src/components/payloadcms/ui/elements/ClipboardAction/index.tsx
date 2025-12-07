@@ -5,13 +5,13 @@ import type { FormStateWithoutComponents } from 'payload'
 import { type FC, useCallback } from 'react'
 import { toast } from 'sonner'
 
-import type { ClipboardCopyData, OnPasteFn } from './types.js'
+import type { ClipboardCopyData, OnPasteFn } from './types'
 
-import { MoreIcon } from '../../icons/More/index.js'
+import { MoreIcon } from '../../icons/More/index'
 import { useTranslation } from '@payloadcms/ui'
-import { Popup, PopupList } from '../Popup/index.js'
-import { ClipboardActionLabel } from './ClipboardActionLabel.js'
-import { clipboardCopy, clipboardPaste } from './clipboardUtilities.js'
+import { Popup, PopupList } from '../Popup/index'
+import { ClipboardActionLabel } from './ClipboardActionLabel'
+import { clipboardCopy, clipboardPaste } from './clipboardUtilities'
 
 const baseClass = 'clipboard-action'
 

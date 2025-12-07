@@ -4,14 +4,14 @@ import type { CSSProperties } from 'react'
 import { getTranslation } from '@payloadcms/translations'
 import React from 'react'
 
-import type { TextAreaInputProps } from './types.js'
+import type { TextAreaInputProps } from './types'
 
 import { cn } from '@/lib/utils'
 import { Textarea } from '@/components/ui/textarea'
-import { RenderCustomComponent } from '../../elements/RenderCustomComponent/index.js'
-import { FieldDescription } from '../../fields/FieldDescription/index.js'
-import { FieldError } from '../../fields/FieldError/index.js'
-import { FieldLabel } from '../../fields/FieldLabel/index.js'
+import { RenderCustomComponent } from '../../elements/RenderCustomComponent/index'
+import { FieldDescription } from '../../fields/FieldDescription/index'
+import { FieldError } from '../../fields/FieldError/index'
+import { FieldLabel } from '../../fields/FieldLabel/index'
 import { useTranslation } from '@payloadcms/ui'
 
 export const TextareaInput: React.FC<TextAreaInputProps> = (props) => {

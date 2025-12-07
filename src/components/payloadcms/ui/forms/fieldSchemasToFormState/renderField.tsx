@@ -10,12 +10,12 @@ import { getTranslation } from '@payloadcms/translations'
 import { createClientField, MissingEditorProp } from 'payload'
 import { fieldIsHiddenOrDisabled } from 'payload/shared'
 
-import type { RenderFieldMethod } from './types.js'
+import type { RenderFieldMethod } from './types'
 
-import { RenderServerComponent } from '../../elements/RenderServerComponent/index.js'
+import { RenderServerComponent } from '../../elements/RenderServerComponent/index'
 
 // eslint-disable-next-line payload/no-imports-from-exports-dir -- MUST reference the exports dir: https://github.com/payloadcms/payload/issues/12002#issuecomment-2791493587
-import { FieldDescription, WatchCondition } from '../../exports/client/index.js'
+import { FieldDescription, WatchCondition } from '../../exports/client/index'
 
 const defaultUIFieldComponentKeys: Array<'Cell' | 'Description' | 'Field' | 'Filter'> = [
   'Cell',

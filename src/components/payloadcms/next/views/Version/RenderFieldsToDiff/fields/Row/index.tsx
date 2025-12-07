@@ -3,7 +3,7 @@ import type { RowFieldDiffClientComponent } from 'payload'
 
 import React from 'react'
 
-import { RenderVersionFieldsToDiff } from '../../RenderVersionFieldsToDiff.js'
+import { RenderVersionFieldsToDiff } from '../../RenderVersionFieldsToDiff'
 
 const baseClass = 'row-diff'
 

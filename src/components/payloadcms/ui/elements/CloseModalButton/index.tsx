@@ -1,6 +1,6 @@
-import { useModal } from '../Modal/index.js'
+import { useModal } from '../Modal/index'
 
-import { XIcon } from '../../icons/X/index.js'
+import { XIcon } from '../../icons/X/index'
 import { useTranslation } from '@payloadcms/ui'
 import { cn } from '@/lib/utils'
 

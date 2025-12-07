@@ -1,6 +1,6 @@
 import type { Auth } from 'payload'
 
-import { cookies as getCookies } from 'next/headers.js'
+import { cookies as getCookies } from 'next/headers'
 import { generatePayloadCookie } from 'payload'
 
 type SetPayloadAuthCookieArgs = {

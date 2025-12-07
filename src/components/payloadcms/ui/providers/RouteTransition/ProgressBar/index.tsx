@@ -2,7 +2,7 @@
 import React, { useEffect, useRef } from 'react'
 
 import { cn } from '@/lib/utils'
-import { useRouteTransition } from '../index.js'
+import { useRouteTransition } from '../index'
 
 const transitionDuration = 200
 const initialDelay = 150

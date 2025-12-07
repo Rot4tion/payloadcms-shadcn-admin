@@ -7,7 +7,7 @@ import {
   useRouteTransition,
   useTranslation,
 } from '@/components/payloadcms/ui/exports/client'
-import { useRouter } from 'next/navigation.js'
+import { useRouter } from 'next/navigation'
 import { formatAdminURL } from 'payload/shared'
 import React, { useEffect } from 'react'
 

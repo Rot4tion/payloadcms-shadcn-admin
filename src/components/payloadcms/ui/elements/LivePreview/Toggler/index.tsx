@@ -1,7 +1,7 @@
 'use client'
 import React from 'react'
 
-import { EyeIcon } from '../../../icons/Eye/index.js'
+import { EyeIcon } from '../../../icons/Eye/index'
 import { useLivePreviewContext, useTranslation } from '@payloadcms/ui'
 import { cn } from '@/lib/utils'
 

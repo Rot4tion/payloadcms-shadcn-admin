@@ -1,9 +1,9 @@
 import { deepMerge, type Field, type FieldState, type ServerFunction } from 'payload'
 
-import { getClientConfig } from '../../../utilities/getClientConfig.js'
-import { getClientSchemaMap } from '../../../utilities/getClientSchemaMap.js'
-import { getSchemaMap } from '../../../utilities/getSchemaMap.js'
-import { renderField } from '../renderField.js'
+import { getClientConfig } from '../../../utilities/getClientConfig'
+import { getClientSchemaMap } from '../../../utilities/getClientSchemaMap'
+import { getSchemaMap } from '../../../utilities/getSchemaMap'
+import { renderField } from '../renderField'
 
 export type RenderFieldServerFnArgs<TField = Field> = {
   /**

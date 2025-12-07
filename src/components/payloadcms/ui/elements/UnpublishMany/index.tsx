@@ -2,12 +2,12 @@
 import type { ClientCollectionConfig, Where } from 'payload'
 
 import React from 'react'
-import { useModal } from '../Modal/index.js'
+import { useModal } from '../Modal/index'
 
 import { useAuth, useSelection, useTranslation } from '@payloadcms/ui'
 import { SelectAllStatus } from '@payloadcms/ui/providers/Selection'
-import { ListSelectionButton } from '../ListSelection/index.js'
-import { UnpublishManyDrawerContent } from './DrawerContent.js'
+import { ListSelectionButton } from '../ListSelection/index'
+import { UnpublishManyDrawerContent } from './DrawerContent'
 
 export type UnpublishManyProps = {
   collection: ClientCollectionConfig

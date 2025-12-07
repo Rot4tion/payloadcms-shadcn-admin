@@ -10,16 +10,16 @@ import { formatDate } from '@/components/payloadcms/ui/exports/shared'
 import { getClientConfig } from '@/components/payloadcms/ui/utilities/getClientConfig'
 import { getClientSchemaMap } from '@/components/payloadcms/ui/utilities/getClientSchemaMap'
 import { getSchemaMap } from '@/components/payloadcms/ui/utilities/getSchemaMap'
-import { notFound } from 'next/navigation.js'
+import { notFound } from 'next/navigation'
 import React from 'react'
 
-import type { CompareOption } from './Default/types.js'
+import type { CompareOption } from './Default/types'
 
-import { DefaultVersionView } from './Default/index.js'
-import { fetchLatestVersion, fetchVersion, fetchVersions } from './fetchVersions.js'
-import { RenderDiff } from './RenderFieldsToDiff/index.js'
-import { getVersionLabel } from './VersionPillLabel/getVersionLabel.js'
-import { VersionPillLabel } from './VersionPillLabel/VersionPillLabel.js'
+import { DefaultVersionView } from './Default/index'
+import { fetchLatestVersion, fetchVersion, fetchVersions } from './fetchVersions'
+import { RenderDiff } from './RenderFieldsToDiff/index'
+import { getVersionLabel } from './VersionPillLabel/getVersionLabel'
+import { VersionPillLabel } from './VersionPillLabel/VersionPillLabel'
 
 export async function VersionView(props: DocumentViewServerProps) {
   const { hasPublishedDoc, i18n, initPageResult, routeSegments, searchParams } = props

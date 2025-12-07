@@ -6,11 +6,11 @@ import { reduceFieldsToValues } from 'payload/shared'
 import React, { useEffect } from 'react'
 
 import { useAllFormFields, useDocumentInfo, useLivePreviewContext, useLocale } from '@payloadcms/ui'
-import { useDocumentEvents } from '../../../providers/DocumentEvents/index.js'
-import { ShimmerEffect } from '../../ShimmerEffect/index.js'
-import { DeviceContainer } from '../Device/index.js'
-import { IFrame } from '../IFrame/index.js'
-import { LivePreviewToolbar } from '../Toolbar/index.js'
+import { useDocumentEvents } from '../../../providers/DocumentEvents/index'
+import { ShimmerEffect } from '../../ShimmerEffect/index'
+import { DeviceContainer } from '../Device/index'
+import { IFrame } from '../IFrame/index'
+import { LivePreviewToolbar } from '../Toolbar/index'
 import { cn } from '@/lib/utils'
 
 export const LivePreviewWindow: React.FC<EditViewProps> = (props) => {

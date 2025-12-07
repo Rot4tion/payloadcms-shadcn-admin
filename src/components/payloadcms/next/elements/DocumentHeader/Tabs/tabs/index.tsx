@@ -1,6 +1,6 @@
 import type { DocumentTabConfig, SanitizedCollectionConfig, SanitizedGlobalConfig } from 'payload'
 
-import { VersionsPill } from './VersionsPill/index.js'
+import { VersionsPill } from './VersionsPill/index'
 
 export const documentViewKeys = ['api', 'default', 'livePreview', 'versions']
 

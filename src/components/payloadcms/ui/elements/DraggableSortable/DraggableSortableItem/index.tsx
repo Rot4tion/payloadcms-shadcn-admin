@@ -3,9 +3,9 @@ import type { UseDraggableArguments } from '@dnd-kit/core'
 
 import React, { Fragment } from 'react'
 
-import type { ChildFunction } from './types.js'
+import type { ChildFunction } from './types'
 
-import { useDraggableSortable } from '../useDraggableSortable/index.js'
+import { useDraggableSortable } from '../useDraggableSortable/index'
 
 export const DraggableSortableItem: React.FC<
   {

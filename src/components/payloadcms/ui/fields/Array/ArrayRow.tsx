@@ -10,17 +10,17 @@ import type {
 import { getTranslation } from '@payloadcms/translations'
 import React from 'react'
 
-import type { UseDraggableSortableReturn } from '../../elements/DraggableSortable/useDraggableSortable/types.js'
+import type { UseDraggableSortableReturn } from '../../elements/DraggableSortable/useDraggableSortable/types'
 
 import { cn } from '@/lib/utils'
-import { ArrayAction } from '../../elements/ArrayAction/index.js'
-import { Collapsible } from '../../elements/Collapsible/index.js'
-import { ErrorPill } from '../../elements/ErrorPill/index.js'
-import { ShimmerEffect } from '../../elements/ShimmerEffect/index.js'
+import { ArrayAction } from '../../elements/ArrayAction/index'
+import { Collapsible } from '../../elements/Collapsible/index'
+import { ErrorPill } from '../../elements/ErrorPill/index'
+import { ShimmerEffect } from '../../elements/ShimmerEffect/index'
 import { useFormSubmitted } from '@payloadcms/ui'
-import { RenderFields } from '../../forms/RenderFields/index.js'
-import { RowLabel } from '../../forms/RowLabel/index.js'
-import { useThrottledValue } from '../../hooks/useThrottledValue.js'
+import { RenderFields } from '../../forms/RenderFields/index'
+import { RowLabel } from '../../forms/RowLabel/index'
+import { useThrottledValue } from '../../hooks/useThrottledValue'
 import { useTranslation } from '@payloadcms/ui'
 
 type ArrayRowProps = {

@@ -4,8 +4,8 @@ import type { ElementType, HTMLAttributes } from 'react'
 import React from 'react'
 import { cn } from '@/lib/utils'
 import { cva, type VariantProps } from 'class-variance-authority'
-import { Link } from '../Link/index.js'
-import { useDraggableSortable } from '../DraggableSortable/useDraggableSortable/index.js'
+import { Link } from '../Link/index'
+import { useDraggableSortable } from '../DraggableSortable/useDraggableSortable/index'
 
 const pillVariants = cva(
   'inline-flex items-center gap-[0.2em] font-normal transition-colors whitespace-nowrap text-[1rem] leading-[calc(var(--base)*1.2)]',

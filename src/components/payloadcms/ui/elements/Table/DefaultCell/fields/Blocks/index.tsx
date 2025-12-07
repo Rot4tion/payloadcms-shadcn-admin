@@ -4,8 +4,8 @@ import type { BlocksFieldClient, DefaultCellComponentProps } from 'payload'
 import { getTranslation } from '@payloadcms/translations'
 import React from 'react'
 
-import { useConfig } from '../../../../../providers/Config/index.js'
-import { useTranslation } from '../../../../../providers/Translation/index.js'
+import { useConfig } from '../../../../../providers/Config/index'
+import { useTranslation } from '../../../../../providers/Translation/index'
 
 export interface BlocksCellProps extends DefaultCellComponentProps<BlocksFieldClient> {}
 

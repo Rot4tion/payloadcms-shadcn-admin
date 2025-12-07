@@ -1,6 +1,6 @@
 import { handleEndpoints, type SanitizedConfig } from 'payload'
 
-import { generateOGImage } from './og/index.js'
+import { generateOGImage } from './og/index'
 
 let initedOGEndpoint = false
 

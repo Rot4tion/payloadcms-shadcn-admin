@@ -2,8 +2,8 @@
 import React, { Fragment } from 'react'
 
 import { useDocumentInfo } from '@payloadcms/ui'
-import { useDocumentTitle } from '../../providers/DocumentTitle/index.js'
-import { IDLabel } from '../IDLabel/index.js'
+import { useDocumentTitle } from '../../providers/DocumentTitle/index'
+import { IDLabel } from '../IDLabel/index'
 import { cn } from '@/lib/utils'
 
 export type RenderTitleProps = {

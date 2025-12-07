@@ -8,9 +8,9 @@ import { cn } from '@/lib/utils'
 import { useAuth } from '@payloadcms/ui'
 import { EditDepthProvider } from '@payloadcms/ui'
 import { useTranslation } from '@payloadcms/ui'
-import { Drawer, DrawerToggler } from '../../Drawer/index.js'
-import { useFormsManager } from '../FormsManager/index.js'
-import { EditManyBulkUploadsDrawerContent } from './DrawerContent.js'
+import { Drawer, DrawerToggler } from '../../Drawer/index'
+import { useFormsManager } from '../FormsManager/index'
+import { EditManyBulkUploadsDrawerContent } from './DrawerContent'
 
 export type EditManyBulkUploadsProps = {
   readonly collection: ClientCollectionConfig

@@ -2,10 +2,10 @@
 
 import React, { useEffect, useRef, useState } from 'react'
 
-import type { SearchFilterProps } from './types.js'
+import type { SearchFilterProps } from './types'
 
 import { cn } from '@/lib/utils'
-import { useDebounce } from '../../hooks/useDebounce.js'
+import { useDebounce } from '../../hooks/useDebounce'
 
 export function SearchFilter(props: SearchFilterProps) {
   const { handleChange, initialParams, label, searchQueryParam } = props

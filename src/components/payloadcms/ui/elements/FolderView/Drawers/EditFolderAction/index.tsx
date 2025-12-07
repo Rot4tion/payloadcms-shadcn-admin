@@ -1,7 +1,7 @@
-import { useRouteCache } from '../../../../providers/RouteCache/index.js'
-import { useTranslation } from '../../../../providers/Translation/index.js'
-import { useDocumentDrawer } from '../../../DocumentDrawer/index.js'
-import { ListSelectionButton } from '../../../ListSelection/index.js'
+import { useRouteCache } from '../../../../providers/RouteCache/index'
+import { useTranslation } from '../../../../providers/Translation/index'
+import { useDocumentDrawer } from '../../../DocumentDrawer/index'
+import { ListSelectionButton } from '../../../ListSelection/index'
 
 type EditFolderActionProps = {
   folderCollectionSlug: string

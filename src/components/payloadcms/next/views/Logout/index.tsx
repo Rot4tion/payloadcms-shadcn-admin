@@ -2,7 +2,7 @@ import type { AdminViewServerProps } from 'payload'
 
 import React from 'react'
 
-import { LogoutClient } from './LogoutClient.js'
+import { LogoutClient } from './LogoutClient'
 
 export const LogoutView: React.FC<
   {

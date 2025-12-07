@@ -12,7 +12,7 @@ import type {
 import { getBlockSelect, getDefaultValue, stripUnselectedFields } from 'payload'
 import { fieldAffectsData, tabHasName } from 'payload/shared'
 
-import { iterateFields } from './iterateFields.js'
+import { iterateFields } from './iterateFields'
 
 type Args<T> = {
   data: T

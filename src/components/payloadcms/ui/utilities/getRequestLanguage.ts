@@ -1,4 +1,4 @@
-import type { ReadonlyRequestCookies } from 'next/dist/server/web/spec-extension/adapters/request-cookies.js'
+import type { ReadonlyRequestCookies } from 'next/dist/server/web/spec-extension/adapters/request-cookies'
 
 type GetRequestLanguageArgs = {
   cookies: Map<string, string> | ReadonlyRequestCookies

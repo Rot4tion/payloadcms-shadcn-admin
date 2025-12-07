@@ -1,4 +1,4 @@
-import type { AppRouterInstance } from 'next/dist/shared/lib/app-router-context.shared-runtime.js'
+import type { AppRouterInstance } from 'next/dist/shared/lib/app-router-context.shared-runtime'
 
 import { formatAdminURL } from 'payload/shared'
 

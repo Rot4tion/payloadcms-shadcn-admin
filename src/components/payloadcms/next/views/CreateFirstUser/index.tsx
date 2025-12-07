@@ -7,9 +7,9 @@ import type {
 import { buildFormState } from '@/components/payloadcms/ui/utilities/buildFormState'
 import React from 'react'
 
-import { getDocPreferences } from '../Document/getDocPreferences.js'
-import { getDocumentData } from '../Document/getDocumentData.js'
-import { CreateFirstUserClient } from './index.client.js'
+import { getDocPreferences } from '../Document/getDocPreferences'
+import { getDocumentData } from '../Document/getDocumentData'
+import { CreateFirstUserClient } from './index.client'
 
 export async function CreateFirstUserView({ initPageResult }: AdminViewServerProps) {
   const {

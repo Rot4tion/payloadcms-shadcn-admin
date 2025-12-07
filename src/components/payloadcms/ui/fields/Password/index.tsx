@@ -4,16 +4,16 @@ import type { PasswordFieldValidation, PayloadRequest } from 'payload'
 import { password } from 'payload/shared'
 import React, { useCallback, useMemo } from 'react'
 
-import type { PasswordFieldProps } from './types.js'
+import type { PasswordFieldProps } from './types'
 
-import { useField } from '../../forms/useField/index.js'
-import { withCondition } from '../../forms/withCondition/index.js'
+import { useField } from '../../forms/useField/index'
+import { withCondition } from '../../forms/withCondition/index'
 import { useConfig } from '@payloadcms/ui'
 import { useLocale } from '@payloadcms/ui'
 import { useTranslation } from '@payloadcms/ui'
-import { mergeFieldStyles } from '../mergeFieldStyles.js'
-import { isFieldRTL } from '../shared/index.js'
-import { PasswordInput } from './input.js'
+import { mergeFieldStyles } from '../mergeFieldStyles'
+import { isFieldRTL } from '../shared/index'
+import { PasswordInput } from './input'
 
 const PasswordFieldComponent: React.FC<PasswordFieldProps> = (props) => {
   const {

@@ -1,3 +1,3 @@
-export { login } from '../auth/login.js'
-export { logout } from '../auth/logout.js'
-export { refresh } from '../auth/refresh.js'
+export { login } from '../auth/login'
+export { logout } from '../auth/logout'
+export { refresh } from '../auth/refresh'

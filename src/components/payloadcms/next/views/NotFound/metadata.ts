@@ -2,7 +2,7 @@ import type { I18nClient } from '@payloadcms/translations'
 import type { Metadata } from 'next'
 import type { SanitizedConfig } from 'payload'
 
-import { generateMetadata } from '../../utilities/meta.js'
+import { generateMetadata } from '../../utilities/meta'
 
 export const generateNotFoundViewMetadata = async ({
   config,

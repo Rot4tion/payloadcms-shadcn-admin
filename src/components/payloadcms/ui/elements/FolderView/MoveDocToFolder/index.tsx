@@ -3,21 +3,21 @@
 import type { CollectionSlug } from 'payload'
 import type { FolderOrDocument } from 'payload/shared'
 
-import { useModal } from '../../Modal/index.js'
+import { useModal } from '../../Modal/index'
 import { getTranslation } from '@payloadcms/translations'
 import React, { useId } from 'react'
 import { toast } from 'sonner'
 
-import type { Props as ButtonProps } from '../../Button/types.js'
+import type { Props as ButtonProps } from '../../Button/types'
 
 import { useForm, useFormFields } from '@payloadcms/ui'
-import { FolderIcon } from '../../../icons/Folder/index.js'
+import { FolderIcon } from '../../../icons/Folder/index'
 import { useConfig } from '@payloadcms/ui'
 import { useDocumentInfo } from '@payloadcms/ui'
 import { useTranslation } from '@payloadcms/ui'
-import { Button } from '../../Button/index.js'
-import { formatDrawerSlug } from '../../Drawer/index.js'
-import { MoveItemsToFolderDrawer } from '../Drawers/MoveToFolder/index.js'
+import { Button } from '../../Button/index'
+import { formatDrawerSlug } from '../../Drawer/index'
+import { MoveItemsToFolderDrawer } from '../Drawers/MoveToFolder/index'
 import { cn } from '@/lib/utils'
 import { useDrawerDepth } from '@payloadcms/ui/elements/Drawer'
 

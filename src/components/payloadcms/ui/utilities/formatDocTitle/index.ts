@@ -8,9 +8,9 @@ import type {
 
 import { getTranslation } from '@payloadcms/translations'
 
-import { formatDate } from './formatDateTitle.js'
-import { formatLexicalDocTitle, isSerializedLexicalEditor } from './formatLexicalDocTitle.js'
-import { formatRelationshipTitle } from './formatRelationshipTitle.js'
+import { formatDate } from './formatDateTitle'
+import { formatLexicalDocTitle, isSerializedLexicalEditor } from './formatLexicalDocTitle'
+import { formatRelationshipTitle } from './formatRelationshipTitle'
 
 export const formatDocTitle = ({
   collectionConfig,

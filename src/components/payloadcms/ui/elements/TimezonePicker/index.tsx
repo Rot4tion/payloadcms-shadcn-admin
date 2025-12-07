@@ -5,12 +5,12 @@ import type React from 'react'
 
 import { useMemo } from 'react'
 
-import type { Props } from './types.js'
+import type { Props } from './types'
 
-import { FieldLabel } from '../../fields/FieldLabel/index.js'
+import { FieldLabel } from '../../fields/FieldLabel/index'
 import { useTranslation } from '@payloadcms/ui'
-import { ReactSelect } from '../ReactSelect/index.js'
-import { formatOptions } from '../WhereBuilder/Condition/Select/formatOptions.js'
+import { ReactSelect } from '../ReactSelect/index'
+import { formatOptions } from '../WhereBuilder/Condition/Select/formatOptions'
 
 export const TimezonePicker: React.FC<Props> = (props) => {
   const {

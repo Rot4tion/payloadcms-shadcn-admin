@@ -1,8 +1,8 @@
 'use client'
 
 import { useTranslation } from '@payloadcms/ui'
-import { useListDrawerContext } from '../../ListDrawer/Provider.js'
-import { Pill } from '../../Pill/index.js'
+import { useListDrawerContext } from '../../ListDrawer/Provider'
+import { Pill } from '../../Pill/index'
 
 const baseClass = 'list-header'
 

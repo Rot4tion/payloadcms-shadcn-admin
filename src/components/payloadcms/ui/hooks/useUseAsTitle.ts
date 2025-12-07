@@ -3,7 +3,7 @@ import type { ClientCollectionConfig, ClientField } from 'payload'
 
 import { flattenTopLevelFields } from 'payload/shared'
 
-import { useTranslation } from '../providers/Translation/index.js'
+import { useTranslation } from '../providers/Translation/index'
 
 export const useUseTitleField = (collection: ClientCollectionConfig): ClientField => {
   const {

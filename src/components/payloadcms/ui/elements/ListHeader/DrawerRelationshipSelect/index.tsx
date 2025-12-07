@@ -2,11 +2,11 @@
 
 import { getTranslation } from '@payloadcms/translations'
 
-import { FieldLabel } from '../../../fields/FieldLabel/index.js'
+import { FieldLabel } from '../../../fields/FieldLabel/index'
 import { useConfig } from '@payloadcms/ui'
 import { useTranslation } from '@payloadcms/ui'
-import { useListDrawerContext } from '../../ListDrawer/Provider.js'
-import { ReactSelect } from '../../ReactSelect/index.js'
+import { useListDrawerContext } from '../../ListDrawer/Provider'
+import { ReactSelect } from '../../ReactSelect/index'
 
 export const DrawerRelationshipSelect = () => {
   const { i18n, t } = useTranslation()

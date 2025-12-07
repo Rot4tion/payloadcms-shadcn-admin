@@ -1,9 +1,9 @@
 'use client'
 import React, { lazy, Suspense } from 'react'
 
-import type { Props } from './types.js'
+import type { Props } from './types'
 
-import { ShimmerEffect } from '../ShimmerEffect/index.js'
+import { ShimmerEffect } from '../ShimmerEffect/index'
 
 const LazyEditor = lazy(() => import('./CodeEditor.js'))
 

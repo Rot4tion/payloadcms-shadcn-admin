@@ -3,8 +3,8 @@ import type { AdminViewServerProps } from 'payload'
 import { formatAdminURL } from 'payload/shared'
 import React from 'react'
 
-import { Logo } from '../../elements/Logo/index.js'
-import { ToastAndRedirect } from './index.client.js'
+import { Logo } from '../../elements/Logo/index'
+import { ToastAndRedirect } from './index.client'
 
 export const verifyBaseClass = 'verify'
 

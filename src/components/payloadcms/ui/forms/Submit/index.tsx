@@ -1,9 +1,9 @@
 'use client'
 import React from 'react'
 
-import type { Props } from '../../elements/Button/types.js'
+import type { Props } from '../../elements/Button/types'
 
-import { Button } from '../../elements/Button/index.js'
+import { Button } from '../../elements/Button/index'
 // Import form hooks from @payloadcms/ui to share context
 import {
   useForm,

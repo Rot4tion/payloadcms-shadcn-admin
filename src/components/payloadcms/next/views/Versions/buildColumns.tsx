@@ -11,9 +11,9 @@ import type {
 import { SortColumn } from '@/components/payloadcms/ui/exports/client'
 import React from 'react'
 
-import { AutosaveCell } from './cells/AutosaveCell/index.js'
-import { CreatedAtCell, type CreatedAtCellProps } from './cells/CreatedAt/index.js'
-import { IDCell } from './cells/ID/index.js'
+import { AutosaveCell } from './cells/AutosaveCell/index'
+import { CreatedAtCell, type CreatedAtCellProps } from './cells/CreatedAt/index'
+import { IDCell } from './cells/ID/index'
 
 export const buildVersionColumns = ({
   collectionConfig,

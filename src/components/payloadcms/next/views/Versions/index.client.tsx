@@ -9,7 +9,7 @@ import {
   useListQuery,
   useTranslation,
 } from '@/components/payloadcms/ui/exports/client'
-import { useSearchParams } from 'next/navigation.js'
+import { useSearchParams } from 'next/navigation'
 import React from 'react'
 
 export const VersionsViewClient: React.FC<{

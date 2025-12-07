@@ -4,7 +4,7 @@ import type { InputProps } from 'react-select'
 import React from 'react'
 import { components as SelectComponents } from 'react-select'
 
-import type { Option } from '../types.js'
+import type { Option } from '../types'
 
 export const Input: React.FC<InputProps<Option, any>> = (props) => {
   return (

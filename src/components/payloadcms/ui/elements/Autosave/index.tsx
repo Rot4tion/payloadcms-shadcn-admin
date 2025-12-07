@@ -10,19 +10,19 @@ import {
 } from 'payload/shared'
 import React, { useDeferredValue, useEffect, useRef, useState } from 'react'
 
-import type { OnSaveContext } from '../../views/Edit/index.js'
+import type { OnSaveContext } from '../../views/Edit/index'
 
 import { useAllFormFields, useForm, useFormModified, useFormSubmitted } from '@payloadcms/ui'
-import { useDebounce } from '../../hooks/useDebounce.js'
-import { useEffectEvent } from '../../hooks/useEffectEvent.js'
-import { useQueue } from '../../hooks/useQueue.js'
+import { useDebounce } from '../../hooks/useDebounce'
+import { useEffectEvent } from '../../hooks/useEffectEvent'
+import { useQueue } from '../../hooks/useQueue'
 import { useConfig } from '@payloadcms/ui'
 import { useDocumentInfo } from '@payloadcms/ui'
 import { useLocale } from '@payloadcms/ui'
 import { useTranslation } from '@payloadcms/ui'
-import { formatTimeToNow } from '../../utilities/formatDocTitle/formatDateTitle.js'
-import { reduceFieldsToValuesWithValidation } from '../../utilities/reduceFieldsToValuesWithValidation.js'
-import { LeaveWithoutSaving } from '../LeaveWithoutSaving/index.js'
+import { formatTimeToNow } from '../../utilities/formatDocTitle/formatDateTitle'
+import { reduceFieldsToValuesWithValidation } from '../../utilities/reduceFieldsToValuesWithValidation'
+import { LeaveWithoutSaving } from '../LeaveWithoutSaving/index'
 // The minimum time the saving state should be shown
 const minimumAnimationTime = 1000
 

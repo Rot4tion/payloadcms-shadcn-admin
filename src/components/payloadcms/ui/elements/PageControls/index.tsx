@@ -4,10 +4,10 @@ import type { ClientCollectionConfig, PaginatedDocs } from 'payload'
 import { isNumber } from 'payload/shared'
 import React, { Fragment } from 'react'
 
-import type { IListQueryContext } from '../../providers/ListQuery/types.js'
+import type { IListQueryContext } from '../../providers/ListQuery/types'
 
-import { Pagination } from '../../elements/Pagination/index.js'
-import { PerPage } from '../../elements/PerPage/index.js'
+import { Pagination } from '../../elements/Pagination/index'
+import { PerPage } from '../../elements/PerPage/index'
 import { useListQuery } from '@payloadcms/ui'
 import { useTranslation } from '@payloadcms/ui'
 

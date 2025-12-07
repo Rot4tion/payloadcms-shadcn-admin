@@ -3,7 +3,7 @@ import type { LabelFunction, StaticLabel } from 'payload'
 import { cn } from '@/lib/utils'
 import { getTranslation, type I18nClient } from '@payloadcms/translations'
 
-import { FieldDiffLabel } from '../FieldDiffLabel/index.js'
+import { FieldDiffLabel } from '../FieldDiffLabel/index'
 
 export const FieldDiffContainer: React.FC<{
   className?: string

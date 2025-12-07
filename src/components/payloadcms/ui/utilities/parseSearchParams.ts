@@ -1,4 +1,4 @@
-import type { ReadonlyURLSearchParams } from 'next/navigation.js'
+import type { ReadonlyURLSearchParams } from 'next/navigation'
 
 import * as qs from 'qs-esm'
 

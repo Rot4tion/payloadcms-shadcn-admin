@@ -3,16 +3,16 @@ import type { JsonObject } from 'payload'
 
 import React from 'react'
 
-import { DraggableSortableItem } from '../../../elements/DraggableSortable/DraggableSortableItem/index.js'
-import { DraggableSortable } from '../../../elements/DraggableSortable/index.js'
-import { DragHandleIcon } from '../../../icons/DragHandle/index.js'
-import { RelationshipContent } from '../RelationshipContent/index.js'
-import { UploadCard } from '../UploadCard/index.js'
+import { DraggableSortableItem } from '../../../elements/DraggableSortable/DraggableSortableItem/index'
+import { DraggableSortable } from '../../../elements/DraggableSortable/index'
+import { DragHandleIcon } from '../../../icons/DragHandle/index'
+import { RelationshipContent } from '../RelationshipContent/index'
+import { UploadCard } from '../UploadCard/index'
 
 import { getBestFitFromSizes, isImage } from 'payload/shared'
 import { cn } from '@/lib/utils'
 
-import type { ReloadDoc } from '../types.js'
+import type { ReloadDoc } from '../types'
 
 type Props = {
   readonly className?: string

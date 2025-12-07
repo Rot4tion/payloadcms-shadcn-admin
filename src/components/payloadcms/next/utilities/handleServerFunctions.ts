@@ -6,11 +6,11 @@ import { buildTableStateHandler } from '@/components/payloadcms/ui/utilities/bui
 import { getFolderResultsComponentAndDataHandler } from '@/components/payloadcms/ui/utilities/getFolderResultsComponentAndData'
 import { schedulePublishHandler } from '@/components/payloadcms/ui/utilities/schedulePublishHandler'
 
-import { renderDocumentHandler } from '../views/Document/handleServerFunction.js'
-import { renderDocumentSlotsHandler } from '../views/Document/renderDocumentSlots.js'
-import { renderListHandler } from '../views/List/handleServerFunction.js'
-import { initReq } from './initReq.js'
-import { slugifyHandler } from './slugify.js'
+import { renderDocumentHandler } from '../views/Document/handleServerFunction'
+import { renderDocumentSlotsHandler } from '../views/Document/renderDocumentSlots'
+import { renderListHandler } from '../views/List/handleServerFunction'
+import { initReq } from './initReq'
+import { slugifyHandler } from './slugify'
 
 const baseServerFunctions: Record<string, ServerFunction<any, any>> = {
   'copy-data-from-locale': copyDataFromLocaleHandler,

@@ -2,11 +2,11 @@ import type { RenderListServerFnArgs, RenderListServerFnReturnType } from '@/com
 import type { CollectionPreferences, ServerFunction, VisibleEntities } from 'payload'
 
 import { getClientConfig } from '@/components/payloadcms/ui/utilities/getClientConfig'
-import { headers as getHeaders } from 'next/headers.js'
+import { headers as getHeaders } from 'next/headers'
 import { canAccessAdmin, getAccessResults, isEntityHidden, parseCookies } from 'payload'
 import { applyLocaleFiltering } from 'payload/shared'
 
-import { renderListView } from './index.js'
+import { renderListView } from './index'
 
 export const renderListHandler: ServerFunction<
   RenderListServerFnArgs,

@@ -7,15 +7,15 @@ import { getTranslation } from '@payloadcms/translations'
 import React from 'react'
 
 import { cn } from '@/lib/utils'
-import { DocumentIcon } from '../../../icons/Document/index.js'
-import { ThreeDotsIcon } from '../../../icons/ThreeDots/index.js'
+import { DocumentIcon } from '../../../icons/Document/index'
+import { ThreeDotsIcon } from '../../../icons/ThreeDots/index'
 import { useConfig } from '@payloadcms/ui'
-import { useFolder } from '../../../providers/Folders/index.js'
+import { useFolder } from '../../../providers/Folders/index'
 import { useTranslation } from '@payloadcms/ui'
-import { Popup } from '../../Popup/index.js'
-import { Thumbnail } from '../../Thumbnail/index.js'
-import { ColoredFolderIcon } from '../ColoredFolderIcon/index.js'
-import { DraggableWithClick } from '../DraggableWithClick/index.js'
+import { Popup } from '../../Popup/index'
+import { Thumbnail } from '../../Thumbnail/index'
+import { ColoredFolderIcon } from '../ColoredFolderIcon/index'
+import { DraggableWithClick } from '../DraggableWithClick/index'
 
 type Props = {
   readonly className?: string

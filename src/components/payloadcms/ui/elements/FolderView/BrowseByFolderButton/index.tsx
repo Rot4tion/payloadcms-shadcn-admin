@@ -3,8 +3,8 @@ import React from 'react'
 
 import { useConfig } from '@payloadcms/ui'
 import { useTranslation } from '@payloadcms/ui'
-import { Link } from '../../Link/index.js'
-import { ColoredFolderIcon } from '../ColoredFolderIcon/index.js'
+import { Link } from '../../Link/index'
+import { ColoredFolderIcon } from '../ColoredFolderIcon/index'
 import { cn } from '@/lib/utils'
 
 export function BrowseByFolderButton({ active }) {

@@ -4,8 +4,8 @@ import React from 'react'
 
 import { useTranslation } from '@payloadcms/ui'
 import { Button } from '@/components/ui/button'
-import { Dropzone } from '../../Dropzone/index.js'
-import { DrawerHeader } from '../Header/index.js'
+import { Dropzone } from '../../Dropzone/index'
+import { DrawerHeader } from '../Header/index'
 
 type Props = {
   readonly acceptMimeTypes?: string

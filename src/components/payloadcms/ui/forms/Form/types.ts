@@ -10,7 +10,7 @@ import type {
 import type React from 'react'
 import type { Dispatch } from 'react'
 
-import type { AcceptValues } from './mergeServerFormState.js'
+import type { AcceptValues } from './mergeServerFormState'
 
 export type Preferences = {
   [key: string]: unknown

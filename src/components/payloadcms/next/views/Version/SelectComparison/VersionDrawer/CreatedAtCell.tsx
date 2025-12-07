@@ -1,9 +1,9 @@
 'use client'
 import { useConfig, useModal, useRouteTransition, useTranslation } from '@/components/payloadcms/ui/exports/client'
 import { formatDate } from '@/components/payloadcms/ui/exports/shared'
-import { usePathname, useRouter, useSearchParams } from 'next/navigation.js'
+import { usePathname, useRouter, useSearchParams } from 'next/navigation'
 
-import type { CreatedAtCellProps } from '../../../Versions/cells/CreatedAt/index.js'
+import type { CreatedAtCellProps } from '../../../Versions/cells/CreatedAt/index'
 
 export const VersionDrawerCreatedAtCell: React.FC<CreatedAtCellProps> = ({
   rowData: { id, updatedAt } = {},

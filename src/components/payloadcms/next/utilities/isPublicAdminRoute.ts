@@ -1,6 +1,6 @@
 import type { SanitizedConfig } from 'payload'
 
-import { getRouteWithoutAdmin } from './getRouteWithoutAdmin.js'
+import { getRouteWithoutAdmin } from './getRouteWithoutAdmin'
 
 // Routes that require admin authentication
 const publicAdminRoutes: (keyof Pick<

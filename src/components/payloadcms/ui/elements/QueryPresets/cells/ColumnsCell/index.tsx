@@ -3,7 +3,7 @@ import type { ColumnPreference, DefaultCellComponentProps } from 'payload'
 import { toWords, transformColumnsToSearchParams } from 'payload/shared'
 import React from 'react'
 
-import { Pill } from '../../../Pill/index.js'
+import { Pill } from '../../../Pill/index'
 
 export const QueryPresetsColumnsCell: React.FC<DefaultCellComponentProps> = ({ cellData }) => {
   return (

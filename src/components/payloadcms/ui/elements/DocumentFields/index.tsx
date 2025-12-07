@@ -5,8 +5,8 @@ import { fieldIsSidebar } from 'payload/shared'
 import React, { useMemo } from 'react'
 
 import { cn } from '@/lib/utils'
-import { RenderFields } from '../../forms/RenderFields/index.js'
-import { TrashBanner } from '../TrashBanner/index.js'
+import { RenderFields } from '../../forms/RenderFields/index'
+import { TrashBanner } from '../TrashBanner/index'
 
 type Args = {
   readonly AfterFields?: React.ReactNode

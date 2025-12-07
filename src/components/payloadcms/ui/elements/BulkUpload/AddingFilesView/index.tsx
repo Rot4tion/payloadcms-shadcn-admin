@@ -1,6 +1,6 @@
 'use client'
 
-import { useModal } from '../../Modal/index.js'
+import { useModal } from '../../Modal/index'
 import { getTranslation } from '@payloadcms/translations'
 import { reduceFieldsToValues } from 'payload/shared'
 import React from 'react'
@@ -9,12 +9,12 @@ import { useAuth } from '@payloadcms/ui'
 import { useConfig } from '@payloadcms/ui'
 import { DocumentInfoProvider } from '@payloadcms/ui'
 import { useTranslation } from '@payloadcms/ui'
-import { ActionsBar } from '../ActionsBar/index.js'
-import { discardBulkUploadModalSlug, DiscardWithoutSaving } from '../DiscardWithoutSaving/index.js'
-import { EditForm } from '../EditForm/index.js'
-import { FileSidebar } from '../FileSidebar/index.js'
-import { useFormsManager } from '../FormsManager/index.js'
-import { DrawerHeader } from '../Header/index.js'
+import { ActionsBar } from '../ActionsBar/index'
+import { discardBulkUploadModalSlug, DiscardWithoutSaving } from '../DiscardWithoutSaving/index'
+import { EditForm } from '../EditForm/index'
+import { FileSidebar } from '../FileSidebar/index'
+import { useFormsManager } from '../FormsManager/index'
+import { DrawerHeader } from '../Header/index'
 
 export function AddingFilesView() {
   const {

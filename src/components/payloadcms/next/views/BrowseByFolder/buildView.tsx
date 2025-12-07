@@ -11,7 +11,7 @@ import { DefaultBrowseByFolderView, HydrateAuthProvider } from '@/components/pay
 import { RenderServerComponent } from '@/components/payloadcms/ui/elements/RenderServerComponent'
 import { getFolderResultsComponentAndData, upsertPreferences } from '@/components/payloadcms/ui/exports/rsc'
 import { formatAdminURL } from '@/components/payloadcms/ui/exports/shared'
-import { redirect } from 'next/navigation.js'
+import { redirect } from 'next/navigation'
 import React from 'react'
 
 export type BuildFolderViewArgs = {

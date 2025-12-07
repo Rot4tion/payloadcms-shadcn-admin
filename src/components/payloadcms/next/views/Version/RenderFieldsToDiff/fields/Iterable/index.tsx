@@ -7,10 +7,10 @@ import { useConfig, useTranslation } from '@/components/payloadcms/ui/exports/cl
 import { fieldIsArrayType, fieldIsBlockType } from 'payload/shared'
 import React from 'react'
 
-import { useSelectedLocales } from '../../../Default/SelectedLocalesContext.js'
-import { DiffCollapser } from '../../DiffCollapser/index.js'
-import { RenderVersionFieldsToDiff } from '../../RenderVersionFieldsToDiff.js'
-import { getFieldsForRowComparison } from '../../utilities/getFieldsForRowComparison.js'
+import { useSelectedLocales } from '../../../Default/SelectedLocalesContext'
+import { DiffCollapser } from '../../DiffCollapser/index'
+import { RenderVersionFieldsToDiff } from '../../RenderVersionFieldsToDiff'
+import { getFieldsForRowComparison } from '../../utilities/getFieldsForRowComparison'
 
 export const Iterable: React.FC<FieldDiffClientProps> = ({
   baseVersionField,

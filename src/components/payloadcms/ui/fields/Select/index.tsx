@@ -8,13 +8,13 @@ import type {
 
 import React, { useCallback, useMemo } from 'react'
 
-import type { ReactSelectAdapterProps } from '../../elements/ReactSelect/types.js'
-import type { SelectInputProps } from './Input.js'
+import type { ReactSelectAdapterProps } from '../../elements/ReactSelect/types'
+import type { SelectInputProps } from './Input'
 
-import { useField } from '../../forms/useField/index.js'
-import { withCondition } from '../../forms/withCondition/index.js'
-import { mergeFieldStyles } from '../mergeFieldStyles.js'
-import { SelectInput } from './Input.js'
+import { useField } from '../../forms/useField/index'
+import { withCondition } from '../../forms/withCondition/index'
+import { mergeFieldStyles } from '../mergeFieldStyles'
+import { SelectInput } from './Input'
 
 export const formatOptions = (options: Option[]): OptionObject[] =>
   options.map((option) => {

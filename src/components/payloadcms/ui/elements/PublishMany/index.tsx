@@ -1,14 +1,14 @@
 'use client'
 import type { ClientCollectionConfig, Where } from 'payload'
 
-import { useModal } from '../Modal/index.js'
+import { useModal } from '../Modal/index'
 import React from 'react'
 
 import { useAuth } from '@payloadcms/ui'
 import { useSelection } from '@payloadcms/ui'
 import { useTranslation } from '@payloadcms/ui'
-import { ListSelectionButton } from '../ListSelection/index.js'
-import { PublishManyDrawerContent } from './DrawerContent.js'
+import { ListSelectionButton } from '../ListSelection/index'
+import { PublishManyDrawerContent } from './DrawerContent'
 import { SelectAllStatus } from '@payloadcms/ui/providers/Selection'
 
 export type PublishManyProps = {

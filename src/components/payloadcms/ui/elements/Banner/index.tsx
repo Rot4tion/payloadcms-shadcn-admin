@@ -4,7 +4,7 @@ import type { MouseEvent } from 'react'
 import React from 'react'
 import { cn } from '@/lib/utils'
 import { cva, type VariantProps } from 'class-variance-authority'
-import { Link } from '../Link/index.js'
+import { Link } from '../Link/index'
 
 const bannerVariants = cva(
   'flex items-center gap-3 rounded-md border px-4 py-3 text-sm transition-colors',

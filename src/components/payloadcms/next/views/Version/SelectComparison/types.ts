@@ -1,6 +1,6 @@
 import type { PaginatedDocs, SanitizedCollectionConfig } from 'payload'
 
-import type { CompareOption } from '../Default/types.js'
+import type { CompareOption } from '../Default/types'
 
 export type Props = {
   collectionSlug?: string

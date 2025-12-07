@@ -16,9 +16,9 @@ import { renderTable } from '@/components/payloadcms/ui/exports/rsc'
 import { formatDate } from '@/components/payloadcms/ui/exports/shared'
 import { flattenAllFields } from 'payload'
 
-import { createSerializableValue } from './createSerializableValue.js'
-import { extractRelationshipDisplayValue } from './extractRelationshipDisplayValue.js'
-import { extractValueOrRelationshipID } from './extractValueOrRelationshipID.js'
+import { createSerializableValue } from './createSerializableValue'
+import { extractRelationshipDisplayValue } from './extractRelationshipDisplayValue'
+import { extractValueOrRelationshipID } from './extractValueOrRelationshipID'
 
 export const handleGroupBy = async ({
   clientCollectionConfig,

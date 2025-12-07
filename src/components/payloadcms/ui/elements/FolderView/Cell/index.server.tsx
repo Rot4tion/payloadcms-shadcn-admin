@@ -2,7 +2,7 @@ import type { DefaultServerCellComponentProps } from 'payload'
 
 import React from 'react'
 
-import { FolderTableCellClient } from './index.client.js'
+import { FolderTableCellClient } from './index.client'
 
 export const FolderTableCell = (props: DefaultServerCellComponentProps) => {
   const titleToRender =

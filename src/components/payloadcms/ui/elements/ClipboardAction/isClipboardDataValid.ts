@@ -2,7 +2,7 @@ import type { ClientBlock, ClientField } from 'payload'
 
 import { fieldAffectsData, fieldHasSubFields } from 'payload/shared'
 
-import type { ClipboardPasteActionValidateArgs } from './types.js'
+import type { ClipboardPasteActionValidateArgs } from './types'
 
 /**
  * Validates whether clipboard data is compatible with the target schema.

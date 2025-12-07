@@ -4,16 +4,16 @@ import type { ChangeEvent } from 'react'
 import { getTranslation } from '@payloadcms/translations'
 import React from 'react'
 
-import type { PasswordInputProps } from './types.js'
+import type { PasswordInputProps } from './types'
 
 import { cn } from '@/lib/utils'
 import { Input } from '@/components/ui/input'
-import { RenderCustomComponent } from '../../elements/RenderCustomComponent/index.js'
-import { FieldDescription } from '../../fields/FieldDescription/index.js'
-import { FieldError } from '../../fields/FieldError/index.js'
-import { FieldLabel } from '../../fields/FieldLabel/index.js'
+import { RenderCustomComponent } from '../../elements/RenderCustomComponent/index'
+import { FieldDescription } from '../../fields/FieldDescription/index'
+import { FieldError } from '../../fields/FieldError/index'
+import { FieldLabel } from '../../fields/FieldLabel/index'
 import { useTranslation } from '@payloadcms/ui'
-import { fieldBaseClass } from '../shared/index.js'
+import { fieldBaseClass } from '../shared/index'
 
 export const PasswordInput: React.FC<PasswordInputProps> = (props) => {
   const {

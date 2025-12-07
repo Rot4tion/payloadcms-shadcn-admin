@@ -3,9 +3,9 @@ import type { ClearIndicatorProps } from 'react-select'
 
 import React from 'react'
 
-import type { Option as OptionType } from '../types.js'
+import type { Option as OptionType } from '../types'
 
-import { XIcon } from '../../../icons/X/index.js'
+import { XIcon } from '../../../icons/X/index'
 
 export const ClearIndicator: React.FC<ClearIndicatorProps<OptionType, true>> = (props) => {
   const {

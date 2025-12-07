@@ -3,9 +3,9 @@ import type {
   ClipboardPasteActionArgs,
   ClipboardPasteActionValidateArgs,
   ClipboardPasteData,
-} from './types.js'
+} from './types'
 
-import { isClipboardDataValid } from './isClipboardDataValid.js'
+import { isClipboardDataValid } from './isClipboardDataValid'
 
 const localStorageClipboardKey = '_payloadClipboard'
 

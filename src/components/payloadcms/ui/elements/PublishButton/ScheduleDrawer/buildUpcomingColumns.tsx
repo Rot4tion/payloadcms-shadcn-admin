@@ -3,11 +3,11 @@ import type { ClientConfig, Column } from 'payload'
 import { getTranslation, type I18nClient, type TFunction } from '@payloadcms/translations'
 import React from 'react'
 
-import type { UpcomingEvent } from './types.js'
+import type { UpcomingEvent } from './types'
 
-import { formatDate } from '../../../utilities/formatDocTitle/formatDateTitle.js'
-import { Button } from '../../Button/index.js'
-import { Pill } from '../../Pill/index.js'
+import { formatDate } from '../../../utilities/formatDocTitle/formatDateTitle'
+import { Button } from '../../Button/index'
+import { Pill } from '../../Pill/index'
 
 type Args = {
   dateFormat: string

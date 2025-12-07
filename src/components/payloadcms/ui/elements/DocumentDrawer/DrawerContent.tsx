@@ -1,18 +1,18 @@
 'use client'
 
-import { useModal } from '../Modal/index.js'
+import { useModal } from '../Modal/index'
 import React, { useCallback, useEffect, useRef, useState } from 'react'
 import { toast } from 'sonner'
 
-import type { DocumentDrawerProps } from './types.js'
+import type { DocumentDrawerProps } from './types'
 
-import { LoadingOverlay } from '../../elements/Loading/index.js'
+import { LoadingOverlay } from '../../elements/Loading/index'
 import { useConfig } from '@payloadcms/ui'
 import { useLocale } from '@payloadcms/ui'
 import { useServerFunctions } from '@payloadcms/ui'
 import { useTranslation } from '@payloadcms/ui'
-import { abortAndIgnore, handleAbortRef } from '../../utilities/abortAndIgnore.js'
-import { DocumentDrawerContextProvider } from './Provider.js'
+import { abortAndIgnore, handleAbortRef } from '../../utilities/abortAndIgnore'
+import { DocumentDrawerContextProvider } from './Provider'
 
 export const DocumentDrawerContent: React.FC<DocumentDrawerProps> = ({
   id: docID,

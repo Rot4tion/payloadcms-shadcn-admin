@@ -4,9 +4,9 @@ import type { ClientCollectionConfig, ClientConfig, ClientGlobalConfig } from 'p
 import { useEffect, useRef } from 'react'
 
 import { useFormFields } from '@payloadcms/ui'
-import { useDocumentTitle } from '../../../providers/DocumentTitle/index.js'
+import { useDocumentTitle } from '../../../providers/DocumentTitle/index'
 import { useTranslation } from '@payloadcms/ui'
-import { formatDocTitle } from '../../../utilities/formatDocTitle/index.js'
+import { formatDocTitle } from '../../../utilities/formatDocTitle/index'
 
 export const SetDocumentTitle: React.FC<{
   collectionConfig?: ClientCollectionConfig

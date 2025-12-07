@@ -1,6 +1,6 @@
 import type { EditViewComponent, SanitizedCollectionConfig, SanitizedGlobalConfig } from 'payload'
 
-import { isPathMatchingRoute } from '../Root/isPathMatchingRoute.js'
+import { isPathMatchingRoute } from '../Root/isPathMatchingRoute'
 
 export const getCustomViewByRoute = ({
   baseRoute,

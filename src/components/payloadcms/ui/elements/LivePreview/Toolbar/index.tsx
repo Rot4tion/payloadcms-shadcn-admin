@@ -5,7 +5,7 @@ import { useDraggable } from '@dnd-kit/core'
 import React from 'react'
 
 import { useLivePreviewContext } from '@payloadcms/ui'
-import { ToolbarControls } from './Controls/index.js'
+import { ToolbarControls } from './Controls/index'
 import { cn } from '@/lib/utils'
 import { GripVertical } from 'lucide-react'
 

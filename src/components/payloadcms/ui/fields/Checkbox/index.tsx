@@ -8,21 +8,21 @@ import type {
 import { rtlLanguages } from '@payloadcms/translations'
 import React, { useCallback, useMemo } from 'react'
 
-import type { CheckboxInputProps } from './Input.js'
+import type { CheckboxInputProps } from './Input'
 
 import { cn } from '@/lib/utils'
-import { RenderCustomComponent } from '../../elements/RenderCustomComponent/index.js'
-import { FieldDescription } from '../../fields/FieldDescription/index.js'
-import { FieldError } from '../../fields/FieldError/index.js'
+import { RenderCustomComponent } from '../../elements/RenderCustomComponent/index'
+import { FieldDescription } from '../../fields/FieldDescription/index'
+import { FieldError } from '../../fields/FieldError/index'
 import { useForm } from '@payloadcms/ui'
-import { useField } from '../../forms/useField/index.js'
-import { withCondition } from '../../forms/withCondition/index.js'
+import { useField } from '../../forms/useField/index'
+import { withCondition } from '../../forms/withCondition/index'
 import { useEditDepth } from '@payloadcms/ui'
 import { useTranslation } from '@payloadcms/ui'
-import { generateFieldID } from '../../utilities/generateFieldID.js'
-import { mergeFieldStyles } from '../mergeFieldStyles.js'
-import { fieldBaseClass } from '../shared/index.js'
-import { CheckboxInput } from './Input.js'
+import { generateFieldID } from '../../utilities/generateFieldID'
+import { mergeFieldStyles } from '../mergeFieldStyles'
+import { fieldBaseClass } from '../shared/index'
+import { CheckboxInput } from './Input'
 
 export { CheckboxFieldClientProps, CheckboxInput, type CheckboxInputProps }
 

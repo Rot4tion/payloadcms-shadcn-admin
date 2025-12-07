@@ -2,28 +2,28 @@
 
 import type { ClientCollectionConfig, SelectType } from 'payload'
 
-import { useModal } from '../../Modal/index.js'
+import { useModal } from '../../Modal/index'
 import { getTranslation } from '@payloadcms/translations'
 import { unflatten } from 'payload/shared'
 import React, { useCallback, useEffect, useMemo, useState } from 'react'
 
-import type { FormProps } from '../../../forms/Form/index.js'
-import type { OnFieldSelect } from '../../FieldSelect/index.js'
-import type { FieldOption } from '../../FieldSelect/reduceFieldOptions.js'
-import type { State } from '../FormsManager/reducer.js'
-import type { EditManyBulkUploadsProps } from './index.js'
+import type { FormProps } from '../../../forms/Form/index'
+import type { OnFieldSelect } from '../../FieldSelect/index'
+import type { FieldOption } from '../../FieldSelect/reduceFieldOptions'
+import type { State } from '../FormsManager/reducer'
+import type { EditManyBulkUploadsProps } from './index'
 
 import { XIcon } from 'lucide-react'
 import { Button } from '@/components/ui/button'
-import { Form } from '../../../forms/Form/index.js'
-import { FieldPathContext } from '../../../forms/RenderFields/context.js'
-import { RenderField } from '../../../forms/RenderFields/RenderField.js'
+import { Form } from '../../../forms/Form/index'
+import { FieldPathContext } from '../../../forms/RenderFields/context'
+import { RenderField } from '../../../forms/RenderFields/RenderField'
 import { useAuth } from '@payloadcms/ui'
 import { useServerFunctions } from '@payloadcms/ui'
 import { useTranslation } from '@payloadcms/ui'
-import { abortAndIgnore, handleAbortRef } from '../../../utilities/abortAndIgnore.js'
-import { FieldSelect } from '../../FieldSelect/index.js'
-import { useFormsManager } from '../FormsManager/index.js'
+import { abortAndIgnore, handleAbortRef } from '../../../utilities/abortAndIgnore'
+import { FieldSelect } from '../../FieldSelect/index'
+import { useFormsManager } from '../FormsManager/index'
 
 export const EditManyBulkUploadsDrawerContent: React.FC<
   {

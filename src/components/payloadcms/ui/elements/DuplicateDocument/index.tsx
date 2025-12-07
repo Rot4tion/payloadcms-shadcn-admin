@@ -2,26 +2,26 @@
 
 import type { SanitizedCollectionConfig } from 'payload'
 
-import { useModal } from '../Modal/index.js'
+import { useModal } from '../Modal/index'
 import { getTranslation } from '@payloadcms/translations'
-import { useRouter } from 'next/navigation.js'
+import { useRouter } from 'next/navigation'
 import { formatAdminURL } from 'payload/shared'
 import * as qs from 'qs-esm'
 import React, { useCallback, useMemo } from 'react'
 import { toast } from 'sonner'
 
-import type { DocumentDrawerContextType } from '../DocumentDrawer/Provider.js'
+import type { DocumentDrawerContextType } from '../DocumentDrawer/Provider'
 
 import { useForm, useFormModified } from '@payloadcms/ui'
 import { useConfig } from '@payloadcms/ui'
 import { useLocale } from '@payloadcms/ui'
 import { useRouteTransition } from '@payloadcms/ui'
 import { useTranslation } from '@payloadcms/ui'
-import { requests } from '../../utilities/api.js'
-import { traverseForLocalizedFields } from '../../utilities/traverseForLocalizedFields.js'
-import { ConfirmationModal } from '../ConfirmationModal/index.js'
-import { PopupList } from '../Popup/index.js'
-import { SelectLocalesDrawer } from './SelectLocalesDrawer/index.js'
+import { requests } from '../../utilities/api'
+import { traverseForLocalizedFields } from '../../utilities/traverseForLocalizedFields'
+import { ConfirmationModal } from '../ConfirmationModal/index'
+import { PopupList } from '../Popup/index'
+import { SelectLocalesDrawer } from './SelectLocalesDrawer/index'
 
 export type Props = {
   readonly id: number | string

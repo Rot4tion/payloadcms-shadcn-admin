@@ -7,8 +7,8 @@ import { tabHasName } from 'payload/shared'
 import React, { useState } from 'react'
 
 import { cn } from '@/lib/utils'
-import { ErrorPill } from '../../../elements/ErrorPill/index.js'
-import { WatchChildErrors } from '../../../forms/WatchChildErrors/index.js'
+import { ErrorPill } from '../../../elements/ErrorPill/index'
+import { WatchChildErrors } from '../../../forms/WatchChildErrors/index'
 import { useTranslation } from '@payloadcms/ui'
 
 type TabProps = {

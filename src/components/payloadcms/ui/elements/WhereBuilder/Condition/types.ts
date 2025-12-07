@@ -1,6 +1,6 @@
 import type { Operator, Where } from 'payload'
 
-import type { Action, ReducedField } from '../types.js'
+import type { Action, ReducedField } from '../types'
 
 export type Props = {
   andIndex: number

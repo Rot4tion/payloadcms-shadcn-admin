@@ -10,7 +10,7 @@ import type {
 } from 'payload'
 
 import { initI18n } from '@payloadcms/translations'
-import { headers as getHeaders } from 'next/headers.js'
+import { headers as getHeaders } from 'next/headers'
 import {
   createLocalReq,
   executeAuthStrategies,
@@ -20,8 +20,8 @@ import {
   parseCookies,
 } from 'payload'
 
-import { getRequestLocale } from './getRequestLocale.js'
-import { selectiveCache } from './selectiveCache.js'
+import { getRequestLocale } from './getRequestLocale'
+import { selectiveCache } from './selectiveCache'
 
 type Result = {
   cookies: Map<string, string>

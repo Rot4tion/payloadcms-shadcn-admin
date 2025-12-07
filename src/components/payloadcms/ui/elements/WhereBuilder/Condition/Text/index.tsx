@@ -1,10 +1,10 @@
 'use client'
 import React from 'react'
 
-import type { TextFilterProps as Props } from './types.js'
+import type { TextFilterProps as Props } from './types'
 
-import { useTranslation } from '../../../../providers/Translation/index.js'
-import { ReactSelect } from '../../../ReactSelect/index.js'
+import { useTranslation } from '../../../../providers/Translation/index'
+import { ReactSelect } from '../../../ReactSelect/index'
 
 export const Text: React.FC<Props> = (props) => {
   const {

@@ -3,12 +3,12 @@ import type { FolderSortKeys } from 'payload'
 
 import React from 'react'
 
-import { ChevronIcon } from '../../../icons/Chevron/index.js'
-import { SortDownIcon, SortUpIcon } from '../../../icons/Sort/index.js'
-import { useFolder } from '../../../providers/Folders/index.js'
+import { ChevronIcon } from '../../../icons/Chevron/index'
+import { SortDownIcon, SortUpIcon } from '../../../icons/Sort/index'
+import { useFolder } from '../../../providers/Folders/index'
 import { useTranslation } from '@payloadcms/ui'
-import { Pill } from '../../Pill/index.js'
-import { Popup, PopupList } from '../../Popup/index.js'
+import { Pill } from '../../Pill/index'
+import { Popup, PopupList } from '../../Popup/index'
 
 const sortOnOptions: {
   label: (t: TFunction) => React.ReactNode

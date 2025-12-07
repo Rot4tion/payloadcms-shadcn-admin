@@ -10,26 +10,26 @@ import type {
   UploadEdits,
 } from 'payload'
 
-import { useModal } from '../../Modal/index.js'
+import { useModal } from '../../Modal/index'
 import * as qs from 'qs-esm'
 import React from 'react'
 import { toast } from 'sonner'
 
-import type { State } from './reducer.js'
+import type { State } from './reducer'
 
-import { fieldReducer } from '../../../forms/Form/fieldReducer.js'
-import { useEffectEvent } from '../../../hooks/useEffectEvent.js'
+import { fieldReducer } from '../../../forms/Form/fieldReducer'
+import { useEffectEvent } from '../../../hooks/useEffectEvent'
 import { useConfig } from '@payloadcms/ui'
 import { useLocale } from '@payloadcms/ui'
 import { useServerFunctions } from '@payloadcms/ui'
 import { useTranslation } from '@payloadcms/ui'
-import { useUploadHandlers } from '../../../providers/UploadHandlers/index.js'
-import { hasSavePermission as getHasSavePermission } from '../../../utilities/hasSavePermission.js'
-import { LoadingOverlay } from '../../Loading/index.js'
-import { useLoadingOverlay } from '../../LoadingOverlay/index.js'
-import { useBulkUpload } from '../index.js'
-import { createFormData } from './createFormData.js'
-import { formsManagementReducer } from './reducer.js'
+import { useUploadHandlers } from '../../../providers/UploadHandlers/index'
+import { hasSavePermission as getHasSavePermission } from '../../../utilities/hasSavePermission'
+import { LoadingOverlay } from '../../Loading/index'
+import { useLoadingOverlay } from '../../LoadingOverlay/index'
+import { useBulkUpload } from '../index'
+import { createFormData } from './createFormData'
+import { formsManagementReducer } from './reducer'
 
 type FormsManagerContext = {
   readonly activeIndex: State['activeIndex']

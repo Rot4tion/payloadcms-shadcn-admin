@@ -5,8 +5,8 @@ import React, { useCallback, useId } from 'react'
 import { Check, Minus } from 'lucide-react'
 
 import { cn } from '@/lib/utils'
-import { RenderCustomComponent } from '../../elements/RenderCustomComponent/index.js'
-import { FieldLabel } from '../../fields/FieldLabel/index.js'
+import { RenderCustomComponent } from '../../elements/RenderCustomComponent/index'
+import { FieldLabel } from '../../fields/FieldLabel/index'
 
 export type CheckboxInputProps = {
   readonly AfterInput?: React.ReactNode

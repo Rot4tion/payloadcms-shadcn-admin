@@ -3,16 +3,16 @@
 import type { I18nClient } from '@payloadcms/translations'
 import type { ClientConfig } from 'payload'
 
-import { useModal } from '../../Modal/index.js'
+import { useModal } from '../../Modal/index'
 import { getTranslation } from '@payloadcms/translations'
 import { setsAreEqual } from 'payload/shared'
 import React, { useCallback, useMemo, useState } from 'react'
 
-import { CheckboxInput } from '../../../fields/Checkbox/index.js'
+import { CheckboxInput } from '../../../fields/Checkbox/index'
 import { useTranslation } from '@payloadcms/ui'
-import { DrawerHeader } from '../../BulkUpload/Header/index.js'
-import { Button } from '../../Button/index.js'
-import { Drawer } from '../../Drawer/index.js'
+import { DrawerHeader } from '../../BulkUpload/Header/index'
+import { Button } from '../../Button/index'
+import { Drawer } from '../../Drawer/index'
 import { cn } from '@/lib/utils'
 
 export type LocaleOption = {

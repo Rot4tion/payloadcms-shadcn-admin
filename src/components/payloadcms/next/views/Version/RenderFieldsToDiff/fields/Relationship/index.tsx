@@ -9,7 +9,7 @@ import { getTranslation, type I18nClient } from '@payloadcms/translations'
 import { FieldDiffContainer, getHTMLDiffComponents } from '@/components/payloadcms/ui/exports/rsc'
 import React from 'react'
 
-import { generateLabelFromValue } from './generateLabelFromValue.js'
+import { generateLabelFromValue } from './generateLabelFromValue'
 
 export type RelationshipValue =
   | { relationTo: string; value: number | string | TypeWithID }

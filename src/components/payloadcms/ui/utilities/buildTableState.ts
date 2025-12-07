@@ -14,10 +14,10 @@ import type {
 import { APIError, canAccessAdmin, formatErrors, getAccessResults } from 'payload'
 import { applyLocaleFiltering, isNumber } from 'payload/shared'
 
-import { getClientConfig } from './getClientConfig.js'
-import { getColumns } from './getColumns.js'
-import { renderFilters, renderTable } from './renderTable.js'
-import { upsertPreferences } from './upsertPreferences.js'
+import { getClientConfig } from './getClientConfig'
+import { getColumns } from './getColumns'
+import { renderFilters, renderTable } from './renderTable'
+import { upsertPreferences } from './upsertPreferences'
 
 type BuildTableStateSuccessResult = {
   clientConfig?: ClientConfig

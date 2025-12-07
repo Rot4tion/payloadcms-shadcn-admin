@@ -13,10 +13,10 @@ import type {
   SelectType,
 } from 'payload'
 
-import type { RenderFieldMethod } from './types.js'
+import type { RenderFieldMethod } from './types'
 
-import { calculateDefaultValues } from './calculateDefaultValues/index.js'
-import { iterateFields } from './iterateFields.js'
+import { calculateDefaultValues } from './calculateDefaultValues/index'
+import { iterateFields } from './iterateFields'
 
 type Args = {
   /**

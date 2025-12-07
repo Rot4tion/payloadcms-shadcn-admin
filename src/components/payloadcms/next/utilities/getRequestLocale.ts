@@ -3,7 +3,7 @@ import type { Locale, PayloadRequest } from 'payload'
 import { upsertPreferences } from '@/components/payloadcms/ui/exports/rsc'
 import { findLocaleFromCode } from '@/components/payloadcms/ui/exports/shared'
 
-import { getPreferences } from './getPreferences.js'
+import { getPreferences } from './getPreferences'
 
 type GetRequestLocalesArgs = {
   req: PayloadRequest

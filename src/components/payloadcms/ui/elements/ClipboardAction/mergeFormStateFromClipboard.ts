@@ -1,6 +1,6 @@
 import type { FieldState, FormState } from 'payload'
 
-import type { ClipboardPasteData } from './types.js'
+import type { ClipboardPasteData } from './types'
 
 export function reduceFormStateByPath({
   formState,

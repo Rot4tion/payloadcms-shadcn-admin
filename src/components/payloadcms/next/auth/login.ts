@@ -4,7 +4,7 @@ import type { CollectionSlug } from 'payload'
 
 import { getPayload } from 'payload'
 
-import { setPayloadAuthCookie } from '../utilities/setPayloadAuthCookie.js'
+import { setPayloadAuthCookie } from '../utilities/setPayloadAuthCookie'
 
 type LoginWithEmail = {
   collection: CollectionSlug

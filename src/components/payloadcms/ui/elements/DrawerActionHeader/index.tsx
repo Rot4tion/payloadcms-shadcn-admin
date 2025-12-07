@@ -3,7 +3,7 @@
 import React from 'react'
 
 import { cn } from '@/lib/utils'
-import { FormSubmit } from '../../forms/Submit/index.js'
+import { FormSubmit } from '../../forms/Submit/index'
 import { useTranslation } from '@payloadcms/ui'
 import { Button } from '@/components/ui/button'
 

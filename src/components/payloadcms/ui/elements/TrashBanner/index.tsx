@@ -3,7 +3,7 @@
 import { getTranslation } from '@payloadcms/translations'
 import React from 'react'
 
-import { TrashIcon } from '../../icons/Trash/index.js'
+import { TrashIcon } from '../../icons/Trash/index'
 import { useConfig } from '@payloadcms/ui'
 import { useDocumentInfo } from '@payloadcms/ui'
 import { useTranslation } from '@payloadcms/ui'

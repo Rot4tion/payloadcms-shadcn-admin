@@ -2,7 +2,7 @@
 import React from 'react'
 
 import { cn } from '@/lib/utils'
-import { ChevronIcon } from '../../../icons/Chevron/index.js'
+import { ChevronIcon } from '../../../icons/Chevron/index'
 
 export type ClickableArrowProps = {
   direction?: 'left' | 'right'

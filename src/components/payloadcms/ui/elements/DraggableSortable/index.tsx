@@ -13,7 +13,7 @@ import {
 import { SortableContext, sortableKeyboardCoordinates } from '@dnd-kit/sortable'
 import React, { useCallback, useId } from 'react'
 
-import type { Props } from './types.js'
+import type { Props } from './types'
 
 export { Props }
 

@@ -4,14 +4,14 @@ import type { CodeFieldClientComponent } from 'payload'
 import React, { useCallback, useEffect, useMemo, useState } from 'react'
 
 import { cn } from '@/lib/utils'
-import { CodeEditor } from '../../elements/CodeEditor/index.js'
-import { RenderCustomComponent } from '../../elements/RenderCustomComponent/index.js'
-import { FieldDescription } from '../../fields/FieldDescription/index.js'
-import { FieldError } from '../../fields/FieldError/index.js'
-import { FieldLabel } from '../../fields/FieldLabel/index.js'
-import { useField } from '../../forms/useField/index.js'
-import { withCondition } from '../../forms/withCondition/index.js'
-import { mergeFieldStyles } from '../mergeFieldStyles.js'
+import { CodeEditor } from '../../elements/CodeEditor/index'
+import { RenderCustomComponent } from '../../elements/RenderCustomComponent/index'
+import { FieldDescription } from '../../fields/FieldDescription/index'
+import { FieldError } from '../../fields/FieldError/index'
+import { FieldLabel } from '../../fields/FieldLabel/index'
+import { useField } from '../../forms/useField/index'
+import { withCondition } from '../../forms/withCondition/index'
+import { mergeFieldStyles } from '../mergeFieldStyles'
 
 const prismToMonacoLanguageMap: Record<string, string> = {
   js: 'javascript',

@@ -1,6 +1,6 @@
 import type { TypeWithID } from 'payload'
 
-import type { Documents } from './index.js'
+import type { Documents } from './index'
 
 type RequestDocuments = {
   docs: { relationTo: string; value: number | string }[]

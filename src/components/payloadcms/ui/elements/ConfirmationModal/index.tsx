@@ -5,8 +5,8 @@ import { cn } from '@/lib/utils'
 import { useTranslation, useModal } from '@payloadcms/ui'
 import { useDrawerDepth } from '@payloadcms/ui/elements/Drawer'
 import { drawerZBase } from '@payloadcms/ui/elements/Drawer'
-import { Button } from '../Button/index.js'
-import { Modal } from '../Modal/index.js'
+import { Button } from '../Button/index'
+import { Modal } from '../Modal/index'
 
 export type OnCancel = () => void
 

@@ -2,11 +2,11 @@ import type { RenderDocumentServerFunction } from '@/components/payloadcms/ui/ex
 import type { DocumentPreferences, VisibleEntities } from 'payload'
 
 import { getClientConfig } from '@/components/payloadcms/ui/utilities/getClientConfig'
-import { headers as getHeaders } from 'next/headers.js'
+import { headers as getHeaders } from 'next/headers'
 import { canAccessAdmin, getAccessResults, isEntityHidden, parseCookies } from 'payload'
 import { applyLocaleFiltering } from 'payload/shared'
 
-import { renderDocument } from './index.js'
+import { renderDocument } from './index'
 
 export const renderDocumentHandler: RenderDocumentServerFunction = async (args) => {
   const {

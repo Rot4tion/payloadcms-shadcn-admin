@@ -1,6 +1,6 @@
 'use client'
 
-import { useModal } from '../elements/Modal/index.js'
+import { useModal } from '../elements/Modal/index'
 import { setsAreEqual } from 'payload/shared'
 import { useCallback, useEffect } from 'react'
 

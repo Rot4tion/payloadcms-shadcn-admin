@@ -7,9 +7,9 @@ import { cn } from '@/lib/utils'
 import { email, getFieldPermissions, username } from 'payload/shared'
 import React from 'react'
 
-import { EmailField } from '../../fields/Email/index.js'
-import { TextField } from '../../fields/Text/index.js'
-import { FieldPathContext } from '../../forms/RenderFields/context.js'
+import { EmailField } from '../../fields/Email/index'
+import { TextField } from '../../fields/Text/index'
+import { FieldPathContext } from '../../forms/RenderFields/context'
 type RenderEmailAndUsernameFieldsProps = {
   className?: string
   loginWithUsername?: false | LoginWithUsernameOptions

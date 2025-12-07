@@ -4,21 +4,21 @@ import type { ClientBlock, ClientField, Labels, Row, SanitizedFieldPermissions }
 import { getTranslation } from '@payloadcms/translations'
 import React from 'react'
 
-import type { UseDraggableSortableReturn } from '../../elements/DraggableSortable/useDraggableSortable/types.js'
-import type { RenderFieldsProps } from '../../forms/RenderFields/types.js'
+import type { UseDraggableSortableReturn } from '../../elements/DraggableSortable/useDraggableSortable/types'
+import type { RenderFieldsProps } from '../../forms/RenderFields/types'
 
-import { Collapsible } from '../../elements/Collapsible/index.js'
-import { ErrorPill } from '../../elements/ErrorPill/index.js'
-import { Pill } from '../../elements/Pill/index.js'
-import { ShimmerEffect } from '../../elements/ShimmerEffect/index.js'
+import { Collapsible } from '../../elements/Collapsible/index'
+import { ErrorPill } from '../../elements/ErrorPill/index'
+import { Pill } from '../../elements/Pill/index'
+import { ShimmerEffect } from '../../elements/ShimmerEffect/index'
 import { useFormSubmitted } from '@payloadcms/ui'
-import { RenderFields } from '../../forms/RenderFields/index.js'
-import { RowLabel } from '../../forms/RowLabel/index.js'
-import { useThrottledValue } from '../../hooks/useThrottledValue.js'
+import { RenderFields } from '../../forms/RenderFields/index'
+import { RowLabel } from '../../forms/RowLabel/index'
+import { useThrottledValue } from '../../hooks/useThrottledValue'
 import { useTranslation } from '@payloadcms/ui'
 import { cn } from '@/lib/utils'
-import { RowActions } from './RowActions.js'
-import { SectionTitle } from './SectionTitle/index.js'
+import { RowActions } from './RowActions'
+import { SectionTitle } from './SectionTitle/index'
 
 type BlocksFieldProps = {
   addRow: (rowIndex: number, blockType: string) => Promise<void> | void

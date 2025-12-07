@@ -1,9 +1,9 @@
 'use client'
 import { useEffect } from 'react'
 
-import type { StepNavItem } from './types.js'
+import type { StepNavItem } from './types'
 
-import { useStepNav } from './context.js'
+import { useStepNav } from './context'
 
 export const SetStepNav: React.FC<{
   nav: StepNavItem[]

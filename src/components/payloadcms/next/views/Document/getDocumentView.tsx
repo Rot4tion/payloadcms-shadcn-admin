@@ -8,15 +8,15 @@ import type {
 } from 'payload'
 import type React from 'react'
 
-import type { ViewToRender } from './index.js'
+import type { ViewToRender } from './index'
 
-import { APIView as DefaultAPIView } from '../API/index.js'
-import { EditView as DefaultEditView } from '../Edit/index.js'
-import { UnauthorizedViewWithGutter } from '../Unauthorized/index.js'
-import { VersionView as DefaultVersionView } from '../Version/index.js'
-import { VersionsView as DefaultVersionsView } from '../Versions/index.js'
-import { getCustomDocumentViewByKey } from './getCustomDocumentViewByKey.js'
-import { getCustomViewByRoute } from './getCustomViewByRoute.js'
+import { APIView as DefaultAPIView } from '../API/index'
+import { EditView as DefaultEditView } from '../Edit/index'
+import { UnauthorizedViewWithGutter } from '../Unauthorized/index'
+import { VersionView as DefaultVersionView } from '../Version/index'
+import { VersionsView as DefaultVersionsView } from '../Versions/index'
+import { getCustomDocumentViewByKey } from './getCustomDocumentViewByKey'
+import { getCustomViewByRoute } from './getCustomViewByRoute'
 
 export type ViewFromConfig<TProps extends object> = {
   Component?: React.FC<TProps>

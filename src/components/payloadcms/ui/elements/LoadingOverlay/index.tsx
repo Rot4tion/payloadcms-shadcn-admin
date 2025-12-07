@@ -1,12 +1,12 @@
 'use client'
 import React, { createContext } from 'react'
 
-import type { LoadingOverlayContext, ToggleLoadingOverlay } from './types.js'
+import type { LoadingOverlayContext, ToggleLoadingOverlay } from './types'
 
-import { LoadingOverlay } from '../../elements/Loading/index.js'
-import { useDelayedRender } from '../../hooks/useDelayedRender.js'
+import { LoadingOverlay } from '../../elements/Loading/index'
+import { useDelayedRender } from '../../hooks/useDelayedRender'
 import { useTranslation } from '@payloadcms/ui'
-import { defaultLoadingOverlayState, reducer } from './reducer.js'
+import { defaultLoadingOverlayState, reducer } from './reducer'
 
 const animatedDuration = 250
 

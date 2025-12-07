@@ -1,21 +1,21 @@
 import type { Where } from 'payload'
 
 import { getTranslation } from '@payloadcms/translations'
-import { useRouter, useSearchParams } from 'next/navigation.js'
+import { useRouter, useSearchParams } from 'next/navigation'
 import { combineWhereConstraints, mergeListSearchAndWhere } from 'payload/shared'
 import * as qs from 'qs-esm'
 import React, { useCallback } from 'react'
 import { toast } from 'sonner'
 
-import type { PublishManyProps } from './index.js'
+import type { PublishManyProps } from './index'
 
 import { useConfig } from '@payloadcms/ui'
 import { useLocale } from '@payloadcms/ui'
-import { useRouteCache } from '../../providers/RouteCache/index.js'
+import { useRouteCache } from '../../providers/RouteCache/index'
 import { useTranslation } from '@payloadcms/ui'
-import { requests } from '../../utilities/api.js'
-import { parseSearchParams } from '../../utilities/parseSearchParams.js'
-import { ConfirmationModal } from '../ConfirmationModal/index.js'
+import { requests } from '../../utilities/api'
+import { parseSearchParams } from '../../utilities/parseSearchParams'
+import { ConfirmationModal } from '../ConfirmationModal/index'
 
 type PublishManyDrawerContentProps = {
   drawerSlug: string

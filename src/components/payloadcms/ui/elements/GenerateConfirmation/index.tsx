@@ -1,13 +1,13 @@
 'use client'
-import { useModal } from '../Modal/index.js'
+import { useModal } from '../Modal/index'
 import React, { useCallback } from 'react'
 import { toast } from 'sonner'
 
 import { useDocumentInfo } from '@payloadcms/ui'
 import { useTranslation } from '@payloadcms/ui'
-import { Button } from '../Button/index.js'
-import { ConfirmationModal } from '../ConfirmationModal/index.js'
-import { Translation } from '../Translation/index.js'
+import { Button } from '../Button/index'
+import { ConfirmationModal } from '../ConfirmationModal/index'
+import { Translation } from '../Translation/index'
 
 export type GenerateConfirmationProps = {
   highlightField: (Boolean) => void

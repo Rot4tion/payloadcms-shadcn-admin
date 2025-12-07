@@ -7,7 +7,7 @@ import type {
   RemoveCondition,
   UpdateCondition,
   Value,
-} from '../types.js'
+} from '../types'
 
 export type Props = {
   readonly addCondition: AddCondition
@@ -25,15 +25,15 @@ export type Props = {
 
 import type { Operator, Option as PayloadOption, ResolvedFilterOptions } from 'payload'
 
-import type { Option } from '../../ReactSelect/index.js'
+import type { Option } from '../../ReactSelect/index'
 
-import { useDebounce } from '../../../hooks/useDebounce.js'
-import { useEffectEvent } from '../../../hooks/useEffectEvent.js'
+import { useDebounce } from '../../../hooks/useDebounce'
+import { useEffectEvent } from '../../../hooks/useEffectEvent'
 import { useTranslation } from '@payloadcms/ui'
-import { Button } from '../../Button/index.js'
-import { ReactSelect } from '../../ReactSelect/index.js'
-import { DefaultFilter } from './DefaultFilter/index.js'
-import { getOperatorValueTypes } from './validOperators.js'
+import { Button } from '../../Button/index'
+import { ReactSelect } from '../../ReactSelect/index'
+import { DefaultFilter } from './DefaultFilter/index'
+import { getOperatorValueTypes } from './validOperators'
 
 const baseClass = 'condition'
 

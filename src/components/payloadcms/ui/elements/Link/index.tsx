@@ -1,10 +1,10 @@
 'use client'
-import NextLinkImport from 'next/link.js'
-import { useRouter } from 'next/navigation.js'
+import NextLinkImport from 'next/link'
+import { useRouter } from 'next/navigation'
 import React from 'react'
 
 import { useRouteTransition } from '@payloadcms/ui'
-import { formatUrl } from './formatUrl.js'
+import { formatUrl } from './formatUrl'
 
 const NextLink = 'default' in NextLinkImport ? NextLinkImport.default : NextLinkImport
 

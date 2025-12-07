@@ -1,6 +1,6 @@
 import type { NumberFieldClient } from 'payload'
 
-import type { DefaultFilterProps } from '../types.js'
+import type { DefaultFilterProps } from '../types'
 
 export type NumberFilterProps = {
   readonly field: NumberFieldClient

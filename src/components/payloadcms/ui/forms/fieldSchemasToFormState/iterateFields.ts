@@ -16,10 +16,10 @@ import type {
 import { stripUnselectedFields } from 'payload'
 import { getFieldPaths } from 'payload/shared'
 
-import type { AddFieldStatePromiseArgs } from './addFieldStatePromise.js'
-import type { RenderFieldMethod } from './types.js'
+import type { AddFieldStatePromiseArgs } from './addFieldStatePromise'
+import type { RenderFieldMethod } from './types'
 
-import { addFieldStatePromise } from './addFieldStatePromise.js'
+import { addFieldStatePromise } from './addFieldStatePromise'
 
 type Args = {
   addErrorPathToParent: (fieldPath: string) => void

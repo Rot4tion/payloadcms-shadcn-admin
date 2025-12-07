@@ -3,7 +3,7 @@ import type { UseDraggableArguments } from '@dnd-kit/core'
 
 import { useSortable } from '@dnd-kit/sortable'
 
-import type { UseDraggableSortableReturn } from './types.js'
+import type { UseDraggableSortableReturn } from './types'
 
 export const useDraggableSortable = (props: UseDraggableArguments): UseDraggableSortableReturn => {
   const { id, disabled } = props

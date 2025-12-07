@@ -2,7 +2,7 @@
 
 import React from 'react'
 
-import { SortDownIcon } from '../../icons/Sort/index.js'
+import { SortDownIcon } from '../../icons/Sort/index'
 import { useListQuery } from '@payloadcms/ui'
 import { useTranslation } from '@payloadcms/ui'
 import { cn } from '@/lib/utils'

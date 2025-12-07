@@ -1,5 +1,5 @@
-import { buildVersionFields, type BuildVersionFieldsArgs } from './buildVersionFields.js'
-import { RenderVersionFieldsToDiff } from './RenderVersionFieldsToDiff.js'
+import { buildVersionFields, type BuildVersionFieldsArgs } from './buildVersionFields'
+import { RenderVersionFieldsToDiff } from './RenderVersionFieldsToDiff'
 
 export const RenderDiff = (args: BuildVersionFieldsArgs): React.ReactNode => {
   const { versionFields } = buildVersionFields(args)

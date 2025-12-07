@@ -1,21 +1,21 @@
 'use client'
 import type { ClientCollectionConfig } from 'payload'
 
-import { useModal } from '../../Modal/index.js'
+import { useModal } from '../../Modal/index'
 import { getTranslation } from '@payloadcms/translations'
-import { useRouter, useSearchParams } from 'next/navigation.js'
+import { useRouter, useSearchParams } from 'next/navigation'
 import * as qs from 'qs-esm'
 import React from 'react'
 import { toast } from 'sonner'
 
 import { useConfig } from '@payloadcms/ui'
 import { useLocale } from '@payloadcms/ui'
-import { useRouteCache } from '../../../providers/RouteCache/index.js'
+import { useRouteCache } from '../../../providers/RouteCache/index'
 import { useTranslation } from '@payloadcms/ui'
-import { requests } from '../../../utilities/api.js'
-import { Button } from '../../Button/index.js'
-import { ConfirmationModal } from '../../ConfirmationModal/index.js'
-import { Translation } from '../../Translation/index.js'
+import { requests } from '../../../utilities/api'
+import { Button } from '../../Button/index'
+import { ConfirmationModal } from '../../ConfirmationModal/index'
+import { Translation } from '../../Translation/index'
 
 const confirmEmptyTrashSlug = 'confirm-empty-trash'
 
