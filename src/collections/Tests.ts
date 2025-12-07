@@ -10,7 +10,34 @@ import type { CollectionConfig } from 'payload'
 export const Tests: CollectionConfig = {
   slug: 'Tests',
   access: {
-    read: () => true,
+    read: ({ req }) => {
+      // If there is a user logged in, allow reading drafts
+      if (req.user) return true
+      // Otherwise, only allow reading published documents
+      return {
+        _status: {
+          equals: 'published',
+        },
+      }
+    },
+  },
+  admin: {
+    useAsTitle: 'text',
+    livePreview: {
+      url: ({ data }) => {
+        return `${process.env.NEXT_PUBLIC_SERVER_URL || 'http://localhost:3000'}/tests/${data.id}`
+      },
+    },
+    preview: (data) => {
+      return `${process.env.NEXT_PUBLIC_SERVER_URL || 'http://localhost:3000'}/tests/${data.id}`
+    },
+  },
+  versions: {
+    drafts: {
+      autosave: {
+        interval: 1000, // Autosave every second
+      },
+    },
   },
   fields: [
     // ===== TEXT FIELDS =====

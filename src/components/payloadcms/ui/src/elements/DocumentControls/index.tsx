@@ -11,8 +11,6 @@ import { getTranslation } from '@payloadcms/translations'
 import { formatAdminURL } from 'payload/shared'
 import React, { Fragment, useEffect } from 'react'
 
-import type { DocumentDrawerContextType } from '../DocumentDrawer/Provider.js'
-
 // Import hooks from @payloadcms/ui to share context
 import {
   useFormInitializing,
@@ -20,8 +18,8 @@ import {
   useConfig,
   useEditDepth,
   useTranslation,
+  useLivePreviewContext,
 } from '@payloadcms/ui'
-import { useLivePreviewContext } from '../../providers/LivePreview/context.js'
 import { formatDate } from '../../utilities/formatDocTitle/formatDateTitle.js'
 import { Autosave } from '../Autosave/index.js'
 import { Button } from '../Button/index.js'
@@ -42,6 +40,7 @@ import { SaveButton } from '../SaveButton/index.js'
 import './index.scss'
 import { SaveDraftButton } from '../SaveDraftButton/index.js'
 import { Status } from '../Status/index.js'
+import { DocumentDrawerContextType } from 'node_modules/@payloadcms/ui/dist/elements/DocumentDrawer/Provider.js'
 
 const baseClass = 'doc-controls'
 

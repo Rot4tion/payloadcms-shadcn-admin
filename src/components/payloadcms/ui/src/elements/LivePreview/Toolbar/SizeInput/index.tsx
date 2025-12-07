@@ -1,7 +1,9 @@
 'use client'
 import React, { useCallback, useEffect } from 'react'
 
-import { useLivePreviewContext } from '../../../../providers/LivePreview/context.js'
+import { useLivePreviewContext } from '@payloadcms/ui'
+import { Input } from '@/components/ui/input'
+import { cn } from '@/lib/utils'
 
 export const PreviewFrameSizeInput: React.FC<{
   axis?: 'x' | 'y'
@@ -28,13 +30,21 @@ export const PreviewFrameSizeInput: React.FC<{
       setInternalState(newValue)
       setBreakpoint('custom')
 
+      const zoomValue = zoom || 1
+
       // be sure to set _both_ axis values to so that the other axis doesn't fallback to 0 on initial change
       // this is because the `responsive` size is '100%' in CSS, and `0` in initial state
       setSize({
         type: 'reset',
         value: {
-          height: axis === 'y' ? newValue : Number(measuredDeviceSize?.height.toFixed(0)) * zoom,
-          width: axis === 'x' ? newValue : Number(measuredDeviceSize?.width.toFixed(0)) * zoom,
+          height:
+            axis === 'y'
+              ? newValue
+              : Number(measuredDeviceSize?.height?.toFixed(0) || 0) * zoomValue,
+          width:
+            axis === 'x'
+              ? newValue
+              : Number(measuredDeviceSize?.width?.toFixed(0) || 0) * zoomValue,
         },
       })
     },
@@ -44,11 +54,13 @@ export const PreviewFrameSizeInput: React.FC<{
   // if the breakpoint is `responsive` then the device's div will have `100%` width and height
   // so we need to take the measurements provided by `actualDeviceSize` and sync internal state
   useEffect(() => {
+    const zoomValue = zoom || 1
+
     if (breakpoint === 'responsive' && measuredDeviceSize) {
       if (axis === 'x') {
-        setInternalState(Number(measuredDeviceSize.width.toFixed(0)) * zoom)
+        setInternalState(Number(measuredDeviceSize.width.toFixed(0)) * zoomValue)
       } else {
-        setInternalState(Number(measuredDeviceSize.height.toFixed(0)) * zoom)
+        setInternalState(Number(measuredDeviceSize.height.toFixed(0)) * zoomValue)
       }
     }
 
@@ -58,8 +70,11 @@ export const PreviewFrameSizeInput: React.FC<{
   }, [breakpoint, axis, measuredDeviceSize, size, zoom])
 
   return (
-    <input
-      className="w-[50px] h-(--base) flex items-center border border-(--theme-elevation-200) bg-(--theme-elevation-100) rounded-sm text-sm"
+    <Input
+      className={cn(
+        'w-[50px] h-(--base) px-1.5 text-(length:--base-body-size) text-center rounded-sm',
+        '[appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none',
+      )}
       min={0}
       name={axis === 'x' ? 'live-preview-width' : 'live-preview-height'}
       onChange={handleChange}

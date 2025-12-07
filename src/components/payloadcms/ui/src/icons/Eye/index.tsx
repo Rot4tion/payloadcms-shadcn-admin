@@ -8,7 +8,7 @@ export const EyeIcon: React.FC<{ active?: boolean; className?: string }> = ({
 }) => (
   <svg
     className={cn(
-      'size-(--base) [shape-rendering:auto] [vector-effect:non-scaling-stroke]',
+      'icon size-(--base) [shape-rendering:auto] [vector-effect:non-scaling-stroke]',
       className,
     )}
     viewBox="0 0 16 12"

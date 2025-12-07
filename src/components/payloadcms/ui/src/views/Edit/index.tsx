@@ -21,16 +21,18 @@ import { LeaveWithoutSaving } from '../../elements/LeaveWithoutSaving/index.js'
 import { LivePreviewWindow } from '../../elements/LivePreview/Window/index.js'
 import { Upload } from '../../elements/Upload/index.js'
 import { Form } from '../../forms/Form/index.js'
-import { useAuth } from '@payloadcms/ui'
-import { useConfig } from '@payloadcms/ui'
+import {
+  useAuth,
+  useConfig,
+  useDocumentInfo,
+  useEditDepth,
+  useLivePreviewContext,
+  OperationProvider,
+  useRouteTransition,
+  useServerFunctions,
+} from '@payloadcms/ui'
 import { useDocumentEvents } from '../../providers/DocumentEvents/index.js'
-import { useDocumentInfo } from '@payloadcms/ui'
-import { useEditDepth } from '@payloadcms/ui'
-import { useLivePreviewContext, usePreviewURL } from '../../providers/LivePreview/context.js'
-import { OperationProvider } from '@payloadcms/ui'
 import { useRouteCache } from '../../providers/RouteCache/index.js'
-import { useRouteTransition } from '@payloadcms/ui'
-import { useServerFunctions } from '@payloadcms/ui'
 
 import { useUploadEdits } from '../../providers/UploadEdits/index.js'
 import { abortAndIgnore, handleAbortRef } from '../../utilities/abortAndIgnore.js'
@@ -144,8 +146,9 @@ export function DefaultEditView({
     setURL: setLivePreviewURL,
     typeofLivePreviewURL,
     url: livePreviewURL,
+    isPreviewEnabled,
+    setPreviewURL,
   } = useLivePreviewContext()
-  const { isPreviewEnabled, setPreviewURL } = usePreviewURL()
 
   const abortOnChangeRef = useRef<AbortController>(null)
   const abortOnSaveRef = useRef<AbortController>(null)
@@ -521,14 +524,7 @@ export function DefaultEditView({
   const isFolderCollection = config.folders && collectionSlug === config.folders?.slug
 
   return (
-    <main
-      className={cn(
-        // collection-edit base styles
-        'w-full',
-        // Live preview mode - 40% width with gradient
-        isLivePreviewing && previewWindowType === 'iframe' && 'w-[40%] relative',
-      )}
-    >
+    <main className="w-full">
       <OperationProvider operation={operation}>
         <Form
           action={action}
@@ -652,14 +648,18 @@ export function DefaultEditView({
             slug={collectionConfig?.slug || globalConfig?.slug}
             user={currentEditor}
           />
-          {/* collection-edit__main-wrapper - Original: w-full, flex */}
+          {/* collection-edit__main-wrapper */}
           <div className="w-full flex">
-            {/* collection-edit__main - Original: w-full, container-type:inline-size */}
+            {/* collection-edit__main */}
             <div
               className={cn(
-                'w-full',
+                'w-full relative',
                 // When popup is open, still full width
                 previewWindowType === 'popup' && 'w-full',
+                // When live previewing, shrink to 40% - but not when popup is open
+                isLivePreviewing &&
+                  previewWindowType !== 'popup' &&
+                  'w-[40%] shrink-0 after:content-[""] after:absolute after:top-0 after:right-0 after:w-[calc(var(--base)*2)] after:h-full after:bg-linear-to-l after:from-black/4 after:to-transparent after:pointer-events-none after:-z-1 dark:after:from-black/40',
               )}
               style={{ containerType: 'inline-size' }}
             >

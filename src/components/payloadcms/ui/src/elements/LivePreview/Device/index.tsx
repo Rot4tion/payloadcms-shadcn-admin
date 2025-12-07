@@ -2,7 +2,7 @@
 import React, { useEffect } from 'react'
 
 import { useResize } from '../../../hooks/useResize.js'
-import { useLivePreviewContext } from '../../../providers/LivePreview/context.js'
+import { useLivePreviewContext } from '@payloadcms/ui'
 
 export const DeviceContainer: React.FC<{
   children: React.ReactNode

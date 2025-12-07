@@ -4,9 +4,10 @@ import type { EditViewProps } from 'payload'
 import { useDraggable } from '@dnd-kit/core'
 import React from 'react'
 
-import { DragHandleIcon } from '../../../icons/DragHandle/index.js'
-import { useLivePreviewContext } from '../../../providers/LivePreview/context.js'
+import { useLivePreviewContext } from '@payloadcms/ui'
 import { ToolbarControls } from './Controls/index.js'
+import { cn } from '@/lib/utils'
+import { GripVertical } from 'lucide-react'
 
 const DraggableToolbar: React.FC<EditViewProps> = (props) => {
   const { toolbarPosition } = useLivePreviewContext()
@@ -17,15 +18,16 @@ const DraggableToolbar: React.FC<EditViewProps> = (props) => {
 
   return (
     <div
-      className="flex bg-background text-foreground h-[calc(var(--base)*1.75)] items-center shrink-0 shadow-lg absolute top-0 left-0 m-0 rounded"
+      className={cn(
+        'flex bg-background text-foreground h-[calc(var(--base)*1.75)] items-center shrink-0',
+        'shadow-lg absolute top-0 left-0 m-0 rounded',
+      )}
       style={{
-        left: `${toolbarPosition.x}px`,
-        top: `${toolbarPosition.y}px`,
+        left: `${toolbarPosition?.x || 0}px`,
+        top: `${toolbarPosition?.y || 0}px`,
         ...(transform
           ? {
-              transform: transform
-                ? `translate3d(${transform?.x || 0}px, ${transform?.y || 0}px, 0)`
-                : undefined,
+              transform: `translate3d(${transform?.x || 0}px, ${transform?.y || 0}px, 0)`,
             }
           : {}),
       }}
@@ -33,11 +35,11 @@ const DraggableToolbar: React.FC<EditViewProps> = (props) => {
       <button
         {...listeners}
         {...attributes}
-        className="bg-transparent border-0 p-0 cursor-grab active:cursor-grabbing [&_.icon--drag-handle_.fill]:fill-(--theme-elevation-300)"
+        className="bg-transparent border-0 p-0 cursor-grab active:cursor-grabbing text-muted-foreground hover:text-foreground"
         ref={setNodeRef}
         type="button"
       >
-        <DragHandleIcon />
+        <GripVertical className="size-(--base)" />
       </button>
       <ToolbarControls {...props} />
     </div>
@@ -46,7 +48,7 @@ const DraggableToolbar: React.FC<EditViewProps> = (props) => {
 
 const StaticToolbar: React.FC<EditViewProps> = (props) => {
   return (
-    <div className="flex bg-background text-foreground h-[calc(var(--base)*1.75)] items-center shrink-0 relative w-full justify-center border-b border-(--theme-elevation-100)">
+    <div className="flex bg-background text-foreground h-[calc(var(--base)*1.75)] items-center shrink-0 relative w-full justify-center border-b border-border">
       <ToolbarControls {...props} />
     </div>
   )

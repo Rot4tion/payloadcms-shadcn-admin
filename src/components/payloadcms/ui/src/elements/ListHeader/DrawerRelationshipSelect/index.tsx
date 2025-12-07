@@ -7,9 +7,6 @@ import { useConfig } from '@payloadcms/ui'
 import { useTranslation } from '@payloadcms/ui'
 import { useListDrawerContext } from '../../ListDrawer/Provider.js'
 import { ReactSelect } from '../../ReactSelect/index.js'
-import { listHeaderClass } from '../index.js'
-
-const drawerBaseClass = 'list-drawer'
 
 export const DrawerRelationshipSelect = () => {
   const { i18n, t } = useTranslation()
@@ -25,10 +22,10 @@ export const DrawerRelationshipSelect = () => {
     const activeCollectionConfig = getEntityConfig({ collectionSlug: selectedOption.value })
 
     return (
-      <div className={`${drawerBaseClass}__select-collection-wrap`}>
+      <div className="list-drawer__select-collection-wrap">
         <FieldLabel label={t('upload:selectCollectionToBrowse')} />
         <ReactSelect
-          className={`${listHeaderClass}__select-collection`}
+          className="list-header__select-collection"
           isClearable={false}
           onChange={setSelectedOption}
           options={enabledCollectionConfigs.map((coll) => ({

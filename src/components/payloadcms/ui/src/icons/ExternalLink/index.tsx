@@ -8,7 +8,7 @@ export const ExternalLinkIcon: React.FC<{
   const { className } = props
   return (
     <svg
-      className={cn('size-(--base) [shape-rendering:auto]', className)}
+      className={cn('icon size-(--base) [shape-rendering:auto]', className)}
       viewBox="0 0 20 20"
       xmlns="http://www.w3.org/2000/svg"
     >

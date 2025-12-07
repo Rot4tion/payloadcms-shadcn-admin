@@ -24,45 +24,46 @@ const icons = {
   x: XIcon,
 }
 
-// Button variants using CVA
+// Button variants using CVA - Shadcn/Tailwind style
 export const payloadButtonVariants = cva(
   // Base styles
   [
     'inline-flex items-center justify-center',
-    'rounded-sm font-normal',
+    'rounded-[var(--style-radius-s)] font-normal',
     'border-0 cursor-pointer no-underline',
-    'transition-all duration-100 ease-out',
-    'focus-visible:outline focus-visible:outline-2 focus-visible:outline-ring focus-visible:outline-offset-2',
+    'text-(length:--base-body-size) leading-[calc(var(--base)*1.2)]',
+    'transition-colors duration-150',
+    'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2',
   ],
   {
     variants: {
       buttonStyle: {
         primary: [
-          'bg-foreground/80 text-background',
-          'hover:bg-foreground/60',
-          'disabled:bg-border disabled:text-foreground/80 disabled:cursor-not-allowed',
+          'bg-primary text-primary-foreground',
+          'hover:bg-primary/90',
+          'disabled:bg-muted disabled:text-muted-foreground disabled:cursor-not-allowed',
         ],
         secondary: [
           'bg-transparent text-foreground',
-          'shadow-[inset_0_0_0_1px_hsl(var(--foreground)/0.8)]',
-          'hover:text-muted-foreground hover:shadow-[inset_0_0_0_1px_hsl(var(--muted-foreground)/0.4)]',
-          'disabled:text-border disabled:shadow-[inset_0_0_0_1px_hsl(var(--border))] disabled:cursor-not-allowed',
+          'border border-input',
+          'hover:bg-accent hover:text-accent-foreground',
+          'disabled:text-muted-foreground disabled:border-muted disabled:cursor-not-allowed',
         ],
         pill: [
-          'bg-muted text-foreground/80',
-          'hover:bg-muted/80',
+          'bg-secondary text-secondary-foreground',
+          'hover:bg-secondary/80',
           'disabled:text-muted-foreground disabled:cursor-not-allowed',
         ],
         'icon-label': [
           'p-0 font-semibold',
           'bg-transparent text-foreground',
           'hover:text-muted-foreground',
-          'disabled:text-border disabled:cursor-not-allowed',
+          'disabled:text-muted-foreground disabled:cursor-not-allowed',
         ],
         subtle: [
           'bg-muted text-foreground',
-          'shadow-[inset_0_0_0_1px_hsl(var(--border))]',
-          'hover:bg-muted/80 hover:shadow-[inset_0_0_0_1px_hsl(var(--border)/0.8)]',
+          'border border-border',
+          'hover:bg-muted/80 hover:border-border/80',
           'disabled:text-muted-foreground disabled:cursor-not-allowed',
         ],
         tab: [
@@ -77,16 +78,20 @@ export const payloadButtonVariants = cva(
         ],
         transparent: [
           'bg-transparent text-foreground',
-          'hover:bg-muted/50',
+          'hover:bg-accent hover:text-accent-foreground',
           'disabled:opacity-50 disabled:cursor-not-allowed',
         ],
         none: 'p-0',
       },
       size: {
-        xsmall: 'text-xs py-0 px-1',
-        small: 'text-sm py-0 px-1.5',
-        medium: 'text-sm py-0.5 px-2.5',
-        large: 'text-sm py-1 px-3',
+        xsmall:
+          'py-0 px-[calc(var(--base)*0.3)] text-(length:--base-body-size) leading-[calc(var(--base)*1.2)]',
+        small:
+          'py-0 px-[calc(var(--base)*0.4)] text-(length:--base-body-size) leading-[calc(var(--base)*1.2)]',
+        medium:
+          'py-[calc(var(--base)*0.2)] px-[calc(var(--base)*0.6)] text-(length:--base-body-size) leading-[calc(var(--base)*1.2)]',
+        large:
+          'py-[calc(var(--base)*0.4)] px-[calc(var(--base)*0.8)] text-(length:--base-body-size) leading-[calc(var(--base)*1.2)]',
       },
       iconPosition: {
         left: '',
@@ -110,15 +115,55 @@ export const payloadButtonVariants = cva(
       },
     },
     compoundVariants: [
-      // Icon position adjustments
-      { iconPosition: 'left', size: 'small', className: 'pl-1' },
-      { iconPosition: 'right', size: 'small', className: 'pr-1' },
-      { iconPosition: 'left', size: 'xsmall', className: 'pl-0.5' },
-      { iconPosition: 'right', size: 'xsmall', className: 'pr-0.5' },
-      { iconPosition: 'left', size: 'medium', className: 'pl-1.5' },
-      { iconPosition: 'right', size: 'medium', className: 'pr-1.5' },
-      { iconPosition: 'left', size: 'large', className: 'pl-2' },
-      { iconPosition: 'right', size: 'large', className: 'pr-2' },
+      // Icon position adjustments - using CSS variables
+      {
+        iconPosition: 'left',
+        size: 'xsmall',
+        hasIcon: true,
+        className: 'pl-[calc(var(--base)*0.2)]',
+      },
+      {
+        iconPosition: 'right',
+        size: 'xsmall',
+        hasIcon: true,
+        className: 'pr-[calc(var(--base)*0.2)]',
+      },
+      {
+        iconPosition: 'left',
+        size: 'small',
+        hasIcon: true,
+        className: 'pl-[calc(var(--base)*0.3)]',
+      },
+      {
+        iconPosition: 'right',
+        size: 'small',
+        hasIcon: true,
+        className: 'pr-[calc(var(--base)*0.3)]',
+      },
+      {
+        iconPosition: 'left',
+        size: 'medium',
+        hasIcon: true,
+        className: 'pl-[calc(var(--base)*0.4)]',
+      },
+      {
+        iconPosition: 'right',
+        size: 'medium',
+        hasIcon: true,
+        className: 'pr-[calc(var(--base)*0.4)]',
+      },
+      {
+        iconPosition: 'left',
+        size: 'large',
+        hasIcon: true,
+        className: 'pl-[calc(var(--base)*0.6)]',
+      },
+      {
+        iconPosition: 'right',
+        size: 'large',
+        hasIcon: true,
+        className: 'pr-[calc(var(--base)*0.6)]',
+      },
     ],
     defaultVariants: {
       buttonStyle: 'primary',
@@ -132,14 +177,14 @@ export const payloadButtonVariants = cva(
   },
 )
 
-// Icon size variants
+// Icon size variants - using CSS variables
 const iconSizeVariants = cva('flex items-center justify-center rounded-full', {
   variants: {
     size: {
-      xsmall: 'size-3.5',
-      small: 'size-4',
-      medium: 'size-5',
-      large: 'size-5',
+      xsmall: 'size-[calc(var(--base)*0.8)]',
+      small: 'size-[calc(var(--base)*0.9)]',
+      medium: 'size-[calc(var(--base)*1.2)]',
+      large: 'size-[calc(var(--base)*1.2)]',
     },
     iconStyle: {
       'with-border': 'border border-current',
@@ -153,14 +198,14 @@ const iconSizeVariants = cva('flex items-center justify-center rounded-full', {
   },
 })
 
-// Content gap variants
+// Content gap variants - using CSS variables
 const contentGapVariants = cva('flex items-center justify-center', {
   variants: {
     size: {
-      xsmall: 'gap-0.5',
-      small: 'gap-0.5',
-      medium: 'gap-0.5',
-      large: 'gap-1',
+      xsmall: 'gap-[calc(var(--base)*0.2)]',
+      small: 'gap-[calc(var(--base)*0.2)]',
+      medium: 'gap-[calc(var(--base)*0.2)]',
+      large: 'gap-[calc(var(--base)*0.4)]',
     },
     iconPosition: {
       left: 'flex-row-reverse',

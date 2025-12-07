@@ -495,6 +495,7 @@ export interface Test {
   autoCompleteText?: string | null;
   updatedAt: string;
   createdAt: string;
+  _status?: ('draft' | 'published') | null;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -792,6 +793,7 @@ export interface TestsSelect<T extends boolean = true> {
   autoCompleteText?: T;
   updatedAt?: T;
   createdAt?: T;
+  _status?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
