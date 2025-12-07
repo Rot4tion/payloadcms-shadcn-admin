@@ -8,12 +8,7 @@ import type {
 
 import { getTranslation, type I18nClient } from '@payloadcms/translations'
 import { FieldDiffContainer, File, getHTMLDiffComponents } from '@payloadcms-local/ui/rsc'
-
-import './index.scss'
-
 import React from 'react'
-
-const baseClass = 'upload-diff'
 
 type NonPolyUploadDoc = (FileData & TypeWithID) | number | string
 type PolyUploadDoc = { relationTo: string; value: (FileData & TypeWithID) | number | string }
@@ -119,7 +114,7 @@ export const HasManyUploadDiff: React.FC<{
 
   const diffResult = getHTMLDiffComponents({
     fromHTML:
-      `<div class="${baseClass}-hasMany">` +
+      `<div class="flex flex-col gap-2">` +
       (FromComponents
         ? FromComponents.map(
             (component) => `<div>${ReactDOMServer.renderToStaticMarkup(component)}</div>`,
@@ -127,7 +122,7 @@ export const HasManyUploadDiff: React.FC<{
         : '') +
       '</div>',
     toHTML:
-      `<div class="${baseClass}-hasMany">` +
+      `<div class="flex flex-col gap-2">` +
       (ToComponents
         ? ToComponents.map(
             (component) => `<div>${ReactDOMServer.renderToStaticMarkup(component)}</div>`,
@@ -141,7 +136,6 @@ export const HasManyUploadDiff: React.FC<{
 
   return (
     <FieldDiffContainer
-      className={`${baseClass}-container ${baseClass}-container--hasMany`}
       From={From}
       i18n={i18n}
       label={{
@@ -211,7 +205,6 @@ export const SingleUploadDiff: React.FC<{
 
   return (
     <FieldDiffContainer
-      className={`${baseClass}-container ${baseClass}-container--hasOne`}
       From={From}
       i18n={i18n}
       label={{
@@ -281,21 +274,28 @@ const UploadDocumentDiff = (args: {
 
   return (
     <div
-      className={`${baseClass}`}
+      className="inline-block"
       data-enable-match="true"
       data-id={id}
       data-relation-to={relationTo}
     >
-      <div className={`${baseClass}__card`}>
-        <div className={`${baseClass}__thumbnail`}>
-          {thumbnailSRC?.length ? <img alt={filename} src={thumbnailSRC} /> : <File />}
+      <div className="flex items-center gap-2 p-2 border border-border rounded bg-card">
+        <div className="w-12 h-12 flex items-center justify-center bg-muted rounded overflow-hidden shrink-0">
+          {thumbnailSRC?.length ? (
+            <img alt={filename} src={thumbnailSRC} className="w-full h-full object-cover" />
+          ) : (
+            <File />
+          )}
         </div>
         {pillLabel && (
-          <div className={`${baseClass}__pill`} data-enable-match="false">
+          <div
+            className="text-xs text-muted-foreground bg-muted px-1.5 py-0.5 rounded"
+            data-enable-match="false"
+          >
             <span>{pillLabel}</span>
           </div>
         )}
-        <div className={`${baseClass}__info`} data-enable-match="false">
+        <div className="font-medium" data-enable-match="false">
           <strong>{filename}</strong>
         </div>
       </div>
