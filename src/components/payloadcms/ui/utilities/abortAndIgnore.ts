@@ -17,7 +17,7 @@ export function abortAndIgnore(abortController: AbortController) {
  * @returns {AbortController}
  */
 export function handleAbortRef(
-  abortControllerRef: React.RefObject<AbortController>,
+  abortControllerRef: React.RefObject<AbortController | null>,
 ): AbortController {
   const newController = new AbortController()
 

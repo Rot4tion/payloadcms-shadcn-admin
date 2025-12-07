@@ -2,16 +2,14 @@
 
 import React, { useCallback, useEffect } from 'react'
 
+import type { ClientCollectionConfig } from 'payload'
 import type { EditFormProps } from './types'
 
+import { OperationProvider, useConfig, useDocumentInfo, useServerFunctions } from '@payloadcms/ui'
 import { Form, useForm } from '../../../forms/Form/index'
 import { type FormProps } from '../../../forms/Form/types'
 import { WatchChildErrors } from '../../../forms/WatchChildErrors/index'
-import { useConfig } from '@payloadcms/ui'
 import { useDocumentEvents } from '../../../providers/DocumentEvents/index'
-import { useDocumentInfo } from '@payloadcms/ui'
-import { OperationProvider } from '@payloadcms/ui'
-import { useServerFunctions } from '@payloadcms/ui'
 import { abortAndIgnore, handleAbortRef } from '../../../utilities/abortAndIgnore'
 import { useDocumentDrawerContext } from '../../DocumentDrawer/Provider'
 import { DocumentFields } from '../../DocumentFields/index'
@@ -51,7 +49,7 @@ export function EditForm({
 
   const abortOnChangeRef = React.useRef<AbortController>(null)
 
-  const collectionConfig = getEntityConfig({ collectionSlug: docSlug })
+  const collectionConfig = getEntityConfig({ collectionSlug: docSlug }) as ClientCollectionConfig
   const { reportUpdate } = useDocumentEvents()
 
   const collectionSlug = collectionConfig.slug
@@ -59,7 +57,7 @@ export function EditForm({
   const [schemaPath] = React.useState(collectionSlug)
 
   const onSave = useCallback(
-    (json) => {
+    (json: any) => {
       reportUpdate({
         doc: json?.doc || json?.result,
         drawerSlug,
@@ -74,11 +72,11 @@ export function EditForm({
           operation: 'create',
         })
       }
-      resetUploadEdits()
+      resetUploadEdits && resetUploadEdits()
     },
     [collectionSlug, onSaveFromContext, reportUpdate, resetUploadEdits, drawerSlug],
   )
-
+  // @ts-expect-error
   const onChange: NonNullable<FormProps['onChange']>[0] = useCallback(
     async ({ formState: prevFormState, submitted }) => {
       const controller = handleAbortRef(abortOnChangeRef)
@@ -107,7 +105,7 @@ export function EditForm({
     const abortOnChange = abortOnChangeRef.current
 
     return () => {
-      abortAndIgnore(abortOnChange)
+      abortAndIgnore(abortOnChange!)
     }
   }, [])
 
@@ -152,7 +150,7 @@ export function EditForm({
               )}
             </React.Fragment>
           }
-          docPermissions={docPermissions}
+          docPermissions={docPermissions!}
           fields={collectionConfig.fields}
           schemaPathSegments={[collectionConfig.slug]}
         />
@@ -181,7 +179,7 @@ function ReportAllErrors() {
   const errorCountRef = React.useRef(0)
 
   const reportFormErrorCount = React.useCallback(
-    (errorCount) => {
+    (errorCount: any) => {
       if (errorCount === errorCountRef.current) {
         return
       }
