@@ -1,6 +1,6 @@
 /* SHADCN ADMIN - Using local PayloadCMS packages */
 import config from '@payload-config'
-import { handleServerFunctions, RootLayout } from '@payloadcms-local/next/layouts'
+import { handleServerFunctions, RootLayout } from '@/components/payloadcms/next/exports/layouts'
 import type { ServerFunctionClient } from 'payload'
 import React from 'react'
 

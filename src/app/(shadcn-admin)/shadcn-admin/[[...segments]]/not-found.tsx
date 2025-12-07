@@ -2,7 +2,7 @@
 import type { Metadata } from 'next'
 
 import config from '@payload-config'
-import { NotFoundPage, generatePageMetadata } from '@payloadcms-local/next/views'
+import { NotFoundPage, generatePageMetadata } from '@/components/payloadcms/next/exports/views'
 import { importMap } from '@/app/(payload)/admin/importMap'
 
 type Args = {
