@@ -7,11 +7,9 @@ import React from 'react'
 
 import type { ReloadDoc } from '../types.js'
 
-import './index.scss'
 import { RelationshipContent } from '../RelationshipContent/index.js'
 import { UploadCard } from '../UploadCard/index.js'
-
-const baseClass = 'upload upload--has-one'
+import { cn } from '@/lib/utils'
 
 type Props = {
   readonly className?: string
@@ -70,7 +68,7 @@ export function UploadComponentHasOne(props: Props) {
   }
 
   return (
-    <UploadCard className={[baseClass, className].filter(Boolean).join(' ')}>
+    <UploadCard className={cn('relative max-w-full', className)}>
       <RelationshipContent
         allowEdit={!readonly}
         allowRemove={!readonly}

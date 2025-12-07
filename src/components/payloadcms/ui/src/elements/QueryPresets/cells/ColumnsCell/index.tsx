@@ -4,13 +4,10 @@ import { toWords, transformColumnsToSearchParams } from 'payload/shared'
 import React from 'react'
 
 import { Pill } from '../../../Pill/index.js'
-import './index.scss'
-
-const baseClass = 'query-preset-columns-cell'
 
 export const QueryPresetsColumnsCell: React.FC<DefaultCellComponentProps> = ({ cellData }) => {
   return (
-    <div className={baseClass}>
+    <div className="flex flex-wrap gap-1">
       {cellData
         ? transformColumnsToSearchParams(cellData as ColumnPreference[]).map((column, i) => {
             const isColumnActive = !column.startsWith('-')

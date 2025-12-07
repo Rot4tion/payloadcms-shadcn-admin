@@ -11,7 +11,7 @@ import { useControllableState } from '../../../hooks/useControllableState.js'
 import { useConfig } from '@payloadcms/ui'
 import { useTranslation } from '@payloadcms/ui'
 import { BlockSearch } from './BlockSearch/index.js'
-import './index.scss'
+import { cn } from '@/lib/utils'
 
 export type Props = {
   readonly blocks: (ClientBlock | string)[]
@@ -21,8 +21,6 @@ export type Props = {
    */
   searchTerm?: string
 }
-
-const baseClass = 'blocks-drawer'
 
 const getBlockLabel = (block: ClientBlock, i18n: I18nClient) => {
   if (typeof block.labels.singular === 'string') {
@@ -84,30 +82,29 @@ export const BlockSelector: React.FC<Props> = (props) => {
   return (
     <Fragment>
       <BlockSearch setSearchTerm={setSearchTerm} />
-      <div className={`${baseClass}__blocks-wrapper`}>
-        <ul className={`${baseClass}__block-groups`}>
+      <div className="pt-[calc(var(--base)*1.5)] max-lg:pt-[calc(var(--base)*1.75)] max-md:pt-[calc(var(--base)*0.75)]">
+        <ul className="p-0 flex flex-col gap-[calc(var(--base)*1.5)] max-lg:gap-[calc(var(--base)*1.75)] max-md:gap-[calc(var(--base)*0.75)]">
           {Object.entries(blockGroups).map(([groupLabel, groupBlocks]) =>
             !groupBlocks.length ? null : (
               <li
-                className={[
-                  `${baseClass}__block-group`,
-                  groupLabel === '_none' && `${baseClass}__block-group-none`,
-                ]
-                  .filter(Boolean)
-                  .join(' ')}
+                className={cn(
+                  'list-none',
+                  groupLabel === '_none' &&
+                    'order-1 pt-[calc(var(--base)*1.5)] border-t border-border only:pt-0 only:border-t-0 max-lg:pt-[calc(var(--base)*1.75)] max-md:pt-[calc(var(--base)*0.75)]',
+                )}
                 key={groupLabel}
               >
                 {groupLabel !== '_none' && (
-                  <h3 className={`${baseClass}__block-group-label`}>{groupLabel}</h3>
+                  <h3 className="pb-[calc(var(--base)*0.5)]">{groupLabel}</h3>
                 )}
-                <ul className={`${baseClass}__blocks`}>
+                <ul className="relative p-0 list-none grid grid-cols-6 gap-(--base) max-xl:grid-cols-5 max-lg:grid-cols-3 max-md:grid-cols-2">
                   {groupBlocks.map((_block, index) => {
                     const block = typeof _block === 'string' ? config.blocksMap[_block] : _block
 
                     const { slug, imageAltText, imageURL, labels: blockLabels } = block
 
                     return (
-                      <li className={`${baseClass}__block`} key={index}>
+                      <li key={index}>
                         <ThumbnailCard
                           alignLabel="center"
                           label={getTranslation(blockLabels?.singular, i18n)}
@@ -117,7 +114,7 @@ export const BlockSelector: React.FC<Props> = (props) => {
                             }
                           }}
                           thumbnail={
-                            <div className={`${baseClass}__default-image`}>
+                            <div className="flex items-center justify-center w-full aspect-3/2 overflow-hidden [&_img]:w-full [&_img]:h-full [&_img]:object-cover [&_svg]:w-full [&_svg]:h-full [&_svg]:object-cover">
                               {imageURL ? (
                                 <img alt={imageAltText} src={imageURL} />
                               ) : (

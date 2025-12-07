@@ -2,16 +2,13 @@
 import React from 'react'
 
 import { useLivePreviewContext } from '../../../providers/LivePreview/context.js'
-import './index.scss'
-
-const baseClass = 'live-preview-iframe'
 
 export const IFrame: React.FC = () => {
   const { iframeRef, setLoadedURL, url, zoom } = useLivePreviewContext()
 
   return (
     <iframe
-      className={baseClass}
+      className="bg-white border-0 w-full h-full origin-top-left"
       key={url}
       onLoad={() => {
         setLoadedURL(url)

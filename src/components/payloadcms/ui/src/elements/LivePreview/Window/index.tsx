@@ -14,9 +14,7 @@ import { ShimmerEffect } from '../../ShimmerEffect/index.js'
 import { DeviceContainer } from '../Device/index.js'
 import { IFrame } from '../IFrame/index.js'
 import { LivePreviewToolbar } from '../Toolbar/index.js'
-import './index.scss'
-
-const baseClass = 'live-preview-window'
+import { cn } from '@/lib/utils'
 
 export const LivePreviewWindow: React.FC<EditViewProps> = (props) => {
   const {
@@ -122,17 +120,17 @@ export const LivePreviewWindow: React.FC<EditViewProps> = (props) => {
 
   return (
     <div
-      className={[
-        baseClass,
-        isLivePreviewing && `${baseClass}--is-live-previewing`,
-        breakpoint && breakpoint !== 'responsive' && `${baseClass}--has-breakpoint`,
-      ]
-        .filter(Boolean)
-        .join(' ')}
+      className={cn(
+        'bg-background hidden w-[60%] shrink-0 grow-0 sticky top-(--doc-controls-height) h-[calc(100vh-var(--doc-controls-height))] overflow-hidden max-lg:w-full',
+        isLivePreviewing && 'block',
+        breakpoint &&
+          breakpoint !== 'responsive' &&
+          '[&_.live-preview-iframe]:border [&_.live-preview-iframe]:border-(--theme-elevation-100) [&_.live-preview-window__main]:p-(--base)',
+      )}
     >
-      <div className={`${baseClass}__wrapper`}>
+      <div className="flex flex-col h-full justify-start">
         <LivePreviewToolbar {...props} />
-        <div className={`${baseClass}__main`}>
+        <div className="grow h-full w-full">
           <DeviceContainer>{url ? <IFrame /> : <ShimmerEffect height="100%" />}</DeviceContainer>
         </div>
       </div>

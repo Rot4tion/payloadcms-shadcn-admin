@@ -1,8 +1,6 @@
 import React from 'react'
 
-import './index.scss'
-
-const baseClass = 'dots'
+import { cn } from '@/lib/utils'
 
 export const Dots: React.FC<{
   ariaLabel?: string
@@ -12,17 +10,17 @@ export const Dots: React.FC<{
 }> = ({ ariaLabel, className, noBackground, orientation = 'vertical' }) => (
   <div
     aria-label={ariaLabel}
-    className={[
+    className={cn(
+      'm-0 flex items-center justify-center gap-0.5 rounded-md',
+      'size-[calc(var(--base)*1.2)]',
+      !noBackground && 'bg-(--theme-elevation-150) hover:bg-(--theme-elevation-250)',
+      noBackground && 'bg-transparent size-auto hover:bg-transparent',
+      orientation === 'horizontal' ? 'flex-row' : 'flex-col',
       className,
-      baseClass,
-      noBackground && `${baseClass}--no-background`,
-      orientation && `${baseClass}--${orientation}`,
-    ]
-      .filter(Boolean)
-      .join(' ')}
+    )}
   >
-    <div />
-    <div />
-    <div />
+    <div className="size-0.5 rounded-full bg-current" />
+    <div className="size-0.5 rounded-full bg-current" />
+    <div className="size-0.5 rounded-full bg-current" />
   </div>
 )

@@ -1,15 +1,13 @@
 import React from 'react'
 
-import './index.scss'
+import { cn } from '@/lib/utils'
 
 export function TrashIcon({ className }: { className?: string }) {
   return (
     <svg
-      className={[className, 'icon icon--trash'].filter(Boolean).join(' ')}
+      className={cn('size-(--base)', className)}
       fill="none"
-      height="20"
       viewBox="0 0 20 20"
-      width="20"
       xmlns="http://www.w3.org/2000/svg"
     >
       <path

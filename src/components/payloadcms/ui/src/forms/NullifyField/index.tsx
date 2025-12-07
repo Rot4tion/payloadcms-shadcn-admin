@@ -8,9 +8,6 @@ import { useConfig } from '@payloadcms/ui'
 import { useLocale } from '@payloadcms/ui'
 import { useTranslation } from '@payloadcms/ui'
 import { useForm } from '@payloadcms/ui'
-import './index.scss'
-
-const baseClass = 'nullify-locale-field'
 
 type NullifyLocaleFieldProps = {
   readonly fieldValue?: [] | null | number
@@ -73,7 +70,7 @@ export const NullifyLocaleField: React.FC<NullifyLocaleFieldProps> = ({
   }
 
   return (
-    <Banner className={baseClass}>
+    <Banner className="mb-0 [&_.field-type.checkbox]:flex [&_.field-type.checkbox]:flex-col [&_.field-type.checkbox]:m-0 [&+.array-field__add-row]:mt-[calc(var(--base)/2)]">
       {!fieldValue && readOnly ? (
         t('general:fallbackToDefaultLocale')
       ) : (

@@ -12,11 +12,9 @@ import { Button } from '../../../elements/Button/index.js'
 import { useDocumentDrawer } from '../../../elements/DocumentDrawer/index.js'
 import { Pill } from '../../../elements/Pill/index.js'
 import { ThumbnailComponent } from '../../../elements/Thumbnail/index.js'
-import './index.scss'
 import { useConfig } from '@payloadcms/ui'
 import { useTranslation } from '@payloadcms/ui'
-
-const baseClass = 'upload-relationship-details'
+import { cn } from '@/lib/utils'
 
 type Props = {
   readonly allowEdit?: boolean
@@ -98,12 +96,12 @@ export function RelationshipContent(props: Props) {
   const previewAllowed = displayPreview ?? collectionConfig?.upload?.displayPreview ?? true
 
   return (
-    <div className={[baseClass, className].filter(Boolean).join(' ')}>
-      <div className={`${baseClass}__imageAndDetails`}>
+    <div className={cn('flex justify-between items-center w-full min-w-0 [&_.btn]:m-0', className)}>
+      <div className="flex gap-[calc(var(--base)/2)] items-center min-w-0">
         {previewAllowed && (
           <ThumbnailComponent
             alt={alt}
-            className={`${baseClass}__thumbnail`}
+            className="self-center rounded-sm"
             filename={filename}
             fileSrc={thumbnailSrc}
             size="small"
@@ -112,8 +110,8 @@ export function RelationshipContent(props: Props) {
         {showCollectionSlug && collectionConfig ? (
           <Pill size="small">{getTranslation(collectionConfig.labels.singular, i18n)}</Pill>
         ) : null}
-        <div className={`${baseClass}__details`}>
-          <p className={`${baseClass}__filename`}>
+        <div className="flex flex-col gap-0 overflow-hidden mr-[calc(var(--base)*2)]">
+          <p className="m-0 whitespace-nowrap text-ellipsis overflow-hidden [&_a]:no-underline">
             {src ? (
               <a href={src} target="_blank">
                 {filename}
@@ -122,29 +120,21 @@ export function RelationshipContent(props: Props) {
               filename
             )}
           </p>
-          {withMeta ? <p className={`${baseClass}__meta`}>{metaText}</p> : null}
+          {withMeta ? (
+            <p className="m-0 text-muted-foreground whitespace-nowrap text-ellipsis overflow-hidden">
+              {metaText}
+            </p>
+          ) : null}
         </div>
       </div>
 
       {allowEdit !== false || allowRemove !== false ? (
-        <div className={`${baseClass}__actions`}>
+        <div className="shrink-0 flex">
           {allowEdit !== false ? (
-            <Button
-              buttonStyle="icon-label"
-              className={`${baseClass}__edit`}
-              icon="edit"
-              iconStyle="none"
-              onClick={openDrawer}
-            />
+            <Button buttonStyle="icon-label" icon="edit" iconStyle="none" onClick={openDrawer} />
           ) : null}
           {allowRemove !== false ? (
-            <Button
-              buttonStyle="icon-label"
-              className={`${baseClass}__remove`}
-              icon="x"
-              iconStyle="none"
-              onClick={() => onRemove()}
-            />
+            <Button buttonStyle="icon-label" icon="x" iconStyle="none" onClick={() => onRemove()} />
           ) : null}
           <DocumentDrawer onSave={onSave} />
         </div>

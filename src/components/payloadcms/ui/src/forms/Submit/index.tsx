@@ -11,9 +11,6 @@ import {
   useFormInitializing,
   useFormProcessing,
 } from '@payloadcms/ui'
-import './index.scss'
-
-const baseClass = 'form-submit'
 
 export const FormSubmit: React.FC<Props> = (props) => {
   const {
@@ -48,7 +45,7 @@ export const FormSubmit: React.FC<Props> = (props) => {
       : undefined)
 
   return (
-    <div className={baseClass}>
+    <div className="[form>&_.btn]:w-full">
       <Button
         ref={ref}
         {...props}

@@ -7,7 +7,6 @@ import React from 'react'
 import { FieldLabel } from '../../../../fields/FieldLabel/index.js'
 import { useField } from '../../../../forms/useField/index.js'
 import { Pill } from '../../../Pill/index.js'
-import './index.scss'
 
 export const QueryPresetsColumnField: JSONFieldClientComponent = ({
   field: { label, required },
@@ -15,9 +14,9 @@ export const QueryPresetsColumnField: JSONFieldClientComponent = ({
   const { path, value } = useField()
 
   return (
-    <div className="field-type query-preset-columns-field">
+    <div className="field-type [&_.field-label]:mb-[calc(var(--base)/2)]">
       <FieldLabel as="h3" label={label} path={path} required={required} />
-      <div className="value-wrapper">
+      <div className="bg-(--theme-elevation-50) p-(--base) flex flex-wrap gap-[calc(var(--base)/2)]">
         {value
           ? transformColumnsToSearchParams(value as ColumnPreference[]).map((column, i) => {
               const isColumnActive = !column.startsWith('-')

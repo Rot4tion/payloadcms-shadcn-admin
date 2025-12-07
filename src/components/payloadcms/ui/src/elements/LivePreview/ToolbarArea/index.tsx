@@ -2,10 +2,6 @@
 import { useDroppable } from '@dnd-kit/core'
 import React from 'react'
 
-import './index.scss'
-
-const baseClass = 'toolbar-area'
-
 export const ToolbarArea: React.FC<{
   children: React.ReactNode
 }> = (props) => {
@@ -16,7 +12,7 @@ export const ToolbarArea: React.FC<{
   })
 
   return (
-    <div className={baseClass} ref={setNodeRef}>
+    <div className="w-full h-full" ref={setNodeRef}>
       {children}
     </div>
   )

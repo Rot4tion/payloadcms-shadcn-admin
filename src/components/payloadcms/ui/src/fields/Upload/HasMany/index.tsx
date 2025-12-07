@@ -9,11 +9,8 @@ import { DragHandleIcon } from '../../../icons/DragHandle/index.js'
 import { RelationshipContent } from '../RelationshipContent/index.js'
 import { UploadCard } from '../UploadCard/index.js'
 
-const baseClass = 'upload upload--has-many'
-
 import { getBestFitFromSizes, isImage } from 'payload/shared'
-
-import './index.scss'
+import { cn } from '@/lib/utils'
 
 import type { ReloadDoc } from '../types.js'
 
@@ -73,9 +70,9 @@ export function UploadComponentHasMany(props: Props) {
   )
 
   return (
-    <div className={[baseClass, className].filter(Boolean).join(' ')}>
+    <div className={cn('relative max-w-full', className)}>
       <DraggableSortable
-        className={`${baseClass}__draggable-rows`}
+        className="flex flex-col gap-[calc(var(--base)/4)]"
         ids={fileDocs?.map(({ value }) => String(value.id))}
         onDragEnd={({ moveFromIndex, moveToIndex }) => moveRow(moveFromIndex, moveToIndex)}
       >
@@ -113,12 +110,10 @@ export function UploadComponentHasMany(props: Props) {
             <DraggableSortableItem disabled={!isSortable || readonly} id={id} key={id}>
               {(draggableSortableItemProps) => (
                 <div
-                  className={[
-                    `${baseClass}__dragItem`,
-                    draggableSortableItemProps && isSortable && `${baseClass}--has-drag-handle`,
-                  ]
-                    .filter(Boolean)
-                    .join(' ')}
+                  className={cn(
+                    '[&_.icon--drag-handle]:text-muted-foreground [&_.thumbnail]:size-[26px] [&_.uploadDocRelationshipContent__details]:leading-tight',
+                    draggableSortableItemProps && isSortable && 'cursor-grab',
+                  )}
                   ref={draggableSortableItemProps.setNodeRef}
                   style={{
                     transform: draggableSortableItemProps.transform,
@@ -129,7 +124,7 @@ export function UploadComponentHasMany(props: Props) {
                   <UploadCard size="small">
                     {draggableSortableItemProps && (
                       <div
-                        className={`${baseClass}__drag`}
+                        className="aria-disabled:cursor-default"
                         {...draggableSortableItemProps.attributes}
                         {...draggableSortableItemProps.listeners}
                       >

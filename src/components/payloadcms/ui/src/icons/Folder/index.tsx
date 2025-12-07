@@ -1,15 +1,13 @@
 import React from 'react'
 
-import './index.scss'
+import { cn } from '@/lib/utils'
 
 export function FolderIcon({ className }: { className?: string }) {
   return (
     <svg
-      className={[className, 'icon icon--folder'].filter(Boolean).join(' ')}
+      className={cn('size-(--base)', className)}
       fill="none"
-      height="16"
       viewBox="0 0 16 16"
-      width="16"
       xmlns="http://www.w3.org/2000/svg"
     >
       <path

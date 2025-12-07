@@ -11,7 +11,6 @@ import { useConfig } from '../../../../providers/Config/index.js'
 import { useListQuery } from '../../../../providers/ListQuery/index.js'
 import { useTranslation } from '../../../../providers/Translation/index.js'
 import { Pill } from '../../../Pill/index.js'
-import './index.scss'
 
 /** @todo: improve this */
 const transformWhereToNaturalLanguage = (
@@ -107,9 +106,9 @@ export const QueryPresetsWhereField: JSONFieldClientComponent = ({
   const { i18n } = useTranslation()
 
   return (
-    <div className="field-type query-preset-where-field">
+    <div className="field-type [&_.field-label]:mb-[calc(var(--base)/2)] [&_.pill--style-always-white]:bg-(--theme-elevation-250) [&_.pill--style-always-white]:text-(--theme-elevation-1000)">
       <FieldLabel as="h3" label={label} path={path} required={required} />
-      <div className="value-wrapper">
+      <div className="bg-(--theme-elevation-50) p-(--base)">
         {value
           ? transformWhereToNaturalLanguage(
               value as Where,

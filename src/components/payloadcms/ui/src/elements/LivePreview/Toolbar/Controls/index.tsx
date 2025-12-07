@@ -11,9 +11,6 @@ import { useLivePreviewContext } from '../../../../providers/LivePreview/context
 import { useTranslation } from '../../../../providers/Translation/index.js'
 import { Popup, PopupList } from '../../../Popup/index.js'
 import { PreviewFrameSizeInput } from '../SizeInput/index.js'
-import './index.scss'
-
-const baseClass = 'live-preview-toolbar-controls'
 const zoomOptions = [50, 75, 100, 125, 150, 200]
 
 export const ToolbarControls: React.FC<EditViewProps> = () => {
@@ -28,7 +25,7 @@ export const ToolbarControls: React.FC<EditViewProps> = () => {
   }
 
   return (
-    <div className={baseClass}>
+    <div className="flex items-center gap-[calc(var(--base)/3)] [&_.popup-button]:flex [&_.popup-button]:items-center">
       {breakpoints?.length > 0 && (
         <Popup
           button={
@@ -36,10 +33,10 @@ export const ToolbarControls: React.FC<EditViewProps> = () => {
               <span>
                 {breakpoints.find((bp) => bp.name == breakpoint)?.label ?? customOption.label}
               </span>
-              <ChevronIcon className={`${baseClass}__chevron`} />
+              <ChevronIcon />
             </React.Fragment>
           }
-          className={`${baseClass}__breakpoint`}
+          className="border-none bg-transparent h-(--base) focus:outline-none"
           horizontalAlign="right"
           render={({ close }) => (
             <PopupList.ButtonGroup>
@@ -75,9 +72,9 @@ export const ToolbarControls: React.FC<EditViewProps> = () => {
           verticalAlign="bottom"
         />
       )}
-      <div className={`${baseClass}__device-size`}>
+      <div className="flex items-center">
         <PreviewFrameSizeInput axis="x" />
-        <span className={`${baseClass}__size-divider`}>
+        <span>
           <XIcon />
         </span>
         <PreviewFrameSizeInput axis="y" />
@@ -86,10 +83,10 @@ export const ToolbarControls: React.FC<EditViewProps> = () => {
         button={
           <React.Fragment>
             <span>{zoom * 100}%</span>
-            <ChevronIcon className={`${baseClass}__chevron`} />
+            <ChevronIcon />
           </React.Fragment>
         }
-        className={`${baseClass}__zoom`}
+        className="w-[55px] border-none bg-transparent h-(--base) focus:outline-none"
         horizontalAlign="right"
         render={({ close }) => (
           <PopupList.ButtonGroup>
@@ -113,7 +110,7 @@ export const ToolbarControls: React.FC<EditViewProps> = () => {
         verticalAlign="bottom"
       />
       <a
-        className={`${baseClass}__external`}
+        className="shrink-0 flex size-(--base) items-center justify-center py-1.5 px-0"
         href={url}
         onClick={(e) => {
           e.preventDefault()

@@ -2,9 +2,6 @@
 import React, { useCallback, useEffect } from 'react'
 
 import { useLivePreviewContext } from '../../../../providers/LivePreview/context.js'
-import './index.scss'
-
-const baseClass = 'toolbar-input'
 
 export const PreviewFrameSizeInput: React.FC<{
   axis?: 'x' | 'y'
@@ -62,7 +59,7 @@ export const PreviewFrameSizeInput: React.FC<{
 
   return (
     <input
-      className={baseClass}
+      className="w-[50px] h-(--base) flex items-center border border-(--theme-elevation-200) bg-(--theme-elevation-100) rounded-sm text-sm"
       min={0}
       name={axis === 'x' ? 'live-preview-width' : 'live-preview-height'}
       onChange={handleChange}
