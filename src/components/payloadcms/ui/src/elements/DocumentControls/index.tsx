@@ -38,12 +38,9 @@ import { RenderCustomComponent } from '../RenderCustomComponent/index.js'
 import { RestoreButton } from '../RestoreButton/index.js'
 import { SaveButton } from '../SaveButton/index.js'
 import { cn } from '@/lib/utils'
-import './index.scss'
 import { SaveDraftButton } from '../SaveDraftButton/index.js'
 import { Status } from '../Status/index.js'
 import { DocumentDrawerContextType } from 'node_modules/@payloadcms/ui/dist/elements/DocumentDrawer/Provider.js'
-
-const baseClass = 'doc-controls'
 
 export const DocumentControls: React.FC<{
   readonly apiURL: string
@@ -181,13 +178,35 @@ export const DocumentControls: React.FC<{
   const showLockedMetaIcon = user && readOnlyForIncomingUser
 
   return (
-    <Gutter className={baseClass}>
-      <div className={`${baseClass}__wrapper`}>
-        <div className={`${baseClass}__content`}>
+    <Gutter
+      className={cn(
+        'doc-controls',
+        'sticky top-0 w-full z-[5] flex items-center',
+        'bg-background/80 backdrop-blur-sm',
+        'max-lg:top-[calc(var(--base)*-2.8)] max-lg:px-0',
+      )}
+    >
+      <div
+        className={cn(
+          'relative w-full flex items-center justify-between gap-(--base) pb-px z-[4]',
+          'h-(--doc-controls-height)',
+          'max-lg:flex-col max-lg:gap-0 max-lg:h-auto',
+        )}
+      >
+        <div
+          className={cn(
+            'flex items-center grow overflow-hidden py-[calc(var(--base)*0.8)] gap-[calc(var(--base)*0.5)]',
+            'max-lg:w-full max-lg:overflow-auto max-lg:px-[calc(var(--base)*2)] max-lg:scrollbar-hide',
+            'max-md:px-[calc(var(--base)*0.8)]',
+          )}
+        >
           {showLockedMetaIcon || showFolderMetaIcon ? (
-            <div className={`${baseClass}__meta-icons`}>
+            <div className="flex items-center gap-[calc(var(--base)*0.2)] shrink-0">
               {showLockedMetaIcon && (
-                <Locked className={`${baseClass}__locked-controls`} user={user} />
+                <Locked
+                  className="[&.locked]:static [&_.tooltip]:top-[calc(var(--base)*-0.5)]"
+                  user={user}
+                />
               )}
               {showFolderMetaIcon && config.folders && !isTrashed && (
                 <MoveDocToFolder
@@ -197,10 +216,15 @@ export const DocumentControls: React.FC<{
               )}
             </div>
           ) : null}
-          <ul className={`${baseClass}__meta`}>
+          <ul
+            className={cn(
+              'grow flex list-none p-0 gap-(--base) m-0 w-full [&_button]:m-0',
+              'max-lg:w-auto max-lg:gap-[calc(var(--base)/2)]',
+            )}
+          >
             {collectionConfig && !isEditing && !isAccountView && (
-              <li className={`${baseClass}__list-item`}>
-                <p className={`${baseClass}__value`}>
+              <li className="flex items-center m-0">
+                <p className="overflow-hidden text-ellipsis whitespace-nowrap m-0 font-semibold leading-[calc(var(--base)*1.2)]">
                   {i18n.t('general:creatingNewLabel', {
                     label: getTranslation(
                       collectionConfig?.labels?.singular ?? i18n.t('general:document'),
@@ -213,11 +237,7 @@ export const DocumentControls: React.FC<{
             {(collectionConfig?.versions?.drafts || globalConfig?.versions?.drafts) && (
               <Fragment>
                 {(globalConfig || (collectionConfig && isEditing)) && (
-                  <li
-                    className={[`${baseClass}__status`, `${baseClass}__list-item`]
-                      .filter(Boolean)
-                      .join(' ')}
-                  >
+                  <li className="flex items-center m-0">
                     <Status />
                   </li>
                 )}
@@ -225,7 +245,7 @@ export const DocumentControls: React.FC<{
                   autosaveEnabled &&
                   !unsavedDraftWithValidations &&
                   !isTrashed && (
-                    <li className={`${baseClass}__list-item`}>
+                    <li className="flex items-center m-0">
                       <Autosave
                         collection={collectionConfig}
                         global={globalConfig}
@@ -239,32 +259,49 @@ export const DocumentControls: React.FC<{
             {collectionConfig?.timestamps && (isEditing || isAccountView) && (
               <Fragment>
                 <li
-                  className={[`${baseClass}__list-item`, `${baseClass}__value-wrap`]
-                    .filter(Boolean)
-                    .join(' ')}
+                  className="flex items-center m-0 overflow-hidden"
                   title={data?.updatedAt ? updatedAt : ''}
                 >
-                  <p className={`${baseClass}__label`}>
+                  <p className="text-muted-foreground whitespace-nowrap m-0">
                     {i18n.t(isTrashed ? 'general:deleted' : 'general:lastModified')}:&nbsp;
                   </p>
-
-                  {data?.updatedAt && <p className={`${baseClass}__value`}>{updatedAt}</p>}
+                  {data?.updatedAt && (
+                    <p className="overflow-hidden text-ellipsis whitespace-nowrap m-0 font-semibold leading-[calc(var(--base)*1.2)]">
+                      {updatedAt}
+                    </p>
+                  )}
                 </li>
                 <li
-                  className={[`${baseClass}__list-item`, `${baseClass}__value-wrap`]
-                    .filter(Boolean)
-                    .join(' ')}
+                  className="flex items-center m-0 overflow-hidden"
                   title={data?.createdAt ? createdAt : ''}
                 >
-                  <p className={`${baseClass}__label`}>{i18n.t('general:created')}:&nbsp;</p>
-                  {data?.createdAt && <p className={`${baseClass}__value`}>{createdAt}</p>}
+                  <p className="text-muted-foreground whitespace-nowrap m-0">
+                    {i18n.t('general:created')}:&nbsp;
+                  </p>
+                  {data?.createdAt && (
+                    <p className="overflow-hidden text-ellipsis whitespace-nowrap m-0 font-semibold leading-[calc(var(--base)*1.2)]">
+                      {createdAt}
+                    </p>
+                  )}
                 </li>
               </Fragment>
             )}
           </ul>
         </div>
-        <div className={`${baseClass}__controls-wrapper`}>
-          <div className={`${baseClass}__controls`}>
+        <div
+          className={cn(
+            'flex items-center m-0 gap-[calc(var(--base)/2)] relative',
+            'max-lg:bg-background max-lg:w-full max-lg:translate-z-0',
+            'max-lg:pr-(--gutter-h) max-lg:justify-between',
+            'max-lg:h-(--doc-controls-height) max-lg:border-t max-lg:border-border',
+          )}
+        >
+          <div
+            className={cn(
+              'flex items-center m-0 gap-[calc(var(--base)/2)] [&_button]:m-0 [&_button]:whitespace-nowrap',
+              'max-lg:ltr:pl-(--gutter-h) max-lg:overflow-auto max-lg:scrollbar-hide',
+            )}
+          >
             {BeforeDocumentControls}
             {isLivePreviewEnabled && !isInDrawer && <LivePreviewToggler />}
             {(collectionConfig?.admin.preview || globalConfig?.admin.preview) && (
@@ -336,9 +373,9 @@ export const DocumentControls: React.FC<{
                 <div
                   className={cn(
                     'm-0 flex items-center justify-center flex-col gap-0.5',
-                    'border border-(--theme-elevation-100) rounded-md',
+                    'border border-border rounded-md',
                     'size-[calc(var(--base)*1.6)]',
-                    'hover:border-(--theme-elevation-500) hover:bg-(--theme-elevation-100)',
+                    'hover:border-muted-foreground hover:bg-muted',
                     '[&>div]:size-[3px] [&>div]:rounded-full [&>div]:bg-current',
                   )}
                 >
@@ -347,7 +384,7 @@ export const DocumentControls: React.FC<{
                   <div />
                 </div>
               }
-              className={`${baseClass}__popup`}
+              className="relative [&_.popup__trigger-wrap]:flex"
               disabled={initializing || processing}
               horizontalAlign="right"
               size="large"
@@ -416,7 +453,8 @@ export const DocumentControls: React.FC<{
           )}
         </div>
       </div>
-      <div className={`${baseClass}__divider`} />
+      {/* Divider */}
+      <div className="absolute h-px bg-border w-full left-0 top-full" />
     </Gutter>
   )
 }

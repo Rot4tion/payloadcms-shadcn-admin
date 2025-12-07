@@ -24,7 +24,6 @@ import { useTranslation } from '@payloadcms/ui'
 import { abortAndIgnore, handleAbortRef } from '../../../utilities/abortAndIgnore.js'
 import { FieldSelect } from '../../FieldSelect/index.js'
 import { useFormsManager } from '../FormsManager/index.js'
-import '../../../forms/RenderFields/index.scss'
 
 export const EditManyBulkUploadsDrawerContent: React.FC<
   {
