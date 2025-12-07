@@ -81,29 +81,34 @@ export function FolderFileCard({
   return (
     <DraggableWithClick
       className={cn(
-        'folder-file-card relative grid grid-areas-[details] rounded-md border border-[var(--card-border-color)] bg-[var(--card-bg-color)] cursor-pointer',
-        '[--card-border-color:var(--theme-elevation-150)] [--card-bg-color:var(--theme-elevation-0)]',
-        '[--card-preview-bg-color:var(--theme-elevation-50)] [--card-icon-dots-bg-color:transparent]',
-        '[--card-icon-dots-color:var(--theme-elevation-600)] [--card-titlebar-icon-color:var(--theme-elevation-300)]',
-        '[--card-label-color:var(--theme-text)] [--card-preview-icon-color:var(--theme-elevation-400)]',
-        '[--assigned-collections-color:var(--theme-elevation-900)]',
+        'folder-file-card',
+        'relative grid rounded-md border cursor-pointer',
+        'border-border bg-card',
+        // Icon dots styling
         '[&_.icon--dots]:rotate-90 [&_.icon--dots]:transition-opacity [&_.icon--dots]:duration-200',
-        '[&_.icon--dots]:text-[var(--card-icon-dots-color)] [&_.icon--dots]:rounded-sm [&_.icon--dots]:bg-[var(--card-icon-dots-bg-color)]',
-        type === 'file' && 'grid-rows-[1fr_auto] grid-areas-[preview_details]',
+        // File type: preview on top, details below
+        type === 'file' && 'grid-rows-[1fr_auto]',
+        // Selected state
         isSelected && [
-          '[--card-border-color:var(--theme-success-300)] [--card-bg-color:var(--theme-success-50)]',
-          '[--card-preview-bg-color:var(--theme-success-50)] [--card-icon-dots-bg-color:var(--theme-success-50)]',
-          '[--card-icon-dots-color:var(--theme-success-400)] [--card-titlebar-icon-color:var(--theme-success-800)]',
-          '[--card-label-color:var(--theme-success-800)] [--card-preview-icon-color:var(--theme-success-800)]',
-          '[--assigned-collections-color:var(--theme-success-850)]',
+          'border-primary/50 bg-primary/5',
           '[&_.icon--dots]:opacity-100',
+          '[&_.folder-file-card__preview]:bg-primary/5',
+          '[&_.folder-file-card__titlebar]:bg-primary/5',
+          '[&_.folder-file-card__name]:text-primary',
+          '[&_.folder-file-card__icon]:text-primary',
         ],
-        !isSelected &&
-          '[&_.icon--dots]:opacity-0 hover:[--card-bg-color:var(--theme-elevation-50)] hover:[&_.icon--dots]:opacity-100',
-        disabled &&
-          '[--card-bg-color:var(--theme-elevation-50)] cursor-not-allowed after:content-[""] after:absolute after:bg-background after:opacity-50 after:w-[calc(100%+2px)] after:h-[calc(100%+2px)] after:-top-px after:-left-px after:rounded-[inherit]',
-        isOver &&
-          '[--card-border-color:var(--theme-elevation-500)] [--card-bg-color:var(--theme-elevation-150)] [--card-titlebar-icon-color:var(--theme-elevation-250)]',
+        // Not selected: show dots on hover
+        !isSelected && [
+          '[&_.icon--dots]:opacity-0',
+          'hover:bg-muted hover:[&_.icon--dots]:opacity-100',
+        ],
+        // Disabled state
+        disabled && [
+          'bg-muted cursor-not-allowed',
+          'after:content-[""] after:absolute after:bg-background/50 after:inset-0 after:rounded-[inherit]',
+        ],
+        // Drag over state
+        isOver && 'border-foreground/50 bg-muted',
         className,
       )}
       disabled={disabled || (!onClick && !onKeyDown)}
@@ -119,22 +124,45 @@ export function FolderFileCard({
         />
       ) : null}
 
+      {/* Preview area for files */}
       {type === 'file' ? (
-        <div className="[grid-area:preview] aspect-square bg-[var(--card-preview-bg-color)] rounded-t-sm border-b border-[var(--card-border-color)] grid items-center justify-center pointer-events-none [grid-template-columns:auto_50%_auto] [&:has(.thumbnail)]:[grid-template-columns:unset] [&:has(.thumbnail)]:justify-stretch [&>.icon]:col-[2] [&_.icon--document]:pointer-events-none [&_.icon--document]:h-1/2 [&_.icon--document]:w-1/2 [&_.icon--document]:m-auto [&_.icon--document]:text-[var(--card-preview-icon-color)] [&_.thumbnail]:w-full [&_.thumbnail]:h-full [&_.thumbnail]:relative [&_.thumbnail]:rounded-[inherit] [&_.thumbnail>img]:absolute [&_.thumbnail>img]:inset-0 [&_.thumbnail>img]:w-full [&_.thumbnail>img]:h-full [&_.thumbnail>img]:object-cover [&_.thumbnail>img]:rounded-[inherit]">
-          {previewUrl ? <Thumbnail fileSrc={previewUrl} /> : <DocumentIcon />}
+        <div
+          className={cn(
+            'folder-file-card__preview',
+            'aspect-square bg-muted rounded-t-sm border-b border-border',
+            'flex items-center justify-center pointer-events-none overflow-hidden',
+          )}
+        >
+          {previewUrl ? (
+            <Thumbnail className="[&_img]:rounded-t-sm" fileSrc={previewUrl} size="expand" />
+          ) : (
+            <DocumentIcon className="w-1/4 h-1/4 text-muted-foreground" />
+          )}
         </div>
       ) : null}
 
-      <div className="relative pointer-events-none flex flex-col [grid-area:details] rounded-[inherit] grid grid-cols-[auto_1fr_auto] gap-4 items-center p-[calc(var(--base)/2)] bg-[var(--card-bg-color)] [&_.popup]:pointer-events-auto">
-        <div className="[&_.icon]:shrink-0 [&_.icon]:text-[var(--card-titlebar-icon-color)]">
+      {/* Titlebar area */}
+      <div
+        className={cn(
+          'folder-file-card__titlebar',
+          'relative pointer-events-none rounded-[inherit]',
+          'grid grid-cols-[auto_1fr_auto] gap-4 items-center',
+          'p-[calc(var(--base)/2)] bg-card',
+          '[&_.popup]:pointer-events-auto',
+        )}
+      >
+        <div className="folder-file-card__icon text-muted-foreground">
           {type === 'file' ? <DocumentIcon /> : <ColoredFolderIcon />}
         </div>
-        <div className="grid">
+        <div className="grid min-w-0">
           <p
-            className="overflow-hidden font-bold indent-px whitespace-nowrap text-ellipsis leading-normal text-[var(--card-label-color)]"
+            className={cn(
+              'folder-file-card__name',
+              'overflow-hidden font-bold whitespace-nowrap text-ellipsis leading-normal',
+            )}
             title={title}
           >
-            <span>{title}</span>
+            {title}
           </p>
           {folderType && folderType.length > 0 ? (
             <AssignedCollections folderType={folderType} />
@@ -161,7 +189,7 @@ function AssignedCollections({ folderType }: { folderType: string[] }) {
   const { i18n } = useTranslation()
 
   const collectionsDisplayText = React.useMemo(() => {
-    return folderType.reduce((acc, collection) => {
+    return folderType.reduce<string[]>((acc, collection) => {
       const collectionConfig = config.collections?.find((c) => c.slug === collection)
       if (collectionConfig) {
         return [...acc, getTranslation(collectionConfig.labels.plural, i18n)]
@@ -171,8 +199,8 @@ function AssignedCollections({ folderType }: { folderType: string[] }) {
   }, [folderType, config.collections, i18n])
 
   return (
-    <p className="text-[var(--assigned-collections-color)] opacity-50 mt-1 leading-normal">
-      {collectionsDisplayText.map((label, index) => (
+    <p className="text-muted-foreground opacity-50 mt-1 leading-normal">
+      {collectionsDisplayText.map((label: string, index: number) => (
         <span key={label}>
           {label}
           {index < folderType.length - 1 ? ', ' : ''}

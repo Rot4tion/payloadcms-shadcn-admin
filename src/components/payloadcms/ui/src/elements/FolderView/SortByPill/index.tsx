@@ -9,7 +9,6 @@ import { useFolder } from '../../../providers/Folders/index.js'
 import { useTranslation } from '@payloadcms/ui'
 import { Pill } from '../../Pill/index.js'
 import { Popup, PopupList } from '../../Popup/index.js'
-import { cn } from '@/lib/utils'
 
 const sortOnOptions: {
   label: (t: TFunction) => React.ReactNode
@@ -54,16 +53,11 @@ export function SortByPill() {
   return (
     <Popup
       button={
-        <Pill
-          className="[&_.pill__label]:flex [&_.pill__label]:items-center [&_.pill__label]:gap-1"
-          icon={<ChevronIcon />}
-          size="small"
-        >
+        <Pill icon={<ChevronIcon />} size="small">
           {sortDirection === 'asc' ? <SortUpIcon /> : <SortDownIcon />}
           {selectedSortOption?.label(t)}
         </Pill>
       }
-      className=""
       horizontalAlign="right"
       render={({ close }) => (
         <>

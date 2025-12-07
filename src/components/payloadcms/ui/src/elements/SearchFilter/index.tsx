@@ -56,7 +56,8 @@ export function SearchFilter(props: SearchFilterProps) {
           'search-filter__input',
           'w-full h-full border-none bg-transparent shadow-none',
           'text-foreground placeholder:text-muted-foreground',
-          'focus:shadow-none focus:outline-none',
+          'outline-none focus:shadow-none focus:outline-none focus:ring-0',
+          'focus-visible:outline-none focus-visible:ring-0 focus-visible:[outline:none]',
           'font-sans text-base leading-normal',
         )}
         id="search-filter-input"

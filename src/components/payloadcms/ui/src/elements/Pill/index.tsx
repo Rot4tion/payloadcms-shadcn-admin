@@ -168,9 +168,9 @@ const StaticPill: React.FC<PillProps & { isDraggingState?: boolean }> = (props) 
       onClick={onClick}
       type={Element === 'button' ? 'button' : undefined}
     >
-      <span>{children}</span>
+      <span className="pill__label flex items-center gap-1">{children}</span>
       {Boolean(icon) && (
-        <span className="shrink-0 flex items-center [&_.icon]:w-[var(--pill-icon-size,calc(var(--base)*1.2))] [&_.icon]:h-[var(--pill-icon-size,calc(var(--base)*1.2))]">
+        <span className="pill__icon shrink-0 flex items-center [&_.icon]:w-[var(--pill-icon-size,calc(var(--base)*1.2))] [&_.icon]:h-[var(--pill-icon-size,calc(var(--base)*1.2))]">
           {icon}
         </span>
       )}

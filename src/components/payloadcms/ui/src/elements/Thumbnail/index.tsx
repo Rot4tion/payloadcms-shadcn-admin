@@ -38,7 +38,7 @@ export const Thumbnail: React.FC<ThumbnailProps> = (props) => {
     medium: 'max-h-[calc(var(--base)*7)] w-[calc(var(--base)*7)]',
     large: 'max-h-[calc(var(--base)*9)] w-[calc(var(--base)*9)]',
     expand:
-      'max-h-full w-full pt-[100%] relative [&_img]:absolute [&_img]:top-0 [&_svg]:absolute [&_svg]:top-0',
+      'w-full h-full relative [&_img]:absolute [&_img]:inset-0 [&_img]:w-full [&_img]:h-full [&_svg]:absolute [&_svg]:inset-0',
   }
   const classNames = cn(
     size !== 'none' &&

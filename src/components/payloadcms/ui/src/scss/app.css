@@ -480,6 +480,11 @@ ul, ol {
   outline: var(--accessibility-outline);
 }
 
+/* Remove focus outline for search inputs */
+.search-filter__input:focus-visible {
+  outline: none;
+}
+
 a {
   color: currentColor;
 }

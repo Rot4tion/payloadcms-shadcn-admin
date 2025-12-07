@@ -3,5 +3,9 @@ import React from 'react'
 export const PopupListGroupLabel: React.FC<{
   label: string
 }> = ({ label }) => {
-  return <p className="mb-2 mt-1 text-sm font-medium leading-none text-muted-foreground">{label}</p>
+  return (
+    <span className="popup-list-group-label block text-muted-foreground font-medium leading-none mt-1 mb-2 px-2">
+      {label}
+    </span>
+  )
 }
