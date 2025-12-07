@@ -1,0 +1,216 @@
+/* HTML Diff - CSS Variables */
+:root {
+  --diff-delete-pill-bg: var(--theme-error-200);
+  --diff-delete-pill-color: var(--theme-error-600);
+  --diff-delete-pill-border: var(--theme-error-400);
+  --diff-delete-parent-bg: var(--theme-error-100);
+  --diff-delete-parent-color: var(--theme-error-800);
+  --diff-delete-link-color: var(--theme-error-600);
+
+  --diff-create-pill-bg: var(--theme-success-200);
+  --diff-create-pill-color: var(--theme-success-600);
+  --diff-create-pill-border: var(--theme-success-400);
+  --diff-create-parent-bg: var(--theme-success-100);
+  --diff-create-parent-color: var(--theme-success-800);
+  --diff-create-link-color: var(--theme-success-600);
+}
+
+html[data-theme='dark'] {
+  --diff-delete-pill-bg: var(--theme-error-200);
+  --diff-delete-pill-color: var(--theme-error-650);
+  --diff-delete-pill-border: var(--theme-error-400);
+  --diff-delete-parent-bg: var(--theme-error-100);
+  --diff-delete-parent-color: var(--theme-error-900);
+  --diff-delete-link-color: var(--theme-error-750);
+
+  --diff-create-pill-bg: var(--theme-success-200);
+  --diff-create-pill-color: var(--theme-success-650);
+  --diff-create-pill-border: var(--theme-success-400);
+  --diff-create-parent-bg: var(--theme-success-100);
+  --diff-create-parent-color: var(--theme-success-900);
+  --diff-create-link-color: var(--theme-success-750);
+}
+
+/* HTML Diff - Base styles */
+.html-diff {
+  font-size: calc(var(--base) * 0.7);
+  letter-spacing: 0.02em;
+}
+
+.html-diff-no-value {
+  color: var(--theme-elevation-400);
+}
+
+.html-diff pre {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+/* Parent highlight for create - block elements */
+.html-diff p:not([data-enable-match='false']):has([data-match-type='create']),
+.html-diff h1:not([data-enable-match='false']):has([data-match-type='create']),
+.html-diff h2:not([data-enable-match='false']):has([data-match-type='create']),
+.html-diff h3:not([data-enable-match='false']):has([data-match-type='create']),
+.html-diff h4:not([data-enable-match='false']):has([data-match-type='create']),
+.html-diff h5:not([data-enable-match='false']):has([data-match-type='create']),
+.html-diff h6:not([data-enable-match='false']):has([data-match-type='create']),
+.html-diff blockquote:not([data-enable-match='false']):has([data-match-type='create']),
+.html-diff pre:not([data-enable-match='false']):has([data-match-type='create']) {
+  position: relative;
+  z-index: 1;
+}
+
+.html-diff p:not([data-enable-match='false']):has([data-match-type='create'])::before,
+.html-diff h1:not([data-enable-match='false']):has([data-match-type='create'])::before,
+.html-diff h2:not([data-enable-match='false']):has([data-match-type='create'])::before,
+.html-diff h3:not([data-enable-match='false']):has([data-match-type='create'])::before,
+.html-diff h4:not([data-enable-match='false']):has([data-match-type='create'])::before,
+.html-diff h5:not([data-enable-match='false']):has([data-match-type='create'])::before,
+.html-diff h6:not([data-enable-match='false']):has([data-match-type='create'])::before,
+.html-diff blockquote:not([data-enable-match='false']):has([data-match-type='create'])::before,
+.html-diff pre:not([data-enable-match='false']):has([data-match-type='create'])::before {
+  content: '';
+  position: absolute;
+  top: calc(var(--base) * -0.5);
+  bottom: calc(var(--base) * -0.5);
+  left: -10px;
+  right: calc(var(--base) * -0.5);
+  display: block;
+  background-color: var(--diff-create-parent-bg);
+  color: var(--diff-create-parent-color);
+  z-index: -1;
+}
+
+/* Parent highlight for delete - block elements */
+.html-diff p:not([data-enable-match='false']):has([data-match-type='delete']),
+.html-diff h1:not([data-enable-match='false']):has([data-match-type='delete']),
+.html-diff h2:not([data-enable-match='false']):has([data-match-type='delete']),
+.html-diff h3:not([data-enable-match='false']):has([data-match-type='delete']),
+.html-diff h4:not([data-enable-match='false']):has([data-match-type='delete']),
+.html-diff h5:not([data-enable-match='false']):has([data-match-type='delete']),
+.html-diff h6:not([data-enable-match='false']):has([data-match-type='delete']),
+.html-diff blockquote:not([data-enable-match='false']):has([data-match-type='delete']),
+.html-diff pre:not([data-enable-match='false']):has([data-match-type='delete']) {
+  position: relative;
+  z-index: 1;
+}
+
+.html-diff p:not([data-enable-match='false']):has([data-match-type='delete'])::before,
+.html-diff h1:not([data-enable-match='false']):has([data-match-type='delete'])::before,
+.html-diff h2:not([data-enable-match='false']):has([data-match-type='delete'])::before,
+.html-diff h3:not([data-enable-match='false']):has([data-match-type='delete'])::before,
+.html-diff h4:not([data-enable-match='false']):has([data-match-type='delete'])::before,
+.html-diff h5:not([data-enable-match='false']):has([data-match-type='delete'])::before,
+.html-diff h6:not([data-enable-match='false']):has([data-match-type='delete'])::before,
+.html-diff blockquote:not([data-enable-match='false']):has([data-match-type='delete'])::before,
+.html-diff pre:not([data-enable-match='false']):has([data-match-type='delete'])::before {
+  content: '';
+  position: absolute;
+  top: calc(var(--base) * -0.5);
+  bottom: calc(var(--base) * -0.5);
+  left: calc(var(--base) * -0.5);
+  right: -10px;
+  display: block;
+  background-color: var(--diff-delete-parent-bg);
+  color: var(--diff-delete-parent-color);
+  z-index: -1;
+}
+
+/* List item highlights */
+.html-diff li:not([data-enable-match='false']):has([data-match-type='create']) {
+  position: relative;
+  z-index: 1;
+}
+
+.html-diff li:not([data-enable-match='false']):has([data-match-type='create'])::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: -10px;
+  right: calc(var(--base) * -0.5);
+  display: block;
+  background-color: var(--diff-create-parent-bg);
+  color: var(--diff-create-parent-color);
+  z-index: -1;
+}
+
+.html-diff li:not([data-enable-match='false']):has([data-match-type='delete']) {
+  position: relative;
+  z-index: 1;
+}
+
+.html-diff li:not([data-enable-match='false']):has([data-match-type='delete'])::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: calc(var(--base) * -0.5);
+  right: -10px;
+  display: block;
+  background-color: var(--diff-delete-parent-bg);
+  color: var(--diff-delete-parent-color);
+  z-index: -1;
+}
+
+.html-diff li::marker {
+  color: var(--theme-text);
+}
+
+/* Delete pill styling */
+.html-diff [data-match-type='delete']:not([data-enable-match='false']):not(:is([data-enable-match='false'] *)) {
+  color: var(--diff-delete-pill-color);
+  text-decoration-color: var(--diff-delete-pill-color);
+  text-decoration-line: line-through;
+  background-color: var(--diff-delete-pill-bg);
+  border-radius: 4px;
+  text-decoration-thickness: 1px;
+}
+
+.html-diff a[data-match-type='delete']:not([data-enable-match='false']):not(:is([data-enable-match='false'] *)) {
+  color: var(--diff-delete-link-color);
+}
+
+/* Create pill styling */
+.html-diff [data-match-type='create']:not(img):not([data-enable-match='false']):not(:is([data-enable-match='false'] *)) {
+  background-color: var(--diff-create-pill-bg);
+  color: var(--diff-create-pill-color);
+  border-radius: 4px;
+}
+
+.html-diff a[data-match-type='create']:not(img):not([data-enable-match='false']):not(:is([data-enable-match='false'] *)) {
+  color: var(--diff-create-link-color);
+}
+
+/* Diff wrappers */
+.html-diff-create-inline-wrapper,
+.html-diff-delete-inline-wrapper {
+  display: inline-flex;
+}
+
+.html-diff-create-block-wrapper,
+.html-diff-delete-block-wrapper {
+  display: flex;
+}
+
+.html-diff-create-inline-wrapper,
+.html-diff-delete-inline-wrapper,
+.html-diff-create-block-wrapper,
+.html-diff-delete-block-wrapper {
+  position: relative;
+  align-items: center;
+  flex-direction: row;
+}
+
+.html-diff-create-inline-wrapper::after,
+.html-diff-delete-inline-wrapper::after,
+.html-diff-create-block-wrapper::after,
+.html-diff-delete-block-wrapper::after {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  content: '';
+}

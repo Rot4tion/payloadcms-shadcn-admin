@@ -1,7 +1,7 @@
 import type { Config, ImportMap, ServerProps } from 'payload'
 
 import { RenderServerComponent } from '@payloadcms-local/ui/elements/RenderServerComponent'
-import '@payloadcms-local/ui/scss/app.scss'
+import '@payloadcms-local/ui/scss/app.css'
 import React from 'react'
 
 type Args = {
