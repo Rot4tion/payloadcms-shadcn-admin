@@ -6,8 +6,8 @@ export const usePatchAnimateHeight = ({
   duration,
   open,
 }: {
-  containerRef: React.RefObject<HTMLDivElement>
-  contentRef: React.RefObject<HTMLDivElement>
+  containerRef: React.RefObject<HTMLDivElement | null>
+  contentRef: React.RefObject<HTMLDivElement | null>
   duration: number
   open: boolean
 }): { browserSupportsKeywordAnimation: boolean } => {

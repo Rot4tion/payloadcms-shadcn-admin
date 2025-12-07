@@ -1,12 +1,10 @@
 'use client'
-import NextLinkImport from 'next/link'
-import { useRouter } from 'next/navigation'
+import NextLink from 'next/link'
+import { useRouter } from 'next/navigation.js'
 import React from 'react'
 
-import { useRouteTransition } from '@payloadcms/ui'
+import { useRouteTransition } from '../../providers/RouteTransition'
 import { formatUrl } from './formatUrl'
-
-const NextLink = 'default' in NextLinkImport ? NextLinkImport.default : NextLinkImport
 
 // Copied from  https://github.com/vercel/next.js/blob/canary/packages/next/src/client/link.tsx#L180-L191
 function isModifiedEvent(event: React.MouseEvent): boolean {
@@ -29,53 +27,45 @@ type Props = {
    * @default true
    */
   preventDefault?: boolean
-} & Parameters<typeof NextLink>[0]
+} & React.ComponentProps<typeof NextLink>
 
-export const Link: React.FC<Props> = ({
-  children,
-  href,
-  onClick,
-  preventDefault = true,
-  ref,
-  replace,
-  scroll,
-  ...rest
-}) => {
-  const router = useRouter()
-  const { startRouteTransition } = useRouteTransition()
+export const Link = React.forwardRef<HTMLAnchorElement, Props>(
+  ({ children, href, onClick, preventDefault = true, replace, scroll, ...rest }, ref) => {
+    const router = useRouter()
+    const { startRouteTransition } = useRouteTransition()
 
-  return (
-    <NextLink
-      href={href}
-      onClick={(e) => {
-        if (isModifiedEvent(e)) {
-          return
-        }
-
-        if (onClick) {
-          onClick(e)
-        }
-
-        // We need a preventDefault here so that a clicked link doesn't trigger twice,
-        // once for default browser navigation and once for startRouteTransition
-        if (preventDefault) {
-          e.preventDefault()
-        }
-
-        startRouteTransition(() => {
-          const url = typeof href === 'string' ? href : formatUrl(href)
-
-          if (replace) {
-            void router.replace(url, { scroll })
-          } else {
-            void router.push(url, { scroll })
+    return (
+      <NextLink
+        href={href}
+        onClick={(e) => {
+          if (isModifiedEvent(e)) {
+            return
           }
-        })
-      }}
-      ref={ref}
-      {...rest}
-    >
-      {children}
-    </NextLink>
-  )
-}
+
+          if (onClick) {
+            onClick(e)
+          }
+
+          // We need a preventDefault here so that a clicked link doesn't trigger twice,
+          // once for default browser navigation and once for startRouteTransition
+          if (preventDefault) {
+            e.preventDefault()
+          }
+
+          startRouteTransition(() => {
+            const url = typeof href === 'string' ? href : formatUrl(href)
+
+            if (replace) {
+              void router.replace(url, { scroll })
+            } else {
+              void router.push(url, { scroll })
+            }
+          })
+        }}
+        {...rest}
+      >
+        {children}
+      </NextLink>
+    )
+  },
+)
