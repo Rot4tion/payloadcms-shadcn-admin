@@ -1,16 +1,13 @@
 'use client'
 
-import { useModal } from '../../Modal/index'
 import { getTranslation } from '@payloadcms/translations'
 import { reduceFieldsToValues } from 'payload/shared'
-import React from 'react'
+import { useModal } from '../../Modal/index'
 
-import { useAuth } from '@payloadcms/ui'
-import { useConfig } from '@payloadcms/ui'
-import { DocumentInfoProvider } from '@payloadcms/ui'
-import { useTranslation } from '@payloadcms/ui'
+import { DocumentInfoProvider, useAuth, useConfig, useTranslation } from '@payloadcms/ui'
+import { CollectionSlug } from 'payload'
 import { ActionsBar } from '../ActionsBar/index'
-import { discardBulkUploadModalSlug, DiscardWithoutSaving } from '../DiscardWithoutSaving/index'
+import { DiscardWithoutSaving, discardBulkUploadModalSlug } from '../DiscardWithoutSaving/index'
 import { EditForm } from '../EditForm/index'
 import { FileSidebar } from '../FileSidebar/index'
 import { useFormsManager } from '../FormsManager/index'
@@ -48,13 +45,13 @@ export function AddingFilesView() {
         />
         {activeForm ? (
           <DocumentInfoProvider
-            collectionSlug={collectionSlug}
-            currentEditor={user}
+            collectionSlug={collectionSlug as CollectionSlug}
+            currentEditor={user as any}
             docPermissions={docPermissions}
             hasPublishedDoc={false}
             hasPublishPermission={hasPublishPermission}
             hasSavePermission={hasSavePermission}
-            id={null}
+            id={undefined}
             initialData={reduceFieldsToValues(activeForm.formState, true)}
             initialState={activeForm.formState}
             isLocked={false}
