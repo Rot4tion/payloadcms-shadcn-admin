@@ -230,29 +230,3 @@
     overflow-wrap: anywhere;
   }
 }
-
-/* Monaco Editor - sync with Shadcn theme */
-.monaco-editor,
-.monaco-editor .margin,
-.monaco-editor-background,
-.monaco-editor .inputarea.ime-input {
-  background-color: var(--muted) !important;
-}
-
-.monaco-editor .line-numbers {
-  color: var(--muted-foreground) !important;
-}
-
-.monaco-editor .view-overlays .current-line {
-  background-color: var(--accent) !important;
-  border: none !important;
-}
-
-.monaco-editor .selected-text {
-  background-color: var(--accent) !important;
-}
-
-.monaco-editor .cursor {
-  background-color: var(--foreground) !important;
-  border-color: var(--foreground) !important;
-}

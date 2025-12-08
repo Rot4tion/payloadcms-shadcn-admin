@@ -27,7 +27,8 @@
   --theme-baseline-body-size: 13px;
 
   /* Fonts */
-  --font-body: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  --font-body:
+    -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
   --font-serif: 'Georgia', 'Bitstream Charter', 'Charis SIL', Utopia, 'URW Bookman L', serif;
   --font-mono: 'SF Mono', Menlo, Consolas, Monaco, monospace;
 
@@ -405,7 +406,12 @@ img {
 /* TYPOGRAPHY                    */
 /* ============================= */
 
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   font-family: var(--font-body);
   font-weight: 500;
 }
@@ -471,7 +477,8 @@ p {
   margin: 0;
 }
 
-ul, ol {
+ul,
+ol {
   padding-left: 1.538rem; /* $baseline */
   margin: 0;
 }
@@ -586,7 +593,9 @@ button {
   border-radius: 4px;
   border: 1px solid var(--theme-border-color);
   background: var(--theme-input-bg);
-  box-shadow: 0px 10px 4px -8px rgba(0, 2, 4, 0.02), 0px 2px 3px 0px rgba(0, 2, 4, 0.05);
+  box-shadow:
+    0px 10px 4px -8px rgba(0, 2, 4, 0.02),
+    0px 2px 3px 0px rgba(0, 2, 4, 0.05);
 }
 
 .payload-toast-container .payload-toast-item .toast-content {
@@ -729,4 +738,30 @@ button {
     left: 1.538rem;
     right: 1.538rem;
   }
+}
+
+/* Monaco Editor - sync with Shadcn theme */
+.monaco-editor,
+.monaco-editor .margin,
+.monaco-editor-background,
+.monaco-editor .inputarea.ime-input {
+  background-color: var(--muted) !important;
+}
+
+.monaco-editor .line-numbers {
+  color: var(--muted-foreground) !important;
+}
+
+.monaco-editor .view-overlays .current-line {
+  background-color: var(--accent) !important;
+  border: none !important;
+}
+
+.monaco-editor .selected-text {
+  background-color: var(--accent) !important;
+}
+
+.monaco-editor .cursor {
+  background-color: var(--foreground) !important;
+  border-color: var(--foreground) !important;
 }
