@@ -82,11 +82,16 @@ export function FileSidebar() {
       className={cn(
         'border-r border-border p-0 flex flex-col w-[300px] overflow-visible max-h-full',
         'max-lg:flex-col-reverse max-lg:w-full max-lg:sticky max-lg:bottom-0 max-lg:shrink-0',
-        showFiles && 'max-lg:z-[2]',
+        showFiles && 'max-lg:z-2',
       )}
     >
       {breakpoints.m && showFiles ? (
-        <div className="fixed top-0 left-0 w-full h-full opacity-0 transition-opacity duration-100 backdrop-blur-sm bg-background/80 [.max-lg:z-[2]_&]:opacity-100" />
+        <div
+          className={cn(
+            'fixed top-0 left-0 w-full h-full transition-opacity duration-100 backdrop-blur-sm bg-background/80',
+            showFiles ? 'opacity-100' : 'opacity-0',
+          )}
+        />
       ) : null}
       <div className="sticky top-0 mt-(--base) z-1 flex items-center justify-between w-full bg-background flex-wrap max-lg:mt-0 [&_p]:m-0">
         {/* @ts-expect-error */}
@@ -202,7 +207,7 @@ export function FileSidebar() {
                   key={formID}
                 >
                   <button
-                    className="bg-transparent border-0 p-0 m-0 cursor-pointer flex p-[calc(var(--base)/4)] items-center gap-[calc(var(--base)/2)] rounded-md max-w-full w-full hover:bg-muted [&_p]:m-0"
+                    className="bg-transparent border-0 m-0 cursor-pointer flex p-[calc(var(--base)/4)] items-center gap-[calc(var(--base)/2)] rounded-md max-w-full w-full hover:bg-muted [&_p]:m-0"
                     onClick={() => setActiveIndex(index)}
                     type="button"
                   >
