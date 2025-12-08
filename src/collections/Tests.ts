@@ -8,7 +8,7 @@ import {
 import type { CollectionConfig } from 'payload'
 
 export const Tests: CollectionConfig = {
-  slug: 'Tests',
+  slug: 'tests',
   access: {
     read: ({ req }) => {
       // If there is a user logged in, allow reading drafts
@@ -67,6 +67,11 @@ export const Tests: CollectionConfig = {
       admin: {
         description: 'Required, min 10 characters',
       },
+    },
+    {
+      name: 'locale',
+      type: 'text',
+      localized: true,
     },
     {
       name: 'email',

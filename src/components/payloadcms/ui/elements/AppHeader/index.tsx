@@ -177,10 +177,15 @@ export function AppHeader({ CustomAvatar, CustomIcon }: Props) {
       <div
         className={cn(
           'absolute top-1/2 -translate-y-1/2',
-          'rtl:right-auto rtl:left-[calc(var(--base)*4.5)]',
-          navOpen && 'sm:hidden',
+          // default: right: base(4.5)
+          'right-[calc(var(--base)*4.5)]',
+          // small-break: right: base(2)
+          'max-md:right-[calc(var(--base)*2)]',
+          // RTL: right: unset; left: base(4.5) (and base(2) on small)
+          'rtl:right-auto rtl:left-[calc(var(--base)*4.5)] rtl:max-md:left-[calc(var(--base)*2)]',
+          // when nav is open, hide only on small screens (matches &--nav-open small-break rule)
+          navOpen && 'max-md:hidden',
         )}
-        style={{ right: 'calc(var(--base) * 4.5)' }}
       >
         <Localizer />
       </div>

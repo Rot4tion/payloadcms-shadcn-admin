@@ -69,7 +69,7 @@ export interface Config {
   collections: {
     users: User;
     media: Media;
-    Tests: Test;
+    tests: Test;
     'payload-kv': PayloadKv;
     'payload-folders': FolderInterface;
     'payload-locked-documents': PayloadLockedDocument;
@@ -84,7 +84,7 @@ export interface Config {
   collectionsSelect: {
     users: UsersSelect<false> | UsersSelect<true>;
     media: MediaSelect<false> | MediaSelect<true>;
-    Tests: TestsSelect<false> | TestsSelect<true>;
+    tests: TestsSelect<false> | TestsSelect<true>;
     'payload-kv': PayloadKvSelect<false> | PayloadKvSelect<true>;
     'payload-folders': PayloadFoldersSelect<false> | PayloadFoldersSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
@@ -94,10 +94,10 @@ export interface Config {
   db: {
     defaultIDType: number;
   };
-  fallbackLocale: null;
+  fallbackLocale: ('false' | 'none' | 'null') | false | null | ('en' | 'ar') | ('en' | 'ar')[];
   globals: {};
   globalsSelect: {};
-  locale: null;
+  locale: 'en' | 'ar';
   user: User & {
     collection: 'users';
   };
@@ -196,7 +196,7 @@ export interface FolderInterface {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "Tests".
+ * via the `definition` "tests".
  */
 export interface Test {
   id: number;
@@ -210,6 +210,7 @@ export interface Test {
    * Required, min 10 characters
    */
   textareaRequired: string;
+  locale?: string | null;
   email: string;
   code?: string | null;
   richText?: {
@@ -563,7 +564,7 @@ export interface PayloadLockedDocument {
         value: number | Media;
       } | null)
     | ({
-        relationTo: 'Tests';
+        relationTo: 'tests';
         value: number | Test;
       } | null)
     | ({
@@ -655,13 +656,14 @@ export interface MediaSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "Tests_select".
+ * via the `definition` "tests_select".
  */
 export interface TestsSelect<T extends boolean = true> {
   text?: T;
   textWithMinMax?: T;
   textarea?: T;
   textareaRequired?: T;
+  locale?: T;
   email?: T;
   code?: T;
   richText?: T;
