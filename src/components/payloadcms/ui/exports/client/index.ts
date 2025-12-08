@@ -285,6 +285,7 @@ export { DocumentIcon } from '../../icons/Document/index'
 export { MoveFolderIcon } from '../../icons/MoveFolder/index'
 export { GridViewIcon } from '../../icons/GridView/index'
 export { ListViewIcon } from '../../icons/ListView/index'
+
 export { Error as ErrorIcon } from '../../providers/ToastContainer/icons/Error'
 export { Info as InfoIcon } from '../../providers/ToastContainer/icons/Info'
 export { Success as SuccessIcon } from '../../providers/ToastContainer/icons/Success'
