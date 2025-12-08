@@ -1,15 +1,14 @@
 'use client'
-import React, { useState, useMemo, useRef, useEffect } from 'react'
-import { format } from 'date-fns'
+import React, { useState, useMemo, useRef, useEffect, useCallback } from 'react'
+import { format, parse, isValid } from 'date-fns'
 import { CalendarIcon, Clock, X } from 'lucide-react'
 
 import type { Props } from './types'
 
 import { cn } from '@/lib/utils'
-import { Button } from '@/components/ui/button'
 import { Calendar } from '@/components/ui/calendar'
 import { Input } from '@/components/ui/input'
-import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover'
+import { Popover, PopoverAnchor, PopoverContent, PopoverTrigger } from '@/components/ui/popover'
 import { ScrollArea } from '@/components/ui/scroll-area'
 
 // Time picker component with scroll selectors and keyboard input
@@ -187,6 +186,21 @@ function TimePicker({
   )
 }
 
+// Parse formats for manual text input (user-friendly patterns)
+const PARSE_FORMATS: Record<string, string[]> = {
+  default: ['MM/dd/yyyy', 'M/d/yyyy', 'yyyy-MM-dd', 'dd/MM/yyyy', 'd/M/yyyy'],
+  dayAndTime: [
+    'MM/dd/yyyy HH:mm',
+    'MM/dd/yyyy h:mm a',
+    'M/d/yyyy h:mm a',
+    'yyyy-MM-dd HH:mm',
+    'dd/MM/yyyy HH:mm',
+  ],
+  timeOnly: ['HH:mm', 'h:mm a', 'H:mm'],
+  dayOnly: ['MM/dd', 'M/d', 'MMM dd', 'dd/MM'],
+  monthOnly: ['MMMM yyyy', 'MM/yyyy', 'yyyy-MM'],
+}
+
 const DatePicker: React.FC<Props> = (props) => {
   const {
     id,
@@ -202,21 +216,26 @@ const DatePicker: React.FC<Props> = (props) => {
   } = props
 
   const [open, setOpen] = useState(false)
+  const [inputValue, setInputValue] = useState<string>('')
+  const [isEditing, setIsEditing] = useState(false)
+  const [previewDate, setPreviewDate] = useState<Date | undefined>(undefined)
+  const inputRef = useRef<HTMLInputElement>(null)
+  const popoverRef = useRef<HTMLDivElement>(null)
 
   // Determine date format based on picker appearance
   const dateFormat = useMemo(() => {
     if (customDisplayFormat) return customDisplayFormat
     switch (pickerAppearance) {
       case 'dayAndTime':
-        return 'PPP p'
+        return 'MM/dd/yyyy h:mm a'
       case 'timeOnly':
-        return 'p'
+        return 'h:mm a'
       case 'dayOnly':
         return 'MMM dd'
       case 'monthOnly':
         return 'MMMM yyyy'
       default:
-        return 'PPP'
+        return 'MM/dd/yyyy'
     }
   }, [customDisplayFormat, pickerAppearance])
 
@@ -225,9 +244,58 @@ const DatePicker: React.FC<Props> = (props) => {
     return new Date(value)
   }, [value])
 
+  // Format display value
+  const displayValue = useMemo(() => {
+    if (!selectedDate) return ''
+    try {
+      return format(selectedDate, dateFormat)
+    } catch {
+      return format(selectedDate, 'MM/dd/yyyy')
+    }
+  }, [selectedDate, dateFormat])
+
+  // Sync input value with selected date when not editing
+  useEffect(() => {
+    if (!isEditing) {
+      setInputValue(displayValue)
+      setPreviewDate(selectedDate)
+    }
+  }, [displayValue, isEditing, selectedDate])
+
+  // Parse user input and try to extract a valid date
+  const parseInputDate = useCallback(
+    (input: string): Date | null => {
+      if (!input.trim()) return null
+
+      const formats = PARSE_FORMATS[pickerAppearance] || PARSE_FORMATS.default
+      const referenceDate = selectedDate || new Date()
+
+      for (const fmt of formats) {
+        try {
+          const parsed = parse(input, fmt, referenceDate)
+          if (isValid(parsed)) {
+            return parsed
+          }
+        } catch {
+          // Continue to next format
+        }
+      }
+
+      // Try native Date parsing as fallback
+      const nativeDate = new Date(input)
+      if (isValid(nativeDate)) {
+        return nativeDate
+      }
+
+      return null
+    },
+    [pickerAppearance, selectedDate],
+  )
+
   const handleDateSelect = (date: Date | undefined) => {
     if (!date) {
       onChangeFromProps?.(null as unknown as Date)
+      setInputValue('')
       return
     }
 
@@ -249,19 +317,85 @@ const DatePicker: React.FC<Props> = (props) => {
     }
   }
 
-  const handleClear = (e: React.MouseEvent) => {
-    e.stopPropagation()
-    onChangeFromProps?.(null as unknown as Date)
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const newValue = e.target.value
+    setInputValue(newValue)
+
+    // Try to parse and update preview in real-time
+    const parsed = parseInputDate(newValue)
+    if (parsed) {
+      setPreviewDate(parsed)
+    }
   }
 
-  const displayValue = useMemo(() => {
-    if (!selectedDate) return ''
-    try {
-      return format(selectedDate, dateFormat)
-    } catch {
-      return format(selectedDate, 'PPP')
+  const handleInputFocus = () => {
+    setIsEditing(true)
+    setOpen(true)
+  }
+
+  // Prevent popover from stealing focus when it opens
+  const handlePopoverAutoFocus = (e: Event) => {
+    e.preventDefault()
+  }
+
+  const handleInputBlur = (e: React.FocusEvent<HTMLInputElement>) => {
+    // Check if focus is moving to the popover - if so, don't process blur
+    const relatedTarget = e.relatedTarget as Node | null
+    if (popoverRef.current?.contains(relatedTarget)) {
+      return
     }
-  }, [selectedDate, dateFormat])
+
+    setIsEditing(false)
+
+    if (!inputValue.trim()) {
+      onChangeFromProps?.(null as unknown as Date)
+      return
+    }
+
+    const parsed = parseInputDate(inputValue)
+    if (parsed) {
+      // Apply timezone and millisecond adjustments
+      if (['dayOnly', 'default', 'monthOnly'].includes(pickerAppearance)) {
+        const tzOffset = parsed.getTimezoneOffset() / 60
+        parsed.setHours(12 - tzOffset, 0, 0, 0)
+      }
+      parsed.setMilliseconds(0)
+
+      // Validate against min/max
+      if (minDate && parsed < minDate) {
+        setInputValue(displayValue)
+        return
+      }
+      if (maxDate && parsed > maxDate) {
+        setInputValue(displayValue)
+        return
+      }
+
+      onChangeFromProps?.(parsed)
+    } else {
+      // Invalid input, revert to previous value
+      setInputValue(displayValue)
+    }
+  }
+
+  const handleInputKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === 'Enter') {
+      e.preventDefault()
+      inputRef.current?.blur()
+    }
+    if (e.key === 'Escape') {
+      setInputValue(displayValue)
+      setOpen(false)
+      inputRef.current?.blur()
+    }
+  }
+
+  const handleClear = (e: React.MouseEvent) => {
+    e.stopPropagation()
+    e.preventDefault()
+    onChangeFromProps?.(null as unknown as Date)
+    setInputValue('')
+  }
 
   const showTimeInput = pickerAppearance === 'dayAndTime' || pickerAppearance === 'timeOnly'
 
@@ -269,41 +403,73 @@ const DatePicker: React.FC<Props> = (props) => {
     onChangeFromProps?.(date)
   }
 
+  // Get placeholder based on picker type
+  const getPlaceholder = () => {
+    if (placeholderText) return placeholderText
+    switch (pickerAppearance) {
+      case 'dayAndTime':
+        return 'MM/DD/YYYY h:mm AM/PM'
+      case 'timeOnly':
+        return 'h:mm AM/PM'
+      case 'dayOnly':
+        return 'MMM DD'
+      case 'monthOnly':
+        return 'MMMM YYYY'
+      default:
+        return 'MM/DD/YYYY'
+    }
+  }
+
   // Time-only picker
   if (pickerAppearance === 'timeOnly') {
     return (
       <Popover open={open} onOpenChange={setOpen}>
-        <PopoverTrigger asChild disabled={readOnly}>
-          <Button
-            id={id}
-            variant="outline"
-            className={cn(
-              'w-full justify-start text-left font-normal',
-              !selectedDate && 'text-muted-foreground',
-            )}
-            disabled={readOnly}
-          >
-            <Clock className="mr-2 size-4" />
-            {selectedDate ? (
-              format(selectedDate, 'h:mm a')
-            ) : (
-              <span>{placeholderText || 'Pick a time'}</span>
-            )}
-            {selectedDate && !readOnly && (
-              <Button
+        <PopoverAnchor asChild>
+          <div className="relative flex items-center">
+            <PopoverTrigger asChild disabled={readOnly}>
+              <button
                 type="button"
-                variant="ghost"
-                size="icon"
-                className="ml-auto -mr-2 size-6 hover:bg-transparent"
+                className="absolute left-3 z-10 text-muted-foreground hover:text-foreground focus:outline-none"
+                disabled={readOnly}
+              >
+                <Clock className="size-4" />
+              </button>
+            </PopoverTrigger>
+            <Input
+              ref={inputRef}
+              id={id}
+              type="text"
+              value={inputValue}
+              onChange={handleInputChange}
+              onFocus={handleInputFocus}
+              onBlur={handleInputBlur}
+              onKeyDown={handleInputKeyDown}
+              placeholder={getPlaceholder()}
+              disabled={readOnly}
+              className={cn('pl-9', selectedDate && !readOnly ? 'pr-8' : 'pr-3')}
+            />
+            {selectedDate && !readOnly && (
+              <button
+                type="button"
+                className="absolute right-2 rounded-sm p-0.5 text-muted-foreground opacity-70 hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-ring"
                 onClick={handleClear}
               >
-                <X className="size-3 text-muted-foreground" />
-              </Button>
+                <X className="size-4" />
+              </button>
             )}
-          </Button>
-        </PopoverTrigger>
-        <PopoverContent className="w-auto p-3" align="start">
-          <TimePicker value={selectedDate} onChange={handleTimePickerChange} use12Hour={true} />
+          </div>
+        </PopoverAnchor>
+        <PopoverContent
+          ref={popoverRef}
+          className="w-auto p-3"
+          align="start"
+          onOpenAutoFocus={handlePopoverAutoFocus}
+        >
+          <TimePicker
+            value={previewDate || selectedDate}
+            onChange={handleTimePickerChange}
+            use12Hour={true}
+          />
         </PopoverContent>
       </Popover>
     )
@@ -311,36 +477,53 @@ const DatePicker: React.FC<Props> = (props) => {
 
   return (
     <Popover open={open} onOpenChange={setOpen}>
-      <PopoverTrigger asChild disabled={readOnly}>
-        <Button
-          id={id}
-          variant="outline"
-          className={cn(
-            'w-full justify-start text-left font-normal',
-            !selectedDate && 'text-muted-foreground',
-          )}
-          disabled={readOnly}
-        >
-          <CalendarIcon className="mr-2 size-4" />
-          {displayValue || <span>{placeholderText || 'Pick a date'}</span>}
-          {selectedDate && !readOnly && (
-            <Button
+      <PopoverAnchor asChild>
+        <div className="relative flex items-center">
+          <PopoverTrigger asChild disabled={readOnly}>
+            <button
               type="button"
-              variant="ghost"
-              size="icon"
-              className="ml-auto -mr-2 size-6 hover:bg-transparent"
+              className="absolute left-3 z-10 text-muted-foreground hover:text-foreground focus:outline-none"
+              disabled={readOnly}
+            >
+              <CalendarIcon className="size-4" />
+            </button>
+          </PopoverTrigger>
+          <Input
+            ref={inputRef}
+            id={id}
+            type="text"
+            value={inputValue}
+            onChange={handleInputChange}
+            onFocus={handleInputFocus}
+            onBlur={handleInputBlur}
+            onKeyDown={handleInputKeyDown}
+            placeholder={getPlaceholder()}
+            disabled={readOnly}
+            className={cn('pl-9', selectedDate && !readOnly ? 'pr-8' : 'pr-3')}
+          />
+          {selectedDate && !readOnly && (
+            <button
+              type="button"
+              className="absolute right-2 rounded-sm p-0.5 text-muted-foreground opacity-70 hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-ring"
               onClick={handleClear}
             >
-              <X className="size-3 text-muted-foreground" />
-            </Button>
+              <X className="size-4" />
+            </button>
           )}
-        </Button>
-      </PopoverTrigger>
-      <PopoverContent className="w-auto p-0" align="start">
+        </div>
+      </PopoverAnchor>
+      <PopoverContent
+        ref={popoverRef}
+        className="w-auto p-0"
+        align="start"
+        onOpenAutoFocus={handlePopoverAutoFocus}
+      >
         <div className={cn('flex', showTimeInput && 'flex-row')}>
           <Calendar
             mode="single"
             selected={selectedDate}
+            month={previewDate || selectedDate}
+            onMonthChange={setPreviewDate}
             onSelect={handleDateSelect}
             disabled={(date) => {
               if (minDate && date < minDate) return true
@@ -348,12 +531,17 @@ const DatePicker: React.FC<Props> = (props) => {
               return false
             }}
             numberOfMonths={Math.min(2, monthsToShow)}
-            captionLayout={pickerAppearance === 'monthOnly' ? 'dropdown' : 'label'}
-            initialFocus
+            captionLayout="dropdown"
+            startMonth={new Date(1900, 0)}
+            endMonth={new Date(2100, 11)}
           />
           {showTimeInput && (
             <div className="border-l border-border p-3">
-              <TimePicker value={selectedDate} onChange={handleTimePickerChange} use12Hour={true} />
+              <TimePicker
+                value={previewDate || selectedDate}
+                onChange={handleTimePickerChange}
+                use12Hour={true}
+              />
             </div>
           )}
         </div>
