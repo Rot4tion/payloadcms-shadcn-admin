@@ -2,7 +2,7 @@
 import type { Config, ImportMap, ServerProps } from 'payload'
 
 import { RenderServerComponent } from '@/components/payloadcms/ui/elements/RenderServerComponent'
-import '@/components/payloadcms/ui/scss/app.css'
+import '@/components/payloadcms/ui/app.css'
 import React from 'react'
 
 type Args = {
