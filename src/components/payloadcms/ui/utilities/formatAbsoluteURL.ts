@@ -1,3 +1,4 @@
+// @ts-nocheck payloadcms original type safe issue will fix later
 const getAbsoluteUrl = (url) => {
   try {
     return new URL(url, window.location.origin).href

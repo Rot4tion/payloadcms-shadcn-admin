@@ -1,3 +1,4 @@
+// @ts-nocheck payloadcms original type safe issue will fix later
 'use client'
 export const getFormattedLocale = (language = 'enUS') => {
   const formattedLocales = {

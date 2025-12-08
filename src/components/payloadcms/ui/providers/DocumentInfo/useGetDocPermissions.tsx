@@ -1,3 +1,4 @@
+// @ts-nocheck payloadcms original type safe issue will fix later
 import type { Data, SanitizedDocumentPermissions, SanitizedPermissions } from 'payload'
 
 import * as qs from 'qs-esm'

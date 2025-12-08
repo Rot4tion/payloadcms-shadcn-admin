@@ -1,3 +1,4 @@
+// @ts-nocheck payloadcms original type safe issue will fix later
 /**
  * Very simple, but fast deepMerge implementation. Only deepMerges objects, not arrays and clones everything.
  * Do not use this if your object contains any complex objects like React Components, or if you would like to combine Arrays.

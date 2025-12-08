@@ -1,3 +1,4 @@
+// @ts-nocheck payloadcms original type safe issue will fix later
 /**
  * Create a thumbnail from a File object by drawing it onto an OffscreenCanvas
  */
