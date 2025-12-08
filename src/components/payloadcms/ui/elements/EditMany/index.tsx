@@ -1,7 +1,7 @@
 'use client'
 import type { ClientCollectionConfig, Where } from 'payload'
 
-import { useModal } from '../Modal/index'
+import { useModal } from '../Modal'
 import React, { useState } from 'react'
 
 import type { FieldOption } from '../FieldSelect/reduceFieldOptions'
@@ -10,8 +10,8 @@ import { useAuth } from '@payloadcms/ui'
 import { EditDepthProvider } from '@payloadcms/ui'
 import { useSelection } from '@payloadcms/ui'
 import { useTranslation } from '@payloadcms/ui'
-import { Drawer } from '../Drawer/index'
-import { ListSelectionButton } from '../ListSelection/index'
+import { Drawer } from '../Drawer'
+import { ListSelectionButton } from '../ListSelection'
 import { EditManyDrawerContent } from './DrawerContent'
 import { SelectAllStatus } from '@payloadcms/ui/providers/Selection'
 

@@ -7,11 +7,11 @@ import React, { useState } from 'react'
 import type { FieldAction } from '../../forms/Form/types'
 import type { FieldOption } from './reduceFieldOptions'
 
-import { FieldLabel } from '../../fields/FieldLabel/index'
+import { FieldLabel } from '../../fields/FieldLabel'
 import { useForm } from '@payloadcms/ui'
 import { useTranslation } from '@payloadcms/ui'
 import { filterOutUploadFields } from '../../utilities/filterOutUploadFields'
-import { ReactSelect } from '../ReactSelect/index'
+import { ReactSelect } from '../ReactSelect'
 import { reduceFieldOptions } from './reduceFieldOptions'
 
 export type OnFieldSelect = ({

@@ -8,15 +8,15 @@ import { getTranslation } from '@payloadcms/translations'
 import React from 'react'
 
 import { cn } from '@/lib/utils'
-import { DocumentIcon } from '../../../icons/Document/index'
-import { ThreeDotsIcon } from '../../../icons/ThreeDots/index'
+import { DocumentIcon } from '../../../icons/Document'
+import { ThreeDotsIcon } from '../../../icons/ThreeDots'
 import { useConfig } from '@payloadcms/ui'
-import { useFolder } from '../../../providers/Folders/index'
+import { useFolder } from '../../../providers/Folders'
 import { useTranslation } from '@payloadcms/ui'
-import { Popup } from '../../Popup/index'
-import { Thumbnail } from '../../Thumbnail/index'
-import { ColoredFolderIcon } from '../ColoredFolderIcon/index'
-import { DraggableWithClick } from '../DraggableWithClick/index'
+import { Popup } from '../../Popup'
+import { Thumbnail } from '../../Thumbnail'
+import { ColoredFolderIcon } from '../ColoredFolderIcon'
+import { DraggableWithClick } from '../DraggableWithClick'
 
 type Props = {
   readonly className?: string

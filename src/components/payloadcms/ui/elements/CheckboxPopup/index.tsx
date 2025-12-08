@@ -1,7 +1,7 @@
-import type { PopupProps } from '../Popup/index'
+import type { PopupProps } from '../Popup'
 
 import { CheckboxInput } from '../../fields/Checkbox/Input'
-import { Popup } from '../Popup/index'
+import { Popup } from '../Popup'
 import { cn } from '@/lib/utils'
 
 type CheckboxPopupProps = {

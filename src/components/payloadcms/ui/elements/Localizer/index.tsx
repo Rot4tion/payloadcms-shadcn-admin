@@ -9,8 +9,8 @@ import { cn } from '@/lib/utils'
 import { useConfig, useLocale, useRouteTransition, useTranslation } from '@payloadcms/ui'
 // useLocaleLoading is not exported from main entry, import from sub-path
 import { useLocaleLoading } from '@payloadcms/ui/providers/Locale'
-import { Popup, PopupList } from '../Popup/index'
-import { LocalizerLabel } from './LocalizerLabel/index'
+import { Popup, PopupList } from '../Popup'
+import { LocalizerLabel } from './LocalizerLabel'
 
 export const Localizer: React.FC<{
   className?: string

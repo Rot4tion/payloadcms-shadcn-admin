@@ -16,9 +16,9 @@ import React from 'react'
 
 import type { CompareOption } from './Default/types'
 
-import { DefaultVersionView } from './Default/index'
+import { DefaultVersionView } from './Default'
 import { fetchLatestVersion, fetchVersion, fetchVersions } from './fetchVersions'
-import { RenderDiff } from './RenderFieldsToDiff/index'
+import { RenderDiff } from './RenderFieldsToDiff'
 import { getVersionLabel } from './VersionPillLabel/getVersionLabel'
 import { VersionPillLabel } from './VersionPillLabel/VersionPillLabel'
 

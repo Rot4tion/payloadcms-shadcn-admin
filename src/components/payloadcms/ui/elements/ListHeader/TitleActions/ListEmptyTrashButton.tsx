@@ -2,7 +2,7 @@
 'use client'
 import type { ClientCollectionConfig } from 'payload'
 
-import { useModal } from '../../Modal/index'
+import { useModal } from '../../Modal'
 import { getTranslation } from '@payloadcms/translations'
 import { useRouter, useSearchParams } from 'next/navigation'
 import * as qs from 'qs-esm'
@@ -11,12 +11,12 @@ import { toast } from 'sonner'
 
 import { useConfig } from '@payloadcms/ui'
 import { useLocale } from '@payloadcms/ui'
-import { useRouteCache } from '../../../providers/RouteCache/index'
+import { useRouteCache } from '../../../providers/RouteCache'
 import { useTranslation } from '@payloadcms/ui'
 import { requests } from '../../../utilities/api'
-import { Button } from '../../Button/index'
-import { ConfirmationModal } from '../../ConfirmationModal/index'
-import { Translation } from '../../Translation/index'
+import { Button } from '../../Button'
+import { ConfirmationModal } from '../../ConfirmationModal'
+import { Translation } from '../../Translation'
 
 const confirmEmptyTrashSlug = 'confirm-empty-trash'
 

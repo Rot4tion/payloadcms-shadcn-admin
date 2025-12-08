@@ -3,11 +3,11 @@
 
 import React from 'react'
 
-import type { OnDrawerOpen } from '../../index'
+import type { OnDrawerOpen } from '../..'
 
-import { EditIcon } from '../../../../icons/Edit/index'
-import { useCellProps } from '../../../../providers/TableColumns/RenderDefaultCell/index'
-import { DefaultCell } from '../../../Table/DefaultCell/index'
+import { EditIcon } from '../../../../icons/Edit'
+import { useCellProps } from '../../../../providers/TableColumns/RenderDefaultCell'
+import { DefaultCell } from '../../../Table/DefaultCell'
 
 export const DrawerLink: React.FC<{
   currentDrawerID?: string

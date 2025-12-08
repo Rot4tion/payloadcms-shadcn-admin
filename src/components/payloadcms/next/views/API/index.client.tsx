@@ -19,8 +19,8 @@ import { useSearchParams } from 'next/navigation'
 import * as React from 'react'
 
 import { cn } from '@/lib/utils'
-import { LocaleSelector } from './LocaleSelector/index'
-import { RenderJSON } from './RenderJSON/index'
+import { LocaleSelector } from './LocaleSelector'
+import { RenderJSON } from './RenderJSON'
 
 export const APIViewClient: React.FC = () => {
   const { id, collectionSlug, globalSlug, initialData, isTrashed } = useDocumentInfo()

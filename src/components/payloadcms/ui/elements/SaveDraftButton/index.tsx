@@ -5,7 +5,7 @@ import type { SaveDraftButtonClientProps } from 'payload'
 import React, { useCallback, useRef } from 'react'
 
 import { useForm, useFormModified } from '@payloadcms/ui'
-import { FormSubmit } from '../../forms/Submit/index'
+import { FormSubmit } from '../../forms/Submit'
 import { useHotkey } from '../../hooks/useHotkey'
 import { useConfig } from '@payloadcms/ui'
 import { useDocumentInfo } from '@payloadcms/ui'

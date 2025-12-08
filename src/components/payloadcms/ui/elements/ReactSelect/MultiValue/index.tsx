@@ -8,7 +8,7 @@ import { components as SelectComponents } from 'react-select'
 import type { Option } from '../types'
 
 import { cn } from '@/lib/utils'
-import { useDraggableSortable } from '../../DraggableSortable/useDraggableSortable/index'
+import { useDraggableSortable } from '../../DraggableSortable/useDraggableSortable'
 
 export function generateMultiValueDraggableID(optionData, valueFunction) {
   return typeof valueFunction === 'function' ? valueFunction(optionData) : optionData?.value

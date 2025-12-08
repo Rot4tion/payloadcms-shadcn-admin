@@ -1,8 +1,8 @@
 // @ts-nocheck payloadcms original type safe issue will fix later
-import { useRouteCache } from '../../../../providers/RouteCache/index'
-import { useTranslation } from '../../../../providers/Translation/index'
-import { useDocumentDrawer } from '../../../DocumentDrawer/index'
-import { ListSelectionButton } from '../../../ListSelection/index'
+import { useRouteCache } from '../../../../providers/RouteCache'
+import { useTranslation } from '../../../../providers/Translation'
+import { useDocumentDrawer } from '../../../DocumentDrawer'
+import { ListSelectionButton } from '../../../ListSelection'
 
 type EditFolderActionProps = {
   folderCollectionSlug: string

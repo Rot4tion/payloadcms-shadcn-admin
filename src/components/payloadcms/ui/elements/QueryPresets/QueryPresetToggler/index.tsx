@@ -3,11 +3,11 @@ import type { QueryPreset } from 'payload'
 
 import { getTranslation } from '@payloadcms/translations'
 
-import { PeopleIcon } from '../../../icons/People/index'
-import { XIcon } from '../../../icons/X/index'
+import { PeopleIcon } from '../../../icons/People'
+import { XIcon } from '../../../icons/X'
 import { useConfig } from '@payloadcms/ui'
 import { useTranslation } from '@payloadcms/ui'
-import { Pill } from '../../Pill/index'
+import { Pill } from '../../Pill'
 import { cn } from '@/lib/utils'
 
 export function QueryPresetToggler({

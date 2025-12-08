@@ -4,8 +4,8 @@ import React from 'react'
 
 import { useConfig } from '@payloadcms/ui'
 import { useTranslation } from '@payloadcms/ui'
-import { Link } from '../../Link/index'
-import { ColoredFolderIcon } from '../ColoredFolderIcon/index'
+import { Link } from '../../Link'
+import { ColoredFolderIcon } from '../ColoredFolderIcon'
 import { cn } from '@/lib/utils'
 
 export function BrowseByFolderButton({ active }) {

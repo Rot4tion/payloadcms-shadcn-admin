@@ -5,11 +5,11 @@ import React, { Fragment } from 'react'
 
 import type { StepNavItem } from './types'
 
-import { PayloadIcon } from '../../graphics/Icon/index'
+import { PayloadIcon } from '../../graphics/Icon'
 import { useConfig } from '@payloadcms/ui'
 import { useTranslation } from '@payloadcms/ui'
-import { Link } from '../Link/index'
-import { RenderCustomComponent } from '../RenderCustomComponent/index'
+import { Link } from '../Link'
+import { RenderCustomComponent } from '../RenderCustomComponent'
 import { useStepNav } from './context'
 
 import { cn } from '@/lib/utils'

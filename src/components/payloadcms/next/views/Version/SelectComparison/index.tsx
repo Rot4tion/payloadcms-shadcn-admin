@@ -12,7 +12,7 @@ import type { CompareOption } from '../Default/types'
 
 import type { Props } from './types'
 
-import { useVersionDrawer } from './VersionDrawer/index'
+import { useVersionDrawer } from './VersionDrawer'
 
 export const SelectComparison: React.FC<Props> = memo((props) => {
   const {

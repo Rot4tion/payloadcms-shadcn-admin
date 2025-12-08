@@ -1,16 +1,16 @@
-export { AccountView } from '../views/Account/index'
-export { CreateFirstUserView } from '../views/CreateFirstUser/index'
+export { AccountView } from '../views/Account'
+export { CreateFirstUserView } from '../views/CreateFirstUser'
 export {
   type DashboardViewClientProps,
   type DashboardViewServerProps,
   type DashboardViewServerPropsOnly,
   DefaultDashboard,
-} from '../views/Dashboard/Default/index'
-export { DashboardView } from '../views/Dashboard/index'
+} from '../views/Dashboard/Default'
+export { DashboardView } from '../views/Dashboard'
 
-export { ListView, renderListView, type RenderListViewArgs } from '../views/List/index'
-export { LoginView } from '../views/Login/index'
-export { NotFoundPage } from '../views/NotFound/index'
+export { ListView, renderListView, type RenderListViewArgs } from '../views/List'
+export { LoginView } from '../views/Login'
+export { NotFoundPage } from '../views/NotFound'
 
-export { type GenerateViewMetadata, RootPage } from '../views/Root/index'
+export { type GenerateViewMetadata, RootPage } from '../views/Root'
 export { generatePageMetadata } from '../views/Root/metadata'

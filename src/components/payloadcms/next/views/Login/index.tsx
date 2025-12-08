@@ -6,8 +6,8 @@ import { redirect } from 'next/navigation'
 import { getSafeRedirect } from 'payload/shared'
 import React, { Fragment } from 'react'
 
-import { Logo } from '../../elements/Logo/index'
-import { LoginForm } from './LoginForm/index'
+import { Logo } from '../../elements/Logo'
+import { LoginForm } from './LoginForm'
 
 export const loginBaseClass = 'login'
 

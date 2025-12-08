@@ -11,10 +11,10 @@ import type { RelationshipFilterProps as Props, ValueWithRelation } from './type
 import { cn } from '@/lib/utils'
 import { useDebounce } from '../../../../hooks/useDebounce'
 import { useEffectEvent } from '../../../../hooks/useEffectEvent'
-import { useConfig } from '../../../../providers/Config/index'
-import { useLocale } from '../../../../providers/Locale/index'
-import { useTranslation } from '../../../../providers/Translation/index'
-import { ReactSelect } from '../../../ReactSelect/index'
+import { useConfig } from '../../../../providers/Config'
+import { useLocale } from '../../../../providers/Locale'
+import { useTranslation } from '../../../../providers/Translation'
+import { ReactSelect } from '../../../ReactSelect'
 import optionsReducer from './optionsReducer'
 
 const maxResultsPerRequest = 10

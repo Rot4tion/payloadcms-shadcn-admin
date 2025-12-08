@@ -4,7 +4,7 @@ import { Button, Gutter } from '@/components/payloadcms/ui/exports/client'
 import { formatAdminURL } from 'payload/shared'
 import React from 'react'
 
-import { FormHeader } from '../../elements/FormHeader/index'
+import { FormHeader } from '../../elements/FormHeader'
 
 export function UnauthorizedView({ initPageResult }: AdminViewServerProps) {
   const {

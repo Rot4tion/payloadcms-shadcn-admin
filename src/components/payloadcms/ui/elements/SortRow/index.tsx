@@ -2,7 +2,7 @@
 
 import React from 'react'
 
-import { DragHandleIcon } from '../../icons/DragHandle/index'
+import { DragHandleIcon } from '../../icons/DragHandle'
 import { useListQuery } from '@payloadcms/ui'
 import { cn } from '@/lib/utils'
 

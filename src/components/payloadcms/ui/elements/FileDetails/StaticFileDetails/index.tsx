@@ -2,10 +2,10 @@
 import React from 'react'
 
 import { cn } from '@/lib/utils'
-import { Button } from '../../Button/index'
-import { Thumbnail } from '../../Thumbnail/index'
-import { UploadActions } from '../../Upload/index'
-import { FileMeta } from '../FileMeta/index'
+import { Button } from '../../Button'
+import { Thumbnail } from '../../Thumbnail'
+import { UploadActions } from '../../Upload'
+import { FileMeta } from '../FileMeta'
 
 import type { Data, FileSizes, SanitizedCollectionConfig } from 'payload'
 

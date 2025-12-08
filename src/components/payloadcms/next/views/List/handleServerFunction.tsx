@@ -10,7 +10,7 @@ import { headers as getHeaders } from 'next/headers'
 import { canAccessAdmin, getAccessResults, isEntityHidden, parseCookies } from 'payload'
 import { applyLocaleFiltering } from 'payload/shared'
 
-import { renderListView } from './index'
+import { renderListView } from '.'
 
 export const renderListHandler: ServerFunction<
   RenderListServerFnArgs,

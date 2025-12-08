@@ -5,14 +5,14 @@ import type { SlugFieldClientProps } from 'payload'
 
 import React, { useCallback, useState } from 'react'
 
-import { Button } from '../../elements/Button/index'
-import { useForm } from '../../forms/Form/index'
-import { useField } from '../../forms/useField/index'
+import { Button } from '../../elements/Button'
+import { useForm } from '../../forms/Form'
+import { useField } from '../../forms/useField'
 import { useDocumentInfo } from '@payloadcms/ui'
 import { useServerFunctions } from '@payloadcms/ui'
 import { useTranslation } from '@payloadcms/ui'
-import { FieldLabel } from '../FieldLabel/index'
-import { TextInput } from '../Text/index'
+import { FieldLabel } from '../FieldLabel'
+import { TextInput } from '../Text'
 
 /**
  * @experimental This component is experimental and may change or be removed in the future. Use at your own risk.

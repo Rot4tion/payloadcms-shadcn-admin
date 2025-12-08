@@ -3,7 +3,7 @@
 
 import type { SanitizedCollectionConfig } from 'payload'
 
-import { useModal } from '../Modal/index'
+import { useModal } from '../Modal'
 import { getTranslation } from '@payloadcms/translations'
 import { useRouter } from 'next/navigation'
 import { formatAdminURL } from 'payload/shared'
@@ -14,13 +14,13 @@ import { toast } from 'sonner'
 import type { DocumentDrawerContextType } from '../DocumentDrawer/Provider'
 
 import { useConfig } from '@payloadcms/ui'
-import { useDocumentTitle } from '../../providers/DocumentTitle/index'
+import { useDocumentTitle } from '../../providers/DocumentTitle'
 import { useRouteTransition } from '@payloadcms/ui'
 import { useTranslation } from '@payloadcms/ui'
 import { requests } from '../../utilities/api'
-import { Button } from '../Button/index'
-import { ConfirmationModal } from '../ConfirmationModal/index'
-import { Translation } from '../Translation/index'
+import { Button } from '../Button'
+import { ConfirmationModal } from '../ConfirmationModal'
+import { Translation } from '../Translation'
 
 export type Props = {
   readonly buttonId?: string

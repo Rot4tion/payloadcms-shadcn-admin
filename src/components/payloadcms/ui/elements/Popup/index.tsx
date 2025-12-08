@@ -2,7 +2,7 @@
 'use client'
 import type { CSSProperties } from 'react'
 
-export * as PopupList from './PopupButtonList/index'
+export * as PopupList from './PopupButtonList'
 
 import React, { useCallback, useEffect, useState } from 'react'
 
@@ -12,7 +12,7 @@ import {
   PopoverContent,
   PopoverTrigger as ShadcnPopoverTrigger,
 } from '@/components/ui/popover'
-import { PopupTrigger } from './PopupTrigger/index'
+import { PopupTrigger } from './PopupTrigger'
 
 export type PopupProps = {
   backgroundColor?: CSSProperties['backgroundColor']

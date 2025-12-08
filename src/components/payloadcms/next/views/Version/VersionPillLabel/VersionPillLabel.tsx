@@ -6,7 +6,7 @@ import { Pill, useConfig, useTranslation } from '@/components/payloadcms/ui/expo
 import React from 'react'
 
 import { getVersionLabel } from './getVersionLabel'
-import { formatDate } from '@/components/payloadcms/ui/exports/shared/index'
+import { formatDate } from '@/components/payloadcms/ui/exports/shared'
 
 const renderPill = (label: React.ReactNode, pillStyle: Parameters<typeof Pill>[0]['pillStyle']) => {
   return (

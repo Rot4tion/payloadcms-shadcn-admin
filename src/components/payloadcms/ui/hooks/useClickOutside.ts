@@ -1,6 +1,6 @@
 import { useEffect } from 'react'
 
-import { useClickOutsideContext } from '../providers/ClickOutside/index'
+import { useClickOutsideContext } from '../providers/ClickOutside'
 
 export function useClickOutside(
   ref: React.RefObject<HTMLElement>,

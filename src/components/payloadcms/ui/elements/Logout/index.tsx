@@ -2,10 +2,10 @@
 import { formatAdminURL } from 'payload/shared'
 import React from 'react'
 
-import { LogOutIcon } from '../../icons/LogOut/index'
+import { LogOutIcon } from '../../icons/LogOut'
 import { useConfig } from '@payloadcms/ui'
 import { useTranslation } from '@payloadcms/ui'
-import { Link } from '../Link/index'
+import { Link } from '../Link'
 
 const baseClass = 'nav'
 

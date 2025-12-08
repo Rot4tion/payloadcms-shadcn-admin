@@ -6,7 +6,7 @@ import { cn } from '@/lib/utils'
 import { useDroppable } from '@dnd-kit/core'
 import React from 'react'
 
-import { ChevronIcon } from '../../../icons/Chevron/index'
+import { ChevronIcon } from '../../../icons/Chevron'
 
 type Props = {
   readonly breadcrumbs: {

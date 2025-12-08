@@ -2,8 +2,8 @@
 
 import * as React from 'react'
 
-import { Banner } from '../../elements/Banner/index'
-import { CheckboxField } from '../../fields/Checkbox/index'
+import { Banner } from '../../elements/Banner'
+import { CheckboxField } from '../../fields/Checkbox'
 import { useConfig } from '@payloadcms/ui'
 import { useLocale } from '@payloadcms/ui'
 import { useTranslation } from '@payloadcms/ui'

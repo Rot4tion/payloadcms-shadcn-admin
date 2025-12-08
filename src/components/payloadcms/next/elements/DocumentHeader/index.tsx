@@ -9,7 +9,7 @@ import type {
 import { Gutter, RenderTitle } from '@/components/payloadcms/ui/exports/client'
 import React from 'react'
 
-import { DocumentTabs } from './Tabs/index'
+import { DocumentTabs } from './Tabs'
 
 /**
  * DocumentHeader - Converted to TailwindCSS

@@ -12,9 +12,9 @@ import type {
 import { SortColumn } from '@/components/payloadcms/ui/exports/client'
 import React from 'react'
 
-import { AutosaveCell } from './cells/AutosaveCell/index'
-import { CreatedAtCell, type CreatedAtCellProps } from './cells/CreatedAt/index'
-import { IDCell } from './cells/ID/index'
+import { AutosaveCell } from './cells/AutosaveCell'
+import { CreatedAtCell, type CreatedAtCellProps } from './cells/CreatedAt'
+import { IDCell } from './cells/ID'
 
 export const buildVersionColumns = ({
   collectionConfig,

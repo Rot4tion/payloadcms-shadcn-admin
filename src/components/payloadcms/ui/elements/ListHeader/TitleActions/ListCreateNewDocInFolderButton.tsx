@@ -7,11 +7,11 @@ import { getTranslation } from '@payloadcms/translations'
 import React from 'react'
 
 import { useConfig } from '@payloadcms/ui'
-import { useFolder } from '../../../providers/Folders/index'
+import { useFolder } from '../../../providers/Folders'
 import { useTranslation } from '@payloadcms/ui'
-import { Button } from '../../Button/index'
-import { useDocumentDrawer } from '../../DocumentDrawer/index'
-import { Popup, PopupList } from '../../Popup/index'
+import { Button } from '../../Button'
+import { useDocumentDrawer } from '../../DocumentDrawer'
+import { Popup, PopupList } from '../../Popup'
 
 const baseClass = 'create-new-doc-in-folder'
 

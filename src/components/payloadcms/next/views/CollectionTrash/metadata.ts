@@ -3,7 +3,7 @@ import type { SanitizedCollectionConfig } from 'payload'
 
 import { getTranslation } from '@payloadcms/translations'
 
-import type { GenerateViewMetadata } from '../Root/index'
+import type { GenerateViewMetadata } from '../Root'
 
 import { generateMetadata } from '../../utilities/meta'
 

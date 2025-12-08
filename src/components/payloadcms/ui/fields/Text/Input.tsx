@@ -10,11 +10,11 @@ import type { TextInputProps } from './types'
 
 import { cn } from '@/lib/utils'
 import { Input } from '@/components/ui/input'
-import { ReactSelect } from '../../elements/ReactSelect/index'
-import { RenderCustomComponent } from '../../elements/RenderCustomComponent/index'
-import { FieldDescription } from '../../fields/FieldDescription/index'
-import { FieldError } from '../../fields/FieldError/index'
-import { FieldLabel } from '../../fields/FieldLabel/index'
+import { ReactSelect } from '../../elements/ReactSelect'
+import { RenderCustomComponent } from '../../elements/RenderCustomComponent'
+import { FieldDescription } from '../../fields/FieldDescription'
+import { FieldError } from '../../fields/FieldError'
+import { FieldLabel } from '../../fields/FieldLabel'
 import { useTranslation } from '@payloadcms/ui'
 
 export const TextInput: React.FC<TextInputProps> = (props) => {

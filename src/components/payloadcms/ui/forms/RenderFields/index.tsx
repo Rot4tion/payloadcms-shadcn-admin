@@ -9,7 +9,7 @@ import React from 'react'
 import type { RenderFieldsProps } from './types'
 
 import { cn } from '@/lib/utils'
-import { RenderIfInViewport } from '../../elements/RenderIfInViewport/index'
+import { RenderIfInViewport } from '../../elements/RenderIfInViewport'
 import { useOperation } from '@payloadcms/ui'
 import { FieldPathContext } from './context'
 import { RenderField } from './RenderField'

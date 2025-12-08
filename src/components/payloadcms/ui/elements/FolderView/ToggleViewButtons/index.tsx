@@ -1,6 +1,6 @@
-import { GridViewIcon } from '../../../icons/GridView/index'
-import { ListViewIcon } from '../../../icons/ListView/index'
-import { Button } from '../../Button/index'
+import { GridViewIcon } from '../../../icons/GridView'
+import { ListViewIcon } from '../../../icons/ListView'
+import { Button } from '../../Button'
 import { cn } from '@/lib/utils'
 
 type Props = {

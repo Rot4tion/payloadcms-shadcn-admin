@@ -1,3 +1,3 @@
-export { DocumentHeader } from '../elements/DocumentHeader/index'
-export { Logo } from '../elements/Logo/index'
-export { DefaultNav } from '../elements/Nav/index'
+export { DocumentHeader } from '../elements/DocumentHeader'
+export { Logo } from '../elements/Logo'
+export { DefaultNav } from '../elements/Nav'

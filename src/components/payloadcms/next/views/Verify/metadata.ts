@@ -1,5 +1,5 @@
 // @ts-nocheck payloadcms original type safe issue will fix later
-import type { GenerateViewMetadata } from '../Root/index'
+import type { GenerateViewMetadata } from '../Root'
 
 import { generateMetadata } from '../../utilities/meta'
 

@@ -6,7 +6,7 @@ import React, { type JSX } from 'react'
 
 import type { Option as OptionType } from '../types'
 
-import { ChevronIcon } from '../../../icons/Chevron/index'
+import { ChevronIcon } from '../../../icons/Chevron'
 export const DropdownIndicator: React.FC<
   {
     innerProps: JSX.IntrinsicElements['button']

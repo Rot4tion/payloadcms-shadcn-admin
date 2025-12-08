@@ -7,15 +7,15 @@ import React, { useCallback, useMemo } from 'react'
 
 import { cn } from '@/lib/utils'
 import { Input } from '@/components/ui/input'
-import { RenderCustomComponent } from '../../elements/RenderCustomComponent/index'
-import { FieldDescription } from '../../fields/FieldDescription/index'
-import { FieldError } from '../../fields/FieldError/index'
-import { FieldLabel } from '../../fields/FieldLabel/index'
-import { useField } from '../../forms/useField/index'
-import { withCondition } from '../../forms/withCondition/index'
+import { RenderCustomComponent } from '../../elements/RenderCustomComponent'
+import { FieldDescription } from '../../fields/FieldDescription'
+import { FieldError } from '../../fields/FieldError'
+import { FieldLabel } from '../../fields/FieldLabel'
+import { useField } from '../../forms/useField'
+import { withCondition } from '../../forms/withCondition'
 import { useTranslation } from '@payloadcms/ui'
 import { mergeFieldStyles } from '../mergeFieldStyles'
-import { fieldBaseClass } from '../shared/index'
+import { fieldBaseClass } from '../shared'
 
 export const PointFieldComponent: PointFieldClientComponent = (props) => {
   const {

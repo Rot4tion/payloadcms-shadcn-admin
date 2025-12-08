@@ -5,8 +5,8 @@ import React from 'react'
 
 import { useAuth } from '@payloadcms/ui'
 import { useConfig } from '@payloadcms/ui'
-import { DefaultAccountIcon } from './Default/index'
-import { GravatarAccountIcon } from './Gravatar/index'
+import { DefaultAccountIcon } from './Default'
+import { GravatarAccountIcon } from './Gravatar'
 
 export const Account = () => {
   const {

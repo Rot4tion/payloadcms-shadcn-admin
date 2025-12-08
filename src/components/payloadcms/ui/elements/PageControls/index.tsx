@@ -7,8 +7,8 @@ import React, { Fragment } from 'react'
 
 import type { IListQueryContext } from '../../providers/ListQuery/types'
 
-import { Pagination } from '../../elements/Pagination/index'
-import { PerPage } from '../../elements/PerPage/index'
+import { Pagination } from '../../elements/Pagination'
+import { PerPage } from '../../elements/PerPage'
 import { useListQuery } from '@payloadcms/ui'
 import { useTranslation } from '@payloadcms/ui'
 

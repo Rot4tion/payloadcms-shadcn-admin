@@ -6,13 +6,13 @@ import { getTranslation } from '@payloadcms/translations'
 import { formatAdminURL } from 'payload/shared'
 import { useEffect } from 'react'
 
-import type { StepNavItem } from '../../../elements/StepNav/index'
+import type { StepNavItem } from '../../../elements/StepNav'
 
-import { useStepNav } from '../../../elements/StepNav/index'
+import { useStepNav } from '../../../elements/StepNav'
 import { useConfig } from '@payloadcms/ui'
 import { useDocumentInfo } from '@payloadcms/ui'
-import { useDocumentTitle } from '../../../providers/DocumentTitle/index'
-import { useEntityVisibility } from '../../../providers/EntityVisibility/index'
+import { useDocumentTitle } from '../../../providers/DocumentTitle'
+import { useEntityVisibility } from '../../../providers/EntityVisibility'
 import { useTranslation } from '@payloadcms/ui'
 
 export const SetDocumentStepNav: React.FC<{

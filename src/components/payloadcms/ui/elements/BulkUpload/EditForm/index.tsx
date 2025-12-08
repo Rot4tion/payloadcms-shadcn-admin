@@ -6,16 +6,16 @@ import type { ClientCollectionConfig } from 'payload'
 import type { EditFormProps } from './types'
 
 import { OperationProvider, useConfig, useDocumentInfo, useServerFunctions } from '@payloadcms/ui'
-import { Form, useForm } from '../../../forms/Form/index'
+import { Form, useForm } from '../../../forms/Form'
 import { type FormProps } from '../../../forms/Form/types'
-import { WatchChildErrors } from '../../../forms/WatchChildErrors/index'
-import { useDocumentEvents } from '../../../providers/DocumentEvents/index'
+import { WatchChildErrors } from '../../../forms/WatchChildErrors'
+import { useDocumentEvents } from '../../../providers/DocumentEvents'
 import { abortAndIgnore, handleAbortRef } from '../../../utilities/abortAndIgnore'
 import { useDocumentDrawerContext } from '../../DocumentDrawer/Provider'
-import { DocumentFields } from '../../DocumentFields/index'
-import { MoveDocToFolder } from '../../FolderView/MoveDocToFolder/index'
-import { Upload_v4 } from '../../Upload/index'
-import { useFormsManager } from '../FormsManager/index'
+import { DocumentFields } from '../../DocumentFields'
+import { MoveDocToFolder } from '../../FolderView/MoveDocToFolder'
+import { Upload_v4 } from '../../Upload'
+import { useFormsManager } from '../FormsManager'
 
 // This component receives props only on _pages_
 // When rendered within a drawer, props are empty

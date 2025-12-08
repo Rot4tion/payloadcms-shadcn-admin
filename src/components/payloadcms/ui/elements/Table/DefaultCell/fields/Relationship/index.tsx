@@ -11,12 +11,12 @@ import { getTranslation } from '@payloadcms/translations'
 import React, { useEffect, useMemo, useState } from 'react'
 
 import { useIntersect } from '../../../../../hooks/useIntersect'
-import { useConfig } from '../../../../../providers/Config/index'
-import { useTranslation } from '../../../../../providers/Translation/index'
+import { useConfig } from '../../../../../providers/Config'
+import { useTranslation } from '../../../../../providers/Translation'
 import { canUseDOM } from '../../../../../utilities/canUseDOM'
-import { formatDocTitle } from '../../../../../utilities/formatDocTitle/index'
-import { useListRelationships } from '../../../RelationshipProvider/index'
-import { FileCell } from '../File/index'
+import { formatDocTitle } from '../../../../../utilities/formatDocTitle'
+import { useListRelationships } from '../../../RelationshipProvider'
+import { FileCell } from '../File'
 
 type Value = { relationTo: string; value: number | string }
 const totalToShow = 3

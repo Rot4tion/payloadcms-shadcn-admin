@@ -1,6 +1,6 @@
 'use client'
 
-import { useModal } from '../Modal/index'
+import { useModal } from '../Modal'
 import { usePathname } from 'next/navigation'
 import { useEffect, useRef } from 'react'
 

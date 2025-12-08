@@ -5,20 +5,20 @@ import type { ClientCollectionConfig, ViewTypes } from 'payload'
 import { getTranslation } from '@payloadcms/translations'
 import React from 'react'
 
-import { CloseModalButton } from '../../../elements/CloseModalButton/index'
-import { DefaultListViewTabs } from '../../../elements/DefaultListViewTabs/index'
+import { CloseModalButton } from '../../../elements/CloseModalButton'
+import { DefaultListViewTabs } from '../../../elements/DefaultListViewTabs'
 import { useListDrawerContext } from '../../../elements/ListDrawer/Provider'
-import { DrawerRelationshipSelect } from '../../../elements/ListHeader/DrawerRelationshipSelect/index'
-import { ListDrawerCreateNewDocButton } from '../../../elements/ListHeader/DrawerTitleActions/index'
-import { ListHeader } from '../../../elements/ListHeader/index'
+import { DrawerRelationshipSelect } from '../../../elements/ListHeader/DrawerRelationshipSelect'
+import { ListDrawerCreateNewDocButton } from '../../../elements/ListHeader/DrawerTitleActions'
+import { ListHeader } from '../../../elements/ListHeader'
 import {
   ListBulkUploadButton,
   ListCreateNewButton,
   ListEmptyTrashButton,
-} from '../../../elements/ListHeader/TitleActions/index'
+} from '../../../elements/ListHeader/TitleActions'
 import { useConfig } from '@payloadcms/ui'
 import { useListQuery } from '@payloadcms/ui'
-import { ListSelection } from '../ListSelection/index'
+import { ListSelection } from '../ListSelection'
 
 const drawerBaseClass = 'list-drawer'
 

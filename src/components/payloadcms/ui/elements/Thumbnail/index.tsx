@@ -6,8 +6,8 @@ import { cn } from '@/lib/utils'
 
 import type { SanitizedCollectionConfig } from 'payload'
 
-import { File } from '../../graphics/File/index'
-import { ShimmerEffect } from '../ShimmerEffect/index'
+import { File } from '../../graphics/File'
+import { ShimmerEffect } from '../ShimmerEffect'
 
 export type ThumbnailProps = {
   className?: string

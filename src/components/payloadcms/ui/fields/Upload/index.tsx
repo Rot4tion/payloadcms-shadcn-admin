@@ -5,9 +5,9 @@ import type { UploadFieldClientProps, ValueWithRelation } from 'payload'
 
 import React, { useMemo } from 'react'
 
-import { BulkUploadProvider } from '../../elements/BulkUpload/index'
-import { useField } from '../../forms/useField/index'
-import { withCondition } from '../../forms/withCondition/index'
+import { BulkUploadProvider } from '../../elements/BulkUpload'
+import { useField } from '../../forms/useField'
+import { withCondition } from '../../forms/withCondition'
 import { useConfig } from '@payloadcms/ui'
 import { mergeFieldStyles } from '../mergeFieldStyles'
 import { UploadInput } from './Input'

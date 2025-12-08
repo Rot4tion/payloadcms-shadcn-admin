@@ -10,15 +10,15 @@ import {
 import { buildFormState } from '@/components/payloadcms/ui/utilities/buildFormState'
 import { notFound } from 'next/navigation'
 
-import { DocumentHeader } from '../../elements/DocumentHeader/index'
+import { DocumentHeader } from '../../elements/DocumentHeader'
 import { getDocPreferences } from '../Document/getDocPreferences'
 import { getDocumentData } from '../Document/getDocumentData'
 import { getDocumentPermissions } from '../Document/getDocumentPermissions'
 import { getIsLocked } from '../Document/getIsLocked'
 import { getVersions } from '../Document/getVersions'
-import { EditView } from '../Edit/index'
+import { EditView } from '../Edit'
 import { AccountClient } from './index.client'
-import { Settings } from './Settings/index'
+import { Settings } from './Settings'
 
 export async function AccountView({ initPageResult, params, searchParams }: AdminViewServerProps) {
   const {

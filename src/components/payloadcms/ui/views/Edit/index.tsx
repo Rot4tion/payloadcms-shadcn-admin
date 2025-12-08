@@ -3,25 +3,25 @@
 
 import type { ClientUser, DocumentViewClientProps } from 'payload'
 
-import { useModal } from '../../elements/Modal/index'
+import { useModal } from '../../elements/Modal'
 import { useRouter, useSearchParams } from 'next/navigation'
 import { formatAdminURL } from 'payload/shared'
 import React, { Fragment, useCallback, useEffect, useMemo, useRef, useState } from 'react'
 
-import type { FormProps } from '../../forms/Form/index'
+import type { FormProps } from '../../forms/Form'
 import type { FormOnSuccess } from '../../forms/Form/types'
 import type { LockedState } from '../../utilities/buildFormState'
 
-import { DocumentControls } from '../../elements/DocumentControls/index'
-import { DocumentDrawerHeader } from '../../elements/DocumentDrawer/DrawerHeader/index'
+import { DocumentControls } from '../../elements/DocumentControls'
+import { DocumentDrawerHeader } from '../../elements/DocumentDrawer/DrawerHeader'
 import { useDocumentDrawerContext } from '../../elements/DocumentDrawer/Provider'
-import { DocumentFields } from '../../elements/DocumentFields/index'
-import { DocumentLocked } from '../../elements/DocumentLocked/index'
-import { DocumentTakeOver } from '../../elements/DocumentTakeOver/index'
-import { LeaveWithoutSaving } from '../../elements/LeaveWithoutSaving/index'
-import { LivePreviewWindow } from '../../elements/LivePreview/Window/index'
-import { Upload } from '../../elements/Upload/index'
-import { Form } from '../../forms/Form/index'
+import { DocumentFields } from '../../elements/DocumentFields'
+import { DocumentLocked } from '../../elements/DocumentLocked'
+import { DocumentTakeOver } from '../../elements/DocumentTakeOver'
+import { LeaveWithoutSaving } from '../../elements/LeaveWithoutSaving'
+import { LivePreviewWindow } from '../../elements/LivePreview/Window'
+import { Upload } from '../../elements/Upload'
+import { Form } from '../../forms/Form'
 import {
   useAuth,
   useConfig,
@@ -32,17 +32,17 @@ import {
   useRouteTransition,
   useServerFunctions,
 } from '@payloadcms/ui'
-import { useDocumentEvents } from '../../providers/DocumentEvents/index'
-import { useRouteCache } from '../../providers/RouteCache/index'
+import { useDocumentEvents } from '../../providers/DocumentEvents'
+import { useRouteCache } from '../../providers/RouteCache'
 
-import { useUploadEdits } from '../../providers/UploadEdits/index'
+import { useUploadEdits } from '../../providers/UploadEdits'
 import { abortAndIgnore, handleAbortRef } from '../../utilities/abortAndIgnore'
 import { handleBackToDashboard } from '../../utilities/handleBackToDashboard'
 import { handleGoBack } from '../../utilities/handleGoBack'
 import { handleTakeOver } from '../../utilities/handleTakeOver'
-import { Auth } from './Auth/index'
-import { SetDocumentStepNav } from './SetDocumentStepNav/index'
-import { SetDocumentTitle } from './SetDocumentTitle/index'
+import { Auth } from './Auth'
+import { SetDocumentStepNav } from './SetDocumentStepNav'
+import { SetDocumentTitle } from './SetDocumentTitle'
 import { UploadControlsProvider } from '@payloadcms/ui/providers/UploadControls'
 import { cn } from '@/lib/utils'
 

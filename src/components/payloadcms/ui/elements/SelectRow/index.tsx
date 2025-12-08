@@ -6,7 +6,7 @@ import React from 'react'
 import { CheckboxInput } from '../../fields/Checkbox/Input'
 import { useAuth } from '@payloadcms/ui'
 import { useSelection } from '@payloadcms/ui'
-import { Locked } from '../Locked/index'
+import { Locked } from '../Locked'
 
 export const SelectRow: React.FC<{
   rowData: {

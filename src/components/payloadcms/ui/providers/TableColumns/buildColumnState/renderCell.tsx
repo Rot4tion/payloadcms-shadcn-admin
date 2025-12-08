@@ -14,13 +14,13 @@ import type {
 import { MissingEditorProp } from 'payload'
 import { formatAdminURL } from 'payload/shared'
 
-import { RenderCustomComponent } from '../../../elements/RenderCustomComponent/index'
-import { RenderServerComponent } from '../../../elements/RenderServerComponent/index'
+import { RenderCustomComponent } from '../../../elements/RenderCustomComponent'
+import { RenderServerComponent } from '../../../elements/RenderServerComponent'
 import {
   DefaultCell,
   RenderDefaultCell,
   // eslint-disable-next-line payload/no-imports-from-exports-dir -- MUST reference the exports dir: https://github.com/payloadcms/payload/issues/12002#issuecomment-2791493587
-} from '../../../exports/client/index'
+} from '../../../exports/client'
 import { hasOptionLabelJSXElement } from '../../../utilities/hasOptionLabelJSXElement'
 import { findValueFromPath } from './findValueFromPath'
 

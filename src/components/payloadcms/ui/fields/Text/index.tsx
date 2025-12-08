@@ -7,12 +7,12 @@ import React, { useCallback, useEffect, useMemo, useState } from 'react'
 import type { Option } from '../../elements/ReactSelect/types'
 import type { TextInputProps } from './types'
 
-import { useField } from '../../forms/useField/index'
-import { withCondition } from '../../forms/withCondition/index'
+import { useField } from '../../forms/useField'
+import { withCondition } from '../../forms/withCondition'
 import { useConfig } from '@payloadcms/ui'
 import { useLocale } from '@payloadcms/ui'
 import { mergeFieldStyles } from '../mergeFieldStyles'
-import { isFieldRTL } from '../shared/index'
+import { isFieldRTL } from '../shared'
 import { TextInput } from './Input'
 
 export { TextInput, TextInputProps }

@@ -3,7 +3,7 @@
 
 import React from 'react'
 
-import { SortDownIcon } from '../../icons/Sort/index'
+import { SortDownIcon } from '../../icons/Sort'
 import { useListQuery } from '@payloadcms/ui'
 import { useTranslation } from '@payloadcms/ui'
 import { cn } from '@/lib/utils'

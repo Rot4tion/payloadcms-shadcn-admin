@@ -5,8 +5,8 @@ import { Translation } from '@/components/payloadcms/ui/exports/shared'
 import { formatAdminURL } from 'payload/shared'
 import React, { Fragment } from 'react'
 
-import { FormHeader } from '../../elements/FormHeader/index'
-import { ForgotPasswordForm } from './ForgotPasswordForm/index'
+import { FormHeader } from '../../elements/FormHeader'
+import { ForgotPasswordForm } from './ForgotPasswordForm'
 
 export const forgotPasswordBaseClass = 'forgot-password'
 

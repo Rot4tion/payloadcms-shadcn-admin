@@ -5,8 +5,8 @@ import React from 'react'
 
 import type { DateFilterProps as Props } from './types'
 
-import { useTranslation } from '../../../../providers/Translation/index'
-import { DatePickerField } from '../../../DatePicker/index'
+import { useTranslation } from '../../../../providers/Translation'
+import { DatePickerField } from '../../../DatePicker'
 
 const baseClass = 'condition-value-date'
 

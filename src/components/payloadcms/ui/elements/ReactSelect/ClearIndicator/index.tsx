@@ -6,7 +6,7 @@ import React from 'react'
 
 import type { Option as OptionType } from '../types'
 
-import { XIcon } from '../../../icons/X/index'
+import { XIcon } from '../../../icons/X'
 
 export const ClearIndicator: React.FC<ClearIndicatorProps<OptionType, true>> = (props) => {
   const {

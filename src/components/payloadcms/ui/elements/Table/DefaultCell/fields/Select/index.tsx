@@ -5,7 +5,7 @@ import { getTranslation } from '@payloadcms/translations'
 import { optionsAreObjects } from 'payload/shared'
 import React from 'react'
 
-import { useTranslation } from '../../../../../providers/Translation/index'
+import { useTranslation } from '../../../../../providers/Translation'
 
 export interface SelectCellProps extends DefaultCellComponentProps<SelectFieldClient> {}
 

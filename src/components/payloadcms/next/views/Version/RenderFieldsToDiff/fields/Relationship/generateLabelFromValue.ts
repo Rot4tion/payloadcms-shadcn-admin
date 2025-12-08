@@ -8,7 +8,7 @@ import {
   flattenTopLevelFields,
 } from 'payload/shared'
 
-import type { RelationshipValue } from './index'
+import type { RelationshipValue } from '.'
 
 export const generateLabelFromValue = ({
   field,

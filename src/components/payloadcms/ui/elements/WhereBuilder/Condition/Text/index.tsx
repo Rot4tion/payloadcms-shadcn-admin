@@ -4,8 +4,8 @@ import React from 'react'
 
 import type { TextFilterProps as Props } from './types'
 
-import { useTranslation } from '../../../../providers/Translation/index'
-import { ReactSelect } from '../../../ReactSelect/index'
+import { useTranslation } from '../../../../providers/Translation'
+import { ReactSelect } from '../../../ReactSelect'
 
 export const Text: React.FC<Props> = (props) => {
   const {

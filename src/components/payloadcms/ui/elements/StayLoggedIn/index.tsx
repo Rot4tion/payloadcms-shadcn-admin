@@ -3,13 +3,13 @@ import { useRouter } from 'next/navigation'
 import { formatAdminURL } from 'payload/shared'
 import React, { useCallback } from 'react'
 
-import type { OnCancel } from '../ConfirmationModal/index'
+import type { OnCancel } from '../ConfirmationModal'
 
 import { useAuth } from '@payloadcms/ui'
 import { useConfig } from '@payloadcms/ui'
 import { useRouteTransition } from '@payloadcms/ui'
 import { useTranslation } from '@payloadcms/ui'
-import { ConfirmationModal } from '../ConfirmationModal/index'
+import { ConfirmationModal } from '../ConfirmationModal'
 
 export const stayLoggedInModalSlug = 'stay-logged-in'
 

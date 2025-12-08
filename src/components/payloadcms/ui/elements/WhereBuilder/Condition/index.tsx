@@ -20,14 +20,14 @@ export type Props = {
 
 import type { Operator, Option as PayloadOption, ResolvedFilterOptions } from 'payload'
 
-import type { Option } from '../../ReactSelect/index'
+import type { Option } from '../../ReactSelect'
 
 import { useDebounce } from '../../../hooks/useDebounce'
 import { useEffectEvent } from '../../../hooks/useEffectEvent'
 import { useTranslation } from '@payloadcms/ui'
-import { Button } from '../../Button/index'
-import { ReactSelect } from '../../ReactSelect/index'
-import { DefaultFilter } from './DefaultFilter/index'
+import { Button } from '../../Button'
+import { ReactSelect } from '../../ReactSelect'
+import { DefaultFilter } from './DefaultFilter'
 import { getOperatorValueTypes } from './validOperators'
 
 const baseClass = 'condition'

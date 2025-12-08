@@ -1,7 +1,7 @@
 'use client'
 import React from 'react'
 
-import { useField } from '../../../forms/useField/index'
+import { useField } from '../../../forms/useField'
 import { useTranslation } from '@payloadcms/ui'
 
 export type Props = {

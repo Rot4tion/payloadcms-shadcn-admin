@@ -10,11 +10,11 @@ import React from 'react'
 
 import type { ReducedField, Value } from '../../types'
 
-import { DateFilter } from '../Date/index'
-import { NumberFilter } from '../Number/index'
-import { RelationshipFilter } from '../Relationship/index'
-import { Select } from '../Select/index'
-import { Text } from '../Text/index'
+import { DateFilter } from '../Date'
+import { NumberFilter } from '../Number'
+import { RelationshipFilter } from '../Relationship'
+import { Select } from '../Select'
+import { Text } from '../Text'
 
 type Props = {
   booleanSelect: boolean

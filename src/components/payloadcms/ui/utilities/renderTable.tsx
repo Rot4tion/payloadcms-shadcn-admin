@@ -21,9 +21,9 @@ import { getTranslation, type I18nClient } from '@payloadcms/translations'
 import { fieldAffectsData, fieldIsHiddenOrDisabled } from 'payload/shared'
 import React from 'react'
 
-import type { BuildColumnStateArgs } from '../providers/TableColumns/buildColumnState/index'
+import type { BuildColumnStateArgs } from '../providers/TableColumns/buildColumnState'
 
-import { RenderServerComponent } from '../elements/RenderServerComponent/index'
+import { RenderServerComponent } from '../elements/RenderServerComponent'
 import {
   GroupByHeader,
   GroupByPageControls,
@@ -36,9 +36,9 @@ import {
   SortRow,
   Table,
   // eslint-disable-next-line payload/no-imports-from-exports-dir -- these MUST reference the exports dir: https://github.com/payloadcms/payload/issues/12002#issuecomment-2791493587
-} from '../exports/client/index'
+} from '../exports/client'
 import { filterFieldsWithPermissions } from '../providers/TableColumns/buildColumnState/filterFieldsWithPermissions'
-import { buildColumnState } from '../providers/TableColumns/buildColumnState/index'
+import { buildColumnState } from '../providers/TableColumns/buildColumnState'
 
 export const renderFilters = (
   fields: Field[],

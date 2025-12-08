@@ -4,10 +4,10 @@ import type { ClientUser } from 'payload'
 import React, { useState } from 'react'
 
 import { cn } from '@/lib/utils'
-import { LockIcon } from '../../icons/Lock/index'
+import { LockIcon } from '../../icons/Lock'
 import { useTranslation } from '@payloadcms/ui'
 import { isClientUserObject } from '../../utilities/isClientUserObject'
-import { Tooltip } from '../Tooltip/index'
+import { Tooltip } from '../Tooltip'
 
 export const Locked: React.FC<{
   className?: string

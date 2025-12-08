@@ -2,15 +2,15 @@
 import React from 'react'
 
 import { cn } from '@/lib/utils'
-import { Button } from '../../Button/index'
-import { Thumbnail } from '../../Thumbnail/index'
+import { Button } from '../../Button'
+import { Thumbnail } from '../../Thumbnail'
 
 import type { Data, FileSizes, SanitizedCollectionConfig } from 'payload'
 
-import { DraggableSortableItem } from '../../../elements/DraggableSortable/DraggableSortableItem/index'
-import { DragHandleIcon } from '../../../icons/DragHandle/index'
-import { EditIcon } from '../../../icons/Edit/index'
-import { useDocumentDrawer } from '../../DocumentDrawer/index'
+import { DraggableSortableItem } from '../../../elements/DraggableSortable/DraggableSortableItem'
+import { DragHandleIcon } from '../../../icons/DragHandle'
+import { EditIcon } from '../../../icons/Edit'
+import { useDocumentDrawer } from '../../DocumentDrawer'
 
 export type DraggableFileDetailsProps = {
   collectionSlug: string

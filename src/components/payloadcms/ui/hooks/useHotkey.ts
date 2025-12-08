@@ -1,7 +1,7 @@
 // @ts-nocheck payloadcms original type safe issue will fix later
 'use client'
 
-import { useModal } from '../elements/Modal/index'
+import { useModal } from '../elements/Modal'
 import { setsAreEqual } from 'payload/shared'
 import { useCallback, useEffect } from 'react'
 

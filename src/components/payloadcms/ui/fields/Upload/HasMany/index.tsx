@@ -4,11 +4,11 @@ import type { JsonObject } from 'payload'
 
 import React from 'react'
 
-import { DraggableSortableItem } from '../../../elements/DraggableSortable/DraggableSortableItem/index'
-import { DraggableSortable } from '../../../elements/DraggableSortable/index'
-import { DragHandleIcon } from '../../../icons/DragHandle/index'
-import { RelationshipContent } from '../RelationshipContent/index'
-import { UploadCard } from '../UploadCard/index'
+import { DraggableSortableItem } from '../../../elements/DraggableSortable/DraggableSortableItem'
+import { DraggableSortable } from '../../../elements/DraggableSortable'
+import { DragHandleIcon } from '../../../icons/DragHandle'
+import { RelationshipContent } from '../RelationshipContent'
+import { UploadCard } from '../UploadCard'
 
 import { getBestFitFromSizes, isImage } from 'payload/shared'
 import { cn } from '@/lib/utils'

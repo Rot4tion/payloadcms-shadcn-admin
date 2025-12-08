@@ -17,9 +17,9 @@ import {
 } from '@/components/payloadcms/ui/exports/client'
 import { formatAdminURL, getLoginOptions, getSafeRedirect } from 'payload/shared'
 
-import type { LoginFieldProps } from '../LoginField/index'
+import type { LoginFieldProps } from '../LoginField'
 
-import { LoginField } from '../LoginField/index'
+import { LoginField } from '../LoginField'
 
 export const LoginForm: React.FC<{
   prefillEmail?: string

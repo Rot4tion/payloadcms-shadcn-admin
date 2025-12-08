@@ -4,7 +4,7 @@ import React, { createContext } from 'react'
 
 import type { LoadingOverlayContext, ToggleLoadingOverlay } from './types'
 
-import { LoadingOverlay } from '../../elements/Loading/index'
+import { LoadingOverlay } from '../../elements/Loading'
 import { useDelayedRender } from '../../hooks/useDelayedRender'
 import { useTranslation } from '@payloadcms/ui'
 import { defaultLoadingOverlayState, reducer } from './reducer'

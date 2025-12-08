@@ -1,15 +1,15 @@
 // @ts-nocheck payloadcms original type safe issue will fix later
 'use client'
 
-import { useModal } from '../Modal/index'
+import { useModal } from '../Modal'
 import { getTranslation } from '@payloadcms/translations'
 import { useRouter } from 'next/navigation'
 import { formatAdminURL } from 'payload/shared'
 import React, { useCallback } from 'react'
 import { toast } from 'sonner'
 
-import { CheckboxField } from '../../fields/Checkbox/index'
-import { SelectInput } from '../../fields/Select/index'
+import { CheckboxField } from '../../fields/Checkbox'
+import { SelectInput } from '../../fields/Select'
 import { useFormModified } from '@payloadcms/ui'
 import { useConfig } from '@payloadcms/ui'
 import { useDocumentInfo } from '@payloadcms/ui'
@@ -17,10 +17,10 @@ import { useLocale } from '@payloadcms/ui'
 import { useRouteTransition } from '@payloadcms/ui'
 import { useServerFunctions } from '@payloadcms/ui'
 import { useTranslation } from '@payloadcms/ui'
-import { DrawerHeader } from '../BulkUpload/Header/index'
-import { Button } from '../Button/index'
-import { Drawer } from '../Drawer/index'
-import { PopupList } from '../Popup/index'
+import { DrawerHeader } from '../BulkUpload/Header'
+import { Button } from '../Button'
+import { Drawer } from '../Drawer'
+import { PopupList } from '../Popup'
 
 const drawerSlug = 'copy-locale'
 export const CopyLocaleData: React.FC = () => {

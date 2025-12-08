@@ -1,14 +1,14 @@
 'use client'
 import React from 'react'
 
-import { ChevronIcon } from '../../icons/Chevron/index'
-import { CopyIcon } from '../../icons/Copy/index'
-import { MoreIcon } from '../../icons/More/index'
-import { PlusIcon } from '../../icons/Plus/index'
-import { XIcon } from '../../icons/X/index'
+import { ChevronIcon } from '../../icons/Chevron'
+import { CopyIcon } from '../../icons/Copy'
+import { MoreIcon } from '../../icons/More'
+import { PlusIcon } from '../../icons/Plus'
+import { XIcon } from '../../icons/X'
 import { useTranslation } from '@payloadcms/ui'
 import { ClipboardActionLabel } from '../ClipboardAction/ClipboardActionLabel'
-import { Popup, PopupList } from '../Popup/index'
+import { Popup, PopupList } from '../Popup'
 
 export type Props = {
   addRow: (current: number, blockType?: string) => Promise<void> | void

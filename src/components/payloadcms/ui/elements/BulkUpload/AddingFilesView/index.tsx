@@ -2,16 +2,16 @@
 
 import { getTranslation } from '@payloadcms/translations'
 import { reduceFieldsToValues } from 'payload/shared'
-import { useModal } from '../../Modal/index'
+import { useModal } from '../../Modal'
 
 import { DocumentInfoProvider, useAuth, useConfig, useTranslation } from '@payloadcms/ui'
 import { CollectionSlug } from 'payload'
-import { ActionsBar } from '../ActionsBar/index'
-import { DiscardWithoutSaving, discardBulkUploadModalSlug } from '../DiscardWithoutSaving/index'
-import { EditForm } from '../EditForm/index'
-import { FileSidebar } from '../FileSidebar/index'
-import { useFormsManager } from '../FormsManager/index'
-import { DrawerHeader } from '../Header/index'
+import { ActionsBar } from '../ActionsBar'
+import { DiscardWithoutSaving, discardBulkUploadModalSlug } from '../DiscardWithoutSaving'
+import { EditForm } from '../EditForm'
+import { FileSidebar } from '../FileSidebar'
+import { useFormsManager } from '../FormsManager'
+import { DrawerHeader } from '../Header'
 
 export function AddingFilesView() {
   const {

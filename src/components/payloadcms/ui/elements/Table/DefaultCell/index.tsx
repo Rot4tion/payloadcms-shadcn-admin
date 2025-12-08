@@ -11,9 +11,9 @@ import { useTranslation } from '@payloadcms/ui'
 import { formatAdminURL } from '../../../utilities/formatAdminURL'
 import { getDisplayedFieldValue } from '../../../utilities/getDisplayedFieldValue'
 import { isValidReactElement } from '../../../utilities/isValidReactElement'
-import { Link } from '../../Link/index'
-import { CodeCell } from './fields/Code/index'
-import { cellComponents } from './fields/index'
+import { Link } from '../../Link'
+import { CodeCell } from './fields/Code'
+import { cellComponents } from './fields'
 
 export const DefaultCell: React.FC<DefaultCellComponentProps> = (props) => {
   const {

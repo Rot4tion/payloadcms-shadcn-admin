@@ -1,16 +1,16 @@
 // @ts-nocheck payloadcms original type safe issue will fix later
 import type { FieldDiffClientProps, FieldDiffServerProps, FieldTypes } from 'payload'
 
-import { Collapsible } from './Collapsible/index'
-import { DateDiffComponent } from './Date/index'
-import { Group } from './Group/index'
-import { Iterable } from './Iterable/index'
-import { Relationship } from './Relationship/index'
-import { Row } from './Row/index'
-import { Select } from './Select/index'
-import { Tabs } from './Tabs/index'
-import { Text } from './Text/index'
-import { Upload } from './Upload/index'
+import { Collapsible } from './Collapsible'
+import { DateDiffComponent } from './Date'
+import { Group } from './Group'
+import { Iterable } from './Iterable'
+import { Relationship } from './Relationship'
+import { Row } from './Row'
+import { Select } from './Select'
+import { Tabs } from './Tabs'
+import { Text } from './Text'
+import { Upload } from './Upload'
 
 export const diffComponents: Record<
   FieldTypes,

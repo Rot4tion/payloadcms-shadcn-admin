@@ -5,8 +5,8 @@ import type { DateFieldClient, DefaultCellComponentProps } from 'payload'
 import { getObjectDotNotation } from 'payload/shared'
 import React from 'react'
 
-import { useConfig } from '../../../../../providers/Config/index'
-import { useTranslation } from '../../../../../providers/Translation/index'
+import { useConfig } from '../../../../../providers/Config'
+import { useTranslation } from '../../../../../providers/Translation'
 import { formatDate } from '../../../../../utilities/formatDocTitle/formatDateTitle'
 
 export const DateCell: React.FC<

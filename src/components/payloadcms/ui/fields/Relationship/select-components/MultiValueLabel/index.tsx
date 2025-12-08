@@ -9,9 +9,9 @@ import { Pencil } from 'lucide-react'
 import type { ReactSelectAdapterProps } from '../../../../elements/ReactSelect/types'
 import type { Option } from '../../types'
 
-import { Tooltip } from '../../../../elements/Tooltip/index'
-import { useAuth } from '../../../../providers/Auth/index'
-import { useTranslation } from '../../../../providers/Translation/index'
+import { Tooltip } from '../../../../elements/Tooltip'
+import { useAuth } from '../../../../providers/Auth'
+import { useTranslation } from '../../../../providers/Translation'
 
 export const MultiValueLabel: React.FC<
   {

@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { HtmlDiff } from './diff/index'
+import { HtmlDiff } from './diff'
 import './index.css'
 
 export const getHTMLDiffComponents = ({

@@ -11,7 +11,7 @@ import type {
 import { canAccessAdmin, formatErrors } from 'payload'
 import { getSelectMode, reduceFieldsToValues } from 'payload/shared'
 
-import { fieldSchemasToFormState } from '../forms/fieldSchemasToFormState/index'
+import { fieldSchemasToFormState } from '../forms/fieldSchemasToFormState'
 import { renderField } from '../forms/fieldSchemasToFormState/renderField'
 import { getClientConfig } from './getClientConfig'
 import { getClientSchemaMap } from './getClientSchemaMap'

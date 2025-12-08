@@ -5,10 +5,10 @@ import { getTranslation } from '@payloadcms/translations'
 import React from 'react'
 
 import { useConfig } from '@payloadcms/ui'
-import { useFolder } from '../../../providers/Folders/index'
+import { useFolder } from '../../../providers/Folders'
 import { useTranslation } from '@payloadcms/ui'
-import { Button } from '../../Button/index'
-import { CheckboxPopup } from '../../CheckboxPopup/index'
+import { Button } from '../../Button'
+import { CheckboxPopup } from '../../CheckboxPopup'
 
 export function FilterFolderTypePill() {
   const {

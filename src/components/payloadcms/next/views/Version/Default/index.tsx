@@ -19,10 +19,10 @@ import React, { type FormEventHandler, useCallback, useEffect, useMemo, useState
 
 import type { CompareOption, DefaultVersionsViewProps } from './types'
 
-import { Restore } from '../Restore/index'
-import { SelectComparison } from '../SelectComparison/index'
+import { Restore } from '../Restore'
+import { SelectComparison } from '../SelectComparison'
 import { cn } from '@/lib/utils'
-import { type SelectedLocaleOnChange, SelectLocales } from '../SelectLocales/index'
+import { type SelectedLocaleOnChange, SelectLocales } from '../SelectLocales'
 import { SelectedLocalesContext } from './SelectedLocalesContext'
 import { SetStepNav } from './SetStepNav'
 

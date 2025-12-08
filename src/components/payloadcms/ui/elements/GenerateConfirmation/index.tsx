@@ -1,14 +1,14 @@
 // @ts-nocheck payloadcms original type safe issue will fix later
 'use client'
-import { useModal } from '../Modal/index'
+import { useModal } from '../Modal'
 import React, { useCallback } from 'react'
 import { toast } from 'sonner'
 
 import { useDocumentInfo } from '@payloadcms/ui'
 import { useTranslation } from '@payloadcms/ui'
-import { Button } from '../Button/index'
-import { ConfirmationModal } from '../ConfirmationModal/index'
-import { Translation } from '../Translation/index'
+import { Button } from '../Button'
+import { ConfirmationModal } from '../ConfirmationModal'
+import { Translation } from '../Translation'
 
 export type GenerateConfirmationProps = {
   highlightField: (Boolean) => void

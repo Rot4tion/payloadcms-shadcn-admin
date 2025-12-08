@@ -4,7 +4,7 @@
 import React from 'react'
 
 import { useListQuery } from '@payloadcms/ui'
-import { Pagination } from '../Pagination/index'
+import { Pagination } from '../Pagination'
 
 export const RelationshipTablePagination: React.FC = () => {
   const { data, handlePageChange } = useListQuery()

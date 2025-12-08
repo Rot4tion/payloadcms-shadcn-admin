@@ -27,13 +27,13 @@ import {
 } from 'payload/shared'
 import React from 'react'
 
-import type { SortColumnProps } from '../../../elements/SortColumn/index'
+import type { SortColumnProps } from '../../../elements/SortColumn'
 
-import { RenderServerComponent } from '../../../elements/RenderServerComponent/index'
+import { RenderServerComponent } from '../../../elements/RenderServerComponent'
 import {
   SortColumn,
   // eslint-disable-next-line payload/no-imports-from-exports-dir -- MUST reference the exports dir: https://github.com/payloadcms/payload/issues/12002#issuecomment-2791493587
-} from '../../../exports/client/index'
+} from '../../../exports/client'
 import { filterFieldsWithPermissions } from './filterFieldsWithPermissions'
 import { isColumnActive } from './isColumnActive'
 import { renderCell } from './renderCell'

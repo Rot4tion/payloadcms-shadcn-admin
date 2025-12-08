@@ -7,7 +7,7 @@ import { useTranslation } from '@/components/payloadcms/ui/exports/client'
 import React from 'react'
 
 import { useSelectedLocales } from '../../../Default/SelectedLocalesContext'
-import { DiffCollapser } from '../../DiffCollapser/index'
+import { DiffCollapser } from '../../DiffCollapser'
 import { RenderVersionFieldsToDiff } from '../../RenderVersionFieldsToDiff'
 
 const baseClass = 'collapsible-diff'

@@ -7,9 +7,9 @@ import { RenderServerComponent } from '@/components/payloadcms/ui/elements/Rende
 import { EntityType, groupNavItems } from '@/components/payloadcms/ui/exports/shared'
 import React, { Fragment } from 'react'
 
-import type { DashboardViewClientProps, DashboardViewServerPropsOnly } from './Default/index'
+import type { DashboardViewClientProps, DashboardViewServerPropsOnly } from './Default'
 
-import { DefaultDashboard } from './Default/index'
+import { DefaultDashboard } from './Default'
 
 const globalLockDurationDefault = 300
 

@@ -1,9 +1,9 @@
 'use client'
 import React, { useState } from 'react'
 
-import { CopyIcon } from '../../icons/Copy/index'
+import { CopyIcon } from '../../icons/Copy'
 import { useTranslation } from '@payloadcms/ui'
-import { Tooltip } from '../Tooltip/index'
+import { Tooltip } from '../Tooltip'
 import { cn } from '@/lib/utils'
 
 export type Props = {

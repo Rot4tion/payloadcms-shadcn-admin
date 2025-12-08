@@ -5,7 +5,7 @@ import type { Props as ButtonProps } from '../Button/types'
 
 import { cn } from '@/lib/utils'
 import { useTranslation } from '@payloadcms/ui'
-import { Button } from '../Button/index'
+import { Button } from '../Button'
 
 type ListSelection_v4Props = {
   /**

@@ -1,12 +1,12 @@
 'use client'
 
-import { useModal } from '../Modal/index'
+import { useModal } from '../Modal'
 import React, { useCallback, useEffect, useRef, useState } from 'react'
 import { toast } from 'sonner'
 
 import type { DocumentDrawerProps } from './types'
 
-import { LoadingOverlay } from '../../elements/Loading/index'
+import { LoadingOverlay } from '../../elements/Loading'
 import { useConfig } from '@payloadcms/ui'
 import { useLocale } from '@payloadcms/ui'
 import { useServerFunctions } from '@payloadcms/ui'

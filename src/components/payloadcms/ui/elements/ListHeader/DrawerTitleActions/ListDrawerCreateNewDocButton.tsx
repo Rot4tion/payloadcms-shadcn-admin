@@ -3,7 +3,7 @@
 
 import { useTranslation } from '@payloadcms/ui'
 import { useListDrawerContext } from '../../ListDrawer/Provider'
-import { Pill } from '../../Pill/index'
+import { Pill } from '../../Pill'
 
 const baseClass = 'list-header'
 

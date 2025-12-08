@@ -2,8 +2,8 @@
 'use client'
 import React from 'react'
 
-import { SearchIcon } from '../../../../icons/Search/index'
-import { useTranslation } from '../../../../providers/Translation/index'
+import { SearchIcon } from '../../../../icons/Search'
+import { useTranslation } from '../../../../providers/Translation'
 
 export const BlockSearch: React.FC<{ setSearchTerm: (term: string) => void }> = (props) => {
   const { setSearchTerm } = props

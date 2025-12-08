@@ -9,13 +9,13 @@ import type {
 } from 'payload'
 import type React from 'react'
 
-import type { ViewToRender } from './index'
+import type { ViewToRender } from '.'
 
-import { APIView as DefaultAPIView } from '../API/index'
-import { EditView as DefaultEditView } from '../Edit/index'
-import { UnauthorizedViewWithGutter } from '../Unauthorized/index'
-import { VersionView as DefaultVersionView } from '../Version/index'
-import { VersionsView as DefaultVersionsView } from '../Versions/index'
+import { APIView as DefaultAPIView } from '../API'
+import { EditView as DefaultEditView } from '../Edit'
+import { UnauthorizedViewWithGutter } from '../Unauthorized'
+import { VersionView as DefaultVersionView } from '../Version'
+import { VersionsView as DefaultVersionsView } from '../Versions'
 import { getCustomDocumentViewByKey } from './getCustomDocumentViewByKey'
 import { getCustomViewByRoute } from './getCustomViewByRoute'
 

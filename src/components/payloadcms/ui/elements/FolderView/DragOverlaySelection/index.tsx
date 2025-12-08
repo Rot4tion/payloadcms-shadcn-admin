@@ -5,7 +5,7 @@ import type { FolderOrDocument } from 'payload/shared'
 import { DragOverlay } from '@dnd-kit/core'
 import { getEventCoordinates } from '@dnd-kit/utilities'
 
-import { FolderFileCard } from '../FolderFileCard/index'
+import { FolderFileCard } from '../FolderFileCard'
 
 type DragCardsProps = {
   readonly item: FolderOrDocument

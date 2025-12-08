@@ -5,8 +5,8 @@ import React from 'react'
 
 import type { NumberFilterProps as Props } from './types'
 
-import { useTranslation } from '../../../../providers/Translation/index'
-import { ReactSelect } from '../../../ReactSelect/index'
+import { useTranslation } from '../../../../providers/Translation'
+import { ReactSelect } from '../../../ReactSelect'
 
 export const NumberFilter: React.FC<Props> = (props) => {
   const {

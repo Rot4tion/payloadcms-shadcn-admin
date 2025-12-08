@@ -1,13 +1,13 @@
 'use client'
 import React, { useCallback } from 'react'
 
-import type { OnCancel } from '../ConfirmationModal/index'
+import type { OnCancel } from '../ConfirmationModal'
 
-import { useForm, useFormModified } from '../../forms/Form/index'
+import { useForm, useFormModified } from '../../forms/Form'
 import { useAuth } from '@payloadcms/ui'
 import { useTranslation } from '@payloadcms/ui'
-import { ConfirmationModal } from '../ConfirmationModal/index'
-import { useModal } from '../Modal/index'
+import { ConfirmationModal } from '../ConfirmationModal'
+import { useModal } from '../Modal'
 import { usePreventLeave } from './usePreventLeave'
 
 type LeaveWithoutSavingProps = {

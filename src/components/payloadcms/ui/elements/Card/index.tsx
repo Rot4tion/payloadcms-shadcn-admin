@@ -3,7 +3,7 @@
 import React from 'react'
 
 import { cn } from '@/lib/utils'
-import { Button } from '../Button/index'
+import { Button } from '../Button'
 
 export type Props = {
   actions?: React.ReactNode

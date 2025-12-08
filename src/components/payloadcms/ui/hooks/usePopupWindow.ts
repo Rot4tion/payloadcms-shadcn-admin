@@ -4,7 +4,7 @@ import type React from 'react'
 
 import { useCallback, useEffect, useRef, useState } from 'react'
 
-import { useConfig } from '../providers/Config/index'
+import { useConfig } from '../providers/Config'
 
 export interface PopupMessage {
   searchParams: {

@@ -7,9 +7,9 @@ import { RenderServerComponent } from '@/components/payloadcms/ui/elements/Rende
 import { EntityType, groupNavItems } from '@/components/payloadcms/ui/exports/shared'
 import React from 'react'
 
-import { NavHamburger } from './NavHamburger/index'
-import { NavWrapper } from './NavWrapper/index'
-import { SettingsMenuButton } from './SettingsMenuButton/index'
+import { NavHamburger } from './NavHamburger'
+import { NavWrapper } from './NavWrapper'
+import { SettingsMenuButton } from './SettingsMenuButton'
 import { getNavPrefs } from './getNavPrefs'
 import { DefaultNavClient } from './index.client'
 

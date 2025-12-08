@@ -4,7 +4,7 @@ import type { ClientConfig, ClientFieldSchemaMap, FieldSchemaMap, Payload } from
 
 import { cache } from 'react'
 
-import { buildClientFieldSchemaMap } from './buildClientFieldSchemaMap/index'
+import { buildClientFieldSchemaMap } from './buildClientFieldSchemaMap'
 
 let cachedClientSchemaMap = global._payload_clientSchemaMap
 

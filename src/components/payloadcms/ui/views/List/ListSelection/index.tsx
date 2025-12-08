@@ -6,12 +6,12 @@ import React, { Fragment, useCallback } from 'react'
 
 import { useSelection, useTranslation } from '@payloadcms/ui'
 import { SelectAllStatus } from '@payloadcms/ui/providers/Selection'
-import { DeleteMany } from '../../../elements/DeleteMany/index'
-import { EditMany_v4 } from '../../../elements/EditMany/index'
-import { ListSelection_v4, ListSelectionButton } from '../../../elements/ListSelection/index'
-import { PublishMany_v4 } from '../../../elements/PublishMany/index'
-import { RestoreMany } from '../../../elements/RestoreMany/index'
-import { UnpublishMany_v4 } from '../../../elements/UnpublishMany/index'
+import { DeleteMany } from '../../../elements/DeleteMany'
+import { EditMany_v4 } from '../../../elements/EditMany'
+import { ListSelection_v4, ListSelectionButton } from '../../../elements/ListSelection'
+import { PublishMany_v4 } from '../../../elements/PublishMany'
+import { RestoreMany } from '../../../elements/RestoreMany'
+import { UnpublishMany_v4 } from '../../../elements/UnpublishMany'
 
 export type ListSelectionProps = {
   collectionConfig?: ClientCollectionConfig

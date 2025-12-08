@@ -9,7 +9,7 @@ import { fieldIsArrayType, fieldIsBlockType } from 'payload/shared'
 import React from 'react'
 
 import { useSelectedLocales } from '../../../Default/SelectedLocalesContext'
-import { DiffCollapser } from '../../DiffCollapser/index'
+import { DiffCollapser } from '../../DiffCollapser'
 import { RenderVersionFieldsToDiff } from '../../RenderVersionFieldsToDiff'
 import { getFieldsForRowComparison } from '../../utilities/getFieldsForRowComparison'
 

@@ -18,9 +18,9 @@ import {
 import { RenderServerComponent } from '@/components/payloadcms/ui/elements/RenderServerComponent'
 import React from 'react'
 
-import { DefaultNav } from '../../elements/Nav/index'
-import { NavHamburger } from './NavHamburger/index'
-import { Wrapper } from './Wrapper/index'
+import { DefaultNav } from '../../elements/Nav'
+import { NavHamburger } from './NavHamburger'
+import { Wrapper } from './Wrapper'
 
 export type DefaultTemplateProps = {
   children?: React.ReactNode

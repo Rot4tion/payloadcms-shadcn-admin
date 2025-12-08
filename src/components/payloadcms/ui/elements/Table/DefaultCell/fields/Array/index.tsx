@@ -4,7 +4,7 @@ import type { ArrayFieldClient, DefaultCellComponentProps } from 'payload'
 import { getTranslation } from '@payloadcms/translations'
 import React from 'react'
 
-import { useTranslation } from '../../../../../providers/Translation/index'
+import { useTranslation } from '../../../../../providers/Translation'
 
 export interface ArrayCellProps extends DefaultCellComponentProps<ArrayFieldClient> {}
 

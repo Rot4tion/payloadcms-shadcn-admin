@@ -2,8 +2,8 @@
 
 import { Fragment } from 'react'
 
-import { CopyIcon } from '../../icons/Copy/index'
-import { EditIcon } from '../../icons/Edit/index'
+import { CopyIcon } from '../../icons/Copy'
+import { EditIcon } from '../../icons/Edit'
 import { useTranslation } from '@payloadcms/ui'
 
 export const ClipboardActionLabel = ({

@@ -3,7 +3,7 @@ import type { CheckboxFieldClient, DefaultCellComponentProps } from 'payload'
 
 import React from 'react'
 
-import { useTranslation } from '../../../../../providers/Translation/index'
+import { useTranslation } from '../../../../../providers/Translation'
 
 export const CheckboxCell: React.FC<DefaultCellComponentProps<CheckboxFieldClient>> = ({
   cellData,

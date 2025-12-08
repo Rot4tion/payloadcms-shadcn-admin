@@ -6,8 +6,8 @@ import React, { useCallback, useMemo } from 'react'
 
 import type { Value } from './types'
 
-import { useField } from '../../forms/useField/index'
-import { withCondition } from '../../forms/withCondition/index'
+import { useField } from '../../forms/useField'
+import { withCondition } from '../../forms/withCondition'
 import { mergeFieldStyles } from '../mergeFieldStyles'
 import { RelationshipInput } from './Input'
 

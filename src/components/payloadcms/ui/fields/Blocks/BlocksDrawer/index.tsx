@@ -1,13 +1,13 @@
 'use client'
 import type { ClientBlock, Labels } from 'payload'
 
-import { useModal } from '../../../elements/Modal/index'
+import { useModal } from '../../../elements/Modal'
 import { getTranslation } from '@payloadcms/translations'
 import React, { useEffect } from 'react'
 
-import { Drawer } from '../../../elements/Drawer/index'
+import { Drawer } from '../../../elements/Drawer'
 import { useTranslation } from '@payloadcms/ui'
-import { BlockSelector } from '../BlockSelector/index'
+import { BlockSelector } from '../BlockSelector'
 
 export type Props = {
   readonly addRow: (index: number, blockType?: string) => Promise<void> | void

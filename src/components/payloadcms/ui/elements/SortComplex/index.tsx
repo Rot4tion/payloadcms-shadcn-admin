@@ -16,10 +16,10 @@ export type SortComplexProps = {
   sort?: string
 }
 
-import type { Option } from '../ReactSelect/index'
+import type { Option } from '../ReactSelect'
 
 import { useTranslation } from '@payloadcms/ui'
-import { ReactSelect } from '../ReactSelect/index'
+import { ReactSelect } from '../ReactSelect'
 
 export const SortComplex: React.FC<SortComplexProps> = (props) => {
   const { collection, handleChange, modifySearchQuery = true } = props

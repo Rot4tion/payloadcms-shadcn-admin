@@ -7,7 +7,7 @@ import { headers as getHeaders } from 'next/headers'
 import { canAccessAdmin, getAccessResults, isEntityHidden, parseCookies } from 'payload'
 import { applyLocaleFiltering } from 'payload/shared'
 
-import { renderDocument } from './index'
+import { renderDocument } from '.'
 
 export const renderDocumentHandler: RenderDocumentServerFunction = async (args) => {
   const {

@@ -8,9 +8,9 @@ import { useMemo } from 'react'
 
 import type { Props } from './types'
 
-import { FieldLabel } from '../../fields/FieldLabel/index'
+import { FieldLabel } from '../../fields/FieldLabel'
 import { useTranslation } from '@payloadcms/ui'
-import { ReactSelect } from '../ReactSelect/index'
+import { ReactSelect } from '../ReactSelect'
 import { formatOptions } from '../WhereBuilder/Condition/Select/formatOptions'
 
 export const TimezonePicker: React.FC<Props> = (props) => {

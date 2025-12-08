@@ -2,7 +2,7 @@
 'use client'
 import type { SanitizedCollectionConfig } from 'payload'
 
-import { useModal } from '../Modal/index'
+import { useModal } from '../Modal'
 import { getTranslation } from '@payloadcms/translations'
 import { useRouter } from 'next/navigation'
 import { formatAdminURL } from 'payload/shared'
@@ -14,13 +14,13 @@ import type { DocumentDrawerContextType } from '../DocumentDrawer/Provider'
 import { CheckboxInput } from '../../fields/Checkbox/Input'
 import { useForm } from '@payloadcms/ui'
 import { useConfig } from '@payloadcms/ui'
-import { useDocumentTitle } from '../../providers/DocumentTitle/index'
+import { useDocumentTitle } from '../../providers/DocumentTitle'
 import { useRouteTransition } from '@payloadcms/ui'
 import { useTranslation } from '@payloadcms/ui'
 import { requests } from '../../utilities/api'
-import { ConfirmationModal } from '../ConfirmationModal/index'
-import { PopupList } from '../Popup/index'
-import { Translation } from '../Translation/index'
+import { ConfirmationModal } from '../ConfirmationModal'
+import { PopupList } from '../Popup'
+import { Translation } from '../Translation'
 
 export type Props = {
   readonly buttonId?: string

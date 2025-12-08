@@ -2,7 +2,7 @@
 import type { Metadata } from 'next'
 import type { EditConfig, SanitizedCollectionConfig, SanitizedGlobalConfig } from 'payload'
 
-import type { GenerateViewMetadata } from '../Root/index'
+import type { GenerateViewMetadata } from '../Root'
 
 import { getNextRequestI18n } from '../../utilities/getNextRequestI18n'
 import { generateAPIViewMetadata } from '../API/metadata'

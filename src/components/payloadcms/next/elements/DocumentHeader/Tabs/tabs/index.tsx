@@ -8,7 +8,7 @@ import type {
   SanitizedPermissions,
 } from 'payload'
 
-import { VersionsPill } from './VersionsPill/index'
+import { VersionsPill } from './VersionsPill'
 
 export const documentViewKeys = ['api', 'default', 'livePreview', 'versions']
 

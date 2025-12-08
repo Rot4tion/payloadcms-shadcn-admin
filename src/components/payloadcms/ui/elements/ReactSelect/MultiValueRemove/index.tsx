@@ -7,9 +7,9 @@ import React, { type JSX } from 'react'
 import type { Option as OptionType } from '../types'
 
 import { cn } from '@/lib/utils'
-import { XIcon } from '../../../icons/X/index'
+import { XIcon } from '../../../icons/X'
 import { useTranslation } from '@payloadcms/ui'
-import { Tooltip } from '../../Tooltip/index'
+import { Tooltip } from '../../Tooltip'
 
 export const MultiValueRemove: React.FC<
   {

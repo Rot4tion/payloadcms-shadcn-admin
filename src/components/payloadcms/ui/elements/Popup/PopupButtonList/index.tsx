@@ -4,10 +4,10 @@ import type { LinkProps } from 'next/link'
 import * as React from 'react'
 
 import { cn } from '@/lib/utils'
-import { Link } from '../../Link/index'
+import { Link } from '../../Link'
 
-export { PopupListDivider as Divider } from '../PopupDivider/index'
-export { PopupListGroupLabel as GroupLabel } from '../PopupGroupLabel/index'
+export { PopupListDivider as Divider } from '../PopupDivider'
+export { PopupListGroupLabel as GroupLabel } from '../PopupGroupLabel'
 
 const textAlignClasses = {
   left: 'text-left rtl:text-right',

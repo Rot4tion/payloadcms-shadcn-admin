@@ -3,8 +3,8 @@ import type { Data, FileSizes, SanitizedCollectionConfig } from 'payload'
 
 import React from 'react'
 
-import { DraggableFileDetails } from './DraggableFileDetails/index'
-import { StaticFileDetails } from './StaticFileDetails/index'
+import { DraggableFileDetails } from './DraggableFileDetails'
+import { StaticFileDetails } from './StaticFileDetails'
 
 type SharedFileDetailsProps = {
   collectionSlug: string

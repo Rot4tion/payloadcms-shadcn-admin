@@ -3,12 +3,12 @@
 
 import type { PublishButtonClientProps } from 'payload'
 
-import { useModal } from '../Modal/index'
+import { useModal } from '../Modal'
 import * as qs from 'qs-esm'
 import React, { useCallback, useEffect, useState } from 'react'
 
 import { useForm, useFormModified } from '@payloadcms/ui'
-import { FormSubmit } from '../../forms/Submit/index'
+import { FormSubmit } from '../../forms/Submit'
 import { useHotkey } from '../../hooks/useHotkey'
 import { useConfig } from '@payloadcms/ui'
 import { useDocumentInfo } from '@payloadcms/ui'
@@ -17,8 +17,8 @@ import { useLocale } from '@payloadcms/ui'
 import { useOperation } from '@payloadcms/ui'
 import { useTranslation } from '@payloadcms/ui'
 import { traverseForLocalizedFields } from '../../utilities/traverseForLocalizedFields'
-import { PopupList } from '../Popup/index'
-import { ScheduleDrawer } from './ScheduleDrawer/index'
+import { PopupList } from '../Popup'
+import { ScheduleDrawer } from './ScheduleDrawer'
 
 export function PublishButton({ label: labelProp }: PublishButtonClientProps) {
   const {

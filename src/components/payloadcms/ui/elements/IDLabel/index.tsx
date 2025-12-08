@@ -3,7 +3,7 @@ import React from 'react'
 
 import { cn } from '@/lib/utils'
 import { useDrawerDepth } from '@payloadcms/ui/elements/Drawer'
-import { Link } from '../../elements/Link/index'
+import { Link } from '../../elements/Link'
 import { useConfig } from '@payloadcms/ui'
 import { useDocumentInfo } from '@payloadcms/ui'
 import { formatAdminURL } from '../../utilities/formatAdminURL'

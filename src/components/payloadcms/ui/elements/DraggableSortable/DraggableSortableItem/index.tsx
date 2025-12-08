@@ -5,7 +5,7 @@ import React, { Fragment } from 'react'
 
 import type { ChildFunction } from './types'
 
-import { useDraggableSortable } from '../useDraggableSortable/index'
+import { useDraggableSortable } from '../useDraggableSortable'
 
 export const DraggableSortableItem: React.FC<
   {

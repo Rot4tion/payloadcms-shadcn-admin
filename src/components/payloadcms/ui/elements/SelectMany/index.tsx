@@ -2,7 +2,7 @@ import React from 'react'
 
 import { useSelection } from '@payloadcms/ui'
 import { useTranslation } from '@payloadcms/ui'
-import { Pill } from '../Pill/index'
+import { Pill } from '../Pill'
 
 export const SelectMany: React.FC<{
   onClick?: (ids: ReturnType<typeof useSelection>['selected']) => void

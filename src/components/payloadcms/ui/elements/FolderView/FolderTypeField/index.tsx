@@ -6,10 +6,10 @@ import React from 'react'
 import type { ReactSelectAdapterProps } from '../../ReactSelect/types'
 
 import { mergeFieldStyles } from '../../../fields/mergeFieldStyles'
-import { formatOptions } from '../../../fields/Select/index'
+import { formatOptions } from '../../../fields/Select'
 import { SelectInput } from '../../../fields/Select/Input'
-import { useField } from '../../../forms/useField/index'
-import { useFolder } from '../../../providers/Folders/index'
+import { useField } from '../../../forms/useField'
+import { useFolder } from '../../../providers/Folders'
 import { useTranslation } from '@payloadcms/ui'
 
 export const FolderTypeField = ({

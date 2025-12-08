@@ -28,9 +28,9 @@ import React from 'react'
 
 import type { GenerateEditViewMetadata } from './getMetaBySegment'
 
-import { DocumentHeader } from '../../elements/DocumentHeader/index'
+import { DocumentHeader } from '../../elements/DocumentHeader'
 import { getPreferences } from '../../utilities/getPreferences'
-import { NotFoundView } from '../NotFound/index'
+import { NotFoundView } from '../NotFound'
 import { getDocPreferences } from './getDocPreferences'
 import { getDocumentData } from './getDocumentData'
 import { getDocumentPermissions } from './getDocumentPermissions'

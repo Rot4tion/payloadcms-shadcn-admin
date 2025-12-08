@@ -3,8 +3,8 @@ import React from 'react'
 
 import type { RowLabelProps } from './types'
 
-import { RenderCustomComponent } from '../../elements/RenderCustomComponent/index'
-import { RowLabelProvider } from './Context/index'
+import { RenderCustomComponent } from '../../elements/RenderCustomComponent'
+import { RowLabelProvider } from './Context'
 export type { RowLabelProps }
 
 const baseClass = 'row-label'

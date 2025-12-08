@@ -9,7 +9,7 @@ import type {
 import { getBestFitFromSizes, isImage } from 'payload/shared'
 import React from 'react'
 
-import { Thumbnail } from '../../../../Thumbnail/index'
+import { Thumbnail } from '../../../../Thumbnail'
 
 export interface FileCellProps extends DefaultCellComponentProps<
   TextFieldClient | UploadFieldClient

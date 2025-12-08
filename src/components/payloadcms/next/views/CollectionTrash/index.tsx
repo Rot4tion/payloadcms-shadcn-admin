@@ -4,7 +4,7 @@ import type React from 'react'
 
 import { notFound } from 'next/navigation'
 
-import { renderListView } from '../List/index'
+import { renderListView } from '../List'
 
 type RenderTrashViewArgs = {
   customCellProps?: Record<string, any>

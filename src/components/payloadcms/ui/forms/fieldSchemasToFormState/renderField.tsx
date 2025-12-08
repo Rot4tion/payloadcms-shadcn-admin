@@ -13,10 +13,10 @@ import { fieldIsHiddenOrDisabled } from 'payload/shared'
 
 import type { RenderFieldMethod } from './types'
 
-import { RenderServerComponent } from '../../elements/RenderServerComponent/index'
+import { RenderServerComponent } from '../../elements/RenderServerComponent'
 
 // eslint-disable-next-line payload/no-imports-from-exports-dir -- MUST reference the exports dir: https://github.com/payloadcms/payload/issues/12002#issuecomment-2791493587
-import { FieldDescription, WatchCondition } from '../../exports/client/index'
+import { FieldDescription, WatchCondition } from '../../exports/client'
 
 const defaultUIFieldComponentKeys: Array<'Cell' | 'Description' | 'Field' | 'Filter'> = [
   'Cell',

@@ -5,7 +5,7 @@ import { getTranslation } from '@payloadcms/translations'
 import React from 'react'
 
 import { useTranslation } from '@payloadcms/ui'
-import { Button } from '../../Button/index'
+import { Button } from '../../Button'
 
 const baseClass = 'list-create-new-doc'
 

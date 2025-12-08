@@ -2,7 +2,7 @@ import type { ClientCollectionConfig } from 'payload'
 
 import React from 'react'
 
-import { ListSelection } from '../ListSelection/index'
+import { ListSelection } from '../ListSelection'
 
 export const GroupByHeader: React.FC<{
   collectionConfig?: ClientCollectionConfig

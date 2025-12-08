@@ -8,16 +8,16 @@ import { mergeListSearchAndWhere } from 'payload/shared'
 import * as qs from 'qs-esm'
 import React from 'react'
 import { toast } from 'sonner'
-import { useModal } from '../Modal/index'
+import { useModal } from '../Modal'
 
 import { useAuth, useConfig, useLocale, useSelection, useTranslation } from '@payloadcms/ui'
 import { SelectAllStatus } from '@payloadcms/ui/providers/Selection'
 import { CheckboxInput } from '../../fields/Checkbox/Input'
-import { useRouteCache } from '../../providers/RouteCache/index'
+import { useRouteCache } from '../../providers/RouteCache'
 import { requests } from '../../utilities/api'
 import { parseSearchParams } from '../../utilities/parseSearchParams'
-import { ConfirmationModal } from '../ConfirmationModal/index'
-import { ListSelectionButton } from '../ListSelection/index'
+import { ConfirmationModal } from '../ConfirmationModal'
+import { ListSelectionButton } from '../ListSelection'
 
 const confirmManyRestoreDrawerSlug = `confirm-restore-many-docs`
 

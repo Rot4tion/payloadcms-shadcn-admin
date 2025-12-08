@@ -11,8 +11,8 @@ import { RenderServerComponent } from '@/components/payloadcms/ui/elements/Rende
 import React from 'react'
 
 import { ShouldRenderTabs } from './ShouldRenderTabs'
-import { DefaultDocumentTab } from './Tab/index'
-import { getTabs } from './tabs/index'
+import { DefaultDocumentTab } from './Tab'
+import { getTabs } from './tabs'
 import { cn } from '@/lib/utils'
 
 export const DocumentTabs: React.FC<{

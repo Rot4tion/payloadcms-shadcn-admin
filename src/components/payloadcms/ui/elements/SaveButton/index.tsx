@@ -5,7 +5,7 @@ import type { SaveButtonClientProps } from 'payload'
 import React, { useRef } from 'react'
 
 import { useForm, useFormModified } from '@payloadcms/ui'
-import { FormSubmit } from '../../forms/Submit/index'
+import { FormSubmit } from '../../forms/Submit'
 import { useHotkey } from '../../hooks/useHotkey'
 import { useDocumentInfo } from '@payloadcms/ui'
 import { useEditDepth } from '@payloadcms/ui'

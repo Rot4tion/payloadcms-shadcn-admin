@@ -1,6 +1,6 @@
 import type { CollectionPreferences, Column } from 'payload'
 
-import type { SortColumnProps } from '../../elements/SortColumn/index'
+import type { SortColumnProps } from '../../elements/SortColumn'
 
 export interface ITableColumns {
   columns: Column[]

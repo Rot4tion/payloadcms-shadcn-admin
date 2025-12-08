@@ -8,15 +8,15 @@ import * as qs from 'qs-esm'
 import React, { useCallback } from 'react'
 import { toast } from 'sonner'
 
-import type { PublishManyProps } from './index'
+import type { PublishManyProps } from '.'
 
 import { useConfig } from '@payloadcms/ui'
 import { useLocale } from '@payloadcms/ui'
-import { useRouteCache } from '../../providers/RouteCache/index'
+import { useRouteCache } from '../../providers/RouteCache'
 import { useTranslation } from '@payloadcms/ui'
 import { requests } from '../../utilities/api'
 import { parseSearchParams } from '../../utilities/parseSearchParams'
-import { ConfirmationModal } from '../ConfirmationModal/index'
+import { ConfirmationModal } from '../ConfirmationModal'
 
 type PublishManyDrawerContentProps = {
   drawerSlug: string

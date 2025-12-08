@@ -3,7 +3,7 @@ import type { ClientCollectionConfig } from 'payload'
 
 import { useState } from 'react'
 
-import { useConfig } from '../providers/Config/index'
+import { useConfig } from '../providers/Config'
 
 /**
  * Gets the corresponding client collection config(s) for the given collection slug.

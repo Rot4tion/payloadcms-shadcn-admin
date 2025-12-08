@@ -1,11 +1,11 @@
 'use client'
 
-import { useModal } from '../../Modal/index'
+import { useModal } from '../../Modal'
 import React from 'react'
 
 import { useTranslation } from '@payloadcms/ui'
-import { ConfirmationModal } from '../../ConfirmationModal/index'
-import { useBulkUpload } from '../index'
+import { ConfirmationModal } from '../../ConfirmationModal'
+import { useBulkUpload } from '..'
 export const discardBulkUploadModalSlug = 'bulk-upload--discard-without-saving'
 
 export function DiscardWithoutSaving() {

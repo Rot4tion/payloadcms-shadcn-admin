@@ -5,7 +5,7 @@ import { cn } from '@/lib/utils'
 
 import type { LoadingOverlayTypes } from '../../elements/LoadingOverlay/types'
 
-import { useLoadingOverlay } from '../../elements/LoadingOverlay/index'
+import { useLoadingOverlay } from '../../elements/LoadingOverlay'
 import { useFormProcessing } from '@payloadcms/ui'
 import { useTranslation } from '@payloadcms/ui'
 

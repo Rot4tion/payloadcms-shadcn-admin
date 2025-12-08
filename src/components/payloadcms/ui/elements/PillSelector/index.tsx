@@ -3,10 +3,10 @@
 import React from 'react'
 
 import { cn } from '@/lib/utils'
-import { PlusIcon } from '../../icons/Plus/index'
-import { XIcon } from '../../icons/X/index'
-import { DraggableSortable } from '../DraggableSortable/index'
-import { Pill } from '../Pill/index'
+import { PlusIcon } from '../../icons/Plus'
+import { XIcon } from '../../icons/X'
+import { DraggableSortable } from '../DraggableSortable'
+import { Pill } from '../Pill'
 
 const baseClass = 'pill-selector'
 

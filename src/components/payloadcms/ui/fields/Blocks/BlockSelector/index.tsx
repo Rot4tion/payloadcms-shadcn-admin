@@ -6,12 +6,12 @@ import type { ClientBlock } from 'payload'
 import { getTranslation } from '@payloadcms/translations'
 import React, { Fragment, useEffect, useMemo, useState } from 'react'
 
-import { ThumbnailCard } from '../../../elements/ThumbnailCard/index'
-import { DefaultBlockImage } from '../../../graphics/DefaultBlockImage/index'
+import { ThumbnailCard } from '../../../elements/ThumbnailCard'
+import { DefaultBlockImage } from '../../../graphics/DefaultBlockImage'
 import { useControllableState } from '../../../hooks/useControllableState'
 import { useConfig } from '@payloadcms/ui'
 import { useTranslation } from '@payloadcms/ui'
-import { BlockSearch } from './BlockSearch/index'
+import { BlockSearch } from './BlockSearch'
 import { cn } from '@/lib/utils'
 
 export type Props = {

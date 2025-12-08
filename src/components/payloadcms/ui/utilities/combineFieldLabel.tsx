@@ -3,8 +3,8 @@ import type { ClientField } from 'payload'
 
 import { Fragment } from 'react'
 
-import { RenderCustomComponent } from '../elements/RenderCustomComponent/index'
-import { FieldLabel } from '../fields/FieldLabel/index'
+import { RenderCustomComponent } from '../elements/RenderCustomComponent'
+import { FieldLabel } from '../fields/FieldLabel'
 
 export const combineFieldLabel = ({
   CustomLabel,

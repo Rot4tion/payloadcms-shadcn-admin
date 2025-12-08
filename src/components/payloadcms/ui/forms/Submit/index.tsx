@@ -3,7 +3,7 @@ import React from 'react'
 
 import type { Props } from '../../elements/Button/types'
 
-import { Button } from '../../elements/Button/index'
+import { Button } from '../../elements/Button'
 // Import form hooks from @payloadcms/ui to share context
 import {
   useForm,

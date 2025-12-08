@@ -4,7 +4,7 @@ import type { FolderOrDocument } from 'payload/shared'
 
 import React from 'react'
 
-import { ContextFolderFileCard } from '../FolderFileCard/index'
+import { ContextFolderFileCard } from '../FolderFileCard'
 
 type ItemCardGridProps = {
   items: FolderOrDocument[]

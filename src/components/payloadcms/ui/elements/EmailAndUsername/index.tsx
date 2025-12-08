@@ -8,8 +8,8 @@ import { cn } from '@/lib/utils'
 import { email, getFieldPermissions, username } from 'payload/shared'
 import React from 'react'
 
-import { EmailField } from '../../fields/Email/index'
-import { TextField } from '../../fields/Text/index'
+import { EmailField } from '../../fields/Email'
+import { TextField } from '../../fields/Text'
 import { FieldPathContext } from '../../forms/RenderFields/context'
 type RenderEmailAndUsernameFieldsProps = {
   className?: string

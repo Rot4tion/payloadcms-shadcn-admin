@@ -3,7 +3,7 @@ import type { CollectionSlug, FormState } from 'payload'
 import { serialize } from 'object-to-formdata'
 import { reduceFieldsToValues } from 'payload/shared'
 
-import type { UploadHandlersContext } from '../../../providers/UploadHandlers/index'
+import type { UploadHandlersContext } from '../../../providers/UploadHandlers'
 
 export async function createFormData(
   formState: FormState = {},

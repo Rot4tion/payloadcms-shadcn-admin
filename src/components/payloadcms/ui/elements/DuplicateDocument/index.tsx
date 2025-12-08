@@ -3,7 +3,7 @@
 
 import type { SanitizedCollectionConfig } from 'payload'
 
-import { useModal } from '../Modal/index'
+import { useModal } from '../Modal'
 import { getTranslation } from '@payloadcms/translations'
 import { useRouter } from 'next/navigation'
 import { formatAdminURL } from 'payload/shared'
@@ -20,9 +20,9 @@ import { useRouteTransition } from '@payloadcms/ui'
 import { useTranslation } from '@payloadcms/ui'
 import { requests } from '../../utilities/api'
 import { traverseForLocalizedFields } from '../../utilities/traverseForLocalizedFields'
-import { ConfirmationModal } from '../ConfirmationModal/index'
-import { PopupList } from '../Popup/index'
-import { SelectLocalesDrawer } from './SelectLocalesDrawer/index'
+import { ConfirmationModal } from '../ConfirmationModal'
+import { PopupList } from '../Popup'
+import { SelectLocalesDrawer } from './SelectLocalesDrawer'
 
 export type Props = {
   readonly id: number | string

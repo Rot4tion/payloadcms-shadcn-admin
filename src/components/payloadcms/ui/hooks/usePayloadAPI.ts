@@ -4,8 +4,8 @@ import type React from 'react'
 import * as qs from 'qs-esm'
 import { useEffect, useRef, useState } from 'react'
 
-import { useLocale } from '../providers/Locale/index'
-import { useTranslation } from '../providers/Translation/index'
+import { useLocale } from '../providers/Locale'
+import { useTranslation } from '../providers/Translation'
 import { requests } from '../utilities/api'
 
 type Result = [

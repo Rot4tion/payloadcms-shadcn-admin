@@ -3,11 +3,18 @@
 import type { FormProps } from '@/components/payloadcms/ui/exports/client'
 import type { FormState, PayloadRequest } from 'payload'
 
-import { EmailField, Form, FormSubmit, TextField, useConfig, useTranslation } from '@/components/payloadcms/ui/exports/client'
+import {
+  EmailField,
+  Form,
+  FormSubmit,
+  TextField,
+  useConfig,
+  useTranslation,
+} from '@/components/payloadcms/ui/exports/client'
 import { email, text } from 'payload/shared'
 import React, { useState } from 'react'
 
-import { FormHeader } from '../../../elements/FormHeader/index'
+import { FormHeader } from '../../../elements/FormHeader'
 
 export const ForgotPasswordForm: React.FC = () => {
   const { config, getEntityConfig } = useConfig()

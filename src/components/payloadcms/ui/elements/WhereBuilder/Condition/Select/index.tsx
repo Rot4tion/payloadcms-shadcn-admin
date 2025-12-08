@@ -6,8 +6,8 @@ import React from 'react'
 
 import type { SelectFilterProps as Props } from './types'
 
-import { useTranslation } from '../../../../providers/Translation/index'
-import { ReactSelect } from '../../../ReactSelect/index'
+import { useTranslation } from '../../../../providers/Translation'
+import { ReactSelect } from '../../../ReactSelect'
 import { formatOptions } from './formatOptions'
 
 export const Select: React.FC<Props> = ({

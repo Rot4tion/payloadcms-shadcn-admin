@@ -3,11 +3,11 @@
 import type { ClientCollectionConfig, Where } from 'payload'
 
 import React from 'react'
-import { useModal } from '../Modal/index'
+import { useModal } from '../Modal'
 
 import { useAuth, useSelection, useTranslation } from '@payloadcms/ui'
 import { SelectAllStatus } from '@payloadcms/ui/providers/Selection'
-import { ListSelectionButton } from '../ListSelection/index'
+import { ListSelectionButton } from '../ListSelection'
 import { UnpublishManyDrawerContent } from './DrawerContent'
 
 export type UnpublishManyProps = {

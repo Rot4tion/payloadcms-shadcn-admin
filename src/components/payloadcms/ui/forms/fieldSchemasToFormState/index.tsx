@@ -16,7 +16,7 @@ import type {
 
 import type { RenderFieldMethod } from './types'
 
-import { calculateDefaultValues } from './calculateDefaultValues/index'
+import { calculateDefaultValues } from './calculateDefaultValues'
 import { iterateFields } from './iterateFields'
 
 type Args = {

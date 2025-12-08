@@ -4,9 +4,9 @@ import type { NavPreferences } from 'payload'
 import React, { useState } from 'react'
 
 import { cn } from '@/lib/utils'
-import { ChevronIcon } from '../../icons/Chevron/index'
+import { ChevronIcon } from '../../icons/Chevron'
 import { usePreferences } from '@payloadcms/ui'
-import { AnimateHeight } from '../AnimateHeight/index'
+import { AnimateHeight } from '../AnimateHeight'
 import { useNav } from '../Nav/context'
 
 type Props = {

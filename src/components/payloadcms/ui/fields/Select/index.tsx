@@ -12,8 +12,8 @@ import React, { useCallback, useMemo } from 'react'
 import type { ReactSelectAdapterProps } from '../../elements/ReactSelect/types'
 import type { SelectInputProps } from './Input'
 
-import { useField } from '../../forms/useField/index'
-import { withCondition } from '../../forms/withCondition/index'
+import { useField } from '../../forms/useField'
+import { withCondition } from '../../forms/withCondition'
 import { mergeFieldStyles } from '../mergeFieldStyles'
 import { SelectInput } from './Input'
 

@@ -6,8 +6,8 @@ import React from 'react'
 import type { UpcomingEvent } from './types'
 
 import { formatDate } from '../../../utilities/formatDocTitle/formatDateTitle'
-import { Button } from '../../Button/index'
-import { Pill } from '../../Pill/index'
+import { Button } from '../../Button'
+import { Pill } from '../../Pill'
 
 type Args = {
   dateFormat: string

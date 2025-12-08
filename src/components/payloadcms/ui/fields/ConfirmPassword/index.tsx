@@ -5,11 +5,11 @@ import React from 'react'
 
 import { cn } from '@/lib/utils'
 import { Input } from '@/components/ui/input'
-import { useField } from '../../forms/useField/index'
+import { useField } from '../../forms/useField'
 import { useTranslation } from '@payloadcms/ui'
-import { FieldError } from '../FieldError/index'
-import { FieldLabel } from '../FieldLabel/index'
-import { fieldBaseClass } from '../shared/index'
+import { FieldError } from '../FieldError'
+import { FieldLabel } from '../FieldLabel'
+import { fieldBaseClass } from '../shared'
 
 export type ConfirmPasswordFieldProps = {
   readonly disabled?: boolean

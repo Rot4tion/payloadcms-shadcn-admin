@@ -2,7 +2,7 @@
 
 import React from 'react'
 
-import { DrawerCloseButton } from '../DrawerCloseButton/index'
+import { DrawerCloseButton } from '../DrawerCloseButton'
 
 type Props = {
   readonly onClose: () => void

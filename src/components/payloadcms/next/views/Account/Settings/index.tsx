@@ -6,8 +6,8 @@ import { FieldLabel } from '@/components/payloadcms/ui/exports/client'
 import { cn } from '@/lib/utils'
 import React from 'react'
 
-import { ResetPreferences } from '../ResetPreferences/index'
-import { ToggleTheme } from '../ToggleTheme/index'
+import { ResetPreferences } from '../ResetPreferences'
+import { ToggleTheme } from '../ToggleTheme'
 import { LanguageSelector } from './LanguageSelector'
 
 export const Settings: React.FC<{

@@ -7,8 +7,8 @@ import { getTranslation } from '@payloadcms/translations'
 
 import type { Props as ButtonProps } from '../../elements/Button/types'
 
-import { Button } from '../../elements/Button/index'
-import { Popup, PopupList } from '../Popup/index'
+import { Button } from '../../elements/Button'
+import { Popup, PopupList } from '../Popup'
 
 export const AddNewButton = ({
   allowCreate,

@@ -4,12 +4,12 @@ import type { ClientUser } from 'payload'
 
 import React, { useEffect } from 'react'
 
-import { useRouteCache } from '../../providers/RouteCache/index'
+import { useRouteCache } from '../../providers/RouteCache'
 import { useRouteTransition } from '@payloadcms/ui'
 import { useTranslation } from '@payloadcms/ui'
 import { isClientUserObject } from '../../utilities/isClientUserObject'
 import { Button } from '@/components/ui/button'
-import { Modal, useModal } from '../Modal/index'
+import { Modal, useModal } from '../Modal'
 
 const modalSlug = 'document-locked'
 

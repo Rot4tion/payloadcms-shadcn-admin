@@ -9,7 +9,7 @@ import { useAuth } from '@payloadcms/ui'
 import { useListQuery } from '@payloadcms/ui'
 import { useTranslation } from '@payloadcms/ui'
 import { reduceFieldsToOptions } from '../../utilities/reduceFieldsToOptions'
-import { ReactSelect } from '../ReactSelect/index'
+import { ReactSelect } from '../ReactSelect'
 
 export type Props = {
   readonly collectionSlug: SanitizedCollectionConfig['slug']

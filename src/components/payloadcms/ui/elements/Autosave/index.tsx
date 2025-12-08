@@ -10,7 +10,7 @@ import {
 } from 'payload/shared'
 import React, { useDeferredValue, useEffect, useRef, useState } from 'react'
 
-import type { OnSaveContext } from '../../views/Edit/index'
+import type { OnSaveContext } from '../../views/Edit'
 
 import {
   useAllFormFields,
@@ -27,7 +27,7 @@ import { useEffectEvent } from '../../hooks/useEffectEvent'
 import { useQueue } from '../../hooks/useQueue'
 import { formatTimeToNow } from '../../utilities/formatDocTitle/formatDateTitle'
 import { reduceFieldsToValuesWithValidation } from '../../utilities/reduceFieldsToValuesWithValidation'
-import { LeaveWithoutSaving } from '../LeaveWithoutSaving/index'
+import { LeaveWithoutSaving } from '../LeaveWithoutSaving'
 // The minimum time the saving state should be shown
 const minimumAnimationTime = 1000
 

@@ -8,8 +8,8 @@ import React from 'react'
 
 import type { ReloadDoc } from '../types'
 
-import { RelationshipContent } from '../RelationshipContent/index'
-import { UploadCard } from '../UploadCard/index'
+import { RelationshipContent } from '../RelationshipContent'
+import { UploadCard } from '../UploadCard'
 import { cn } from '@/lib/utils'
 
 type Props = {

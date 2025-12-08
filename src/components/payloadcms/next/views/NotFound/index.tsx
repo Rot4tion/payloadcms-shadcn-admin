@@ -5,7 +5,7 @@ import { formatAdminURL } from 'payload/shared'
 import * as qs from 'qs-esm'
 import React from 'react'
 
-import { DefaultTemplate } from '../../templates/Default/index'
+import { DefaultTemplate } from '../../templates/Default'
 import { getNextRequestI18n } from '../../utilities/getNextRequestI18n'
 import { getVisibleEntities } from '../../utilities/getVisibleEntities'
 import { initReq } from '../../utilities/initReq'
