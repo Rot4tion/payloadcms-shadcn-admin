@@ -1,14 +1,8 @@
 'use client'
-import React, { lazy, Suspense } from 'react'
+import React from 'react'
 
 import type { Props } from './types'
 
-import { ShimmerEffect } from '../ShimmerEffect'
+import DatePicker from './DatePicker'
 
-const DatePicker = lazy(() => import('./DatePicker.js'))
-
-export const DatePickerField: React.FC<Props> = (props) => (
-  <Suspense fallback={<ShimmerEffect height={50} />}>
-    <DatePicker {...props} />
-  </Suspense>
-)
+export const DatePickerField: React.FC<Props> = (props) => <DatePicker {...props} />

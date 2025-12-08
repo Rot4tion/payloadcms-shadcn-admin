@@ -105,19 +105,18 @@ function TimePicker({
     <div className="flex flex-col gap-3">
       {/* Keyboard input */}
       <div className="flex items-center gap-2">
-        <Clock className="size-4 text-muted-foreground" />
         <Input
           type="time"
           value={timeInputValue}
           onChange={handleTimeInputChange}
-          className="h-9 w-full"
+          className="h-9 w-full appearance-none [&::-webkit-calendar-picker-indicator]:hidden [&::-webkit-calendar-picker-indicator]:appearance-none"
         />
       </div>
 
       {/* Scroll selectors */}
       <div className="flex gap-1">
         {/* Hours */}
-        <ScrollArea className="h-48 w-14 rounded-md border" ref={hourRef}>
+        <ScrollArea className="h-48 w-14 rounded-md border" scrollHideDelay={0} ref={hourRef}>
           <div className="p-1">
             {hours.map((hour) => (
               <button
@@ -139,7 +138,7 @@ function TimePicker({
         </ScrollArea>
 
         {/* Minutes */}
-        <ScrollArea className="h-48 w-14 rounded-md border" ref={minuteRef}>
+        <ScrollArea className="h-48 w-14 rounded-md border" scrollHideDelay={0} ref={minuteRef}>
           <div className="p-1">
             {minutes.map((minute) => (
               <button
@@ -310,6 +309,14 @@ const DatePicker: React.FC<Props> = (props) => {
 
     date.setMilliseconds(0)
     onChangeFromProps?.(date)
+    setPreviewDate(date)
+
+    // Update input value immediately
+    try {
+      setInputValue(format(date, dateFormat))
+    } catch {
+      setInputValue(format(date, 'MM/dd/yyyy'))
+    }
 
     // Close popover for non-time pickers
     if (pickerAppearance !== 'dayAndTime' && pickerAppearance !== 'timeOnly') {
@@ -401,6 +408,13 @@ const DatePicker: React.FC<Props> = (props) => {
 
   const handleTimePickerChange = (date: Date) => {
     onChangeFromProps?.(date)
+    setPreviewDate(date)
+    // Update input value immediately to reflect the time change
+    try {
+      setInputValue(format(date, dateFormat))
+    } catch {
+      setInputValue(format(date, 'MM/dd/yyyy'))
+    }
   }
 
   // Get placeholder based on picker type
@@ -479,15 +493,6 @@ const DatePicker: React.FC<Props> = (props) => {
     <Popover open={open} onOpenChange={setOpen}>
       <PopoverAnchor asChild>
         <div className="relative flex items-center">
-          <PopoverTrigger asChild disabled={readOnly}>
-            <button
-              type="button"
-              className="absolute left-3 z-10 text-muted-foreground hover:text-foreground focus:outline-none"
-              disabled={readOnly}
-            >
-              <CalendarIcon className="size-4" />
-            </button>
-          </PopoverTrigger>
           <Input
             ref={inputRef}
             id={id}
@@ -499,17 +504,26 @@ const DatePicker: React.FC<Props> = (props) => {
             onKeyDown={handleInputKeyDown}
             placeholder={getPlaceholder()}
             disabled={readOnly}
-            className={cn('pl-9', selectedDate && !readOnly ? 'pr-8' : 'pr-3')}
+            className={cn('pr-9', selectedDate && !readOnly && 'pr-16')}
           />
           {selectedDate && !readOnly && (
             <button
               type="button"
-              className="absolute right-2 rounded-sm p-0.5 text-muted-foreground opacity-70 hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-ring"
+              className="absolute right-9 rounded-sm p-0.5 text-muted-foreground opacity-70 hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-ring"
               onClick={handleClear}
             >
               <X className="size-4" />
             </button>
           )}
+          <PopoverTrigger asChild disabled={readOnly}>
+            <button
+              type="button"
+              className="absolute right-2 z-10 text-muted-foreground hover:text-foreground focus:outline-none"
+              disabled={readOnly}
+            >
+              <CalendarIcon className="size-4" />
+            </button>
+          </PopoverTrigger>
         </div>
       </PopoverAnchor>
       <PopoverContent
