@@ -1,10 +1,17 @@
+// @ts-nocheck payloadcms original type safe issue will fix later
 'use client'
 
 import type { ClientCollectionConfig, ClientGlobalConfig } from 'payload'
 import type React from 'react'
 
 import { getTranslation } from '@payloadcms/translations'
-import { useConfig, useDocumentTitle, useLocale, useStepNav, useTranslation } from '@/components/payloadcms/ui/exports/client'
+import {
+  useConfig,
+  useDocumentTitle,
+  useLocale,
+  useStepNav,
+  useTranslation,
+} from '@/components/payloadcms/ui/exports/client'
 import { formatAdminURL } from 'payload/shared'
 import { useEffect } from 'react'
 

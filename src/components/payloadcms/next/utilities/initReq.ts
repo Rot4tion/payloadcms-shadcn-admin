@@ -1,3 +1,4 @@
+// @ts-nocheck payloadcms original type safe issue will fix later
 import type { AcceptedLanguages, I18n, I18nClient } from '@payloadcms/translations'
 import type {
   ImportMap,

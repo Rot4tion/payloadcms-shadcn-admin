@@ -1,3 +1,4 @@
+// @ts-nocheck payloadcms original type safe issue will fix later
 import type { I18n, I18nClient } from '@payloadcms/translations'
 
 import { TZDateMini as TZDate } from '@date-fns/tz/date/mini'

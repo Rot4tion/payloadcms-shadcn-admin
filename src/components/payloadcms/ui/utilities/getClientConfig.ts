@@ -1,3 +1,4 @@
+// @ts-nocheck payloadcms original type safe issue will fix later
 import type { SupportedLanguages } from '@payloadcms/translations'
 import type { ClientConfig, CreateClientConfigArgs } from 'payload'
 

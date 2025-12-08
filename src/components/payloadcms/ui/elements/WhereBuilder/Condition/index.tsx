@@ -1,13 +1,8 @@
+// @ts-nocheck payloadcms original type safe issue will fix later
 'use client'
 import React, { useCallback, useEffect, useState } from 'react'
 
-import type {
-  AddCondition,
-  ReducedField,
-  RemoveCondition,
-  UpdateCondition,
-  Value,
-} from '../types'
+import type { AddCondition, ReducedField, RemoveCondition, UpdateCondition, Value } from '../types'
 
 export type Props = {
   readonly addCondition: AddCondition

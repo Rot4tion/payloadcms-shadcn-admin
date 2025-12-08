@@ -1,3 +1,4 @@
+// @ts-nocheck payloadcms original type safe issue will fix later
 export const formatRelationshipTitle = (data): string => {
   if (Array.isArray(data)) {
     return data

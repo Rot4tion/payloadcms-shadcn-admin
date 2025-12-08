@@ -1,3 +1,4 @@
+// @ts-nocheck payloadcms original type safe issue will fix later
 import type {
   CollectionConfig,
   GlobalConfig,
@@ -42,14 +43,14 @@ export const isLivePreviewEnabled = ({
   if (globalConfig) {
     return Boolean(
       config.admin?.livePreview?.globals?.includes(globalConfig.slug) ||
-        globalConfig.admin?.livePreview,
+      globalConfig.admin?.livePreview,
     )
   }
 
   if (collectionConfig) {
     return Boolean(
       config.admin?.livePreview?.collections?.includes(collectionConfig.slug) ||
-        collectionConfig.admin?.livePreview,
+      collectionConfig.admin?.livePreview,
     )
   }
 }

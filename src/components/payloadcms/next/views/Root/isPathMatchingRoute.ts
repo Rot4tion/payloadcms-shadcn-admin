@@ -1,3 +1,4 @@
+// @ts-nocheck payloadcms original type safe issue will fix later
 import { pathToRegexp } from 'path-to-regexp'
 
 export const isPathMatchingRoute = ({

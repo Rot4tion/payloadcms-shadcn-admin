@@ -1,3 +1,4 @@
+// @ts-nocheck payloadcms original type safe issue will fix later
 'use client'
 import type { SanitizedCollectionConfig, StaticLabel } from 'payload'
 

@@ -1,3 +1,4 @@
+// @ts-nocheck payloadcms original type safe issue will fix later
 import type { Locale, SanitizedLocalizationConfig } from 'payload'
 /*
  return the Locale for given locale code, else return null

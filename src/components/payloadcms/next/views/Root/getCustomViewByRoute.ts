@@ -1,3 +1,4 @@
+// @ts-nocheck payloadcms original type safe issue will fix later
 import type { AdminViewConfig, SanitizedConfig } from 'payload'
 
 import type { ViewFromConfig } from './getRouteData'

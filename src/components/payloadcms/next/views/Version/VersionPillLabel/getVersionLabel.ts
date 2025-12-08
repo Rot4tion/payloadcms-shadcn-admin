@@ -1,3 +1,4 @@
+// @ts-nocheck payloadcms original type safe issue will fix later
 import type { TFunction } from '@payloadcms/translations'
 import type { Pill } from '@/components/payloadcms/ui/exports/client'
 

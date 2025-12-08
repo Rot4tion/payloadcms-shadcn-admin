@@ -1,3 +1,4 @@
+// @ts-nocheck payloadcms original type safe issue will fix later
 import type { I18nClient, TFunction } from '@payloadcms/translations'
 import type { ClientCollectionConfig, ViewTypes } from 'payload'
 

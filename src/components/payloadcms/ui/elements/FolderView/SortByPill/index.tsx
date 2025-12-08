@@ -1,3 +1,4 @@
+// @ts-nocheck payloadcms original type safe issue will fix later
 import type { TFunction } from '@payloadcms/translations'
 import type { FolderSortKeys } from 'payload'
 

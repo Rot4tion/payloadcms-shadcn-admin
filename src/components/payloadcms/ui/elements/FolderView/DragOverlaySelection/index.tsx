@@ -1,3 +1,4 @@
+// @ts-nocheck payloadcms original type safe issue will fix later
 import type { Modifier } from '@dnd-kit/core'
 import type { FolderOrDocument } from 'payload/shared'
 

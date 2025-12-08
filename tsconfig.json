@@ -20,11 +20,7 @@
     ],
     "paths": {
       "@/*": ["./src/*"],
-      "@payload-config": ["./src/payload.config.ts"],
-      "@payloadcms-local/next": ["./src/components/payloadcms/next/src/index.js"],
-      "@payloadcms-local/next/*": ["./src/components/payloadcms/next/src/exports/*"],
-      "@payloadcms-local/ui": ["./src/components/payloadcms/ui/src/exports/client/index.ts"],
-      "@payloadcms-local/ui/*": ["./src/components/payloadcms/ui/src/*"]
+      "@payload-config": ["./src/payload.config.ts"]
     },
     "target": "ES2022"
   },

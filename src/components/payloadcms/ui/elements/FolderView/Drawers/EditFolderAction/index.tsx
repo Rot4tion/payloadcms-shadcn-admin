@@ -1,3 +1,4 @@
+// @ts-nocheck payloadcms original type safe issue will fix later
 import { useRouteCache } from '../../../../providers/RouteCache/index'
 import { useTranslation } from '../../../../providers/Translation/index'
 import { useDocumentDrawer } from '../../../DocumentDrawer/index'

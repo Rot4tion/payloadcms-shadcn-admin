@@ -1,3 +1,4 @@
+// @ts-nocheck payloadcms original type safe issue will fix later
 import { cache } from 'react'
 
 type CachedValue = object

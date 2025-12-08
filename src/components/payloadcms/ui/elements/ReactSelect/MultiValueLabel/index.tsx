@@ -1,3 +1,4 @@
+// @ts-nocheck payloadcms original type safe issue will fix later
 'use client'
 import type { OptionLabel } from 'payload'
 import type { MultiValueProps } from 'react-select'

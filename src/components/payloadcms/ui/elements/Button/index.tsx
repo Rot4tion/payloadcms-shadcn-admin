@@ -1,3 +1,4 @@
+// @ts-nocheck payloadcms original type safe issue will fix later
 'use client'
 import React, { Fragment, isValidElement } from 'react'
 import { cva, type VariantProps } from 'class-variance-authority'

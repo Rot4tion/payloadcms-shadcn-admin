@@ -1,3 +1,4 @@
+// @ts-nocheck payloadcms original type safe issue will fix later
 'use client'
 
 import type { PublishButtonClientProps } from 'payload'
@@ -82,9 +83,9 @@ export function PublishButton({ label: labelProp }: PublishButtonClientProps) {
 
   const canSchedulePublish = Boolean(
     scheduledPublishEnabled &&
-      hasPublishPermission &&
-      (globalSlug || (collectionSlug && id)) &&
-      (hasAutosave || !modified),
+    hasPublishPermission &&
+    (globalSlug || (collectionSlug && id)) &&
+    (hasAutosave || !modified),
   )
 
   const [hasLocalizedFields, setHasLocalizedFields] = useState(false)

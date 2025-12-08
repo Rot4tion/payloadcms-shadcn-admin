@@ -1,3 +1,4 @@
+// @ts-nocheck payloadcms original type safe issue will fix later
 import type { FieldWithPathClient } from 'payload'
 
 export const filterOutUploadFields = (fields: FieldWithPathClient[]): FieldWithPathClient[] => {

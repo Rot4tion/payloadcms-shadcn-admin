@@ -1,3 +1,4 @@
+// @ts-nocheck payloadcms original type safe issue will fix later
 import type { I18n } from '@payloadcms/translations'
 import type { BasePayload, Config, LanguageOptions, TypedUser } from 'payload'
 

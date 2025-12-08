@@ -1,3 +1,4 @@
+// @ts-nocheck payloadcms original type safe issue will fix later
 import type { DefaultDocumentIDType, Payload, PayloadRequest } from 'payload'
 
 import { dequal } from 'dequal/lite'

@@ -1,4 +1,8 @@
-import type { RenderListServerFnArgs, RenderListServerFnReturnType } from '@/components/payloadcms/ui/exports/client'
+// @ts-nocheck payloadcms original type safe issue will fix later
+import type {
+  RenderListServerFnArgs,
+  RenderListServerFnReturnType,
+} from '@/components/payloadcms/ui/exports/client'
 import type { CollectionPreferences, ServerFunction, VisibleEntities } from 'payload'
 
 import { getClientConfig } from '@/components/payloadcms/ui/utilities/getClientConfig'

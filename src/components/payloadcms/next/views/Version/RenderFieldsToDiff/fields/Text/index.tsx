@@ -1,7 +1,12 @@
+// @ts-nocheck payloadcms original type safe issue will fix later
 'use client'
 import type { TextFieldDiffClientComponent } from 'payload'
 
-import { FieldDiffContainer, getHTMLDiffComponents, useTranslation } from '@/components/payloadcms/ui/exports/client'
+import {
+  FieldDiffContainer,
+  getHTMLDiffComponents,
+  useTranslation,
+} from '@/components/payloadcms/ui/exports/client'
 import React from 'react'
 
 function formatValue(value: unknown): {

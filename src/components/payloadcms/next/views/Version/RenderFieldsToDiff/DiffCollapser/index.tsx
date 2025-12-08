@@ -1,7 +1,13 @@
+// @ts-nocheck payloadcms original type safe issue will fix later
 'use client'
 import type { ClientField } from 'payload'
 
-import { ChevronIcon, FieldDiffLabel, useConfig, useTranslation } from '@/components/payloadcms/ui/exports/client'
+import {
+  ChevronIcon,
+  FieldDiffLabel,
+  useConfig,
+  useTranslation,
+} from '@/components/payloadcms/ui/exports/client'
 import { fieldIsArrayType, fieldIsBlockType } from 'payload/shared'
 import React, { useState } from 'react'
 

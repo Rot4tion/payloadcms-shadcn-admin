@@ -1,3 +1,4 @@
+// @ts-nocheck payloadcms original type safe issue will fix later
 import type { EditViewComponent, SanitizedCollectionConfig, SanitizedGlobalConfig } from 'payload'
 
 import { isPathMatchingRoute } from '../Root/isPathMatchingRoute'

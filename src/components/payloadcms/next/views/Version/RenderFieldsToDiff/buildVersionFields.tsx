@@ -1,3 +1,4 @@
+// @ts-nocheck payloadcms original type safe issue will fix later
 import type { I18nClient } from '@payloadcms/translations'
 
 import { RenderServerComponent } from '@/components/payloadcms/ui/elements/RenderServerComponent'

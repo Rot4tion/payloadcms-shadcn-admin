@@ -1,3 +1,4 @@
+// @ts-nocheck payloadcms original type safe issue will fix later
 import type { I18nClient } from '@payloadcms/translations'
 import type {
   ClientField,

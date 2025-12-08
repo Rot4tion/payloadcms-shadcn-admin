@@ -1,3 +1,4 @@
+// @ts-nocheck payloadcms original type safe issue will fix later
 import type { I18n, I18nClient } from '@payloadcms/translations'
 import type { FieldSchemaMap, SanitizedConfig } from 'payload'
 

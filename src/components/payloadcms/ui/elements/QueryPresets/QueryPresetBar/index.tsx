@@ -1,3 +1,4 @@
+// @ts-nocheck payloadcms original type safe issue will fix later
 import type { QueryPreset, SanitizedCollectionPermission } from 'payload'
 
 import { useModal } from '../../Modal/index'

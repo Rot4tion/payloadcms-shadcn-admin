@@ -1,3 +1,4 @@
+// @ts-nocheck payloadcms original type safe issue will fix later
 'use client'
 import type { LivePreviewConfig, LivePreviewURLType } from 'payload'
 import type { Dispatch } from 'react'

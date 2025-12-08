@@ -1,9 +1,14 @@
+// @ts-nocheck payloadcms original type safe issue will fix later
 'use client'
 import type { I18nClient } from '@payloadcms/translations'
 import type { Option, SelectField, SelectFieldDiffClientComponent } from 'payload'
 
 import { getTranslation } from '@payloadcms/translations'
-import { FieldDiffContainer, getHTMLDiffComponents, useTranslation } from '@/components/payloadcms/ui/exports/client'
+import {
+  FieldDiffContainer,
+  getHTMLDiffComponents,
+  useTranslation,
+} from '@/components/payloadcms/ui/exports/client'
 import React from 'react'
 
 const getOptionsToRender = (

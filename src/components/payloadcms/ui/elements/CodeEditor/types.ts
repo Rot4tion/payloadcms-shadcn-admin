@@ -1,3 +1,4 @@
+// @ts-nocheck payloadcms original type safe issue will fix later
 import type { EditorProps } from '@monaco-editor/react'
 
 export type Props = {

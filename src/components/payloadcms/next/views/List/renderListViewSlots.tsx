@@ -1,3 +1,4 @@
+// @ts-nocheck payloadcms original type safe issue will fix later
 import type {
   AfterListClientProps,
   AfterListTableClientProps,

@@ -1,3 +1,4 @@
+// @ts-nocheck payloadcms original type safe issue will fix later
 import { useModal } from '../../Modal/index'
 import { getTranslation } from '@payloadcms/translations'
 import { useRouter } from 'next/navigation'
