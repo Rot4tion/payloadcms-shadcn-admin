@@ -1,0 +1,94 @@
+import type {
+  DocumentTabConfig,
+  DocumentTabServerPropsOnly,
+  PayloadRequest,
+  SanitizedCollectionConfig,
+  SanitizedGlobalConfig,
+  SanitizedPermissions,
+} from 'payload'
+import type React from 'react'
+
+import { RenderServerComponent } from '@/components/payloadcms/ui/elements/RenderServerComponent'
+import { Fragment } from 'react'
+
+import { DocumentTabLink } from './TabLink'
+
+export const DefaultDocumentTab: React.FC<{
+  apiURL?: string
+  collectionConfig: SanitizedCollectionConfig
+  globalConfig: SanitizedGlobalConfig
+  path: string
+  permissions: SanitizedPermissions
+  req: PayloadRequest
+  tabConfig: { readonly Pill_Component?: React.FC } & DocumentTabConfig
+}> = (props) => {
+  const {
+    apiURL,
+    collectionConfig,
+    globalConfig,
+    permissions,
+    req,
+    tabConfig: { href: tabHref, isActive: tabIsActive, label, newTab, Pill, Pill_Component },
+  } = props
+
+  let href = typeof tabHref === 'string' ? tabHref : ''
+  let isActive = typeof tabIsActive === 'boolean' ? tabIsActive : false
+
+  if (typeof tabHref === 'function') {
+    href = tabHref({
+      // @ts-expect-error
+      apiURL,
+      collection: collectionConfig,
+      global: globalConfig,
+      routes: req.payload.config.routes,
+    })
+  }
+
+  if (typeof tabIsActive === 'function') {
+    isActive = tabIsActive({
+      href,
+    })
+  }
+
+  const labelToRender =
+    typeof label === 'function'
+      ? label({
+          t: req.i18n.t as (key: string) => string,
+        })
+      : label
+
+  return (
+    <DocumentTabLink
+      adminRoute={req.payload.config.routes.admin}
+      ariaLabel={labelToRender}
+      href={href}
+      isActive={isActive}
+      newTab={newTab}
+    >
+      {/* doc-tab__label: flex, relative, items-center, gap-1, w-full, h-full, line-height: base*1.2 */}
+      <span
+        className="flex relative items-center gap-1 w-full h-full"
+        style={{ lineHeight: 'calc(var(--base) * 1.2)' }}
+      >
+        {labelToRender}
+        {Pill || Pill_Component ? (
+          <Fragment>
+            &nbsp;
+            {RenderServerComponent({
+              Component: Pill,
+              Fallback: Pill_Component,
+              importMap: req.payload.importMap,
+              serverProps: {
+                i18n: req.i18n,
+                payload: req.payload,
+                permissions,
+                req,
+                user: req.user ?? undefined,
+              } satisfies DocumentTabServerPropsOnly,
+            })}
+          </Fragment>
+        ) : null}
+      </span>
+    </DocumentTabLink>
+  )
+}

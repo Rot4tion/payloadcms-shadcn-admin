@@ -1,0 +1,399 @@
+// @ts-nocheck payloadcms original type safe issue will fix later
+'use client'
+import { getTranslation } from '@payloadcms/translations'
+import {
+  type CollectionSlug,
+  type Column,
+  type JoinFieldClient,
+  type ListQuery,
+  type PaginatedDocs,
+  type Where,
+} from 'payload'
+import { hoistQueryParamsToAnd, transformColumnsToPreferences } from 'payload/shared'
+import React, { Fragment, useCallback, useEffect, useRef, useState } from 'react'
+
+import type { DocumentDrawerProps } from '../DocumentDrawer/types'
+
+import { Pill } from '../../elements/Pill'
+import { useEffectEvent } from '../../hooks/useEffectEvent'
+import { ChevronIcon } from '../../icons/Chevron'
+import { useAuth } from '@payloadcms/ui'
+import { useConfig } from '@payloadcms/ui'
+import { ListQueryProvider } from '@payloadcms/ui'
+import { useServerFunctions } from '@payloadcms/ui'
+import { TableColumnsProvider } from '../../providers/TableColumns'
+import { useTranslation } from '@payloadcms/ui'
+import { cn } from '@/lib/utils'
+import { AnimateHeight } from '../AnimateHeight'
+import { ColumnSelector } from '../ColumnSelector'
+import { useDocumentDrawer } from '../DocumentDrawer'
+import { RelationshipProvider } from '../Table/RelationshipProvider'
+import { AddNewButton } from './AddNewButton'
+import { DrawerLink } from './cells/DrawerLink'
+import { RelationshipTablePagination } from './Pagination'
+
+type RelationshipTableComponentProps = {
+  readonly AfterInput?: React.ReactNode
+  readonly allowCreate?: boolean
+  readonly BeforeInput?: React.ReactNode
+  readonly disableTable?: boolean
+  readonly field: JoinFieldClient
+  readonly fieldPath?: string
+  readonly filterOptions?: Where
+  readonly initialData?: PaginatedDocs
+  readonly initialDrawerData?: DocumentDrawerProps['initialData']
+  readonly Label?: React.ReactNode
+  readonly parent?: {
+    collectionSlug: CollectionSlug
+    id: number | string
+    joinPath: string
+  }
+  readonly relationTo: string | string[]
+}
+
+export type OnDrawerOpen = (id?: string) => void
+
+export const RelationshipTable: React.FC<RelationshipTableComponentProps> = (props) => {
+  const {
+    AfterInput,
+    allowCreate = true,
+    BeforeInput,
+    disableTable = false,
+    field,
+    fieldPath,
+    filterOptions,
+    initialData: initialDataFromProps,
+    initialDrawerData,
+    Label,
+    parent,
+    relationTo,
+  } = props
+  const [Table, setTable] = useState<React.ReactNode>(null)
+  const { config, getEntityConfig } = useConfig()
+  const { i18n, t } = useTranslation()
+
+  const [query, setQuery] = useState<ListQuery>()
+  const [openColumnSelector, setOpenColumnSelector] = useState(false)
+
+  const [collectionConfig] = useState(() => getEntityConfig({ collectionSlug: relationTo }))
+
+  const isPolymorphic = Array.isArray(relationTo)
+
+  const [selectedCollection, setSelectedCollection] = useState(
+    isPolymorphic ? undefined : relationTo,
+  )
+
+  const { permissions } = useAuth()
+
+  const openDrawerWhenRelationChanges = useRef(false)
+
+  const [currentDrawerID, setCurrentDrawerID] = useState<string | undefined>(undefined)
+
+  const [DocumentDrawer, , { closeDrawer, isDrawerOpen, openDrawer }] = useDocumentDrawer({
+    id: currentDrawerID,
+    collectionSlug: selectedCollection,
+  })
+
+  const [isLoadingTable, setIsLoadingTable] = useState(!disableTable)
+
+  const [data, setData] = useState<PaginatedDocs>(() =>
+    initialDataFromProps
+      ? {
+          ...initialDataFromProps,
+          docs: Array.isArray(initialDataFromProps.docs)
+            ? initialDataFromProps.docs.reduce((acc, doc) => {
+                if (typeof doc === 'string' || typeof doc === 'number') {
+                  return [
+                    ...acc,
+                    {
+                      id: doc,
+                    },
+                  ]
+                }
+
+                return [...acc, doc]
+              }, [])
+            : [],
+        }
+      : undefined,
+  )
+
+  const [columnState, setColumnState] = useState<Column[]>()
+
+  const { getTableState } = useServerFunctions()
+
+  const renderTable = useCallback(
+    async (data?: PaginatedDocs) => {
+      const newQuery: ListQuery = {
+        limit: field?.defaultLimit || collectionConfig?.admin?.pagination?.defaultLimit,
+        sort: field.defaultSort || collectionConfig?.defaultSort,
+        ...(query || {}),
+        where: { ...(query?.where || {}) },
+      }
+
+      if (filterOptions) {
+        newQuery.where = hoistQueryParamsToAnd(newQuery.where, filterOptions)
+      }
+
+      // map columns from string[] to CollectionPreferences['columns']
+      const defaultColumns = field.admin.defaultColumns
+        ? field.admin.defaultColumns.map((accessor) => ({
+            accessor,
+            active: true,
+          }))
+        : undefined
+
+      const renderRowTypes =
+        typeof field.admin.disableRowTypes === 'boolean'
+          ? !field.admin.disableRowTypes
+          : Array.isArray(relationTo)
+
+      const {
+        data: newData,
+        state: newColumnState,
+        Table: NewTable,
+      } = await getTableState({
+        collectionSlug: relationTo,
+        columns: transformColumnsToPreferences(query?.columns) || defaultColumns,
+        data,
+        enableRowSelections: false,
+        orderableFieldName:
+          !field.orderable || Array.isArray(field.collection)
+            ? undefined
+            : `_${field.collection}_${field.name}_order`,
+        parent,
+        query: newQuery,
+        renderRowTypes,
+        tableAppearance: 'condensed',
+      })
+
+      setData(newData)
+      setTable(NewTable)
+      setColumnState(newColumnState)
+      setIsLoadingTable(false)
+    },
+    [
+      field.defaultLimit,
+      field.defaultSort,
+      field.admin.defaultColumns,
+      field.admin.disableRowTypes,
+      field.collection,
+      field.name,
+      field.orderable,
+      collectionConfig?.admin?.pagination?.defaultLimit,
+      collectionConfig?.defaultSort,
+      query,
+      filterOptions,
+      getTableState,
+      relationTo,
+      parent,
+    ],
+  )
+
+  const handleTableRender = useEffectEvent((query: ListQuery, disableTable: boolean) => {
+    if (!disableTable && (!Table || query)) {
+      void renderTable()
+    }
+  })
+
+  useEffect(() => {
+    handleTableRender(query, disableTable)
+  }, [query, disableTable])
+
+  const onDrawerSave = useCallback<DocumentDrawerProps['onSave']>(
+    ({ doc, operation }) => {
+      if (operation === 'create') {
+        closeDrawer()
+      }
+
+      const foundDocIndex = data?.docs?.findIndex((d) => d.id === doc.id)
+      const withNewOrUpdatedData: PaginatedDocs = { docs: [] } as PaginatedDocs
+
+      if (foundDocIndex !== -1) {
+        const newDocs = [...data.docs]
+        newDocs[foundDocIndex] = doc
+        withNewOrUpdatedData.docs = newDocs
+      } else {
+        withNewOrUpdatedData.docs = [doc, ...data.docs]
+      }
+
+      void renderTable(withNewOrUpdatedData)
+    },
+    [data?.docs, renderTable, closeDrawer],
+  )
+
+  const onDrawerDelete = useCallback<DocumentDrawerProps['onDelete']>(
+    (args) => {
+      const newDocs = data.docs.filter((doc) => doc.id !== args.id)
+
+      void renderTable({
+        ...data,
+        docs: newDocs,
+      })
+
+      setCurrentDrawerID(undefined)
+    },
+    [data, renderTable],
+  )
+
+  const onDrawerOpen = useCallback<OnDrawerOpen>((id) => {
+    openDrawerWhenRelationChanges.current = true
+
+    if (id) {
+      setCurrentDrawerID(id)
+    } else {
+      setCurrentDrawerID(undefined)
+    }
+  }, [])
+
+  useEffect(() => {
+    if (openDrawerWhenRelationChanges.current) {
+      openDrawerWhenRelationChanges.current = false
+      openDrawer()
+    }
+  }, [openDrawer])
+
+  useEffect(() => {
+    if (!isDrawerOpen) {
+      setCurrentDrawerID(undefined)
+    }
+  }, [isDrawerOpen])
+
+  const canCreate =
+    allowCreate !== false &&
+    permissions?.collections?.[isPolymorphic ? relationTo[0] : relationTo]?.create
+
+  useEffect(() => {
+    if (isPolymorphic && selectedCollection) {
+      openDrawer()
+    }
+  }, [selectedCollection, openDrawer, isPolymorphic])
+
+  useEffect(() => {
+    if (isPolymorphic && !isDrawerOpen && selectedCollection) {
+      setSelectedCollection(undefined)
+    }
+    // eslint-disable-next-line react-compiler/react-compiler -- TODO: fix
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isDrawerOpen])
+
+  const memoizedListQuery = React.useMemo(
+    () => ({
+      columns: transformColumnsToPreferences(columnState)?.map(({ accessor }) => accessor),
+      limit: field.defaultLimit ?? collectionConfig?.admin?.pagination?.defaultLimit,
+      sort: field.defaultSort ?? collectionConfig?.defaultSort,
+    }),
+    [columnState, field, collectionConfig],
+  )
+
+  return (
+    <div className="relative [&_.table_table]:w-full [&_.table_table]:overflow-auto [&_.table_table_[class^='cell']>p]:line-clamp-4 [&_.table_table_[class^='cell']>span]:line-clamp-4 [&_.table_table_[class^='cell']>a]:line-clamp-4 [&_.table_table_[class^='cell']>p]:overflow-hidden [&_.table_table_[class^='cell']>span]:overflow-hidden [&_.table_table_[class^='cell']>a]:overflow-hidden [&_.table_table_[class^='cell']>p]:max-w-[100vw] [&_.table_table_[class^='cell']>span]:max-w-[100vw] [&_.table_table_[class^='cell']>a]:max-w-[100vw] [&_.table_th]:min-w-0 [&_.table_td:first-child]:min-w-0">
+      <div className="flex justify-between mb-(--base)">
+        {Label}
+        <div className="flex items-center gap-(--base)">
+          <AddNewButton
+            allowCreate={allowCreate !== false}
+            baseClass="relationship-table"
+            buttonStyle="none"
+            className={cn(
+              isPolymorphic
+                ? 'relationship-table__add-new-polymorphic [&_.btn__label]:flex [&_.btn__label]:whitespace-nowrap [&_.btn__label]:items-center'
+                : 'doc-drawer__toggler',
+            )}
+            collections={config.collections}
+            i18n={i18n}
+            icon={isPolymorphic ? 'plus' : undefined}
+            label={i18n.t('fields:addNew')}
+            onClick={isPolymorphic ? setSelectedCollection : openDrawer}
+            permissions={permissions}
+            relationTo={relationTo}
+          />
+          <Pill
+            aria-controls="relationship-table-columns"
+            aria-expanded={openColumnSelector}
+            icon={<ChevronIcon direction={openColumnSelector ? 'up' : 'down'} />}
+            onClick={() => setOpenColumnSelector(!openColumnSelector)}
+            pillStyle="light"
+            size="small"
+          >
+            {t('general:columns')}
+          </Pill>
+        </div>
+      </div>
+      {BeforeInput}
+      {isLoadingTable ? (
+        <p>{t('general:loading')}</p>
+      ) : (
+        <Fragment>
+          {data?.docs && data.docs.length === 0 && (
+            <div>
+              <p>
+                {i18n.t('general:noResults', {
+                  label: isPolymorphic
+                    ? i18n.t('general:documents')
+                    : getTranslation(collectionConfig?.labels?.plural, i18n),
+                })}
+              </p>
+              <AddNewButton
+                allowCreate={canCreate}
+                baseClass="relationship-table"
+                collections={config.collections}
+                i18n={i18n}
+                label={i18n.t('general:createNewLabel', {
+                  label: isPolymorphic
+                    ? i18n.t('general:document')
+                    : getTranslation(collectionConfig?.labels?.singular, i18n),
+                })}
+                onClick={isPolymorphic ? setSelectedCollection : openDrawer}
+                permissions={permissions}
+                relationTo={relationTo}
+              />
+            </div>
+          )}
+          {data?.docs && data.docs.length > 0 && (
+            <RelationshipProvider>
+              <ListQueryProvider
+                data={data}
+                modifySearchParams={false}
+                onQueryChange={setQuery}
+                orderableFieldName={
+                  !field.orderable || Array.isArray(field.collection)
+                    ? undefined
+                    : `_${field.collection}_${fieldPath.replaceAll('.', '_')}_order`
+                }
+                query={memoizedListQuery}
+              >
+                <TableColumnsProvider
+                  collectionSlug={isPolymorphic ? relationTo[0] : relationTo}
+                  columnState={columnState}
+                  LinkedCellOverride={
+                    <DrawerLink currentDrawerID={currentDrawerID} onDrawerOpen={onDrawerOpen} />
+                  }
+                >
+                  <AnimateHeight
+                    height={openColumnSelector ? 'auto' : 0}
+                    id="relationship-table-columns"
+                  >
+                    <div className="pb-(--base)">
+                      {collectionConfig && (
+                        <ColumnSelector collectionSlug={collectionConfig.slug} />
+                      )}
+                    </div>
+                  </AnimateHeight>
+                  {Table}
+                  <RelationshipTablePagination />
+                </TableColumnsProvider>
+              </ListQueryProvider>
+            </RelationshipProvider>
+          )}
+        </Fragment>
+      )}
+      {AfterInput}
+      <DocumentDrawer
+        initialData={initialDrawerData}
+        onDelete={onDrawerDelete}
+        onSave={onDrawerSave}
+      />
+    </div>
+  )
+}

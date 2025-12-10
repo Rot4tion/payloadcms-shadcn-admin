@@ -1,0 +1,102 @@
+// @ts-nocheck payloadcms original type safe issue will fix later
+'use client'
+import type { TextareaFieldClientComponent, TextareaFieldValidation } from 'payload'
+
+import { getTranslation } from '@payloadcms/translations'
+import React, { useCallback, useMemo } from 'react'
+
+import type { TextAreaInputProps } from './types'
+
+import { useField } from '../../forms/useField'
+import { withCondition } from '../../forms/withCondition'
+import { useConfig } from '@payloadcms/ui'
+import { useLocale } from '@payloadcms/ui'
+import { useTranslation } from '@payloadcms/ui'
+import { mergeFieldStyles } from '../mergeFieldStyles'
+import { isFieldRTL } from '../shared'
+import { TextareaInput } from './Input'
+
+export { TextareaInput, TextAreaInputProps }
+
+const TextareaFieldComponent: TextareaFieldClientComponent = (props) => {
+  const {
+    field,
+    field: {
+      admin: { className, description, placeholder, rows, rtl } = {},
+      label,
+      localized,
+      maxLength,
+      minLength,
+      required,
+    },
+    path: pathFromProps,
+    readOnly,
+    validate,
+  } = props
+
+  const { i18n } = useTranslation()
+
+  const {
+    config: { localization },
+  } = useConfig()
+
+  const locale = useLocale()
+
+  const isRTL = isFieldRTL({
+    fieldLocalized: localized,
+    fieldRTL: rtl,
+    locale,
+    localizationConfig: localization || undefined,
+  })
+
+  const memoizedValidate: TextareaFieldValidation = useCallback(
+    (value, options) => {
+      if (typeof validate === 'function') {
+        return validate(value, { ...options, maxLength, minLength, required })
+      }
+    },
+    [validate, required, maxLength, minLength],
+  )
+
+  const {
+    customComponents: { AfterInput, BeforeInput, Description, Error, Label } = {},
+    disabled,
+    path,
+    setValue,
+    showError,
+    value,
+  } = useField<string>({
+    potentiallyStalePath: pathFromProps,
+    validate: memoizedValidate,
+  })
+
+  const styles = useMemo(() => mergeFieldStyles(field), [field])
+
+  return (
+    <TextareaInput
+      AfterInput={AfterInput}
+      BeforeInput={BeforeInput}
+      className={className}
+      Description={Description}
+      description={description}
+      Error={Error}
+      Label={Label}
+      label={label}
+      localized={localized}
+      onChange={(e) => {
+        setValue(e.target.value)
+      }}
+      path={path}
+      placeholder={getTranslation(placeholder, i18n)}
+      readOnly={readOnly || disabled}
+      required={required}
+      rows={rows}
+      rtl={isRTL}
+      showError={showError}
+      style={styles}
+      value={value}
+    />
+  )
+}
+
+export const TextareaField = withCondition(TextareaFieldComponent)

@@ -69,16 +69,24 @@ export interface Config {
   collections: {
     users: User;
     media: Media;
+    tests: Test;
     'payload-kv': PayloadKv;
+    'payload-folders': FolderInterface;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
     'payload-migrations': PayloadMigration;
   };
-  collectionsJoins: {};
+  collectionsJoins: {
+    'payload-folders': {
+      documentsAndFolders: 'payload-folders' | 'media';
+    };
+  };
   collectionsSelect: {
     users: UsersSelect<false> | UsersSelect<true>;
     media: MediaSelect<false> | MediaSelect<true>;
+    tests: TestsSelect<false> | TestsSelect<true>;
     'payload-kv': PayloadKvSelect<false> | PayloadKvSelect<true>;
+    'payload-folders': PayloadFoldersSelect<false> | PayloadFoldersSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
     'payload-migrations': PayloadMigrationsSelect<false> | PayloadMigrationsSelect<true>;
@@ -86,10 +94,10 @@ export interface Config {
   db: {
     defaultIDType: number;
   };
-  fallbackLocale: null;
+  fallbackLocale: ('false' | 'none' | 'null') | false | null | ('en' | 'ar') | ('en' | 'ar')[];
   globals: {};
   globalsSelect: {};
-  locale: null;
+  locale: 'en' | 'ar';
   user: User & {
     collection: 'users';
   };
@@ -147,6 +155,7 @@ export interface User {
 export interface Media {
   id: number;
   alt: string;
+  folder?: (number | null) | FolderInterface;
   updatedAt: string;
   createdAt: string;
   url?: string | null;
@@ -158,6 +167,369 @@ export interface Media {
   height?: number | null;
   focalX?: number | null;
   focalY?: number | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "payload-folders".
+ */
+export interface FolderInterface {
+  id: number;
+  name: string;
+  folder?: (number | null) | FolderInterface;
+  documentsAndFolders?: {
+    docs?: (
+      | {
+          relationTo?: 'payload-folders';
+          value: number | FolderInterface;
+        }
+      | {
+          relationTo?: 'media';
+          value: number | Media;
+        }
+    )[];
+    hasNextPage?: boolean;
+    totalDocs?: number;
+  };
+  folderType?: 'media'[] | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "tests".
+ */
+export interface Test {
+  id: number;
+  text: string;
+  /**
+   * Min 5, Max 20 characters
+   */
+  textWithMinMax?: string | null;
+  textarea?: string | null;
+  /**
+   * Required, min 10 characters
+   */
+  textareaRequired: string;
+  locale?: string | null;
+  email: string;
+  code?: string | null;
+  richText?: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  number?: number | null;
+  /**
+   * Required number field
+   */
+  numberRequired: number;
+  /**
+   * Min 1, Max 100
+   */
+  numberWithMinMax?: number | null;
+  date?: string | null;
+  dateWithTime?: string | null;
+  checkbox?: boolean | null;
+  select?: ('optionA' | 'optionB' | 'optionC') | null;
+  /**
+   * Required select field
+   */
+  selectRequired: 'reqA' | 'reqB';
+  selectMultiple?: ('tag1' | 'tag2' | 'tag3' | 'tag4' | 'tag5')[] | null;
+  radio?: ('option1' | 'option2' | 'option3') | null;
+  /**
+   * Required radio field
+   */
+  radioRequired: 'yes' | 'no';
+  /**
+   * Must be checked
+   */
+  checkboxRequired: boolean;
+  json?:
+    | {
+        [k: string]: unknown;
+      }
+    | unknown[]
+    | string
+    | number
+    | boolean
+    | null;
+  relationship?: (number | null) | User;
+  relationshipMany?: (number | User)[] | null;
+  upload?: (number | null) | Media;
+  array?:
+    | {
+        arrayText?: string | null;
+        arrayNumber?: number | null;
+        id?: string | null;
+      }[]
+    | null;
+  /**
+   * Min 1, Max 3 rows
+   */
+  arrayWithMinMax?:
+    | {
+        itemName: string;
+        id?: string | null;
+      }[]
+    | null;
+  blocks?:
+    | (
+        | {
+            blockText?: string | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'textBlock';
+          }
+        | {
+            blockImage?: (number | null) | Media;
+            blockCaption?: string | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'imageBlock';
+          }
+      )[]
+    | null;
+  group?: {
+    groupText?: string | null;
+    groupNumber?: number | null;
+  };
+  rowField1?: string | null;
+  rowField2?: string | null;
+  collapsibleText?: string | null;
+  collapsibleTextarea?: string | null;
+  tab1Text?: string | null;
+  tab2Text?: string | null;
+  tab2Number?: number | null;
+  /**
+   * Full width (100%)
+   */
+  widthFull?: string | null;
+  /**
+   * Half width (50%)
+   */
+  widthHalf1?: string | null;
+  /**
+   * Half width (50%)
+   */
+  widthHalf2?: string | null;
+  /**
+   * 1/3 width
+   */
+  widthThird1?: string | null;
+  /**
+   * 1/3 width
+   */
+  widthThird2?: string | null;
+  /**
+   * 1/3 width
+   */
+  widthThird3?: string | null;
+  /**
+   * 1/4 width
+   */
+  widthQuarter1?: string | null;
+  /**
+   * 1/4 width
+   */
+  widthQuarter2?: string | null;
+  /**
+   * 1/4 width
+   */
+  widthQuarter3?: string | null;
+  /**
+   * 1/4 width
+   */
+  widthQuarter4?: string | null;
+  /**
+   * 70% width
+   */
+  widthMixed1?: string | null;
+  /**
+   * 30% width
+   */
+  widthMixed2?: string | null;
+  /**
+   * This field appears in sidebar
+   */
+  sidebarField?: string | null;
+  /**
+   * Status in sidebar
+   */
+  sidebarSelect?: ('draft' | 'published' | 'archived') | null;
+  /**
+   * Featured toggle in sidebar
+   */
+  sidebarCheckbox?: boolean | null;
+  /**
+   * Publish date in sidebar
+   */
+  sidebarDate?: string | null;
+  /**
+   * Check to show conditional fields below
+   */
+  showConditional?: boolean | null;
+  /**
+   * This field only shows when checkbox above is checked
+   */
+  conditionalText?: string | null;
+  /**
+   * Conditional select field
+   */
+  conditionalSelect?: ('condA' | 'condB') | null;
+  conditionalCollapsibleText?: string | null;
+  /**
+   * Read only text field
+   */
+  readOnlyText?: string | null;
+  /**
+   * Read only number field
+   */
+  readOnlyNumber?: number | null;
+  /**
+   * Read only select field
+   */
+  readOnlySelect?: ('optionA' | 'optionB') | null;
+  /**
+   * This field is hidden in admin
+   */
+  hiddenField?: string | null;
+  /**
+   * Field with custom styles
+   */
+  styledField?: string | null;
+  /**
+   * Field with custom className
+   */
+  customClassField?: string | null;
+  /**
+   * Disabled text field
+   */
+  disabledText?: string | null;
+  /**
+   * Field with placeholder
+   */
+  placeholderText?: string | null;
+  /**
+   * Textarea with placeholder
+   */
+  placeholderTextarea?: string | null;
+  outerText?: string | null;
+  innerText1?: string | null;
+  innerNumber1?: number | null;
+  innerText2?: string | null;
+  innerRowField1?: string | null;
+  innerRowField2?: string | null;
+  layoutTabField1?: string | null;
+  layoutTabField2?: string | null;
+  tabCollapsibleText?: string | null;
+  subTabAText?: string | null;
+  subTabBText?: string | null;
+  namedTab?: {
+    /**
+     * This tab has a name property
+     */
+    namedTabField?: string | null;
+  };
+  /**
+   * Group with complex layout inside
+   */
+  layoutGroup?: {
+    groupRowField1?: string | null;
+    groupRowField2?: string | null;
+    groupRowField3?: string | null;
+    groupCollapsibleText?: string | null;
+  };
+  /**
+   * Array with complex layout in each row
+   */
+  layoutArray?:
+    | {
+        arrayLayoutField1?: string | null;
+        arrayLayoutField2?: number | null;
+        arrayLayoutField3?: ('active' | 'inactive') | null;
+        arrayCheckbox1?: boolean | null;
+        arrayCheckbox2?: boolean | null;
+        arrayCheckbox3?: boolean | null;
+        arrayItemDetails?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  /**
+   * Blocks with various layouts
+   */
+  layoutBlocks?:
+    | (
+        | {
+            leftColumn?: string | null;
+            rightColumn?: string | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'twoColumnBlock';
+          }
+        | {
+            col1?: string | null;
+            col2?: string | null;
+            col3?: string | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'threeColumnBlock';
+          }
+        | {
+            blockTitle?: string | null;
+            blockContent?: {
+              root: {
+                type: string;
+                children: {
+                  type: any;
+                  version: number;
+                  [k: string]: unknown;
+                }[];
+                direction: ('ltr' | 'rtl') | null;
+                format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+                indent: number;
+                version: number;
+              };
+              [k: string]: unknown;
+            } | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'collapsibleBlock';
+          }
+        | {
+            tabbedContent?: string | null;
+            tabbedSettings?:
+              | {
+                  [k: string]: unknown;
+                }
+              | unknown[]
+              | string
+              | number
+              | boolean
+              | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'tabbedBlock';
+          }
+      )[]
+    | null;
+  /**
+   * Text with autoComplete=email
+   */
+  autoCompleteText?: string | null;
+  updatedAt: string;
+  createdAt: string;
+  _status?: ('draft' | 'published') | null;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -190,6 +562,14 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'media';
         value: number | Media;
+      } | null)
+    | ({
+        relationTo: 'tests';
+        value: number | Test;
+      } | null)
+    | ({
+        relationTo: 'payload-folders';
+        value: number | FolderInterface;
       } | null);
   globalSlug?: string | null;
   user: {
@@ -261,6 +641,7 @@ export interface UsersSelect<T extends boolean = true> {
  */
 export interface MediaSelect<T extends boolean = true> {
   alt?: T;
+  folder?: T;
   updatedAt?: T;
   createdAt?: T;
   url?: T;
@@ -275,11 +656,204 @@ export interface MediaSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "tests_select".
+ */
+export interface TestsSelect<T extends boolean = true> {
+  text?: T;
+  textWithMinMax?: T;
+  textarea?: T;
+  textareaRequired?: T;
+  locale?: T;
+  email?: T;
+  code?: T;
+  richText?: T;
+  number?: T;
+  numberRequired?: T;
+  numberWithMinMax?: T;
+  date?: T;
+  dateWithTime?: T;
+  checkbox?: T;
+  select?: T;
+  selectRequired?: T;
+  selectMultiple?: T;
+  radio?: T;
+  radioRequired?: T;
+  checkboxRequired?: T;
+  json?: T;
+  relationship?: T;
+  relationshipMany?: T;
+  upload?: T;
+  array?:
+    | T
+    | {
+        arrayText?: T;
+        arrayNumber?: T;
+        id?: T;
+      };
+  arrayWithMinMax?:
+    | T
+    | {
+        itemName?: T;
+        id?: T;
+      };
+  blocks?:
+    | T
+    | {
+        textBlock?:
+          | T
+          | {
+              blockText?: T;
+              id?: T;
+              blockName?: T;
+            };
+        imageBlock?:
+          | T
+          | {
+              blockImage?: T;
+              blockCaption?: T;
+              id?: T;
+              blockName?: T;
+            };
+      };
+  group?:
+    | T
+    | {
+        groupText?: T;
+        groupNumber?: T;
+      };
+  rowField1?: T;
+  rowField2?: T;
+  collapsibleText?: T;
+  collapsibleTextarea?: T;
+  tab1Text?: T;
+  tab2Text?: T;
+  tab2Number?: T;
+  widthFull?: T;
+  widthHalf1?: T;
+  widthHalf2?: T;
+  widthThird1?: T;
+  widthThird2?: T;
+  widthThird3?: T;
+  widthQuarter1?: T;
+  widthQuarter2?: T;
+  widthQuarter3?: T;
+  widthQuarter4?: T;
+  widthMixed1?: T;
+  widthMixed2?: T;
+  sidebarField?: T;
+  sidebarSelect?: T;
+  sidebarCheckbox?: T;
+  sidebarDate?: T;
+  showConditional?: T;
+  conditionalText?: T;
+  conditionalSelect?: T;
+  conditionalCollapsibleText?: T;
+  readOnlyText?: T;
+  readOnlyNumber?: T;
+  readOnlySelect?: T;
+  hiddenField?: T;
+  styledField?: T;
+  customClassField?: T;
+  disabledText?: T;
+  placeholderText?: T;
+  placeholderTextarea?: T;
+  outerText?: T;
+  innerText1?: T;
+  innerNumber1?: T;
+  innerText2?: T;
+  innerRowField1?: T;
+  innerRowField2?: T;
+  layoutTabField1?: T;
+  layoutTabField2?: T;
+  tabCollapsibleText?: T;
+  subTabAText?: T;
+  subTabBText?: T;
+  namedTab?:
+    | T
+    | {
+        namedTabField?: T;
+      };
+  layoutGroup?:
+    | T
+    | {
+        groupRowField1?: T;
+        groupRowField2?: T;
+        groupRowField3?: T;
+        groupCollapsibleText?: T;
+      };
+  layoutArray?:
+    | T
+    | {
+        arrayLayoutField1?: T;
+        arrayLayoutField2?: T;
+        arrayLayoutField3?: T;
+        arrayCheckbox1?: T;
+        arrayCheckbox2?: T;
+        arrayCheckbox3?: T;
+        arrayItemDetails?: T;
+        id?: T;
+      };
+  layoutBlocks?:
+    | T
+    | {
+        twoColumnBlock?:
+          | T
+          | {
+              leftColumn?: T;
+              rightColumn?: T;
+              id?: T;
+              blockName?: T;
+            };
+        threeColumnBlock?:
+          | T
+          | {
+              col1?: T;
+              col2?: T;
+              col3?: T;
+              id?: T;
+              blockName?: T;
+            };
+        collapsibleBlock?:
+          | T
+          | {
+              blockTitle?: T;
+              blockContent?: T;
+              id?: T;
+              blockName?: T;
+            };
+        tabbedBlock?:
+          | T
+          | {
+              tabbedContent?: T;
+              tabbedSettings?: T;
+              id?: T;
+              blockName?: T;
+            };
+      };
+  autoCompleteText?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  _status?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-kv_select".
  */
 export interface PayloadKvSelect<T extends boolean = true> {
   key?: T;
   data?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "payload-folders_select".
+ */
+export interface PayloadFoldersSelect<T extends boolean = true> {
+  name?: T;
+  folder?: T;
+  documentsAndFolders?: T;
+  folderType?: T;
+  updatedAt?: T;
+  createdAt?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema

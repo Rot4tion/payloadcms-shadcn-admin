@@ -1,0 +1,64 @@
+'use client'
+import React from 'react'
+
+import type { Props as ButtonProps } from '../Button/types'
+
+import { cn } from '@/lib/utils'
+import { useTranslation } from '@payloadcms/ui'
+import { Button } from '../Button'
+
+type ListSelection_v4Props = {
+  /**
+   * The count of selected items
+   */
+  readonly count: number
+  /**
+   * Actions that apply to the list as a whole
+   *
+   * @example select all, clear selection
+   */
+  readonly ListActions?: React.ReactNode[]
+  /**
+   * Actions that apply to the selected items
+   *
+   * @example edit, delete, publish, unpublish
+   */
+  readonly SelectionActions?: React.ReactNode[]
+}
+export function ListSelection_v4({ count, ListActions, SelectionActions }: ListSelection_v4Props) {
+  const { t } = useTranslation()
+
+  return (
+    <div className="flex ml-auto text-muted-foreground gap-[0.5em] items-center max-md:mb-[calc(var(--base)*0.5)]">
+      <span>{t('general:selectedCount', { count, label: '' })}</span>
+      {ListActions && ListActions.length > 0 && (
+        <React.Fragment>
+          <span>&mdash;</span>
+          <div className="flex gap-[calc(var(--base)*0.5)]">{ListActions}</div>
+        </React.Fragment>
+      )}
+      {SelectionActions && SelectionActions.length > 0 && (
+        <React.Fragment>
+          <span>&mdash;</span>
+          <div className="flex gap-[calc(var(--base)*0.5)]">{SelectionActions}</div>
+        </React.Fragment>
+      )}
+    </div>
+  )
+}
+
+type ListSelectionButtonProps = {} & ButtonProps
+export function ListSelectionButton({ children, className, ...props }: ListSelectionButtonProps) {
+  return (
+    <Button
+      {...props}
+      buttonStyle="none"
+      className={cn(
+        'text-foreground/80 bg-transparent border-none underline cursor-pointer p-0 whitespace-nowrap overflow-hidden text-ellipsis',
+        className,
+      )}
+    >
+      {children}
+    </Button>
+  )
+}

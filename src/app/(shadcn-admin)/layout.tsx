@@ -1,8 +1,10 @@
+/* SHADCN ADMIN - Using local PayloadCMS packages */
 import config from '@payload-config'
-import '@payloadcms/next/css'
-import { handleServerFunctions, RootLayout } from '@/components/payloadcms/next'
+import { handleServerFunctions, RootLayout } from '@/components/payloadcms/next/exports/layouts'
 import type { ServerFunctionClient } from 'payload'
 import React from 'react'
+
+import '../(frontend)/global.css'
 import { importMap } from '../(payload)/admin/importMap'
 
 type Args = {

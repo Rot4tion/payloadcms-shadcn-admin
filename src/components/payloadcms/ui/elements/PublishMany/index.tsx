@@ -1,0 +1,91 @@
+// @ts-nocheck payloadcms original type safe issue will fix later
+'use client'
+import type { ClientCollectionConfig, Where } from 'payload'
+
+import { useModal } from '../Modal'
+import React from 'react'
+
+import { useAuth } from '@payloadcms/ui'
+import { useSelection } from '@payloadcms/ui'
+import { useTranslation } from '@payloadcms/ui'
+import { ListSelectionButton } from '../ListSelection'
+import { PublishManyDrawerContent } from './DrawerContent'
+import { SelectAllStatus } from '@payloadcms/ui/providers/Selection'
+
+export type PublishManyProps = {
+  collection: ClientCollectionConfig
+}
+
+export const PublishMany: React.FC<PublishManyProps> = (props) => {
+  const { count, selectAll, selectedIDs, toggleAll } = useSelection()
+
+  return (
+    <PublishMany_v4
+      {...props}
+      count={count}
+      ids={selectedIDs}
+      onSuccess={() => toggleAll()}
+      selectAll={selectAll === SelectAllStatus.AllAvailable}
+    />
+  )
+}
+
+type PublishMany_v4Props = {
+  count: number
+  ids: (number | string)[]
+  /**
+   * When multiple PublishMany components are rendered on the page, this will differentiate them.
+   */
+  modalPrefix?: string
+  onSuccess?: () => void
+  selectAll: boolean
+  where?: Where
+} & PublishManyProps
+
+export const PublishMany_v4: React.FC<PublishMany_v4Props> = (props) => {
+  const {
+    collection,
+    collection: { slug, versions } = {},
+    count,
+    ids,
+    modalPrefix,
+    onSuccess,
+    selectAll,
+    where,
+  } = props
+
+  const { permissions } = useAuth()
+  const { t } = useTranslation()
+
+  const { openModal } = useModal()
+
+  const collectionPermissions = permissions?.collections?.[slug]
+  const hasPermission = collectionPermissions?.update
+
+  const drawerSlug = `${modalPrefix ? `${modalPrefix}-` : ''}publish-${slug}`
+
+  if (!versions?.drafts || count === 0 || !hasPermission) {
+    return null
+  }
+
+  return (
+    <React.Fragment>
+      <ListSelectionButton
+        aria-label={t('version:publish')}
+        onClick={() => {
+          openModal(drawerSlug)
+        }}
+      >
+        {t('version:publish')}
+      </ListSelectionButton>
+      <PublishManyDrawerContent
+        collection={collection}
+        drawerSlug={drawerSlug}
+        ids={ids}
+        onSuccess={onSuccess}
+        selectAll={selectAll}
+        where={where}
+      />
+    </React.Fragment>
+  )
+}

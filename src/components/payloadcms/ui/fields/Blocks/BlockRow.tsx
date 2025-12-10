@@ -1,0 +1,217 @@
+// @ts-nocheck payloadcms original type safe issue will fix later
+'use client'
+import type { ClientBlock, ClientField, Labels, Row, SanitizedFieldPermissions } from 'payload'
+
+import { getTranslation } from '@payloadcms/translations'
+import React from 'react'
+
+import type { UseDraggableSortableReturn } from '../../elements/DraggableSortable/useDraggableSortable/types'
+import type { RenderFieldsProps } from '../../forms/RenderFields/types'
+
+import { Collapsible } from '../../elements/Collapsible'
+import { ErrorPill } from '../../elements/ErrorPill'
+import { Pill } from '../../elements/Pill'
+import { ShimmerEffect } from '../../elements/ShimmerEffect'
+import { useFormSubmitted } from '@payloadcms/ui'
+import { RenderFields } from '../../forms/RenderFields'
+import { RowLabel } from '../../forms/RowLabel'
+import { useThrottledValue } from '../../hooks/useThrottledValue'
+import { useTranslation } from '@payloadcms/ui'
+import { cn } from '@/lib/utils'
+import { RowActions } from './RowActions'
+import { SectionTitle } from './SectionTitle'
+
+type BlocksFieldProps = {
+  addRow: (rowIndex: number, blockType: string) => Promise<void> | void
+  block: ClientBlock
+  blocks: (ClientBlock | string)[] | ClientBlock[]
+  copyRow: (rowIndex: number) => void
+  duplicateRow: (rowIndex: number) => void
+  errorCount: number
+  fields: ClientField[]
+  hasMaxRows?: boolean
+  isLoading?: boolean
+  isSortable?: boolean
+  Label?: React.ReactNode
+  labels: Labels
+  moveRow: (fromIndex: number, toIndex: number) => void
+  parentPath: string
+  pasteRow: (rowIndex: number) => void
+  path: string
+  permissions: SanitizedFieldPermissions
+  readOnly: boolean
+  removeRow: (rowIndex: number) => void
+  row: Row
+  rowCount: number
+  rowIndex: number
+  schemaPath: string
+  setCollapse: (id: string, collapsed: boolean) => void
+} & UseDraggableSortableReturn
+
+export const BlockRow: React.FC<BlocksFieldProps> = ({
+  addRow,
+  attributes,
+  block,
+  blocks,
+  copyRow,
+  duplicateRow,
+  errorCount,
+  fields,
+  hasMaxRows,
+  isLoading: isLoadingFromProps,
+  isSortable,
+  Label,
+  labels,
+  listeners,
+  moveRow,
+  parentPath,
+  pasteRow,
+  path,
+  permissions,
+  readOnly,
+  removeRow,
+  row,
+  rowCount,
+  rowIndex,
+  schemaPath,
+  setCollapse,
+  setNodeRef,
+  transform,
+}) => {
+  const isLoading = useThrottledValue(isLoadingFromProps, 500)
+
+  const { i18n } = useTranslation()
+  const hasSubmitted = useFormSubmitted()
+
+  const fieldHasErrors = hasSubmitted && errorCount > 0
+
+  const showBlockName = !block.admin?.disableBlockName
+
+  const classNames = cn(
+    fieldHasErrors && 'has-errors',
+    !fieldHasErrors && '[&_.collapsible--error]:text-foreground!',
+  )
+
+  let blockPermissions: RenderFieldsProps['permissions'] = true
+
+  if (permissions === true) {
+    blockPermissions = true
+  } else {
+    const permissionsBlockSpecific = permissions?.blocks?.[block.slug] || permissions?.blocks
+    if (permissionsBlockSpecific === true) {
+      blockPermissions = true
+    } else if (permissionsBlockSpecific?.fields) {
+      blockPermissions = permissionsBlockSpecific.fields
+    } else {
+      // Check if we should fall back to read-only mode based on permission structure
+      // This handles cases where field-level access control exists but block permissions were sanitized
+      if (typeof permissions === 'object' && permissions && !permissionsBlockSpecific) {
+        // If permissions object exists but has no block-specific permissions,
+        // check if it has any restrictive characteristics
+        const hasReadPermission = permissions.read === true
+        const missingCreateOrUpdate = !permissions.create || !permissions.update
+        const hasRestrictiveStructure =
+          hasReadPermission &&
+          (missingCreateOrUpdate ||
+            (typeof permissions === 'object' &&
+              Object.keys(permissions).length === 1 &&
+              permissions.read))
+
+        if (hasRestrictiveStructure) {
+          blockPermissions = { read: true }
+        } else {
+          blockPermissions = permissionsBlockSpecific?.fields
+        }
+      } else {
+        blockPermissions = permissionsBlockSpecific?.fields
+      }
+    }
+  }
+
+  return (
+    <div
+      id={`${parentPath?.split('.').join('-')}-row-${rowIndex}`}
+      key={`${parentPath}-row-${rowIndex}`}
+      ref={setNodeRef}
+      style={{
+        transform,
+      }}
+    >
+      <Collapsible
+        actions={
+          !readOnly ? (
+            <RowActions
+              addRow={addRow}
+              blocks={blocks}
+              blockType={row.blockType}
+              copyRow={copyRow}
+              duplicateRow={duplicateRow}
+              fields={block.fields}
+              hasMaxRows={hasMaxRows}
+              isSortable={isSortable}
+              labels={labels}
+              moveRow={moveRow}
+              pasteRow={pasteRow}
+              removeRow={removeRow}
+              rowCount={rowCount}
+              rowIndex={rowIndex}
+            />
+          ) : undefined
+        }
+        className={classNames}
+        collapsibleStyle={fieldHasErrors ? 'error' : 'default'}
+        dragHandleProps={
+          isSortable
+            ? {
+                id: row.id,
+                attributes,
+                listeners,
+              }
+            : undefined
+        }
+        header={
+          isLoading ? (
+            <ShimmerEffect height="1rem" width="8rem" />
+          ) : (
+            <div className="inline-flex max-w-full w-full overflow-hidden gap-1.5">
+              <RowLabel
+                CustomComponent={Label}
+                label={
+                  <>
+                    <span className="shrink-0">{String(rowIndex + 1).padStart(2, '0')}</span>
+                    <Pill className="shrink-0 block leading-none" pillStyle="white" size="small">
+                      {getTranslation(block.labels.singular, i18n)}
+                    </Pill>
+                    {showBlockName && (
+                      <SectionTitle path={`${path}.blockName`} readOnly={readOnly} />
+                    )}
+                  </>
+                }
+                path={path}
+                rowNumber={rowIndex}
+              />
+              {fieldHasErrors && <ErrorPill count={errorCount} i18n={i18n} withMessage />}
+            </div>
+          )
+        }
+        isCollapsed={row.collapsed}
+        key={row.id}
+        onToggle={(collapsed) => setCollapse(row.id, collapsed)}
+      >
+        {isLoading ? (
+          <ShimmerEffect />
+        ) : (
+          <RenderFields
+            fields={fields}
+            margins="small"
+            parentIndexPath=""
+            parentPath={path}
+            parentSchemaPath={schemaPath}
+            permissions={blockPermissions}
+            readOnly={readOnly}
+          />
+        )}
+      </Collapsible>
+    </div>
+  )
+}

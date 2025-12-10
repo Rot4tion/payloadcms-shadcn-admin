@@ -1,0 +1,49 @@
+// @ts-nocheck payloadcms original type safe issue will fix later
+'use client'
+import type { GroupFieldDiffClientComponent } from 'payload'
+
+import { getTranslation } from '@payloadcms/translations'
+import { useTranslation } from '@/components/payloadcms/ui/exports/client'
+import React from 'react'
+
+import { useSelectedLocales } from '../../../Default/SelectedLocalesContext'
+import { DiffCollapser } from '../../DiffCollapser'
+import { RenderVersionFieldsToDiff } from '../../RenderVersionFieldsToDiff'
+
+export const Group: GroupFieldDiffClientComponent = ({
+  baseVersionField,
+  comparisonValue: valueFrom,
+  field,
+  locale,
+  parentIsLocalized,
+  versionValue: valueTo,
+}) => {
+  const { i18n } = useTranslation()
+  const { selectedLocales } = useSelectedLocales()
+
+  return (
+    <div>
+      <DiffCollapser
+        fields={field.fields}
+        Label={
+          'label' in field && field.label && typeof field.label !== 'function' ? (
+            <span>
+              {locale && <span className="text-muted-foreground mr-1">{locale}</span>}
+              {getTranslation(field.label, i18n)}
+            </span>
+          ) : (
+            <span className="text-muted-foreground italic">
+              &lt;{i18n.t('version:noLabelGroup')}&gt;
+            </span>
+          )
+        }
+        locales={selectedLocales}
+        parentIsLocalized={parentIsLocalized || field.localized}
+        valueFrom={valueFrom}
+        valueTo={valueTo}
+      >
+        <RenderVersionFieldsToDiff versionFields={baseVersionField.fields} />
+      </DiffCollapser>
+    </div>
+  )
+}

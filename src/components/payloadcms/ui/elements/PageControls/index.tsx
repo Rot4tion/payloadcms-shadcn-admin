@@ -1,0 +1,99 @@
+// @ts-nocheck payloadcms original type safe issue will fix later
+'use client'
+import type { ClientCollectionConfig, PaginatedDocs } from 'payload'
+
+import { isNumber } from 'payload/shared'
+import React, { Fragment } from 'react'
+
+import type { IListQueryContext } from '../../providers/ListQuery/types'
+
+import { Pagination } from '../../elements/Pagination'
+import { PerPage } from '../../elements/PerPage'
+import { useListQuery } from '@payloadcms/ui'
+import { useTranslation } from '@payloadcms/ui'
+
+/**
+ * @internal
+ */
+export const PageControlsComponent: React.FC<{
+  AfterPageControls?: React.ReactNode
+  collectionConfig: ClientCollectionConfig
+  data: PaginatedDocs
+  handlePageChange?: IListQueryContext['handlePageChange']
+  handlePerPageChange?: IListQueryContext['handlePerPageChange']
+  limit?: number
+}> = ({
+  AfterPageControls,
+  collectionConfig,
+  data,
+  handlePageChange,
+  handlePerPageChange,
+  limit,
+}) => {
+  const { i18n } = useTranslation()
+
+  return (
+    <div className="page-controls w-full flex items-center flex-wrap gap-2">
+      <Pagination
+        className="w-full sm:w-auto sm:mb-0 mb-2"
+        hasNextPage={data.hasNextPage}
+        hasPrevPage={data.hasPrevPage}
+        limit={data.limit}
+        nextPage={data.nextPage}
+        numberOfNeighbors={1}
+        onChange={handlePageChange}
+        page={data.page}
+        prevPage={data.prevPage}
+        totalPages={data.totalPages}
+      />
+      {data.totalDocs > 0 && (
+        <div className="flex items-center gap-2 ms-auto">
+          <div className="text-muted-foreground whitespace-nowrap">
+            {data.page * data.limit - (data.limit - 1)}-
+            {data.totalPages > 1 && data.totalPages !== data.page
+              ? data.limit * data.page
+              : data.totalDocs}{' '}
+            {i18n.t('general:of')} {data.totalDocs}
+          </div>
+          <PerPage
+            handleChange={handlePerPageChange}
+            limit={limit}
+            limits={collectionConfig?.admin?.pagination?.limits}
+            resetPage={data.totalDocs <= data.pagingCounter}
+          />
+          {AfterPageControls}
+        </div>
+      )}
+    </div>
+  )
+}
+
+/**
+ * These page controls are controlled by the global ListQuery state.
+ * To override thi behavior, build your own wrapper around PageControlsComponent.
+ *
+ * @internal
+ */
+export const PageControls: React.FC<{
+  AfterPageControls?: React.ReactNode
+  collectionConfig: ClientCollectionConfig
+}> = ({ AfterPageControls, collectionConfig }) => {
+  const {
+    data,
+    defaultLimit: initialLimit,
+    handlePageChange,
+    handlePerPageChange,
+    query,
+  } = useListQuery()
+
+  return (
+    <PageControlsComponent
+      AfterPageControls={AfterPageControls}
+      collectionConfig={collectionConfig}
+      data={data}
+      handlePageChange={handlePageChange}
+      handlePerPageChange={handlePerPageChange}
+      limit={isNumber(query.limit) ? query.limit : initialLimit}
+    />
+  )
+}

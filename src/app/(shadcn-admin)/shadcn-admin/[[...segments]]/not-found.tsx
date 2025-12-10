@@ -1,8 +1,9 @@
+/* SHADCN ADMIN - Using local PayloadCMS packages */
 import type { Metadata } from 'next'
 
-import { importMap } from '@/app/(payload)/admin/importMap'
-import { NotFoundPage, generatePageMetadata } from '@/components/payloadcms/next'
 import config from '@payload-config'
+import { NotFoundPage, generatePageMetadata } from '@/components/payloadcms/next/exports/views'
+import { importMap } from '@/app/(payload)/admin/importMap'
 
 type Args = {
   params: Promise<{

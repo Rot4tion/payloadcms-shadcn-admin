@@ -1,0 +1,91 @@
+'use client'
+
+import * as React from 'react'
+
+import { Banner } from '../../elements/Banner'
+import { CheckboxField } from '../../fields/Checkbox'
+import { useConfig } from '@payloadcms/ui'
+import { useLocale } from '@payloadcms/ui'
+import { useTranslation } from '@payloadcms/ui'
+import { useForm } from '@payloadcms/ui'
+
+type NullifyLocaleFieldProps = {
+  readonly fieldValue?: [] | null | number
+  readonly localized: boolean
+  readonly path: string
+  readonly readOnly?: boolean
+}
+
+export const NullifyLocaleField: React.FC<NullifyLocaleFieldProps> = ({
+  fieldValue,
+  localized,
+  path,
+  readOnly = false,
+}) => {
+  const { code: currentLocale } = useLocale()
+  const {
+    config: { localization },
+  } = useConfig()
+  const [checked, setChecked] = React.useState<boolean>(typeof fieldValue !== 'number')
+  const { t } = useTranslation()
+  const { dispatchFields, setModified } = useForm()
+
+  if (!localized || !localization) {
+    // hide when field is not localized or localization is not enabled
+    return null
+  }
+
+  if (localization.defaultLocale === currentLocale || !localization.fallback) {
+    // if editing default locale or when fallback is disabled
+    return null
+  }
+
+  const onChange = () => {
+    const useFallback = !checked
+
+    dispatchFields({
+      type: 'UPDATE',
+      path,
+      value: useFallback ? null : fieldValue || 0,
+    })
+    setModified(true)
+    setChecked(useFallback)
+  }
+
+  if (fieldValue) {
+    let hideCheckbox = false
+    if (typeof fieldValue === 'number' && fieldValue > 0) {
+      hideCheckbox = true
+    }
+    if (Array.isArray(fieldValue) && fieldValue.length > 0) {
+      hideCheckbox = true
+    }
+
+    if (hideCheckbox) {
+      if (checked) {
+        setChecked(false)
+      } // uncheck when field has value
+      return null
+    }
+  }
+
+  return (
+    <Banner className="mb-0 [&_.field-type.checkbox]:flex [&_.field-type.checkbox]:flex-col [&_.field-type.checkbox]:m-0 [&+.array-field__add-row]:mt-[calc(var(--base)/2)]">
+      {!fieldValue && readOnly ? (
+        t('general:fallbackToDefaultLocale')
+      ) : (
+        <CheckboxField
+          checked={checked}
+          field={{
+            name: '',
+            label: t('general:fallbackToDefaultLocale'),
+          }}
+          id={`field-${path.replace(/\./g, '__')}`}
+          onChange={onChange}
+          path={path}
+          schemaPath=""
+        />
+      )}
+    </Banner>
+  )
+}

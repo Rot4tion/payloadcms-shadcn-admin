@@ -1,0 +1,25 @@
+// @ts-nocheck payloadcms original type safe issue will fix later
+'use client'
+import React from 'react'
+
+import { useLivePreviewContext } from '@payloadcms/ui'
+
+export const IFrame: React.FC = () => {
+  const { iframeRef, setLoadedURL, url, zoom } = useLivePreviewContext()
+
+  return (
+    <iframe
+      className="bg-white border-0 w-full h-full origin-top-left"
+      key={url}
+      onLoad={() => {
+        setLoadedURL(url)
+      }}
+      ref={iframeRef}
+      src={url}
+      style={{
+        transform: typeof zoom === 'number' ? `scale(${zoom}) ` : undefined,
+      }}
+      title={url}
+    />
+  )
+}

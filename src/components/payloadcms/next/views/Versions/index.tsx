@@ -1,0 +1,183 @@
+// @ts-nocheck payloadcms original type safe issue will fix later
+import {
+  Gutter,
+  ListQueryProvider,
+  SetDocumentStepNav,
+} from '@/components/payloadcms/ui/exports/client'
+import { notFound } from 'next/navigation'
+import { type DocumentViewServerProps, type PaginatedDocs, type Where } from 'payload'
+import { isNumber } from 'payload/shared'
+import React from 'react'
+
+import { fetchLatestVersion, fetchVersions } from '../Version/fetchVersions'
+import { VersionDrawerCreatedAtCell } from '../Version/SelectComparison/VersionDrawer/CreatedAtCell'
+import { buildVersionColumns } from './buildColumns'
+import { VersionsViewClient } from './index.client'
+import { cn } from '@/lib/utils'
+
+export async function VersionsView(props: DocumentViewServerProps) {
+  const {
+    hasPublishedDoc,
+    initPageResult: {
+      collectionConfig,
+      docID: id,
+      globalConfig,
+      req,
+      req: {
+        i18n,
+        payload: { config },
+        t,
+        user,
+      },
+    },
+    routeSegments: segments,
+    searchParams: { limit, page, sort },
+    versions: { disableGutter = false, useVersionDrawerCreatedAtCell = false } = {},
+  } = props
+
+  const draftsEnabled = (collectionConfig ?? globalConfig)?.versions?.drafts
+
+  const collectionSlug = collectionConfig?.slug
+  const globalSlug = globalConfig?.slug
+
+  const isTrashed = segments[2] === 'trash'
+
+  const {
+    localization,
+    routes: { api: apiRoute },
+    serverURL,
+  } = config
+
+  const whereQuery: {
+    and: Array<{ parent?: { equals: number | string }; snapshot?: { not_equals: boolean } }>
+  } & Where = {
+    and: [],
+  }
+  if (localization && draftsEnabled) {
+    whereQuery.and.push({
+      snapshot: {
+        not_equals: true,
+      },
+    })
+  }
+
+  const defaultLimit = collectionSlug ? collectionConfig?.admin?.pagination?.defaultLimit : 10
+
+  const limitToUse = isNumber(limit) ? Number(limit) : defaultLimit
+
+  const versionsData: PaginatedDocs = await fetchVersions({
+    collectionSlug,
+    depth: 0,
+    globalSlug,
+    limit: limitToUse,
+    overrideAccess: false,
+    page: page ? parseInt(page.toString(), 10) : undefined,
+    parentID: id,
+    req,
+    sort: sort as string,
+    user,
+    where: whereQuery,
+  })
+
+  if (!versionsData) {
+    return notFound()
+  }
+
+  const [currentlyPublishedVersion, latestDraftVersion] = await Promise.all([
+    hasPublishedDoc
+      ? fetchLatestVersion({
+          collectionSlug,
+          depth: 0,
+          globalSlug,
+          overrideAccess: false,
+          parentID: id,
+          req,
+          select: {
+            id: true,
+            updatedAt: true,
+          },
+          status: 'published',
+          user,
+        })
+      : Promise.resolve(null),
+    draftsEnabled
+      ? fetchLatestVersion({
+          collectionSlug,
+          depth: 0,
+          globalSlug,
+          overrideAccess: false,
+          parentID: id,
+          req,
+          select: {
+            id: true,
+            updatedAt: true,
+          },
+          status: 'draft',
+          user,
+        })
+      : Promise.resolve(null),
+  ])
+
+  const fetchURL = collectionSlug
+    ? `${serverURL}${apiRoute}/${collectionSlug}/versions`
+    : `${serverURL}${apiRoute}/globals/${globalSlug}/versions`
+
+  const columns = buildVersionColumns({
+    collectionConfig,
+    CreatedAtCellOverride: useVersionDrawerCreatedAtCell ? VersionDrawerCreatedAtCell : undefined,
+    currentlyPublishedVersion,
+    docID: id,
+    docs: versionsData?.docs,
+    globalConfig,
+    i18n,
+    isTrashed,
+    latestDraftVersion,
+  })
+
+  const pluralLabel =
+    typeof collectionConfig?.labels?.plural === 'function'
+      ? collectionConfig.labels.plural({ i18n, t })
+      : (collectionConfig?.labels?.plural ?? globalConfig?.label)
+
+  const GutterComponent = disableGutter ? React.Fragment : Gutter
+
+  return (
+    <React.Fragment>
+      <SetDocumentStepNav
+        collectionSlug={collectionSlug}
+        globalSlug={globalSlug}
+        id={id}
+        isTrashed={isTrashed}
+        pluralLabel={pluralLabel}
+        useAsTitle={collectionConfig?.admin?.useAsTitle || globalSlug}
+        view={i18n.t('version:versions')}
+      />
+      <main className="w-full mb-[calc(var(--base)*2)]">
+        <GutterComponent
+          className={cn(
+            'pt-0 pb-(--spacing-view-bottom) mt-[calc(var(--base)*0.75)]',
+            'max-md:pt-0 max-md:mt-0',
+            '[&_.table]:w-full [&_.table_table]:w-full [&_.table_table]:overflow-auto',
+            '[&_.paginator]:mb-0 max-md:[&_.paginator]:w-full max-md:[&_.paginator]:mb-(--base)',
+          )}
+        >
+          <ListQueryProvider
+            data={versionsData}
+            modifySearchParams
+            orderableFieldName={collectionConfig?.orderable === true ? '_order' : undefined}
+            query={{
+              limit: limitToUse,
+              sort: sort as string,
+            }}
+          >
+            <VersionsViewClient
+              columns={columns}
+              fetchURL={fetchURL}
+              paginationLimits={collectionConfig?.admin?.pagination?.limits}
+            />
+          </ListQueryProvider>
+        </GutterComponent>
+      </main>
+    </React.Fragment>
+  )
+}
