@@ -11,6 +11,18 @@ A drop-in replacement UI layer for PayloadCMS built with **TailwindCSS** and **s
 - **Modern UI** - Built with TailwindCSS v4 and shadcn/ui components for unlimited customization
 - **No Lock-in** - Only replaces UI/layout while keeping all PayloadCMS functionality intact
 
+## 📸 Screenshots
+
+### Target UI (Customized)
+The goal is to create highly customized admin panels like this marketplace seller dashboard:
+
+![Customized Admin UI](./images/image.png)
+
+### Current Development State
+Current UI state (minimal customization, for testing purposes):
+
+![Current Demo UI](./images/demo.png)
+
 ## 🎯 Use Cases
 
 | Role | Route | UI |
