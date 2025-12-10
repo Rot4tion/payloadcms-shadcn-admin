@@ -48,7 +48,8 @@ export default buildConfig({
     fallback: true,
   },
   routes: {
-    // admin: '/shadcn-admin',
+    // TODO make support multiple admin routes later
+    admin: '/shadcn-admin',
   },
   collections: [Users, Media, Tests],
   editor: lexicalEditor(),
