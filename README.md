@@ -1,67 +1,112 @@
-# Payload Blank Template
+# PayloadCMS Shadcn Admin
 
-This template comes configured with the bare minimum to get started on anything you need.
+> **🚧 Work in Progress** - This project is under active development and exploring distribution approaches.
 
-## Quick start
+A drop-in replacement UI layer for PayloadCMS built with **TailwindCSS** and **shadcn/ui** components. Create unlimited custom admin panels while keeping the original PayloadCMS admin intact.
 
-This template can be deployed directly from our Cloud hosting and it will setup MongoDB and cloud S3 object storage for media.
+## ✨ Key Features
 
-## Quick Start - local setup
+- **Multiple Admin Panels** - Add custom admin interfaces for different user roles without modifying the original PayloadCMS admin
+- **Shared Core** - All admin panels share the same PayloadCMS hooks, providers, context, and authentication
+- **Modern UI** - Built with TailwindCSS v4 and shadcn/ui components for unlimited customization
+- **No Lock-in** - Only replaces UI/layout while keeping all PayloadCMS functionality intact
 
-To spin up this template locally, follow these steps:
+## 🎯 Use Cases
 
-### Clone
+| Role | Route | UI |
+|------|-------|-----|
+| **Super Admin** | `/admin` | Original PayloadCMS Admin |
+| **Marketplace Seller** | `/store-admin` | Custom Shadcn/TailwindCSS Admin |
+| **Blog Author** | `/blog-admin` | Custom Shadcn/TailwindCSS Admin |
+| **Customer Support** | `/support-admin` | Custom Shadcn/TailwindCSS Admin |
 
-After you click the `Deploy` button above, you'll want to have standalone copy of this repo on your machine. If you've already cloned this repo, skip to [Development](#development).
+All custom admin panels use the same PayloadCMS authentication, data layer, and API - only the UI changes.
 
-### Development
+## 📦 Distribution (Under Consideration)
 
-1. First [clone the repo](#clone) if you have not done so already
-2. `cd my-project && cp .env.example .env` to copy the example environment variables. You'll need to add the `MONGODB_URI` from your Cloud project to your `.env` if you want to use S3 storage and the MongoDB database that was created for you.
+We are exploring two distribution approaches:
 
-3. `pnpm install && pnpm dev` to install dependencies and start the dev server
-4. open `http://localhost:3000` to open the app in your browser
+### Option 1: CLI-based (like shadcn)
+- Download components directly into your source code
+- Maximum customization flexibility
+- Manual updates
 
-That's it! Changes made in `./src` will be reflected in your app. Follow the on-screen instructions to login and create your first admin user. Then check out [Production](#production) once you're ready to build and serve your app, and [Deployment](#deployment) when you're ready to go live.
+### Option 2: Package-based
+- Install as npm package
+- Automatic updates
+- Less customization flexibility
 
-#### Docker (Optional)
+## 🏗️ Project Structure
 
-If you prefer to use Docker for local development instead of a local MongoDB instance, the provided docker-compose.yml file can be used.
+```
+src/
+├── app/
+│   ├── (payload)/           # Original PayloadCMS admin routes
+│   └── (shadcn-admin)/      # Custom admin panel routes
+├── components/
+│   ├── payloadcms/          # Converted PayloadCMS components
+│   │   ├── next/            # Next.js integration (views, layouts, templates)
+│   │   └── ui/              # Core UI components (elements, fields, forms)
+│   └── ui/                  # Base shadcn/ui components
+```
 
-To do so, follow these steps:
+## 🔄 Migration Status
 
-- Modify the `MONGODB_URI` in your `.env` file to `mongodb://127.0.0.1/<dbname>`
-- Modify the `docker-compose.yml` file's `MONGODB_URI` to match the above `<dbname>`
-- Run `docker-compose up` to start the database, optionally pass `-d` to run in the background.
+All PayloadCMS UI components have been converted from SCSS to TailwindCSS:
 
-## How it works
+| Category | Components | Status |
+|----------|------------|--------|
+| **Core UI** | Button, Card, Modal, Drawer, Popup, Table, Pagination | ✅ Done |
+| **Form Fields** | Array, Blocks, Checkbox, DateTime, Email, Group, Number, Password, Point, RadioGroup, Relationship, RichText, Row, Upload, Select, Slug, Tabs, Text, Textarea | ✅ Done |
+| **Graphics** | Icons, PayloadLogo | ✅ Done |
+| **Layout** | Nav, NavWrapper, DocumentHeader, DocumentTabs, FormHeader, DefaultTemplate | ✅ Done |
+| **Views** | Login, List, Document, Dashboard, NotFound, Unauthorized, Account, API | ✅ Done |
 
-The Payload config is tailored specifically to the needs of most websites. It is pre-configured in the following ways:
+## ⚠️ Current Limitations
 
-### Collections
+- **Plugin Fallback Not Supported** - PayloadCMS plugins that use `@payloadcms/ui` components are not yet supported. These plugins will not render correctly in custom admin panels. Fallback support is planned for future releases.
 
-See the [Collections](https://payloadcms.com/docs/configuration/collections) docs for details on how to extend this functionality.
+## 🛠️ Tech Stack
+- **Styling**: TailwindCSS v4
+- **Components**: shadcn/ui, Radix UI
+- **Database**: PostgreSQL (via @payloadcms/db-postgres)
 
-- #### Users (Authentication)
+## 🚀 Getting Started
 
-  Users are auth-enabled collections that have access to the admin panel.
+### Prerequisites
 
-  For additional help, see the official [Auth Example](https://github.com/payloadcms/payload/tree/main/examples/auth) or the [Authentication](https://payloadcms.com/docs/authentication/overview#authentication-overview) docs.
+- Node.js ^18.20.2 or >=20.9.0
+- pnpm ^9 or ^10
+- PostgreSQL database
 
-- #### Media
+### Installation
 
-  This is the uploads enabled collection. It features pre-configured sizes, focal point and manual resizing to help you manage your pictures.
+1. Clone the repository
+```bash
+git clone <repository-url>
+cd blank-template
+```
 
-### Docker
+2. Install dependencies
+```bash
+pnpm install
+```
 
-Alternatively, you can use [Docker](https://www.docker.com) to spin up this template locally. To do so, follow these steps:
+3. Set up environment variables
+```bash
+cp .env.example .env
+# Edit .env with your database credentials
+```
 
-1. Follow [steps 1 and 2 from above](#development), the docker-compose file will automatically use the `.env` file in your project root
-1. Next run `docker-compose up`
-1. Follow [steps 4 and 5 from above](#development) to login and create your first admin user
+4. Start development server
+```bash
+pnpm dev
+```
 
-That's it! The Docker instance will help you get up and running quickly while also standardizing the development environment across your teams.
+## 📄 License
 
-## Questions
+MIT
 
-If you have any issues or questions, reach out to us on [Discord](https://discord.com/invite/payload) or start a [GitHub discussion](https://github.com/payloadcms/payload/discussions).
+## 🤝 Contributing
+
+This project is in early development. Contributions, ideas, and feedback are welcome!
